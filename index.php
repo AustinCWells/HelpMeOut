@@ -5,10 +5,10 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<!--<script src="js/jquery.cookie.js"></script>
-	<script language="javascript"  type="text/javascript" src="js/modal.js"> </script>  
 	<script language="javascript"  type="text/javascript" src="js/nav.js"> </script> -->
 	<link href="css/main.css" rel="stylesheet">
 	<script language="javascript" type="text/javascript" src="js/index.js"> </script> 
+	<script language="javascript"  type="text/javascript" src="js/modal.js"> </script>  
 
 	<!--TABS: -->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
@@ -17,7 +17,9 @@
 
 </head>
 <body>
-	<?php include "components/nav.html"; ?> 
+	<?php include "components/nav.html"; ?>
+	<?php include "components/modals.html"; ?> 
+ 
 	<p>WE WILL HELP YOU OUT. SOON.</p>
 
 
