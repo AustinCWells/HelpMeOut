@@ -1,0 +1,31 @@
+#headerHolder {
+	background-color: pink;
+}
+
+
+/* TABS */
+/* Default color for links inside the tabbed box */ 
+.ui-widget-content a, .ui-widget-content a:hover, .ui-widget-content a:visited, .ui-widget-content a:active {
+color: #2954d1 !important; 
+text-decoration: underline !important; 
+}
+
+/* Default styling for selected tab titles */ 
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+color: #212121 !important;
+text-decoration: none !important;
+cursor: text !important;
+}
+
+/* Default styling for unselected tab titles */ 
+.ui-state-default a:hover, .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+color: #555555 !important;
+text-decoration: none !important;
+cursor: text !important;
+}
+
+#tabs {
+	width: 800px;
+}
+
+/*NO MORE TABS*/
