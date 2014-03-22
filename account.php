@@ -29,9 +29,9 @@
 			<div id="badges">
 				Badges:<br>
 				YOU'RE AWESOME: you actually noticed this! good job!<br>
-				<div id="progressDiv">
-					<span id="progressLable">55%</span>
-		            <div class="progressBar">
+				<div id="ratingDiv">
+					<span id="ratingLabel">55%</span>
+		            <div class="barArea">
 			            <div id="ratingBg" ></div>
 			            <div id="ratingFg" progress="55"></div>
 			        </div>
@@ -43,3 +43,4 @@
 
 </body>
 </html>
+

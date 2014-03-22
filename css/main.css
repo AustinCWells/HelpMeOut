@@ -1,4 +1,5 @@
 /* NAV BAR */
+
 #headerHolder {
 	background-color: pink;
 }
@@ -80,37 +81,33 @@ cursor: text !important;
 }
 
 .profileSection {
-	border: solid 1px pink;
+	border: solid 1px salmon;
 	height:50%;
 }
 
-#progressDiv {
+#ratingDiv {
 	width:250px;
 }
 
-.progressBar {
+.barArea {
 	height: 25px;
 	position: relative;
 	top: -5.5px;
-	width: 70%;
+	width : 200px;
 	margin-left: 30%;
+	left : 10px;
 	border: solid 1px #575353;
 	padding: 1px;
 }
 
-.progressBar {
-	width : 200px;
-	left : 10px;
-	border: 3px solid green;
-}
-.progressFg {
+#ratingFg {
 	position:relative;
 	bottom : 23px;
 	background-color: #3593DD;
 	height: 90%;
 }
 
-.progressBg {
+#ratingBg {
 	background-color: #E4E4E4;
 	height: 100%;
 }

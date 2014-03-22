@@ -1,10 +1,10 @@
-window.addEventListener('load', function(event) {
+ndow.addEventListener('load', function(event) {
 
 	var ratingBar = document.getElementById("ratingFg");
 	console.log(ratingBar);
-	var percent = document.getElementById("progressLabel");
+	var percent = document.getElementById("ratingLabel");
 	console.log(percent.innerHTML);
-	ratingBar.width =  percent.innerHTML;
+	$(ratingBar).width(percent.innerHTML);
 	console.log("Rating Bar Width: " + ratingBar.width);
 
 }, false);
