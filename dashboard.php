@@ -15,6 +15,18 @@
 	<?php include "components/nav.html"; ?> 
 	<p>WE WILL HAVE PLENTY OF JOBS FOR YOU TO ACCEPT. SOON.</p>
 
+	<div class="dashboardSection" id="jobsImDoing">
+		JOBS I'M DOING:<br>
+
+		none because the site doesn't work....
+	</div>
+
+	<div class="dashboardSection" id="jobsINeedDone">
+		JOBS I NEED DONE:<br>
+
+		someone make this website for me plz.
+	</div>
+
 
 </body>
 </html>

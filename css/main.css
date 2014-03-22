@@ -1,5 +1,15 @@
+/* NAV BAR */
 #headerHolder {
 	background-color: pink;
+}
+
+/*INDEX*/
+#recentJobs {
+	float:left;
+	height:600px;
+	width:300px;
+	border: solid 2px black;
+	margin-left: 45px;
 }
 
 
@@ -26,6 +36,82 @@ cursor: text !important;
 
 #tabs {
 	width: 800px;
+	height: 600px;
+	float:left;
+	margin-left: 45px;
 }
 
 /*NO MORE TABS*/
+
+
+
+/*DASHBOARD*/
+.dashboardSection {
+	float:left;
+	margin-left: 45px;
+	height:450px;
+	width: 550px;
+	border: solid 2px black;
+}
+
+/*ACCOUNT*/
+#profile {
+	border: solid 2px black;
+	height:450px;
+	width:95%;
+	margin-left: 2.5%;
+	padding: 15px;
+}
+
+#profilePic {
+	height: 200px;
+	width: 200px;
+	float:left;
+}
+
+#contactInfo {
+	float:left;
+	margin-left: 15px;
+
+}
+
+#badges {
+	float:none;
+}
+
+.profileSection {
+	border: solid 1px pink;
+	height:50%;
+}
+
+#progressDiv {
+	width:250px;
+}
+
+.progressBar {
+	height: 25px;
+	position: relative;
+	top: -5.5px;
+	width: 70%;
+	margin-left: 30%;
+	border: solid 1px #575353;
+	padding: 1px;
+}
+
+.progressBar {
+	width : 200px;
+	left : 10px;
+	border: 3px solid green;
+}
+.progressFg {
+	position:relative;
+	bottom : 23px;
+	background-color: #3593DD;
+	height: 90%;
+}
+
+.progressBg {
+	background-color: #E4E4E4;
+	height: 100%;
+}
+
