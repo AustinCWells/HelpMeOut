@@ -253,6 +253,7 @@ form{
 	border:2px solid orange;
 	margin-top: 10px;
 	text-align: center;
+	color:black;
 	z-index: 1;
 	background-color: white;
 }
@@ -260,8 +261,15 @@ form{
 	position:absolute;
 	border:2px solid red;
 	text-align: center;
+	color:black;
 	z-index: 1;
 	background-color: white;
 	bottom: 0;
 	right: 10px;
+}
+
+.jobFiller {
+	height:100%;
+	width:100%;
+	z-index:5;
 }
