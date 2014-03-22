@@ -35,19 +35,24 @@
 
 	<!--This section creates the content within each tab-->
 	<div id="tabs-1">
-		Insert content for first tab here.
+		<div class="postings" id="food">
+		</div>
 	</div>
 	<div id="tabs-2">
-		Insert content for second tab here.
+		<div class="postings" id="laundry">
+		</div>
 	</div>
 	<div id="tabs-3">
-		Insert content for third tab here.
+		<div class="postings" id="groceries">
+		</div>
 	</div>
 	<div id="tabs-4">
-		Insert content for fourth tab here.
+		<div class="postings" id="transportation">
+		</div>
 	</div>
 	<div id="tabs-5">
-		Insert content for fifth tab here.
+		<div class="postings" id="rides">
+		</div>
 	</div>
 
 </div>

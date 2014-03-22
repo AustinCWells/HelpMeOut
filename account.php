@@ -19,12 +19,8 @@
 	<p>WE WILL AWARD YOU SHINY NEW BADGES. SOON.</p>
 	<div id="profile">
 		<div class="profileSection" id="upperSection">
-			<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p200x200/1606987_10152195066022415_1956973447_n.jpg" id="profilePic">
+			<img src="" id="profilePic">
 			<div id="contactInfo">
-				Name: Jordan Silver<br>
-				Phone: you can't have it<br>
-				Email: jcsilver@smu.edu<br>
-				Location: Table 24
 			</div>
 		</div>
 		<div class="profileSection" id="lowerSection">

@@ -13,6 +13,10 @@
 	margin-left: 45px;
 }
 
+.postings {
+	padding: 15px;
+}
+
 
 /* TABS */
 /* Default color for links inside the tabbed box */ 
@@ -181,3 +185,35 @@ form{
     border-bottom: 1px solid black;
 }
 
+/*JOB POSTINGS*/
+.jobPost {
+	 width:150px;
+	 height:150px;
+	 position:relative;
+	 float:left;
+	 margin-right:30px;
+	 margin-bottom:30px;
+}
+
+.jobImage {
+	width:150px;
+	height:150px;
+}
+
+.jobTitle {
+	position:absolute;
+	border:2px solid orange;
+	margin-top: 10px;
+	text-align: center;
+	z-index: 1;
+	background-color: white;
+}
+.jobPrice {
+	position:absolute;
+	border:2px solid red;
+	text-align: center;
+	z-index: 1;
+	background-color: white;
+	bottom: 0;
+	right: 10px;
+}
