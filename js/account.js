@@ -1,4 +1,4 @@
-ndow.addEventListener('load', function(event) {
+window.addEventListener('load', function(event) {
 
 	var ratingBar = document.getElementById("ratingFg");
 	console.log(ratingBar);
