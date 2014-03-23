@@ -13,7 +13,7 @@
 
 
 
-	<p>WE WILL HELP YOU OUT. SOON.</p>
+	<p>HELP IS COMING. SLOWLY. FEEL FREE TO TAKE A NAP.</p>
 
 
 <div id="tabs">

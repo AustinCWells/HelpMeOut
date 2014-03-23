@@ -6,7 +6,7 @@
 	<span class="currentPage" id="accountPage"></span>
 
 
-	<p>WE HAVE AWARDED YOU BADGES. SOON OUR PLANS WILL COME TO FRUITION.</p>
+	<p>I RAN OUT OF WITTY THINGS TO SAY. INSTEAD, FEEL FREE TO STARE LONGINGLY INTO MY EYES.</p>
 	<div id="profile">
 		<div class="profileSection" id="upperSection">
 			<img src="" id="profilePic">

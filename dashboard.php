@@ -14,7 +14,7 @@
 	<span class="currentPage" id="dashboardPage"></span>
 
 
-	<p>WE WILL HAVE PLENTY OF JOBS FOR YOU TO ACCEPT. SOON.</p>
+	<p>DON'T BE CONFUSED. THESE JOBS ARE MERELY AN ILLUSION.</p>
 
 	<div class="dashboardSection" id="jobsImDoing">
 		<p class="dashboardTitle">JOBS I'M DOING</p>
