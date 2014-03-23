@@ -19,8 +19,11 @@
 </head>
 <body>
 	<?php include "components/nav.html"; ?>
-	<?php include "components/modals.html"; ?> 
- 
+	<?php include "components/modalOverlay.html"; ?> 
+	<?php include "components/loginModal.html"; ?> 
+	<?php include "components/accountCreateModal.html"; ?> 
+ 	<?php include "components/jobPostModal.html"; ?>
+
 	<p>WE WILL HELP YOU OUT. SOON.</p>
 
 
