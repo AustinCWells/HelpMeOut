@@ -5,10 +5,38 @@ $(document).ready(function(){
 
 		event.preventDefault();
 
-		var email = $(this).children("#loginName").val();
+		var user = {};
+
+		user.email = $(this).children("#loginName").val();
 		var password = CryptoJS.MD5($(this).children("#loginPassword").val());
-		password = password.toString(CryptoJS.enc.Hex);
-		console.log(email + "\n"  + password);
+		user.password = password.toString(CryptoJS.enc.Hex);
+		console.log(user);
+
+
+		$.ajax({
+			type: 'POST',
+			url: 'api/login',
+			content: 'application/json',
+			data: JSON.stringify(user),
+			success: function(data){
+				console.log(data);
+				var obj = JSON.parse(data);
+				if(obj.info == false) {
+					$("#loginModal").css({"border":"2px solid red"});
+					$(".errorMessage").text("silly, your login information is not correct");
+				}
+				else if(data.error != undefined) {
+					console.log(data.error);
+				}
+				else {
+					console.log("loading cookie");
+					console.log(data);
+				}
+			},
+			error: function( ){
+				alert("WE'RE SORRY SOMETHING WENT WRONG")
+			}
+		});
 
 	});
 
@@ -60,33 +88,6 @@ $(document).ready(function(){
 
 	});
 
-	var currentTime = new Date();
-	var hours = currentTime.getHours();
-	var mins = currentTime.getMinutes();
-	var year = currentTime.getFullYear();
-	var month = parseInt(currentTime.getMonth(), 10) + 1;
-	var day = parseInt(currentTime.getDate(), 10);
-	if(day < 10)
-		day = "0" + currentTime.getDate();
-	if(month < 10)
-		month = "0" + currentTime.getMonth();
-	currentTime =  year + "-" + month + "-" + day;
-	
-	if(hours < 10)
-		hours = "0" + hours.toString();
-	else
-		hours = hours.toString();
-
-	if(mins < 10)
-		mins = "0" + mins.toString();
-	else
-		mins = mins.toString();
-
-	var time = hours + ":" + mins;
-
-	$("input[type='time']").val(time);
-
-	$("input[type~='date'").val(currentTime);
 
 	var marginLeft = $("input").css("margin-left");
 
