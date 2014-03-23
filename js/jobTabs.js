@@ -65,7 +65,7 @@ window.addEventListener('load', function(event) {
 		$('#rides').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	var titles = ['I DON\'T KNOW HOW TO COMPUTER', 'NEW WIFI ROUTER, NEED HELP SETTING UP','MYSQL DATABASE HELP!!!!','I CAN\'T CONNECT TO THE INTERNET', 'HELP ME SET UP A FACEBOOK ACCOUNT', 'TROUBLES WITH JAVASCRIPT']
+	var titles = ['','I DON\'T KNOW HOW TO COMPUTER', 'NEW WIFI ROUTER, NEED HELP SETTING UP','MYSQL DATABASE HELP!!!!','I CAN\'T CONNECT TO THE INTERNET', 'HELP ME SET UP A FACEBOOK ACCOUNT', 'TROUBLES WITH JAVASCRIPT']
 
 	for(var i=1;i<7;i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + titles[i] + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></a>';
@@ -97,7 +97,7 @@ window.addEventListener('load', function(event) {
 		$('#recentJobs').append(html);
 	}
 	if($('#recentJobs').html() === '') {
-		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img src="img/jobs.png">');
+		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img id="stevie" src="img/jobs.png">');
 	}
 
 	/*$(".jobImage").hover(function(){

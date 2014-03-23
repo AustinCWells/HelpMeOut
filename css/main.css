@@ -91,7 +91,7 @@ body {
 /*INDEX*/
 #recentBox {
 	float:left;
-	height:600px;
+	height:488px;
 	width:360px;
 	border: 1px solid #aaaaaa;
 	border-radius: 4px;
@@ -106,8 +106,13 @@ body {
 }
 
 #recentJobs {
-	margin-left: auto;
+	margin-left: 55px;
 	margin-right: auto;
+}
+
+#stevie{
+	margin-left: 20px;
+	float:left;
 }
 
 .postings {
@@ -139,7 +144,7 @@ font-size: 15px !important;
 
 #tabs {
 	width: 800px;
-	height: 600px;
+	height: 500px;
 	float:left;
 	margin-left: 45px;
 
