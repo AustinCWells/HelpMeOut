@@ -1,5 +1,6 @@
 window.addEventListener('load', function(event) {
 
+	$('#ratingLabel').append('23%'/*get the rating%*/);
 	var ratingBar = document.getElementById("ratingFg");
 	var percent = document.getElementById("ratingLabel");
 	$(ratingBar).width(percent.innerHTML);

@@ -14,7 +14,7 @@
 			</div>
 			<div id="ratingDiv">
 				Overall Rating:<br><br>
-				<span id="ratingLabel">2%</span>
+				<span id="ratingLabel"></span>
 	            <div class="barArea">
 		            <div id="ratingBg" ></div>
 		            <div id="ratingFg"></div>
