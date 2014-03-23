@@ -18,13 +18,10 @@ body {
 	margin-top: -5px;
 }
 
-#titleLink {
-	
-}
 
 #headerTitle {
 	float:left;
-	margin-top:8px;
+	margin-top:15px;
 	margin-left: 55px;
 	margin-right: 20px;
 }
@@ -45,7 +42,7 @@ body {
 #navbar li a {
 	display: block;
 	background-color: transparent;
-	padding: .5em;
+	padding: 1em;
 }
 
 #navbar li  a:hover{
