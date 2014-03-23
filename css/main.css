@@ -4,6 +4,10 @@ h1 { font-family: 'Raleway', sans-serif; font-weight:800; }
 p  { font-family: 'Raleway', sans-serif;}
 
 
+p:nth-of-type(1) {
+	text-align: center;
+}
+
 /* NAV BAR */
 
 body {
@@ -101,7 +105,8 @@ body {
 }
 
 #recentJobs {
-
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .postings {
@@ -230,7 +235,6 @@ cursor: pointer !important;
 	height:550px;
 	width:95%;
 	margin: 1.5%;
-	padding: 15px;
 }
 
 #profilePic {
@@ -251,7 +255,14 @@ cursor: pointer !important;
 	margin-right: 50px;
 }
 
+#badges {
+	text-align: center;
+	font-size: 24px;
+	margin:-5px;
+}
+
 #badgeSpace {
+	font-size:16px;
 }
 
 .badge {
@@ -273,9 +284,13 @@ cursor: pointer !important;
 	text-align:center;
 }
 
+.profileSection:nth-of-type(1) {
+	border-bottom: solid 1px #aaaaaa;
+}
+
 .profileSection {
-	border: solid 1px salmon;
-	height:50%;
+	height:43%;
+	margin: 15px;
 }
 
 #ratingDiv {
@@ -312,6 +327,7 @@ cursor: pointer !important;
 #ratingBg {
 	background-color: #E4E4E4;
 	height: 100%;
+
 }
 
 /* ~~~~~~~~~~~~ MODAL STYLING ~~~~~~~~~~~~ */
