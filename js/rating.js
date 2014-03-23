@@ -1,8 +1,10 @@
 window.addEventListener('load', function(event) {
 
-	$('#ratingLabel').append('75%'/*get the rating%*/);
-	var ratingBar = document.getElementById("ratingFg");
-	var percent = document.getElementById("ratingLabel");
-	$(ratingBar).width(percent.innerHTML);
+var ratingLabels = document.getElementsByClassName("ratingLabel");
+var ratingBars = document.getElementsByClassName("ratingFg");
 
+for(var i=0;i<ratingLabels.length;i++) {
+	$(ratingLabels[i]).append('75%'/*get the rating%*/);
+	$(ratingBars[i]).width(ratingLabels[i].innerHTML);
+}
 }, false);

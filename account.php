@@ -13,11 +13,11 @@
 			<img src="" id="profilePic">
 			<div id="contactInfo">
 			</div>
-			<div id="ratingDiv">Overall Rating:<br><br>
-				<span id="ratingLabel"></span>
+			<div class="ratingDiv">Overall Rating:<br><br>
+				<span class="ratingLabel"></span>
 	            <div class="barArea">
-		            <div id="ratingBg" ></div>
-		            <div id="ratingFg"></div>
+		            <div class="ratingBg" ></div>
+		            <div class="ratingFg"></div>
 		        </div>
        		</div>
 		</div>
