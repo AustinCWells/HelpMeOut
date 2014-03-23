@@ -157,12 +157,14 @@ cursor: pointer !important;
 	width:85px;
 	float:left;
 	margin:15px;
+	margin-top: 0px;
 }
 
 .jobContactInfo {
 	float:left;
 	position:relative;
 	width: 75%;
+	font-size: 12px;
 
 }
 
