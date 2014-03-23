@@ -23,14 +23,19 @@ $(document).ready(function(){
 		accountInfo.lastName = $(this).children("#accountLName").val();
 		accountInfo.number = $(this).children("#accountPhoneNumber").val();
 		accountInfo.email = $(this).children("#accountEmail").val();
+		accountInfo.gender = $(this).children("#accountGender").val();
+		accountInfo.birthDate = $(this).children("#accountBirthDate").val();
 		var password = $(this).children("#accountPassword").val();
 		var confirmPassword = $(this).children("#accountConfirmPassword").val();
-		if(password !== confirmPassword)
-			alert("Passwords to not match");
-		else
+
+		if(password !== confirmPassword){
+			alert("Passwords do not match");
+		}
+			
+		else{
 			accountInfo.password = password; //add md5
-		accountInfo.card = $(this).children("#accountCreditCard").val();
-		accountInfo.cardNumber = $(this).children("#accountCreditCardNumber").val();
+		}
+
 
 		console.log(accountInfo);
 
@@ -51,5 +56,21 @@ $(document).ready(function(){
 		console.log(jobPostInfo);
 
 	});
+
+	var currentTime = new Date();
+	var year = currentTime.getFullYear();
+	var month = parseInt(currentTime.getMonth(), 10);
+	var day = parseInt(currentTime.getDate(), 10);
+	if(day < 10)
+		day = "0" + currentTime.getDate();
+	if(month < 10)
+		month = "0" + currentTime.getMonth();
+	currentTime =  year + "-" + month + "-" + day;
+	console.log(currentTime);
+
+	$("#jobDeadlineDate").val(currentTime);
+	$("#accountBirthDate").val(currentTime);
+
+
 
 });
