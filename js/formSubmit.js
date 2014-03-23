@@ -47,7 +47,7 @@ $(document).ready(function(){
 
 		jobPostInfo.category = $(this).children("#jobCategory").val();
 		jobPostInfo.description = $(this).children("#jobDescription").val();
-		jobPostInfo.payment = $(this).children("#jobPaymentAmount").val();
+		jobPostInfo.price = $(this).children("#jobPrice").val();
 		jobPostInfo.location = $(this).children("#jobLocation").val();
 		jobPostInfo.deadlineDate = $(this).children("#jobDeadlineDate").val();
 		jobPostInfo.deadlineTime = $(this).children("#jobDeadlineTime").val();
@@ -59,7 +59,7 @@ $(document).ready(function(){
 
 	var currentTime = new Date();
 	var year = currentTime.getFullYear();
-	var month = parseInt(currentTime.getMonth(), 10);
+	var month = parseInt(currentTime.getMonth(), 10) + 1;
 	var day = parseInt(currentTime.getDate(), 10);
 	if(day < 10)
 		day = "0" + currentTime.getDate();
@@ -68,9 +68,12 @@ $(document).ready(function(){
 	currentTime =  year + "-" + month + "-" + day;
 	console.log(currentTime);
 
-	$("#jobDeadlineDate").val(currentTime);
-	$("#accountBirthDate").val(currentTime);
+	$("input[type~='date'").val(currentTime);
 
+	var marginLeft = $("input").css("margin-left");
 
+	//console.log(marginLeft);
+
+	$("label").css("margin-left", marginLeft);
 
 });
