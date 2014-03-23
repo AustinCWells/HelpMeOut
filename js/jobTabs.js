@@ -25,7 +25,7 @@ window.addEventListener('load', function(event) {
 	else if (random === 6)
 		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS');
 
-	for(var i=1;i<11;i++) {
+	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HAUNGREH" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/food.png' + '"></div></a>';
 		$('#food').append(html);
 	}
@@ -33,7 +33,7 @@ window.addEventListener('load', function(event) {
 		$('#food').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<6;i++) {
+	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="laundryPosting' + i + '"><p class="jobDesc">' + "WASH MY SOCKS" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/laundry2.png' + '"></div></a>';
 		$('#laundry').append(html);
 	}
@@ -41,7 +41,7 @@ window.addEventListener('load', function(event) {
 		$('#laundry').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<4;i++) {
+	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="groceriesPosting' + i + '"><p class="jobDesc">' + "KROGER RUN 4 ME" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/groceries.png' + '"></div></a>';
 		$('#groceries').append(html);
 	}
@@ -49,7 +49,7 @@ window.addEventListener('load', function(event) {
 		$('#groceries').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<8;i++) {
+	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="cleaningPosting' + i + '"><p class="jobDesc">' + "MY BATHROOM STAAANKS" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></a>';
 		$('#cleaning').append(html);
 	}
@@ -57,7 +57,7 @@ window.addEventListener('load', function(event) {
 		$('#cleaning').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<5;i++) {
+	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="ridesPosting' + i + '"><p class="jobDesc">' + "DUDE WHERE'S MY CAR" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
 		$('#rides').append(html);
 	}
@@ -65,7 +65,7 @@ window.addEventListener('load', function(event) {
 		$('#rides').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<9;i++) {
+	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + "I DON'T KNOW HOW TO COMPUTER" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></a>';
 		$('#techSupport').append(html);
 	}
@@ -73,7 +73,7 @@ window.addEventListener('load', function(event) {
 		$('#techSupport').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<13;i++) {
+	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="maintenancePosting' + i + '"><p class="jobDesc">' + "FIX MY COTTON CANDY MAKER" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/maintenance.png' + '"></div></a>';
 		$('#maintenance').append(html);
 	}
@@ -81,7 +81,7 @@ window.addEventListener('load', function(event) {
 		$('#maintenance').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<11;i++) {
+	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/other.png' + '"></div></a>';
 		$('#other').append(html);
 	}
@@ -89,7 +89,7 @@ window.addEventListener('load', function(event) {
 		$('#other').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<5;i++) {
+	for(var i=1;i<getRandomInt(2,6);i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="receNtPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></a>';
 		$('#recentJobs').append(html);
 	}
