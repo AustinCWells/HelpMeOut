@@ -47,7 +47,7 @@ body {
 	text-align: center;
 }
 
-#navbar li  a:hover{
+#navbar li.hoverable  a:hover{
 	text-decoration: none;
 	color: #000;
 	background-color: rgb(219,219,219);
