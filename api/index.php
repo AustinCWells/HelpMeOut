@@ -43,9 +43,10 @@
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 		}
 	}
-	
 
-	// COMPLETE BUT NOT TESTED	function createAccount()
+
+	// COMPLETE BUT NOT TESTED	
+	function createAccount()
 	{
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
