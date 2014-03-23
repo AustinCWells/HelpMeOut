@@ -31,9 +31,9 @@
 				$stmt->bindParam("email", $loginInfo->email);
 				$stmt->bindParam("password", ($loginInfo->password));
 				$stmt->execute();
-				$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
+				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
-				$response['info'] = $userinfo;
+				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email']);
 				echo json_encode($response);
 			}
 			else
@@ -63,7 +63,7 @@
 				$stmt->bindParam("email", $newAccount->email);
 				$stmt->bindParam("password", $newAccount->password);
 				$stmt->bindParam("first_name", $newAccount->firstname);
-				$stmt->bindParam("last_name", ($newAccount->lastname));
+				$stmt->bindParam("last_name", md5($newAccount->lastname));
 				$stmt->bindParam("phone", $newAccount->number);
 				$stmt->bindParam("birth_date", $newAccount->bday);
 				$stmt->bindParam("gender", $newAccount->gender);
@@ -86,7 +86,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $loginInfo->email);
-				$stmt->bindParam("password", ($loginInfo->password));
+				$stmt->bindParam("password", md5($loginInfo->password));
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
 				$db = null;
@@ -107,8 +107,8 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$userObj = json_decode($request->getBody());
-		//$userID = $userObj->user_id;
-		$userID = 0;
+		//$userID = (int)$userObj->user_id;
+		$userID = 1;
 		try
 		{
 			if($userID == 0)
@@ -141,7 +141,7 @@
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$taskID = $row['task_id'];
-				$tasks[$taskID] = array('category_id' => (int)$row['category_id'], 'title' => $row['title'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id']);
+				$tasks[$taskID] = array('category_id' => (int)$row['category_id'], 'title' => $row['title'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id'], 'chooser_id' => (int)$row['chooser_id'], 'title' => $row['title'], 'description' => $row['description'], 'price' => (int)$row['price'], 'category_id' => (int)$row['category_id'], 'negotiable' => (int)$row['negotiable']);
 			}
 			$db = null;
 			return $tasks;
@@ -156,34 +156,31 @@
 	{
 		$joblist['tasks'] = getJobs();
 		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE beggar_id = :id";
-		$sql2 = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE chooser_id = :id";
+		$myquery = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE chooser_id = :id";
 		try
 		{
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("id", $id);
 			$stmt->execute();
-			$tasksRequested;
+			$tasksRequested = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$taskID = $row['task_id'];
-				$tasksRequested[$taskID] = $row;
+				$tasksRequested[$taskID] = array('category_id' => (int)$row['category_id'], 'title' => $row['title'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id'], 'chooser_id' => (int)$row['chooser_id'], 'title' => $row['title'], 'description' => $row['description'], 'price' => (int)$row['price'], 'category_id' => (int)$row['category_id'], 'negotiable' => (int)$row['negotiable']);
 			}
 			$joblist['tasksRequested'] = $tasksRequested;
-			$db = null;
 
-			$db = getConnection();
-			$stmt2 = $db->prepare($sql2);
+			$stmt2 = $db->prepare($myquery);
 			$stmt2->bindParam("id", $id);
 			$stmt2->execute();
-
 			$tasksChosen;
 			while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC))
 			{
 				$taskID = $row2['task_id'];
-				$tasksChosen[$task_id][] = $row2;
+				$tasksChosen[$taskID] = array('category_id' => (int)$row['category_id'], 'title' => $row['title'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id'], 'chooser_id' => (int)$row['chooser_id'], 'title' => $row['title'], 'description' => $row['description'], 'price' => (int)$row['price'], 'category_id' => (int)$row['category_id'], 'negotiable' => (int)$row['negotiable']);;
 			}
-			$joblist['tasksChosen'] = $tasksRequested;
+			$joblist['tasksChosen'] = $tasksChosen;
 
 			$db = null;
 
@@ -375,11 +372,11 @@
 	{
 		//SERVER
 		$dbhost="127.0.0.1";
-		$dbpass="lablabs";
+		//$dbpass="lablabs";
 
 		//LOCAL
 		//$dbhost="localhost";
-		//$dbpass="";
+		$dbpass="";
 		
 		$dbuser="root";
 		$dbname="HelpMeOut";
