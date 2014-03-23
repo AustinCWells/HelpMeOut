@@ -384,6 +384,7 @@ form{
 	 float:left;
 	 margin-right:30px;
 	 margin-bottom:30px;
+	 padding: 0px;
 }
 
 .jobImage {
@@ -393,24 +394,29 @@ form{
 
 .jobTitle {
 	position:absolute;
-	border:2px solid orange;
-	margin-top: 10px;
+	border:2px solid rgb(76,80,86);
+	padding: 5px;
+	margin-left: 2px;
+	margin-right: 2px;
+	border-radius:20px 20px 0px 0px;
+	margin-top: 2px;
 	text-align: center;
 	color:black;
 	z-index: 1;
 	background-color: white;
-	opacity: 0.6;
+	opacity: 0.55;
 }
 .jobPrice {
 	position:absolute;
-	border:2px solid red;
+	border:2px solid rgb(75,75,75);
+	border-radius: 5px;
 	text-align: center;
 	color:black;
 	z-index: 1;
 	background-color: white;
 	bottom: 0;
-	right: 10px;
-	opacity: 0.6;
+	right: 15px;
+	opacity: 0.55;
 }
 
 .jobFiller {
