@@ -11,8 +11,10 @@ $(document).ready(function(){
 	$(".loginForm").submit(function(){
 
 		var email = $(this).children("#loginName").val();
-		var password = $(this).children("#loginPassword").val();
-		console.log(email + "\n"  + md5(password));
+		var password = CryptoJS.MD5($(this).children("#loginPassword").val());
+		//pass email and password to database
+		//return a json object
+		console.log(email + "\n"  + password);
 
 	});
 
@@ -26,8 +28,8 @@ $(document).ready(function(){
 		accountInfo.email = $(this).children("#accountEmail").val();
 		accountInfo.gender = $(this).children("#accountGender").val();
 		accountInfo.birthDate = $(this).children("#accountBirthDate").val();
-		var password = $(this).children("#accountPassword").val();
-		var confirmPassword = $(this).children("#accountConfirmPassword").val();
+		var password = CryptoJS.MD5($(this).children("#accountPassword").val());
+		var confirmPassword = CryptoJS.MD5($(this).children("#accountConfirmPassword").val());
 
 		if(password !== confirmPassword){
 			alert("Passwords do not match");
