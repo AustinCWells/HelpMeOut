@@ -102,7 +102,7 @@ cursor: text !important;
 .dashboardSection {
 	float:left;
 	margin-left: 45px;
-	height:450px;
+	height:600px;
 	width: 550px;
 	border: solid 2px black;
 }
@@ -114,13 +114,15 @@ cursor: text !important;
 
 .jobPic {
 	position:relative;
-	width:75px;
+	width:85px;
 	float:left;
+	margin:15px;
 }
 
 .jobContactInfo {
 	float:left;
 	position:relative;
+	width: 75%;
 
 }
 
@@ -130,12 +132,33 @@ cursor: text !important;
 
 .jobMap {
 	border: solid 2px purple;
+	float:left;
+	width:200px;
+	height:200px;
+	margin-right:15px;
 }
 
 .jobNotes {
 	border: solid 2px teal;
+	float:left;
+	width:200px;
+	height:200px;
 
 }
+
+.cancelJob {
+	float:left;
+	margin-left:100px;
+	margin-top: 15px;
+}
+
+.jobCompleted {
+	float:right;
+	margin-right:100px;
+	margin-top: 15px;
+}
+
+/*ACCORDIAN*/
 
 
 /*ACCOUNT*/
