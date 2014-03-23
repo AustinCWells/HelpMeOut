@@ -1,0 +1,133 @@
+/************
+CSS GRID SYSTEM 
+Implemented using the IE6 Box Model (aparantly the one thing they did right)
+and tutorials from the following people 
+Jonathan Smiley 
+http://www.creativebloq.com/design/building-modern-grid-system-5122962
+Chris Coyier
+http://css-tricks.com/dont-overthink-it-grids/
+
+This grid system also uses the micro clear fix implemented by Nicolas Gallagher
+*************/
+ /** 
+  * Nicolas Gallagher's micro clearfix
+  * It took me a while to figure out what was going on, but here it is.
+  * This relies on the properties of table to clear float on each row
+  * It also ensure rows get a height, and won't overlap their columns
+  * yeah, that's about it.
+  **/
+    .row:before, .row:after, .clearfix:before, .clearfix:after { content:""; display:table; }
+    .row:after, .clearfix:after { clear: both; }
+    .row, .clearfix { zoom: 1; }
+
+
+/**
+ * set base width to 1000px and scale down with browser.
+ * mid-width is a hack to ensure scaling works on IE-6
+ * we apply 0 margin auto so the columns center
+ **/
+.row { 
+    width: 1000px; 
+    max-width: 100%; 
+    min-width: 768px; 
+    margin: 0 auto; 
+}
+/**
+ * this little baby handles nested rows
+ * here, we're applying negative margin so we
+ * don't have our columns all stack up
+ **/ 
+ .row .row { 
+    width: auto; 
+    max-width: none; 
+    min-width: 0; 
+    margin: 0 -30px; 
+}
+/**
+ * force columns to stack up with eachother
+ * and provide min height so an empty column will still impact float order
+ * padding serves as our gutter (30px gutters between columns)
+ **/
+.column, .columns { 
+    float: left; 
+    min-height: 1px; 
+    padding: 0 30px; 
+    position: relative; 
+}
+/**
+ * here we define a twelve column grid system and their classes
+ * each grid takes %8.33 times the column width
+ **/ 
+.row .one { width: 8.33% }
+.row .two { width: 16.66% }
+.row .three { width: 25% }
+.row .four { width: 33.33% }
+.row .five { width: 41.66% }
+.row .six { width: 50% }
+.row .seven { width: 58.33% }
+.row .eight { width: 66.66% }
+.row .nine { width: 75% }
+.row .ten { width: 83.33% }
+.row .eleven { width: 91.66% }
+.row .twelve { width: 100% }
+
+/**
+ * this forces paddings to be applied as part of the
+ * width of the object instead of being placed on top
+ * of the width. 
+ **/ 
+* {
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; 
+}
+/**
+ * this fix is provided to handle the way browsers manage calculting pixels
+ * i.e. Chrome floors 666.66 px while firefox alternates between floor and cieling
+ **/ 
+ [class*="column"] + [class*="column"]:last-child { float: right; }
+ [class*="column"] + [class*="column"].end { float: left; }
+
+
+/************* CODE ABOVE IS NON-RESPONSIVE *************/
+
+/********** CODE BELOW APPLIES RESPONSIVENESS ***********/
+
+
+/**
+ * this media query targets anything smaller 
+ * than an ipad and overrides the giver properties 
+ **/
+@media only screen and (max-width: 767px) {
+    /**
+     * on small screens give auto width
+     * don't force a minimum width
+     * and remove gutters
+     **/
+    .row { 
+        width: auto; 
+        min-width: 0; 
+        margin-left: 0; 
+        margin-right: 0; 
+    }
+     /**
+      * on small screens remove width and floating 
+      **/
+    .column, .columns { 
+        width: auto !important; 
+        float: none;  
+    }
+
+    /**
+     * on small screens remove all the float! 
+     **/
+    .column:last-child, .columns:last-child { float: none; }
+    [class*="column"] + [class*="column"]:last-child { float: none; }
+     
+     /**
+      * Apply clearfix to small screens
+      **/
+    .column:before, .columns:before, .column:after, .columns:after { content:""; display:table; }
+    .column:after, .columns:after { clear: both; } 
+}
+
