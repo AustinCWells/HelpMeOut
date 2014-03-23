@@ -4,7 +4,7 @@
 	$app = new \Slim\Slim();
 
 	$app->post('/login', 'login');
-	//$app->post('/newaccount', 'createAccount');
+	$app->post('/newaccount', 'createAccount');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 	//$app->post('/placeorder', 'createOrder');
 	//$app->post('/lastorder', 'getLastOrder');
@@ -46,8 +46,8 @@
 	// WORKING
 	function createAccount()
 	{
-		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `birth_date`, `gender`)
-			VALUES (:email, :password, :first_name, :last_name, :birth_date, :gender)";
+		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`)
+			VALUES (:email, :password, :first_name, :last_name, :phone, :birth_date, :gender)";
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$newAccount = json_decode($request->getBody());
@@ -57,12 +57,13 @@
 			{
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
-				$stmt->bindParam("email", $newAccount->fname);
-				$stmt->bindParam("password", $newAccount->lname);
-				$stmt->bindParam("first_name", $newAccount->email);
-				$stmt->bindParam("last_name", md5($newAccount->password));
-				$stmt->bindParam("birth_date", $newAccount->phonenumber);
-				$stmt->bindParam("gender", $newAccount->ccnumber);
+				$stmt->bindParam("email", $newAccount->email);
+				$stmt->bindParam("password", $newAccount->password);
+				$stmt->bindParam("first_name", $newAccount->firstname);
+				$stmt->bindParam("last_name", md5($newAccount->lastname));
+				$stmt->bindParam("phone", $newAccount->number);
+				$stmt->bindParam("birth_date", $newAccount->bday);
+				$stmt->bindParam("gender", $newAccount->gender);
 				$stmt->execute();
 				$db = null;
 			}
