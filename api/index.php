@@ -13,7 +13,8 @@
 
 	$app->run();
 
-	// WORKING
+
+	// COMPLETE BUT NOT TESTED
 	function login()
 	{
 		$app = \Slim\Slim::getInstance();
@@ -42,15 +43,15 @@
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 		}
 	}
+	
 
-	// WORKING
-	function createAccount()
+	// COMPLETE BUT NOT TESTED	function createAccount()
 	{
-		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`)
-			VALUES (:email, :password, :first_name, :last_name, :phone, :birth_date, :gender)";
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$newAccount = json_decode($request->getBody());
+		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`)
+			VALUES (:email, :password, :first_name, :last_name, :phone, :birth_date, :gender)";
 		try 
 		{
 			if(isset($newAccount))
@@ -99,6 +100,8 @@
 		}
 
 	}
+
+/*
 
 	// NOT TESTED, BUT FUNCTIONAL
 	function getPaymentInfo()
@@ -270,15 +273,20 @@
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 		}
 	}
+*/
 
-	// WORKING
+	// COMPLETE BUT NOT TESTED
 	function getConnection() 
 	{
+		//SERVER
 		$dbhost="127.0.0.1";
-		//$dbhost="localhost";
-		$dbuser="root";
 		$dbpass="lablabs";
+
+		//LOCAL
+		//$dbhost="localhost";
 		//$dbpass="";
+		
+		$dbuser="root";
 		$dbname="HelpMeOut";
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
