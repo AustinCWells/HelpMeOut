@@ -23,7 +23,7 @@ body {
 	float:left;
 	margin-top:15px;
 	margin-left: 55px;
-	margin-right: 20px;
+	margin-right: 55px;
 }
 
 #navbar a:visited, #navbar a:link{
@@ -37,12 +37,14 @@ body {
 
 #navbar li {
 	float:left;
+	width:125px;
 }
 
 #navbar li a {
 	display: block;
 	background-color: transparent;
 	padding: 1em;
+	text-align: center;
 }
 
 #navbar li  a:hover{
@@ -75,7 +77,8 @@ body {
 	float:right;
 	padding-top: 0px;
 	margin-right: 100px;
-	margin-left: 450px;
+	margin-left: 320px;
+	width:150px !important;
 
 }
 
