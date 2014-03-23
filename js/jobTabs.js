@@ -5,7 +5,7 @@ jQuery( "#tabs" ).tabs();
 window.addEventListener('load', function(event) {
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobTitle">' + "I AM HAUNGREH" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/food.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HAUNGREH" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/food.png' + '"></div></a>';
 		$('#food').append(html);
 	}
 	if($('#food').html() === '') {
@@ -13,7 +13,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="laundryPosting' + i + '"><p class="jobTitle">' + "WASH MY SOCKS" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="laundryPosting' + i + '"><p class="jobDesc">' + "WASH MY SOCKS" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></a>';
 		$('#laundry').append(html);
 	}
 	if($('#laundry').html() === '') {
@@ -21,7 +21,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="groceriesPosting' + i + '"><p class="jobTitle">' + "KROGER RUN 4 ME" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/groceries.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="groceriesPosting' + i + '"><p class="jobDesc">' + "KROGER RUN 4 ME" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/groceries.png' + '"></div></a>';
 		$('#groceries').append(html);
 	}
 	if($('#groceries').html() === '') {
@@ -29,7 +29,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<1;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="tutoringPosting' + i + '"><p class="jobTitle">' + "ISNT THIS THE SAME AS RIDES" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="tutoringPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS RIDES" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
 		$('#tutoring').append(html);
 	}
 	if($('#tutoring').html() === '') {
@@ -37,7 +37,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="ridesPosting' + i + '"><p class="jobTitle">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="ridesPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
 		$('#rides').append(html);
 	}
 	if($('#rides').html() === '') {

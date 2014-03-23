@@ -154,6 +154,8 @@ cursor: pointer !important;
 
 .dashboardTitle {
 	text-align: center;
+	font-size: 24px;
+	margin: 10	px;
 }
 
 
@@ -402,7 +404,7 @@ form{
 	height:150px;
 }
 
-.jobTitle {
+.jobDesc {
 	position:absolute;
 	width:132px;
 	border:2px solid rgb(76,80,86);
