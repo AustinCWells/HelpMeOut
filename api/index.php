@@ -57,13 +57,12 @@
 			{
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
-				$stmt->bindParam("fname", $newAccount->fname);
-				$stmt->bindParam("lname", $newAccount->lname);
-				$stmt->bindParam("email", $newAccount->email);
-				$stmt->bindParam("password", md5($newAccount->password));
-				$stmt->bindParam("phonenumber", $newAccount->phonenumber);
-				$stmt->bindParam("ccnumber", $newAccount->ccnumber);
-				$stmt->bindParam("creditcard", $newAccount->creditcard);
+				$stmt->bindParam("email", $newAccount->fname);
+				$stmt->bindParam("password", $newAccount->lname);
+				$stmt->bindParam("first_name", $newAccount->email);
+				$stmt->bindParam("last_name", md5($newAccount->password));
+				$stmt->bindParam("birth_date", $newAccount->phonenumber);
+				$stmt->bindParam("gender", $newAccount->ccnumber);
 				$stmt->execute();
 				$db = null;
 			}
