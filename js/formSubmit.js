@@ -61,6 +61,8 @@ $(document).ready(function(){
 	});
 
 	var currentTime = new Date();
+	var hours = currentTime.getHours();
+	var mins = currentTime.getMinutes();
 	var year = currentTime.getFullYear();
 	var month = parseInt(currentTime.getMonth(), 10) + 1;
 	var day = parseInt(currentTime.getDate(), 10);
@@ -69,7 +71,20 @@ $(document).ready(function(){
 	if(month < 10)
 		month = "0" + currentTime.getMonth();
 	currentTime =  year + "-" + month + "-" + day;
-	//console.log(currentTime);
+	
+	if(hours < 10)
+		hours = "0" + hours.toString();
+	else
+		hours = hours.toString();
+
+	if(mins < 10)
+		mins = "0" + mins.toString();
+	else
+		mins = mins.toString();
+
+	var time = hours + ":" + mins;
+
+	$("input[type='time']").val(time);
 
 	$("input[type~='date'").val(currentTime);
 
