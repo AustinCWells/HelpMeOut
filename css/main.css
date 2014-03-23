@@ -4,6 +4,10 @@ h1 { font-family: 'Raleway', sans-serif; font-weight:800; }
 p  { font-family: 'Raleway', sans-serif;}
 
 
+p:nth-of-type(1) {
+	text-align: center;
+}
+
 /* NAV BAR */
 
 body {
@@ -88,16 +92,21 @@ body {
 	float:left;
 	height:600px;
 	width:300px;
-	border: solid 2px black;
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
 	margin-left: 45px;
+	padding: 15px;
 }
 
 #recentHeader {
-
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 15px;
 }
 
 #recentJobs {
-
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .postings {
@@ -144,11 +153,14 @@ cursor: pointer !important;
 	margin-left: 45px;
 	height:600px;
 	width: 550px;
-	border: solid 2px black;
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
 }
 
 .dashboardTitle {
 	text-align: center;
+	font-size: 24px;
+	margin: 10px;
 }
 
 
@@ -218,11 +230,11 @@ cursor: pointer !important;
 
 /*ACCOUNT*/
 #profile {
-	border: solid 2px black;
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
 	height:550px;
 	width:95%;
-	margin-left: 2.5%;
-	padding: 15px;
+	margin: 1.5%;
 }
 
 #profilePic {
@@ -243,7 +255,14 @@ cursor: pointer !important;
 	margin-right: 50px;
 }
 
+#badges {
+	text-align: center;
+	font-size: 24px;
+	margin:-5px;
+}
+
 #badgeSpace {
+	font-size:16px;
 }
 
 .badge {
@@ -265,9 +284,13 @@ cursor: pointer !important;
 	text-align:center;
 }
 
+.profileSection:nth-of-type(1) {
+	border-bottom: solid 1px #aaaaaa;
+}
+
 .profileSection {
-	border: solid 1px salmon;
-	height:50%;
+	height:43%;
+	margin: 15px;
 }
 
 #ratingDiv {
@@ -304,6 +327,7 @@ cursor: pointer !important;
 #ratingBg {
 	background-color: #E4E4E4;
 	height: 100%;
+
 }
 
 /* ~~~~~~~~~~~~ MODAL STYLING ~~~~~~~~~~~~ */
@@ -396,8 +420,9 @@ form{
 	height:150px;
 }
 
-.jobTitle {
+.jobDesc {
 	position:absolute;
+	width:132px;
 	border:2px solid rgb(76,80,86);
 	padding: 5px;
 	margin-left: 2px;
@@ -409,9 +434,12 @@ form{
 	z-index: 1;
 	background-color: white;
 	opacity: 0.55;
+	font-size: 14px;
 }
 .jobPrice {
 	position:absolute;
+	width:25px;
+	height:25px;
 	border:2px solid rgb(75,75,75);
 	border-radius: 5px;
 	text-align: center;
@@ -420,7 +448,7 @@ form{
 	background-color: white;
 	bottom: 0;
 	right: 15px;
-	opacity: 0.55;
+	opacity: 0.90;
 }
 
 .jobFiller {
