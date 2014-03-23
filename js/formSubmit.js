@@ -1,24 +1,20 @@
 $(document).ready(function(){
 
 
-	$("form").submit(function(event){
+	$(".loginForm").submit(function(event){
 
 		event.preventDefault();
-		console.log("prevented Default submit");
-
-	});
-
-	$(".loginForm").submit(function(){
 
 		var email = $(this).children("#loginName").val();
 		var password = CryptoJS.MD5($(this).children("#loginPassword").val());
-		//pass email and password to database
-		//return a json object
+		password = password.toString(CryptoJS.enc.Hex);
 		console.log(email + "\n"  + password);
 
 	});
 
-	$(".accountForm").submit(function(){
+	$(".accountForm").submit(function(event){
+
+		event.preventDefault();
 
 		var accountInfo = {};
 
@@ -28,15 +24,17 @@ $(document).ready(function(){
 		accountInfo.email = $(this).children("#accountEmail").val();
 		accountInfo.gender = $(this).children("#accountGender").val();
 		accountInfo.birthDate = $(this).children("#accountBirthDate").val();
-		var password = CryptoJS.MD5($(this).children("#accountPassword").val());
-		var confirmPassword = CryptoJS.MD5($(this).children("#accountConfirmPassword").val());
+		var password = $(this).children("#accountPassword").val();
+		var confirmPassword = $(this).children("#accountConfirmPassword").val();
+		console.log(password + "\n" + confirmPassword);
 
 		if(password !== confirmPassword){
 			alert("Passwords do not match");
 		}
 			
 		else{
-			accountInfo.password = password; //add md5
+			password = CryptoJS.MD5(password);
+			accountInfo.password = password.toString(CryptoJS.enc.Hex);
 		}
 
 
@@ -45,6 +43,8 @@ $(document).ready(function(){
 	});
 
 	$(".jobPostForm").submit(function(){
+
+		event.preventDefault();
 
 		var jobPostInfo = {};
 
@@ -74,8 +74,6 @@ $(document).ready(function(){
 	$("input[type~='date'").val(currentTime);
 
 	var marginLeft = $("input").css("margin-left");
-
-	//console.log(marginLeft);
 
 	$("label").css("margin-left", marginLeft);
 
