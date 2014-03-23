@@ -12,8 +12,7 @@
 			<img src="" id="profilePic">
 			<div id="contactInfo">
 			</div>
-			<div id="ratingDiv">
-				Overall Rating:<br><br>
+			<div id="ratingDiv">Overall Rating:<br><br>
 				<span id="ratingLabel"></span>
 	            <div class="barArea">
 		            <div id="ratingBg" ></div>
