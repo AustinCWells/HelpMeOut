@@ -2,6 +2,11 @@ $(window).ready(function(){
 
 	$.cookie.json = true;
 
+	var user = {};
+	user.userID = false;
+
+	$.cookie("userInfo", user);
+
 	var userInfo = $.cookie("userInfo");
 
 	/*{
@@ -11,8 +16,16 @@ $(window).ready(function(){
 	}
 	*/
 
+	if(userInfo !== undefined)
+		getJobInfo(userInfo.userID);
+
 });
 
-var getJobInfo = function(){
-	
+var getJobInfo = function(userID){
+
+	if(userID === undefined || userID === false)
+		console.log("Not logged in");
+	else
+		console.log("User ID: " + userID);
+
 }
