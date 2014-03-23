@@ -1,7 +1,6 @@
 $(window).ready(function(){
 
-	$.cookie();
-	console.log("here lover");
+	$.cookie.json = true;
 
 
 	$(".loginForm").submit(function(event){
@@ -26,7 +25,7 @@ $(window).ready(function(){
 			success: function(data){
 				
 				var obj = JSON.parse(data);
-				console.log(obj);
+				//console.log(obj);
 
 				if(obj.info == false) {
 					$("#loginModal").css({"border":"2px solid red"});
@@ -41,7 +40,7 @@ $(window).ready(function(){
 					$.cookie("userInfo", obj);
 
 					console.log(obj);
-					$(this).close();
+					//$(this).close();
 				}
 			},
 			error: function( ){
@@ -75,6 +74,37 @@ $(window).ready(function(){
 			//password = CryptoJS.MD5(password);
 			//accountInfo.password = password.toString(CryptoJS.enc.Hex);
 			accountInfo.password = password;
+
+			$.ajax({
+			type: 'POST',
+			url: 'api/login',
+			content: 'application/json',
+			data: JSON.stringify(accountInfo),
+			success: function(data){
+				//data should same as when logged in
+				var obj = JSON.parse(data);
+				//console.log(obj);
+
+				if(obj.info == false) {
+					$("#loginModal").css({"border":"2px solid red"});
+					$(".errorMessage").text("silly, your login information is not correct");
+				}
+				else if(data.error != undefined) {
+					console.log(data.error);
+				}
+				else {
+					//obj = obj['info'];
+
+					$.cookie("userInfo", obj);
+
+					console.log(obj);
+					//$(this).close();
+				}
+			},
+			error: function( ){
+				alert("WE'RE SORRY SOMETHING WENT WRONG")
+			}
+		});
 		}
 
 
