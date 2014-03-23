@@ -73,21 +73,25 @@
 		{
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 		}
-
-		$sql = "SELECT user_id, given_name, surname, email FROM Users WHERE email = :email and password = :password";
-
-		try
+		
+		$sql = "SELECT user_id, first_name, last_name, email FROM USER WHERE email = :email AND password = :password";
+		try 
 		{
-			$db = getConnection();
-			$stmt = $db->prepare($sql);
-			$stmt->bindParam("email", $newAccount->email);
-			$stmt->bindParam("password", md5($newAccount->password));
-			$stmt->execute();
-			$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
-			$db = null;
-			$response['info'] = $userinfo;
-			echo json_encode($response);
-		}
+			if(isset($loginInfo))
+			{
+				$db = getConnection();
+				$stmt = $db->prepare($sql);
+				$stmt->bindParam("email", $loginInfo->email);
+				$stmt->bindParam("password", md5($loginInfo->password));
+				$stmt->execute();
+				$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
+				$db = null;
+				$response['info'] = $userinfo;
+				echo json_encode($response);
+			}
+			else
+				echo '{"error":{"text": "Bad things happend! JSON was not valid" }}'; 		
+		} 
 		catch(PDOException $e) 
 		{
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
