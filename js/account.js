@@ -18,21 +18,21 @@ window.addEventListener('load', function(event) {
 		}
 		if (badges[i] === 1) {
 			var badgeSrc = "img/multitasker.png";
-			var badgeName = "FOOD DEMON";
-			var badgeDesc = "You eat a lot of food. A LOT.";
+			var badgeName = "Multitasker";
+			var badgeDesc = "Multitasker description.";
 		}
 		else if (badges[i] === 2) {
 			var badgeSrc = "img/nightowl.png";
-			var badgeName = "Certified Car Owner";
-			var badgeDesc = "You own a car. Don't you feel special?";
+			var badgeName = "Night Owl";
+			var badgeDesc = "Night Owl description.";
 		}
 		else if (badges[i] === 3) {
 			var badgeSrc = "img/speeddemon.png";
-			var badgeName = "Kroger Aficionado";
-			var badgeDesc = "You know the aisles of the supermarket from Cereals to Deserts.";
+			var badgeName = "Speed Demon";
+			var badgeDesc = "Speed Demon description.";
 		}
 
-		var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br>' + badgeName + ':<br>' + badgeDesc + '</div>';
+		var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br><div class="badgeName">' + badgeName + ':</div><br><div class="badgeDesc">' + badgeDesc + '</div></div>';
 		badgeSpace.append(badgeHTML);
 
 	}
