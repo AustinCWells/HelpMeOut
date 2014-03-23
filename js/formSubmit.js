@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	$.cookie.json = true;
+
 
 	$(".loginForm").submit(function(event){
 
@@ -17,7 +19,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: 'api/index.php/login',
+			url: 'api/login',
 			content: 'application/json',
 			data: JSON.stringify(user),
 			success: function(data){
@@ -38,6 +40,7 @@ $(document).ready(function(){
 					$.cookie("userInfo", obj);
 
 					console.log(obj);
+					$(this).close();
 				}
 			},
 			error: function( ){
