@@ -107,8 +107,8 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$userObj = json_decode($request->getBody());
-		//$userID = (int)$userObj->user_id;
-		$userID = 1;
+		$userID = (int)$userObj->user_id;
+
 		try
 		{
 			if($userID == 0)
@@ -174,7 +174,7 @@
 			$stmt2 = $db->prepare($myquery);
 			$stmt2->bindParam("id", $id);
 			$stmt2->execute();
-			$tasksChosen;
+			$tasksChosen = null;
 			while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC))
 			{
 				$taskID = $row2['task_id'];
