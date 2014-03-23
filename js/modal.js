@@ -152,4 +152,9 @@ $(window).ready(function(){
 		$("input[type~='date'").val(currentTime);
 	});
 
+	$("#accountPhoneNumber").change(function(){
+		//$(this).number( true, 2 );
+		console.log("fuck you");
+	});
+
 });
