@@ -107,6 +107,37 @@ cursor: text !important;
 	border: solid 2px black;
 }
 
+.dashboardTitle {
+	text-align: center;
+}
+
+
+.jobPic {
+	position:relative;
+	width:75px;
+	float:left;
+}
+
+.jobContactInfo {
+	float:left;
+	position:relative;
+
+}
+
+.jobDashPrice {
+	float:right;
+}
+
+.jobMap {
+	border: solid 2px purple;
+}
+
+.jobNotes {
+	border: solid 2px teal;
+
+}
+
+
 /*ACCOUNT*/
 #profile {
 	border: solid 2px black;
