@@ -12,7 +12,7 @@
 
 
 
-	<p>HELP IS COMING. SLOWLY. FEEL FREE TO TAKE A NAP.</p>
+	<p id="randomText">HELP IS COMING. SLOWLY. FEEL FREE TO TAKE A NAP.</p>
 
 
 <div id="tabs">
