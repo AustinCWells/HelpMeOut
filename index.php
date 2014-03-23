@@ -18,11 +18,13 @@
 <div id="tabs">
 	<ul>
 		<!--This section introduces the tabs and titles them-->
-		<li><a href="#tabs-1">Food Pickup & Delivery</a></li>
+		<li><a href="#tabs-1">Food</a></li>
 		<li><a href="#tabs-2">Laundry</a></li>
 		<li><a href="#tabs-3">Groceries</a></li>
-		<li><a href="#tabs-4">Tutoring</a></li>
+		<li><a href="#tabs-4">Cleaning</a></li>
 		<li><a href="#tabs-5">Rides</a></li>
+		<li><a href="#tabs-6">Tech Support</a></li>
+		<li><a href="#tabs-7">Other</a></li>
 	</ul>
 
 	<!--This section creates the content within each tab-->
@@ -36,10 +38,16 @@
 		<div class="postings" id="groceries"></div>
 	</div>
 	<div id="tabs-4">
-		<div class="postings" id="tutoring"></div>
+		<div class="postings" id="cleaning"></div>
 	</div>
 	<div id="tabs-5">
 		<div class="postings" id="rides"></div>
+	</div>
+	<div id="tabs-6">
+		<div class="postings" id="techSupport"></div>
+	</div>
+	<div id="tabs-7">
+		<div class="postings" id="other"></div>
 	</div>
 
 </div>

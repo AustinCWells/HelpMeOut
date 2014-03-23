@@ -24,7 +24,7 @@ window.addEventListener('load', function(event) {
 		$('#randomText').append('"HELP ME... HELP YOU. HELP ME, HELP YOU." - JERRY MAGUIRE (1996)');
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HAUNGREH" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/food.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HAUNGREH" + '</p><p class="jobPrice">' + "$" + "5" + '</p><div class = "shadow" ><img class="jobImage" src="' + 'img/food.png' + '"></div></div></a>';
 		$('#food').append(html);
 	}
 	if($('#food').html() === '') {
@@ -48,11 +48,11 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<1;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="tutoringPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS RIDES" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
-		$('#tutoring').append(html);
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="cleaningPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS RIDES" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
+		$('#cleaning').append(html);
 	}
-	if($('#tutoring').html() === '') {
-		$('#tutoring').append('Sorry, there are currently no jobs available in this category.');
+	if($('#cleaning').html() === '') {
+		$('#cleaning').append('Sorry, there are currently no jobs available in this category.');
 	}
 
 	for(var i=1;i<11;i++) {
@@ -63,13 +63,41 @@ window.addEventListener('load', function(event) {
 		$('#rides').append('Sorry, there are currently no jobs available in this category.');
 	}
 
+	for(var i=1;i<11;i++) {
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/techSupport.png' + '"></div></a>';
+		$('#techSupport').append(html);
+	}
+	if($('#rides').html() === '') {
+		$('#techSupport').append('Sorry, there are currently no jobs available in this category.');
+	}
+
+	for(var i=1;i<11;i++) {
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/other.png' + '"></div></a>';
+		$('#other').append(html);
+	}
+	if($('#rides').html() === '') {
+		$('#other').append('Sorry, there are currently no jobs available in this category.');
+	}
+
 	for(var i=1;i<1;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="ridesPosting' + i + '"><p class="jobTitle">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="recemtPosting' + i + '"><p class="jobTitle">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
 		$('#recentJobs').append(html);
 	}
 	if($('#recentJobs').html() === '') {
 		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img src="http://s3.amazonaws.com/crunchbase_prod_assets/assets/images/resized/0001/0974/10974v7-max-250x250.jpg">');
 	}
+
+
+	/*$(".jobImage").hover(function(){
+
+		$(this).css("width", "120%");
+
+	},function(){
+		$(this).css("box-shadow", "0px 0px 0px 0px");
+	});
+*/
+
+
 
 
 }, false);

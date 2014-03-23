@@ -12,7 +12,8 @@ p:nth-of-type(1) {
 
 body {
 	margin-top: 0px;
-	margin-left: 0px;	
+	margin-left: 0px;
+	margin-right: 0px;	
 }
 
 #headerHolder {
@@ -226,6 +227,12 @@ cursor: pointer !important;
 	float:right;
 	margin-right:100px;
 	margin-top: 15px;
+}
+
+input[type="button"] {
+	border:1px solid #aaaaaa;
+	border-radius: 5px;
+	background-color: white;
 }
 
 .jobHeader {
