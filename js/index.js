@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 jQuery(function() {
 jQuery( "#tabs" ).tabs();
 });
@@ -39,3 +40,5 @@ window.addEventListener('load', function(event) {
 
 
 }, false);
+=======
+>>>>>>> d6de5f2daf92a15df51c8464333ef014aa6bf51b

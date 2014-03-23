@@ -13,7 +13,7 @@ Team: Lab Labs
 				  	<a href="index.php">Home</a> 
 				</li>
 				<li class="navItem postJob" id="postJobHeader"> 
-					<a href="http://LIKEASOMEBOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOODE" class="modalLink">Post A Job</a><!--SHOULD OPEN JOB POSTING MODAL-->
+					<a href="#" class="modalLink">Post A Job</a><!--SHOULD OPEN JOB POSTING MODAL-->
 				</li>
 				<li class="navItem" id="dashboardHeader"> 
 					<a href="dashboard.php">My Jobs<!--pending alert symbol--></a> 
@@ -30,4 +30,56 @@ Team: Lab Labs
 			</span>
 		</div> 
 	</div>
+</div>
+
+<!-- image overlay --> 
+<div id="overlay">
+</div>
+
+<!-- Login Modal --> 
+<div class="modal"  id="loginModal">
+	<form class="loginForm">
+	<div class="close">X</div>
+	  <input class="formElement" id="loginName" type="text" name="email" placeholder="email" required pattern="\w+@\w+.\w+" title="not a valid email address">
+	  <input class="formElement" id="loginPassword" type="password" name="password" placeHolder="password" required>
+	  <input type="submit" value="submit">
+	  <div class="errorMessage"> </div>
+	  <input type="button" value="create account" class="createAccount">  
+	 </form>
+</div>
+
+<!-- Account Modal --> 
+<div class="modal" id="accountModal">
+	<form class="accountForm">
+		<div class="close">X</div>
+	  	<input class="formElement" id="accountFName" type="text" name="fname" placeholder="FIRST NAME" required> 
+	  	<input class="formElement" id="accountLName" type="text" name="lname" placeholder="LAST NAME" required>
+	  	<input class="formElement" id="accountPhoneNumber" type="text" name="phonenumber" placeholder="PHONE NUMBER" required>
+	  	<input class="formElement" id="accountEmail" type="email" name="email" placeholder="EMAIL" required pattern="\w+@\w+.\w+" title="not a valid email address">
+	  	<input class="formElement" id="accountPassword" type="password" name="password" placeholder="PASSWORD" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
+	 	<select class="formElement" id="accountCreditCard" name="card">
+	  		<option value="mastercard">MasterCard</option>
+	  		<option value="Visa">Visa</option>
+	  		<option value="AmericanExpress">American Express</option>
+		</select>
+		<input class="formElement" id="accountCreditCardNumber" type="text" name="creditNumber" placeholder="CREDIT CARD NUMBER" required pattern="^4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}" title="not a valid credit card number"> 
+	  	<input type="submit" value="create account"> 
+	 </form>
+</div>
+
+<!-- Job Post Modal --> 
+<div class="modal" id="jobPostModal">
+	<form>
+		<div class="close">X</div>
+	  	<input class="formElement" type="text" name="jobTitle" placeholder="JOB TITLE" >   
+	 	<select class="formElement" id="paymentCreditCards" name="card">
+	  		<option value="mastercard">MasterCard</option>
+	  		<option value="Visa">Visa</option>
+	  		<option value="AmericanExpress">American Express</option>
+		</select>
+		<input class="formElement" type="text"  name="fname" placeholder="FIRST NAME" required> 
+	  	<input  class="formElement" type="text" name="lname" placeholder="LAST NAME" required>
+		
+	  	<input type="submit" value="pay"> 
+	 </form>
 </div>
