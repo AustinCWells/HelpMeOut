@@ -5,8 +5,8 @@
 
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
-	$app->post('/jobs',  'pullJobs');
-	$app->post('/FUCK', 'FUCK');
+	$app->get('/jobs',  'pullJobs');
+	$app->get('/', 'FUCK');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 	//$app->post('/placeorder', 'createOrder');
 	//$app->post('/lastorder', 'getLastOrder');
@@ -126,7 +126,7 @@
 			echo json_encode($response);
 
 		}
-		catch(PDOException e)
+		catch(PDOException $e)
 		{
 			echo '{"error":{"text":'. $e->getMessage() .'}}';
 		}
@@ -316,11 +316,11 @@
 	{
 		//SERVER
 		$dbhost="127.0.0.1";
-		//$dbpass="lablabs";
+		$dbpass="lablabs";
 
 		//LOCAL
 		//$dbhost="localhost";
-		$dbpass="";
+		//$dbpass="";
 		
 		$dbuser="root";
 		$dbname="HelpMeOut";
