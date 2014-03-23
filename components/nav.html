@@ -10,6 +10,8 @@ Team: Lab Labs
 <div id="overlay">
 </div>
 
+<script language="javascript"  type="text/javascript" src="js/formSubmit.js"> </script>  
+
 <div id="headerHolder">
 	<div id="navDiv">
 		<div id="headerTitle">HelpMeOut</div>
@@ -59,6 +61,11 @@ Team: Lab Labs
 		<div class="close">X</div>
 	  	<input class="formElement" id="accountFName" type="text" name="fname" placeholder="FIRST NAME" required> 
 	  	<input class="formElement" id="accountLName" type="text" name="lname" placeholder="LAST NAME" required>
+	  	<select name = "gender" id = "accountGender" class = "formElement">
+	  		<option value = "Male">Male</option>
+	  		<option valute = "Female">Female</option>
+	  	</select>
+	  	<input class="formElement" id="accountBirthDate" type="date" name="birthdate" placeholder="BIRTH DATE" required>
 	  	<input class="formElement" id="accountPhoneNumber" type="text" name="phonenumber" placeholder="PHONE NUMBER" required>
 	  	<input class="formElement" id="accountEmail" type="email" name="email" placeholder="EMAIL" required pattern="\w+@\w+.\w+" title="not a valid email address">
 	  	<input class="formElement" id="accountPassword" type="password" name="password" placeholder="PASSWORD" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
@@ -73,7 +80,7 @@ Team: Lab Labs
 		<div class="close">X</div>
 		<label for="jobCategory">jobCategory</label>
 		<select name="category" id="jobCategory" class="formElement">
-			<option value="food">Food Pickup and Delivery </option>
+			<option value="Food">Food Pickup and Delivery </option>
 			<option value="Laundry">Laundry</option>
 			<option value="Groceries">Groceries</option>
 			<option value="Tutoring">Tutoring</option>
@@ -81,7 +88,7 @@ Team: Lab Labs
 		</select> 
 		<input type="text" id = "jobDescription" class="formElement" placeholder="JOB DESCRIPTION" required>
 
-		<input type="number" id = "jobPaymentAmount" class="formElement"  name="quantity" min="2" max="25" placeHolder="PAYMENT AMOUNT">
+		<input type="number" id = "jobPaymentAmount" class="formElement"  name="quantity" value = "2" min="2" max="25" placeHolder="PAYMENT AMOUNT">
 
 		<input type="text" id = "jobLocation"class="formElement" placeholder="MEETING LOCATION" required>
 
