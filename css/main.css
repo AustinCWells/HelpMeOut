@@ -88,12 +88,16 @@ body {
 	float:left;
 	height:600px;
 	width:300px;
-	border: solid 2px black;
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
 	margin-left: 45px;
+	padding: 15px;
 }
 
 #recentHeader {
-
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 15px;
 }
 
 #recentJobs {
@@ -144,7 +148,8 @@ cursor: pointer !important;
 	margin-left: 45px;
 	height:600px;
 	width: 550px;
-	border: solid 2px black;
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
 }
 
 .dashboardTitle {
@@ -218,10 +223,11 @@ cursor: pointer !important;
 
 /*ACCOUNT*/
 #profile {
-	border: solid 2px black;
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
 	height:550px;
 	width:95%;
-	margin-left: 2.5%;
+	margin: 1.5%;
 	padding: 15px;
 }
 
@@ -398,6 +404,7 @@ form{
 
 .jobTitle {
 	position:absolute;
+	width:132px;
 	border:2px solid rgb(76,80,86);
 	padding: 5px;
 	margin-left: 2px;
@@ -409,9 +416,12 @@ form{
 	z-index: 1;
 	background-color: white;
 	opacity: 0.55;
+	font-size: 14px;
 }
 .jobPrice {
 	position:absolute;
+	width:25px;
+	height:25px;
 	border:2px solid rgb(75,75,75);
 	border-radius: 5px;
 	text-align: center;
@@ -420,7 +430,7 @@ form{
 	background-color: white;
 	bottom: 0;
 	right: 15px;
-	opacity: 0.55;
+	opacity: 0.90;
 }
 
 .jobFiller {
