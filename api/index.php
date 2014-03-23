@@ -6,7 +6,6 @@
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
 	$app->get('/jobs',  'pullJobs');
-	$app->get('/', 'FUCK');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 	//$app->post('/placeorder', 'createOrder');
 	//$app->post('/lastorder', 'getLastOrder');
@@ -106,24 +105,22 @@
 
 	function pullJobs()
 	{
-		echo "FUCK";
-		//$request = \Slim\Slim::getInstance()->request();
-		//$userID = json_decode($request->getBody());
-		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE t.is_complete = '0'";
-
+		$request = \Slim\Slim::getInstance()->request();
+		$userObj = json_decode($request->getBody());
+		//$userID = $userObj->user_id;
+		$userID = 0;
 		try
 		{
-			$db = getConnection();
-			$stmt = $db->query($sql);
-			$tasks;
-			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+			if($userID == 0)
 			{
-				$taskID = $row['task_id'];
-				$tasks[$taskID][] = $row;
+				$taskList['tasks'] = getJobs();
+				echo json_encode($taskList);
 			}
-			$db = null;
-			$response['jobs'] = $tasks;
-			echo json_encode($response);
+			else
+			{
+				$taskList = getAllJobs($userID);
+				echo json_encode($taskList);
+			}
 
 		}
 		catch(PDOException $e)
@@ -132,10 +129,72 @@
 		}
 	}
 
-	function FUCK()
+	function getJobs()
 	{
-		echo "FUCK";
+
+		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE t.is_complete = '0'";
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->query($sql);
+			$tasks;
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+			{
+				$taskID = $row['task_id'];
+				$tasks[$taskID] = array('category_id' => (int)$row['category_id'], 'title' => $row['title'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id']);
+			}
+			$db = null;
+			return $tasks;
+		}
+		catch(PDOException $e)
+		{
+			return '{"error":{"text":'. $e->getMessage() .'}}';
+		}
 	}
+
+	function getAllJobs($id)
+	{
+		$joblist['tasks'] = getJobs();
+		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE beggar_id = :id";
+		$sql2 = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE chooser_id = :id";
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("id", $id);
+			$stmt->execute();
+			$tasksRequested;
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+			{
+				$taskID = $row['task_id'];
+				$tasksRequested[$taskID] = $row;
+			}
+			$joblist['tasksRequested'] = $tasksRequested;
+			$db = null;
+
+			$db = getConnection();
+			$stmt2 = $db->prepare($sql2);
+			$stmt2->bindParam("id", $id);
+			$stmt2->execute();
+
+			$tasksChosen;
+			while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC))
+			{
+				$taskID = $row2['task_id'];
+				$tasksChosen[$task_id][] = $row2;
+			}
+			$joblist['tasksChosen'] = $tasksRequested;
+
+			$db = null;
+
+			return $joblist;
+		}
+		catch(PDOException $e)
+		{
+			return '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
 
 /*
 
