@@ -32,7 +32,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="laundryPosting' + i + '"><p class="jobDesc">' + "WASH MY SOCKS" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="laundryPosting' + i + '"><p class="jobDesc">' + "WASH MY SOCKS" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/laundry2.png' + '"></div></a>';
 		$('#laundry').append(html);
 	}
 	if($('#laundry').html() === '') {
@@ -47,8 +47,8 @@ window.addEventListener('load', function(event) {
 		$('#groceries').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<1;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="cleaningPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS RIDES" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
+	for(var i=1;i<11;i++) {
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="cleaningPosting' + i + '"><p class="jobDesc">' + "MY BATHROOM STAAANKS" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></a>';
 		$('#cleaning').append(html);
 	}
 	if($('#cleaning').html() === '') {
@@ -56,7 +56,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="ridesPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="ridesPosting' + i + '"><p class="jobDesc">' + "DUDE WHERE'S MY CAR" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
 		$('#rides').append(html);
 	}
 	if($('#rides').html() === '') {
@@ -64,7 +64,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/techSupport.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + "I DON'T KNOW HOW TO COMPUTER" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></a>';
 		$('#techSupport').append(html);
 	}
 	if($('#rides').html() === '') {
@@ -72,15 +72,15 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/other.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/maintenance.png' + '"></div></a>';
 		$('#other').append(html);
 	}
 	if($('#rides').html() === '') {
 		$('#other').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<1;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="recemtPosting' + i + '"><p class="jobTitle">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
+	for(var i=1;i<4;i++) {
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="receNtPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></a>';
 		$('#recentJobs').append(html);
 	}
 	if($('#recentJobs').html() === '') {
