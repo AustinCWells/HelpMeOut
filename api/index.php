@@ -274,11 +274,11 @@
 	// WORKING
 	function getConnection() 
 	{
-		//$dbhost="127.0.0.1";
-		$dbhost="localhost";
+		$dbhost="127.0.0.1";
+		//$dbhost="localhost";
 		$dbuser="root";
-		//$dbpass="root";
-		$dbpass="";
+		$dbpass="root";
+		//$dbpass="";
 		$dbname="HelpMeOut";
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
