@@ -4,12 +4,12 @@
 	$app = new \Slim\Slim();
 
 	$app->post('/login', 'login');
-	$app->post('/newaccount', 'createAccount');
-	$app->post('/paymentinfo', 'getPaymentInfo');
-	$app->post('/placeorder', 'createOrder');
-	$app->post('/lastorder', 'getLastOrder');
-	$app->get('/locations', 'findTrucks');
-	$app->get('/menu', 'getMenu');
+	//$app->post('/newaccount', 'createAccount');
+	//$app->post('/paymentinfo', 'getPaymentInfo');
+	//$app->post('/placeorder', 'createOrder');
+	//$app->post('/lastorder', 'getLastOrder');
+	//$app->get('/locations', 'findTrucks');
+	//$app->get('/menu', 'getMenu');
 
 	$app->run();
 
@@ -19,7 +19,7 @@
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$loginInfo = json_decode($request->getBody());
-		$sql = "SELECT user_id, given_name, surname, email FROM Users WHERE email = :email and password = :password";
+		$sql = "SELECT user_id,  first_name, last_name, email FROM USER WHERE email = :email AND password = :password";
 		try 
 		{
 			if(isset($loginInfo))
@@ -270,9 +270,11 @@
 	// WORKING
 	function getConnection() 
 	{
-		$dbhost="127.0.0.1";
+		//$dbhost="127.0.0.1";
+		$dbhost="localhost";
 		$dbuser="root";
-		$dbpass="root";
+		//$dbpass="root";
+		$dbpass="";
 		$dbname="HelpMeOut";
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
