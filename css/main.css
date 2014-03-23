@@ -103,7 +103,8 @@ body {
 #recentHeader {
 	font-size: 24px;
 	text-align: center;
-	margin-bottom: 15px;
+	margin-bottom: 35px;
+
 }
 
 #recentJobs {
@@ -164,11 +165,12 @@ font-size: 15px !important;
 /*DASHBOARD*/
 .dashboardSection {
 	float:left;
-	margin-left: 45px;
 	height:600px;
-	width: 550px;
+	width: 100%;
 	border: 1px solid #aaaaaa;
 	border-radius: 4px;
+	background-color: white;
+	margin-bottom:100px;
 }
 
 .dashboardTitle {
@@ -271,6 +273,7 @@ input[type="button"] {
 	height:550px;
 	width:95%;
 	margin-left: 45px;
+	background-color:white;
 }
 
 #profilePic {
@@ -459,12 +462,10 @@ form{
 .jobDesc {
 	position:absolute;
 	width:98%;
-	border:2px solid rgb(76,80,86);
 	padding: 5px;
 	margin-left: 2px;
 	margin-right: 2px;
-	border-radius:20px 20px 0px 0px;
-	margin-top: 2px;
+	margin-top: -35px;
 	text-align: center;
 	color:black;
 	z-index: 1;
@@ -498,4 +499,8 @@ form{
 .yellow{
 	background-color:#f1c40f;
 	color:white;
+}
+div[id*=recentPosting]{
+	width:45% !important;
+	margin-right:5% !important;
 }

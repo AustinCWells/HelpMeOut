@@ -90,7 +90,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<5;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="receNtPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></a>';
 		$('#recentJobs').append(html);
 	}
 	if($('#recentJobs').html() === '') {

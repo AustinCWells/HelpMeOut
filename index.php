@@ -3,7 +3,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 	<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 	<script language="javascript"  type="text/javascript" src="js/jobTabs.js"> </script> 
-	 <link href="css/grid.css" rel="stylesheet">
+	
 
 
 </head>
