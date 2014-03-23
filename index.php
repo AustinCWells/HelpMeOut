@@ -24,7 +24,8 @@
 		<li><a href="#tabs-4">Cleaning</a></li>
 		<li><a href="#tabs-5">Rides</a></li>
 		<li><a href="#tabs-6">Tech Support</a></li>
-		<li><a href="#tabs-7">Other</a></li>
+		<li><a href="#tabs-7">Maintenance</a></li>
+		<li><a href="#tabs-8">Other</a></li>
 	</ul>
 
 	<!--This section creates the content within each tab-->
@@ -47,6 +48,9 @@
 		<div class="postings" id="techSupport"></div>
 	</div>
 	<div id="tabs-7">
+		<div class="postings" id="maintenance"></div>
+	</div>
+	<div id="tabs-8">
 		<div class="postings" id="other"></div>
 	</div>
 

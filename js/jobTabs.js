@@ -74,7 +74,15 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/maintenance.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="maintenancePosting' + i + '"><p class="jobDesc">' + "FIX MY COTTON CANDY MAKER" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/maintenance.png' + '"></div></a>';
+		$('#maintenance').append(html);
+	}
+	if($('#rides').html() === '') {
+		$('#maintenance').append('Sorry, there are currently no jobs available in this category.');
+	}
+
+	for(var i=1;i<11;i++) {
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/spencer.png' + '"></div></a>';
 		$('#other').append(html);
 	}
 	if($('#rides').html() === '') {
