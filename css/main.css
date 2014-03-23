@@ -112,14 +112,14 @@ text-decoration: underline !important;
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
 color: #212121 !important;
 text-decoration: none !important;
-cursor: text !important;
+cursor: pointer !important;
 }
 
 /* Default styling for unselected tab titles */ 
 .ui-state-default a:hover, .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
 color: #555555 !important;
 text-decoration: none !important;
-cursor: text !important;
+cursor: pointer !important;
 }
 
 #tabs {
@@ -127,6 +127,7 @@ cursor: text !important;
 	height: 600px;
 	float:left;
 	margin-left: 45px;
+
 }
 
 /*NO MORE TABS*/
@@ -299,6 +300,11 @@ cursor: text !important;
 }
 
 /* ~~~~~~~~~~~~ MODAL STYLING ~~~~~~~~~~~~ */
+
+.close {
+	cursor: pointer;
+
+}
 .hidden{
 
 	display: none;
