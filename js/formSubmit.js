@@ -6,6 +6,7 @@ $(document).ready(function(){
 		event.preventDefault();
 
 		var user = {};
+		var userInfo = {};
 
 		user.email = $(this).children("#loginName").val();
 		user.password = $(this).children("#loginPassword").val();
@@ -30,8 +31,14 @@ $(document).ready(function(){
 					console.log(data.error);
 				}
 				else {
+					obj = obj['info'];
 					console.log("loading cookie");
-					console.log(data);
+					userInfo.userID = obj.user_id;
+					userInfo.email = obj.email;
+					userInfo.firstName = obj.first_name;
+					userInfo.lastName = obj.last_name;
+
+					console.log(obj);
 				}
 			},
 			error: function( ){

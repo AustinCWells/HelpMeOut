@@ -87,6 +87,16 @@ window.addEventListener('load', function(event) {
 		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img src="http://s3.amazonaws.com/crunchbase_prod_assets/assets/images/resized/0001/0974/10974v7-max-250x250.jpg">');
 	}
 
+	/*$(".jobImage").hover(function(){
+
+		$(this).css("width", "120%");
+
+	},function(){
+		$(this).css("box-shadow", "0px 0px 0px 0px");
+	});
+*/
+
+
 
 	/*$(".jobImage").hover(function(){
 
