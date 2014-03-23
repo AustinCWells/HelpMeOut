@@ -256,6 +256,7 @@ form{
 	color:black;
 	z-index: 1;
 	background-color: white;
+	opacity: 60%
 }
 .jobPrice {
 	position:absolute;
