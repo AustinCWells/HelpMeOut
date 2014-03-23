@@ -44,7 +44,6 @@ window.addEventListener('load', function(event) {
 		$('#rides').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	console.log('|' + $('#recentJobs').html() + '|');
 	for(var i=1;i<1;i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="ridesPosting' + i + '"><p class="jobTitle">' + "ISNT THIS THE SAME AS TRANSP." + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
 		$('#recentJobs').append(html);
