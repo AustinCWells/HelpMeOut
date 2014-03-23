@@ -1,4 +1,6 @@
-$(document).ready(function(){
+$(window).ready(function(){
+
+	$.cookie.json = true;
 
 
 	$(".loginForm").submit(function(event){
@@ -7,6 +9,8 @@ $(document).ready(function(){
 
 		var user = {};
 		var userInfo = {};
+		var isLog = false;
+		//console.log($.coookie("userInfo"));
 
 		user.email = $(this).children("#loginName").val();
 		user.password = $(this).children("#loginPassword").val();
@@ -17,13 +21,15 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: 'api/index.php/login',
+			url: 'api/login',
 			content: 'application/json',
 			data: JSON.stringify(user),
 			success: function(data){
-				console.log(data);
+				
 				var obj = JSON.parse(data);
-				if(obj.info == false) {
+				//console.log(obj);
+
+				if(obj.userID == false) {
 					$("#loginModal").css({"border":"2px solid red"});
 					$(".errorMessage").text("silly, your login information is not correct");
 				}
@@ -31,12 +37,10 @@ $(document).ready(function(){
 					console.log(data.error);
 				}
 				else {
-					obj = obj['info'];
-					console.log("loading cookie");
-					userInfo.userID = obj.user_id;
-					userInfo.email = obj.email;
-					userInfo.firstName = obj.first_name;
-					userInfo.lastName = obj.last_name;
+					//obj = obj['info'];
+					userInfo = obj;
+					isLog = true;
+					$.cookie("userInfo", obj);
 
 					console.log(obj);
 				}
@@ -46,6 +50,8 @@ $(document).ready(function(){
 			}
 		});
 
+		if(isLog)
+			$(this).parent("div").removeClass("displayModal").addClass("modal");
 	});
 
 	$(".accountForm").submit(function(event){
@@ -72,6 +78,37 @@ $(document).ready(function(){
 			//password = CryptoJS.MD5(password);
 			//accountInfo.password = password.toString(CryptoJS.enc.Hex);
 			accountInfo.password = password;
+
+			$.ajax({
+			type: 'POST',
+			url: 'api/login',
+			content: 'application/json',
+			data: JSON.stringify(accountInfo),
+			success: function(data){
+				//data should same as when logged in
+				var obj = JSON.parse(data);
+				//console.log(obj);
+
+				if(obj.info == false) {
+					$("#loginModal").css({"border":"2px solid red"});
+					$(".errorMessage").text("silly, your login information is not correct");
+				}
+				else if(data.error != undefined) {
+					console.log(data.error);
+				}
+				else {
+					//obj = obj['info'];
+
+					$.cookie("userInfo", obj);
+
+					console.log(obj);
+					//$(this).close();
+				}
+			},
+			error: function( ){
+				alert("WE'RE SORRY SOMETHING WENT WRONG")
+			}
+		});
 		}
 
 

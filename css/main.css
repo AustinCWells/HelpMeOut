@@ -108,8 +108,13 @@ body {
 }
 
 #recentJobs {
-	margin-left: auto;
+	margin-left: 55px;
 	margin-right: auto;
+}
+
+#stevie{
+	margin-left: 20px;
+	float:left;
 }
 
 .postings {
@@ -163,6 +168,10 @@ font-size: 15px !important;
 
 
 /*DASHBOARD*/
+
+h3 {
+	text-align: center;
+}
 .dashboardSection {
 	float:left;
 	height:600px;
