@@ -1,17 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<title>HelpMeOut</title>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<!--<script language="javascript" type="text/javascript" src="js/index.js"> </script> 
-	<script src="js/jquery.cookie.js"></script> 
-	<script language="javascript"  type="text/javascript" src="js/nav.js"> </script> -->
-	<link href="css/main.css" rel="stylesheet">
-	<script language="javascript"  type="text/javascript" src="js/modal.js"> </script> 
-	<script language="javascript"  type="text/javascript" src="js/dashboard.js"> </script> 
-	<script language="javascript"  type="text/javascript" src="js/nav.js"> </script>
-
+<?php include "components/header.html" ?>
 
 
 	<!-- ACCORDIAN STUFF -->
@@ -19,10 +6,11 @@
 	<script src="//code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
+		<script language="javascript"  type="text/javascript" src="js/dashboard.js"> </script> 
+
 </head>
 <body>
-	<?php include "components/nav.html"; ?> 
-	<?php include "components/modals.html"; ?> 
+	<?php include "components/nav.html"; ?>  
 
 	<p>WE WILL HAVE PLENTY OF JOBS FOR YOU TO ACCEPT. SOON.</p>
 

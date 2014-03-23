@@ -1,17 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<title>HelpMeOut</title>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<!--<script language="javascript" type="text/javascript" src="js/index.js"> </script> 
-	<script src="js/jquery.cookie.js"></script>  
-	<script language="javascript"  type="text/javascript" src="js/nav.js"> </script> -->
-	<link href="css/main.css" rel="stylesheet">
+	<?php include "components/header.html" ?>
 	<script language="javascript"  type="text/javascript" src="js/account.js"> </script>  
-	<script language="javascript"  type="text/javascript" src="js/modal.js"> </script>
-	<script language="javascript"  type="text/javascript" src="js/nav.js"> </script>
-
 </head>
 <body>
 	<?php include "components/nav.html"; ?> 
