@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 		jobPostInfo.category = $(this).children("#jobCategory").val();
 		jobPostInfo.description = $(this).children("#jobDescription").val();
-		jobPostInfo.price = $(this).children("#jobPrice").val();
+		jobPostInfo.price = parseInt($(this).children("#jobPrice").val(), 10);
 		jobPostInfo.location = $(this).children("#jobLocation").val();
 		jobPostInfo.deadlineDate = $(this).children("#jobDeadlineDate").val();
 		jobPostInfo.deadlineTime = $(this).children("#jobDeadlineTime").val();
