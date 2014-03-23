@@ -116,10 +116,10 @@
 			$db = getConnection();
 			$stmt = $db->query($sql);
 			$tasks;
-			while($row = $stmt->fetch(PDO::FETCH_OBJ))
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$taskID = $row['task_id'];
-				$tasks[$taskID][] = array('taskID' => $row->task_id, 'userID' => $row->user_id);
+				$tasks[$taskID][] = $row;
 			}
 			$db = null;
 			$response['jobs'] = $tasks;
@@ -316,11 +316,11 @@
 	{
 		//SERVER
 		$dbhost="127.0.0.1";
-		$dbpass="lablabs";
+		//$dbpass="lablabs";
 
 		//LOCAL
 		//$dbhost="localhost";
-		//$dbpass="";
+		$dbpass="";
 		
 		$dbuser="root";
 		$dbname="HelpMeOut";
