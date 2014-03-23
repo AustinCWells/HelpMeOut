@@ -375,11 +375,11 @@
 	{
 		//SERVER
 		$dbhost="127.0.0.1";
-		//$dbpass="lablabs";
+		$dbpass="lablabs";
 
 		//LOCAL
 		//$dbhost="localhost";
-		$dbpass="";
+		//$dbpass="";
 		
 		$dbuser="root";
 		$dbname="HelpMeOut";

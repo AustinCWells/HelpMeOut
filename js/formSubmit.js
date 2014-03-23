@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: 'api/login',
+			url: 'api/index.php/login',
 			content: 'application/json',
 			data: JSON.stringify(user),
 			success: function(data){
