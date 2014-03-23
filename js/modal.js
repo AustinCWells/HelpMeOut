@@ -129,6 +129,7 @@ $(window).ready(function(){
 		var year = currentTime.getFullYear();
 		var month = parseInt(currentTime.getMonth(), 10) + 1;
 		var day = parseInt(currentTime.getDate(), 10);
+
 		if(day < 10)
 			day = "0" + currentTime.getDate();
 		if(month < 10)
@@ -154,7 +155,7 @@ $(window).ready(function(){
 
 	$("#accountPhoneNumber").change(function(){
 		//$(this).number( true, 2 );
-		console.log("fuck you");
+		console.log("here");
 	});
 
 });
