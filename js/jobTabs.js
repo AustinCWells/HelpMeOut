@@ -82,7 +82,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<11;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/spencer.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/other.png' + '"></div></a>';
 		$('#other').append(html);
 	}
 	if($('#rides').html() === '') {

@@ -32,7 +32,8 @@ window.addEventListener('load', function(event) {
 		if(i===0) {
 			accordionRight.empty();
 		}
-		var html = '<h3>Job #' + jobsList[i] + '</h3><div><p class="jobHeader">' + 'WILLSOOOOOOOON' + ' has requested to complete your task: "' + 'Clean my shoes, bitch' + '"<br><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Jordan Silver' + '<br>Jobs Completed: ' + 'OVER9000!' + '</div><div class="jobDashPrice right">' + 'Offered Price:<br>$' + '5' + '</div><br><div class="jobProfile">Badges, rating, and all the other goodies!</div><input type="button" class="acceptButton leftButton" value="Accept"><input type="button" class="declineButton rightButton" value="Decline"</div>';
+		var profileHTML = '<div id="ratingDiv">Overall Rating:<br><br><span id="ratingLabel"></span><div class="barArea"><div id="ratingBg" ></div><div id="ratingFg"></div></div></div>';
+		var html = '<h3>Job #' + jobsList[i] + '</h3><div><p class="jobHeader">' + 'Wilson Wilson' + ' has requested to complete your task: "' + 'Clean my shoes, please' + '"<br><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Wilson Wilson' + '<br>Jobs Completed: ' + 'OVER9000!' + '</div><div class="jobDashPrice right">' + 'Offered Price:<br>$' + '5' + '</div><br><div class="jobProfile">' + profileHTML + '</div><input type="button" class="acceptButton leftButton" value="Accept"><input type="button" class="declineButton rightButton" value="Decline"</div>';
 		accordionRight.append(html);
 
 	}

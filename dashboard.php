@@ -7,6 +7,7 @@
 	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 		<script language="javascript"  type="text/javascript" src="js/dashboard.js"> </script> 
+		<script language="javascript"  type="text/javascript" src="js/rating.js"> </script>
 
 </head>
 <body>

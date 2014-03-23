@@ -1,11 +1,5 @@
 window.addEventListener('load', function(event) {
 
-	$('#ratingLabel').append('100%'/*get the rating%*/);
-	var ratingBar = document.getElementById("ratingFg");
-	var percent = document.getElementById("ratingLabel");
-	$(ratingBar).width(percent.innerHTML);
-
-
 	$("#profilePic").attr("src", "img/lab.png");
 	var contactInfoHTML =  "Name: " + "Poochy" + "<br>Phone #: " + "Yes, This is Dog." + "<br>Email: " + "barkingdogbro69@smu.edu" + "<br>Location: " + "Foundren Science Building";
 	$("#contactInfo").append(contactInfoHTML); 

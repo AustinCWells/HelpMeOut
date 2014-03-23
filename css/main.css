@@ -247,7 +247,6 @@ input[type="button"] {
 	height: 200px;
 	border: 1px solid #aaaaaa;
 	border-radius: 5px;
-	margin-top: -15px;
 }
 
 /*ACCORDIAN*/
@@ -328,6 +327,7 @@ input[type="button"] {
 #ratingLabel {
 	position:absolute;
 	margin-left: 0px;
+	font-size: 14px;
 
 }
 
