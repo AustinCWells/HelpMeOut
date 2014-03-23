@@ -277,7 +277,7 @@
 		$dbhost="127.0.0.1";
 		//$dbhost="localhost";
 		$dbuser="root";
-		$dbpass="root";
+		$dbpass="lablabs";
 		//$dbpass="";
 		$dbname="HelpMeOut";
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
