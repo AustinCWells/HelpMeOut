@@ -207,12 +207,20 @@ cursor: text !important;
 .badge {
 	float:left;
 	width:150px;
-	height:350px;
 	margin: 25px;
 }
 
 .badgeImg {
 	width:150px;
+}
+
+.badgeName {
+	text-align:center;
+}
+
+.badgeDesc {
+	margin-top: -15px;
+	text-align:center;
 }
 
 .profileSection {
