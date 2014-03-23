@@ -29,7 +29,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $loginInfo->email);
-				$stmt->bindParam("password", md5($loginInfo->password));
+				$stmt->bindParam("password", ($loginInfo->password));
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
 				$db = null;
@@ -63,7 +63,7 @@
 				$stmt->bindParam("email", $newAccount->email);
 				$stmt->bindParam("password", $newAccount->password);
 				$stmt->bindParam("first_name", $newAccount->firstname);
-				$stmt->bindParam("last_name", md5($newAccount->lastname));
+				$stmt->bindParam("last_name", ($newAccount->lastname));
 				$stmt->bindParam("phone", $newAccount->number);
 				$stmt->bindParam("birth_date", $newAccount->bday);
 				$stmt->bindParam("gender", $newAccount->gender);
@@ -86,7 +86,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $loginInfo->email);
-				$stmt->bindParam("password", md5($loginInfo->password));
+				$stmt->bindParam("password", ($loginInfo->password));
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
 				$db = null;
