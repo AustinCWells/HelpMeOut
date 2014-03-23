@@ -45,7 +45,10 @@
 
 </div>
 
-<div id="recentJobs"></div>
+<div id="recentBox">
+	<div id="recentHeader">Recent Jobs:</div>
+	<div id="recentJobs"></div>
+</div>
 
 </body>
 </html>

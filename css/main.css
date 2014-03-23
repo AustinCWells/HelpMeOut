@@ -78,12 +78,20 @@ body {
 }
 
 /*INDEX*/
-#recentJobs {
+#recentBox {
 	float:left;
 	height:600px;
 	width:300px;
 	border: solid 2px black;
 	margin-left: 45px;
+}
+
+#recentHeader {
+
+}
+
+#recentJobs {
+	
 }
 
 .postings {
