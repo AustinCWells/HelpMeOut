@@ -46,8 +46,8 @@
 	// WORKING
 	function createAccount()
 	{
-		$sql = "INSERT INTO Users (`given_name`, `surname`, `email`, `password`, `phone_no`, `credit_type`, `credit_no`)
-		VALUES (:fname, :lname, :email, :password, :phonenumber, :creditcard, :ccnumber)";
+		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `birth_date`, `gender`)
+			VALUES (:email, :password, :first_name, :last_name, :birth_date, :gender)";
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$newAccount = json_decode($request->getBody());
