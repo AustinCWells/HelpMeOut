@@ -43,6 +43,7 @@ $(window).ready(function(){
 					$.cookie("userInfo", obj);
 
 					console.log(obj);
+					closeModal();
 				}
 			},
 			error: function( ){
@@ -50,8 +51,7 @@ $(window).ready(function(){
 			}
 		});
 
-		if(isLog)
-			$(this).parent("div").removeClass("displayModal").addClass("modal");
+		
 	});
 
 	$(".accountForm").submit(function(event){
@@ -102,6 +102,7 @@ $(window).ready(function(){
 					$.cookie("userInfo", obj);
 
 					console.log(obj);
+					closeModal();
 					//$(this).close();
 				}
 			},
@@ -140,3 +141,11 @@ $(window).ready(function(){
 	$("label").css("margin-left", marginLeft);
 
 });
+
+var closeModal = function(){
+
+	$(".displayModal").addClass("modal");
+	$(".displayModal").removeClass("displayModal");
+	$(".overlay").removeClass("overlay");
+
+}
