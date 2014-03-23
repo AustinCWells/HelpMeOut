@@ -146,16 +146,29 @@ cursor: text !important;
 
 }
 
-.cancelJob {
+.leftButton {
 	float:left;
 	margin-left:100px;
 	margin-top: 15px;
 }
 
-.jobCompleted {
+.rightButton {
 	float:right;
 	margin-right:100px;
 	margin-top: 15px;
+}
+
+.jobHeader {
+	text-align: center;
+	margin-top: -5px;
+
+}
+
+.jobProfile {
+	width:100%;
+	height: 200px;
+	border: 2px solid brown;
+	margin-top: 50px;
 }
 
 /*ACCORDIAN*/
