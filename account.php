@@ -29,10 +29,10 @@
 				YOU'RE AWESOME: you actually noticed this! good job!<br>
 			</div>
 			<div id="ratingDiv">
-				<span id="ratingLabel">55%</span>
+				<span id="ratingLabel">95%</span>
 	            <div class="barArea">
 		            <div id="ratingBg" ></div>
-		            <div id="ratingFg" progress="55"></div>
+		            <div id="ratingFg"></div>
 		        </div>
        		</div>
 		</div>
