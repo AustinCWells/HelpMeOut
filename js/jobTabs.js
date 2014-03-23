@@ -65,8 +65,10 @@ window.addEventListener('load', function(event) {
 		$('#rides').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + "I DON'T KNOW HOW TO COMPUTER" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></a>';
+	var titles = ['I DON\'T KNOW HOW TO COMPUTER', 'NEW WIFI ROUTER, NEED HELP SETTING UP','MYSQL DATABASE HELP!!!!','I CAN\'T CONNECT TO THE INTERNET', 'HELP ME SET UP A FACEBOOK ACCOUNT', 'TROUBLES WITH JAVASCRIPT']
+
+	for(var i=1;i<7;i++) {
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + titles[i] + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></a>';
 		$('#techSupport').append(html);
 	}
 	if($('#rides').html() === '') {
@@ -89,7 +91,8 @@ window.addEventListener('load', function(event) {
 		$('#other').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<getRandomInt(2,6);i++) {
+
+	for(var i=1;i<0;i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="receNtPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></a>';
 		$('#recentJobs').append(html);
 	}
