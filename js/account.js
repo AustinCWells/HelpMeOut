@@ -6,8 +6,8 @@ window.addEventListener('load', function(event) {
 	$(ratingBar).width(percent.innerHTML);
 
 
-	$("#profilePic").attr("src", "img/spencer.png");
-	var contactInfoHTML =  "Name: " + "Spencer Kaiser" + "<br>Phone #: " + "you can't have it" + "<br>Email: " + "spencebro@smu.edu" + "<br>Location: " + "Table24";
+	$("#profilePic").attr("src", "img/lab.png");
+	var contactInfoHTML =  "Name: " + "Poochy" + "<br>Phone #: " + "Yes, This is Dog." + "<br>Email: " + "barkingdogbro69@smu.edu" + "<br>Location: " + "Foundren Science Building";
 	$("#contactInfo").append(contactInfoHTML); 
 
 	var badges = [1,2,3];
