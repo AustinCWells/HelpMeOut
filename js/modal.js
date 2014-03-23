@@ -1,7 +1,8 @@
 window.onload=function(){
 var loginButton = document.getElementsByClassName('login');
 var paymentButton = document.getElementsByClassName('pay'); 
-var accountButton = document.getElementsByClassName('createAccount');  
+var accountButton = document.getElementsByClassName('createAccount'); 
+var postJobButton = document.getElementsByClassName("postJob"); 
 var overlay = document.getElementById('overlay'); 
 var closeX = document.getElementsByClassName('close'); 
 
@@ -25,6 +26,12 @@ for(var i = 0; i < accountButton.length; i++)
 {
 	accountButton[i].addEventListener('click',displayAccountModal);
 }
+
+for(var i = 0; i < postJobButton.length; i++)
+{
+	postJobButton[i].addEventListener('click',displayJobPostModal);
+}
+
 
 function loadPaymentInfo()
 {
@@ -72,7 +79,10 @@ function displayAccountModal()
 {
 	displayModal('accountModal');
 }
-
+function displayJobPostModal()
+{
+	displayModal('jobPostModal');
+}
 
 function displayModal(modalId)
 {

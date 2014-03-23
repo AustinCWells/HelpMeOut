@@ -9,6 +9,7 @@
 	<link href="css/main.css" rel="stylesheet">
 	<script language="javascript" type="text/javascript" src="js/index.js"> </script> 
 	<script language="javascript"  type="text/javascript" src="js/modal.js"> </script>  
+	<script language="javascript"  type="text/javascript" src="js/nav.js"> </script>  
 
 	<!--TABS: -->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
