@@ -19,7 +19,7 @@
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$loginInfo = json_decode($request->getBody());
-		$sql = "SELECT user_id,  first_name, last_name, email FROM USER WHERE email = :email AND password = :password";
+		$sql = "SELECT user_id, first_name, last_name, email FROM USER WHERE email = :email AND password = :password";
 		try 
 		{
 			if(isset($loginInfo))
