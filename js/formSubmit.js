@@ -12,7 +12,7 @@ $(document).ready(function(){
 
 		var email = $(this).children("#loginName").val();
 		var password = $(this).children("#loginPassword").val();
-		console.log(email + "\n"  + password);
+		console.log(email + "\n"  + md5(password));
 
 	});
 
