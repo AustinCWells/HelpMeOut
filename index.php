@@ -8,6 +8,8 @@
 </head>
 <body>
 	<?php include "components/nav.html"; ?>
+	<span class="currentPage" id="indexPage"></span>
+
 
 
 	<p>WE WILL HELP YOU OUT. SOON.</p>

@@ -6,15 +6,32 @@ p  { font-family: 'Raleway', sans-serif;}
 
 /* NAV BAR */
 
+body {
+	margin-top: 0px;
+	margin-left: 0px;	
+}
+
 #headerHolder {
-	background-color: pink;
+	background-color: rgb(246,246,246);
 	position:relative;
 	height: 50px;
+	margin-top: -5px;
+}
+
+#titleLink {
+	
+}
+
+#headerTitle {
+	float:left;
+	margin-top:8px;
+	margin-left: 55px;
+	margin-right: 20px;
 }
 
 #navbar a:visited, #navbar a:link{
 	text-decoration: none;
-	color:white;
+	color: rgb(150,150,150);
 }
 #navbar ul {
 	list-style:none;
@@ -23,7 +40,6 @@ p  { font-family: 'Raleway', sans-serif;}
 
 #navbar li {
 	float:left;
-	margin-right: 5px;
 }
 
 #navbar li a {
@@ -35,7 +51,7 @@ p  { font-family: 'Raleway', sans-serif;}
 #navbar li  a:hover{
 	text-decoration: none;
 	color: #000;
-	background-color:#fff ;
+	background-color: rgb(219,219,219);
 }
 #navbar li ul {
 	display:none;

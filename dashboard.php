@@ -11,6 +11,8 @@
 </head>
 <body>
 	<?php include "components/nav.html"; ?>  
+	<span class="currentPage" id="dashboardPage"></span>
+
 
 	<p>WE WILL HAVE PLENTY OF JOBS FOR YOU TO ACCEPT. SOON.</p>
 
