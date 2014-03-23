@@ -3,6 +3,8 @@
 </head>
 <body>
 	<?php include "components/nav.html"; ?> 
+	<span class="currentPage" id="accountPage"></span>
+
 
 	<p>WE HAVE AWARDED YOU BADGES. SOON OUR PLANS WILL COME TO FRUITION.</p>
 	<div id="profile">
