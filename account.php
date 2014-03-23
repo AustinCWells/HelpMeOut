@@ -3,7 +3,6 @@
 </head>
 <body>
 	<?php include "components/nav.html"; ?> 
-	<?php include "components/modals.html"; ?> 
 
 	<p>WE HAVE AWARDED YOU BADGES. SOON OUR PLANS WILL COME TO FRUITION.</p>
 	<div id="profile">
