@@ -67,7 +67,7 @@ $(document).ready(function(){
 	if(month < 10)
 		month = "0" + currentTime.getMonth();
 	currentTime =  year + "-" + month + "-" + day;
-	console.log(currentTime);
+	//console.log(currentTime);
 
 	$("input[type~='date'").val(currentTime);
 
