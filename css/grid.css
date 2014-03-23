@@ -27,7 +27,7 @@ This grid system also uses the micro clear fix implemented by Nicolas Gallagher
  * we apply 0 margin auto so the columns center
  **/
 .row { 
-    width: 1000px; 
+    width: 1400px; 
     max-width: 100%; 
     min-width: 768px; 
     margin: 0 auto; 

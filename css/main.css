@@ -92,8 +92,9 @@ body {
 #recentBox {
 	float:left;
 	height:600px;
-	width:360px;
+	width:100%;
 	border: 1px solid #aaaaaa;
+	background-color:white;
 	border-radius: 4px;
 	margin-left: 5px;
 	padding: 10px;
@@ -137,9 +138,20 @@ cursor: pointer !important;
 font-size: 15px !important;
 }
 
+.ui-widget-header{ 
+	border:0px solid !important;
+	background: rgba(255, 0, 255, 0) !important;
+	position: absolute;
+	top: -40px;
+}
+
+.ui-widget-content{
+	margin-top:41px !important;
+}
+
 #tabs {
-	width: 800px;
-	height: 600px;
+	width: 100%;
+	height: 100%;
 	float:left;
 	margin-left: 45px;
 
@@ -428,23 +440,25 @@ form{
 
 /*JOB POSTINGS*/
 .jobPost {
-	 width:150px;
-	 height:150px;
+	 width:20%;
+	 min-width:100px;
+	 height:auto;
 	 position:relative;
 	 float:left;
-	 margin-right:30px;
+	 margin-right:5%;
 	 margin-bottom:30px;
 	 padding: 0px;
 }
 
 .jobImage {
-	width:150px;
-	height:150px;
+	width:100%;
+	min-width:85px;
+	height:auto;
 }
 
 .jobDesc {
 	position:absolute;
-	width:132px;
+	width:98%;
 	border:2px solid rgb(76,80,86);
 	padding: 5px;
 	margin-left: 2px;
@@ -477,4 +491,11 @@ form{
 	height:100%;
 	width:100%;
 	z-index:5;
+}
+.blue{
+	background-color:#2c3e50;
+}
+.yellow{
+	background-color:#f1c40f;
+	color:white;
 }
