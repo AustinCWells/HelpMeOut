@@ -88,6 +88,7 @@ function displayModal(modalId)
 {
 	var modal = document.getElementById(modalId)
 	var background = document.getElementById("overlay");
+	console.log("got backgroun" + background);
 	background.className = "overlay"
 	modal.className = "displayModal";
 	var width = modal.clientWidth; 
@@ -105,7 +106,7 @@ function displayModal(modalId)
 function hideModal()
 {
 	document.getElementById('loginModal').className = "modal";
-	document.getElementById('paymentModal').className = "modal";
+	document.getElementById('jobPostModal').className = "modal";
 	document.getElementById('accountModal').className = "modal";
 	if(document.getElementById('mapModal'))
 	{
