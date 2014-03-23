@@ -9,7 +9,7 @@ window.addEventListener('load', function(event) {
 		if(i===0) {
 			accordionLeft.empty();
 		}
-		var html = '<h3>Job #' + jobsList[i] + '</h3><div><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Jordan Silver' + '<br>Phone: ' + 'phonenumbergoeshere' + '<br>Email: ' + 'jcsilver@smu.edu' + '<br>Location: ' + 'College Station ...its okay, i guess...' + '</div><div class="jobDashPrice left">' + '$' + '5' + '</div><br><br><br><br><br><div class="jobMap">' + '**Map not implemented**' + '</div><div class="jobNotes"><p class="notesHeader">Notes:</p>' + 'Here is the description for Job #' + jobsList[i] + '!</div><input type="button" class="cancelJob leftButton" value="Cancel Job"><input type="button" class="jobCompleted rightButton" value="Job Completed"</div>';
+		var html = '<h3>Job #' + jobsList[i] + ': ' + 'Laundry at CM' + '</h3><div><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Jordan Silver' + '<br>Phone: ' + 'phonenumbergoeshere' + '<br>Email: ' + 'jcsilver@smu.edu' + '<br>Location: ' + 'College Station ...its okay, i guess...' + '</div><div class="jobDashPrice left">' + '$' + '5' + '</div><br><br><br><br><br><div class="jobMap">' + '**Map not implemented**' + '</div><div class="jobNotes"><p class="notesHeader">Notes:</p>' + 'Here is the description for Job #' + jobsList[i] + '!</div><input type="button" class="cancelJob leftButton" value="Cancel Job"><input type="button" class="jobCompleted rightButton" value="Job Completed"</div>';
 		accordionLeft.append(html);
 
 	}
@@ -33,7 +33,7 @@ window.addEventListener('load', function(event) {
 			accordionRight.empty();
 		}
 		var profileHTML = '<div class="ratingDiv">Overall Rating:<br><br><span class="ratingLabel"></span><div class="barArea"><div class="ratingBg" ></div><div class="ratingFg"></div></div></div>';
-		var html = '<h3>Job #' + jobsList[i] + '</h3><div><p class="jobHeader">' + 'Wilson Wilson' + ' has requested to complete your task: "' + 'Clean my shoes, please' + '"<br><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Wilson Wilson' + '<br>Jobs Completed: ' + 'OVER9000!' + '</div><div class="jobDashPrice right">' + 'Offered Price:<br>$' + '5' + '</div><br><div class="jobProfile">' + profileHTML + '</div><input type="button" class="acceptButton leftButton" value="Accept"><input type="button" class="declineButton rightButton" value="Decline"</div>';
+		var html = '<h3>Job Request From: ' + 'Wilson Wilson' + '</h3><div><p class="jobHeader">' + 'Wilson Wilson' + ' has requested to complete your task: "' + 'Clean my shoes, please' + '"<br><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Wilson Wilson' + '<br>Jobs Completed: ' + 'OVER9000!' + '</div><div class="jobDashPrice right">' + 'Offered Price:<br>$' + '5' + '</div><br><div class="jobProfile">' + profileHTML + '</div><input type="button" class="acceptButton leftButton" value="Accept"><input type="button" class="declineButton rightButton" value="Decline"</div>';
 		accordionRight.append(html);
 
 	}
