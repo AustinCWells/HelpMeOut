@@ -74,15 +74,26 @@ Team: Lab Labs
 <div class="modal" id="jobPostModal">
 	<form>
 		<div class="close">X</div>
-	  	<input class="formElement" type="text" name="jobTitle" placeholder="JOB TITLE" >   
-	 	<select class="formElement" id="paymentCreditCards" name="card">
-	  		<option value="mastercard">MasterCard</option>
-	  		<option value="Visa">Visa</option>
-	  		<option value="AmericanExpress">American Express</option>
-		</select>
-		<input class="formElement" type="text"  name="fname" placeholder="FIRST NAME" required> 
-	  	<input  class="formElement" type="text" name="lname" placeholder="LAST NAME" required>
+		<label for="jobCategory">jobCategory</label>
+		<select name="category" id="jobCategory" class="formElement">
+			<option value="food">Food Pickup and Delivery </option>
+			<option value="Laundry">Laundry</option>
+			<option value="Groceries">Groceries</option>
+			<option value="Tutoring">Tutoring</option>
+			<option value="Transportation">Transportation</option>
+		</select> 
+		<input type="text"class="formElement" placeholder="JOB DESCRIPTION" required>
 		
-	  	<input type="submit" value="pay"> 
+		<input type="number" class="formElement"  name="quantity" min="2" max="25" placeHolder="PAYMENT AMOUNT">
+		
+		<input type="text"class="formElement" placeholder="MEETING LOCATION" required>
+		
+		<label for="jobDeadlineDate">Deadline Date</label>
+		<input class="formElement" id="jobDeadlineDate"  type="date" name="deadlineDate">
+		<label for="jobDeadlineTime">Deadline Time</label>
+		<input class="formElement" id="jobDeadlineTime" type="time" name="deadlineTime" >
+		<textarea class="formElement"name="jobNotes" id="jobNotes" cols="30" rows="4" placeholder="NOTES"></textarea>
+ 
+	  	<input type="submit" value="Post Job"> 
 	 </form>
 </div>
