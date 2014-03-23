@@ -10,6 +10,8 @@
 	<link href="css/main.css" rel="stylesheet">
 	<script language="javascript"  type="text/javascript" src="js/modal.js"> </script> 
 	<script language="javascript"  type="text/javascript" src="js/dashboard.js"> </script> 
+	<script language="javascript"  type="text/javascript" src="js/nav.js"> </script>
+
 
 
 	<!-- ACCORDIAN STUFF -->

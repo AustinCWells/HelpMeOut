@@ -10,6 +10,7 @@
 	<link href="css/main.css" rel="stylesheet">
 	<script language="javascript"  type="text/javascript" src="js/account.js"> </script>  
 	<script language="javascript"  type="text/javascript" src="js/modal.js"> </script>
+	<script language="javascript"  type="text/javascript" src="js/nav.js"> </script>
 
 </head>
 <body>
@@ -22,12 +23,6 @@
 			<img src="" id="profilePic">
 			<div id="contactInfo">
 			</div>
-		</div>
-		<div class="profileSection" id="lowerSection">
-			<div id="badges">
-				Badges:<br>
-				YOU'RE AWESOME: you actually noticed this! good job!<br>
-			</div>
 			<div id="ratingDiv">
 				<span id="ratingLabel">95%</span>
 	            <div class="barArea">
@@ -35,6 +30,12 @@
 		            <div id="ratingFg"></div>
 		        </div>
        		</div>
+		</div>
+		<div class="profileSection" id="lowerSection">
+			<div id="badges">
+				Badges:<br>
+				<div id="badgeSpace">Sorry, this user has no badges yet :'(</div>
+			</div>
 		</div>
 	</div>
 

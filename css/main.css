@@ -110,7 +110,7 @@ cursor: text !important;
 /*ACCOUNT*/
 #profile {
 	border: solid 2px black;
-	height:450px;
+	height:550px;
 	width:95%;
 	margin-left: 2.5%;
 	padding: 15px;
@@ -128,8 +128,23 @@ cursor: text !important;
 
 }
 
-#badges {
+#ratingDiv {
+	float:right;
+	margin-right: 50px;
+}
 
+#badgeSpace {
+}
+
+.badge {
+	float:left;
+	width:150px;
+	height:350px;
+	margin: 25px;
+}
+
+.badgeImg {
+	width:150px;
 }
 
 .profileSection {
@@ -256,7 +271,7 @@ form{
 	color:black;
 	z-index: 1;
 	background-color: white;
-	opacity: 60%
+	opacity: 0.6;
 }
 .jobPrice {
 	position:absolute;
@@ -267,6 +282,7 @@ form{
 	background-color: white;
 	bottom: 0;
 	right: 10px;
+	opacity: 0.6;
 }
 
 .jobFiller {
