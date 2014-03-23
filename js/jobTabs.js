@@ -11,7 +11,7 @@ window.addEventListener('load', function(event) {
 	var random = getRandomInt(0,5);
 	$('#randomText').empty();
 	if (random === 0)
-		$('#randomText').append('"HELP WILL ALWAYS BE GIVEN AT HOGWARTS, HARRY, TO THOSE WHO ASK FOR IT" - ALBUS DUMBLEDORE');
+		$('#randomText').append('"HELP WILL ALWAYS BE GIVEN AT HOGWARTS, HARRY, TO THOSE WHO ASK FOR IT." - ALBUS DUMBLEDORE');
 	else if (random === 1)
 		$('#randomText').append('"WON\'T YOU PLEASE, PLEASE HELP ME, HELP ME, HELP ME, OOH" - THE BEATLES. "HELP!"');
 	else if (random === 2)
