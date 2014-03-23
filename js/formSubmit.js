@@ -1,6 +1,7 @@
-$(document).ready(function(){
+$(window).ready(function(){
 
-	$.cookie.json = true;
+	$.cookie();
+	console.log("here lover");
 
 
 	$(".loginForm").submit(function(event){
