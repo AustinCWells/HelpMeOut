@@ -55,7 +55,7 @@ window.addEventListener('load', function(event) {
 
 	$(function() {
 		$( "#accordionLeft" ).accordion({ heightStyle: "fill" , collapsible: true});
-		$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true, active: false});
+		$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true/*, active: false*/});
 	});
 
 
