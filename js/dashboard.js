@@ -9,7 +9,7 @@ window.addEventListener('load', function(event) {
 		if(i===0) {
 			accordionLeft.empty();
 		}
-		var html = '<h3>Job #' + jobsList[i] + ': ' + 'Laundry at CM' + '</h3><div><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Jordan Silver' + '<br>Phone: ' + 'phonenumbergoeshere' + '<br>Email: ' + 'jcsilver@smu.edu' + '<br>Location: ' + 'College Station ...its okay, i guess...' + '</div><div class="jobDashPrice left">' + '$' + '5' + '</div><br><br><br><br><br><div class="jobMap">' + '**Map not implemented**' + '</div><div class="jobNotes"><p class="notesHeader">Notes:</p>' + 'Here is the description for Job #' + jobsList[i] + '!</div><input type="button" class="cancelJob leftButton" value="Cancel Job"><input type="button" class="jobCompleted rightButton" value="Job Completed"</div>';
+		var html = '<h3>Job #' + jobsList[i] + ': ' + 'Laundry at CM' + '</h3><div><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Jordan Silver' + '<br>Phone: ' + 'phonenumbergoeshere' + '<br>Email: ' + 'jcsilver@smu.edu' + '<br>Location: ' + 'College Station!!!' + '</div><div class="jobDashPrice left">' + '$' + '5' + '</div><br><br><br><br><br><div class="jobMap">' + '**Map not implemented**' + '</div><div class="jobNotes"><p class="notesHeader">Notes:</p>' + 'Here is the description for Job #' + jobsList[i] + '!</div><input type="button" class="cancelJob leftButton" value="Cancel Job"><input type="button" class="jobCompleted rightButton" value="Job Completed"</div>';
 		accordionLeft.append(html);
 
 	}

@@ -26,7 +26,7 @@ window.addEventListener('load', function(event) {
 		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS');
 
 	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HAUNGREH" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/food.png' + '"></div></a>';
+		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HUNGRY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/food.png' + '"></div></a>';
 		$('#food').append(html);
 	}
 	if($('#food').html() === '') {
