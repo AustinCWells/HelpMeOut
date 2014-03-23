@@ -8,8 +8,9 @@ $(document).ready(function(){
 		var user = {};
 
 		user.email = $(this).children("#loginName").val();
-		var password = CryptoJS.MD5($(this).children("#loginPassword").val());
-		user.password = password.toString(CryptoJS.enc.Hex);
+		user.password = $(this).children("#loginPassword").val();
+		//var password = CryptoJS.MD5($(this).children("#loginPassword").val());
+		//user.password = password.toString(CryptoJS.enc.Hex);
 		console.log(user);
 
 
@@ -61,8 +62,9 @@ $(document).ready(function(){
 		}
 			
 		else{
-			password = CryptoJS.MD5(password);
-			accountInfo.password = password.toString(CryptoJS.enc.Hex);
+			//password = CryptoJS.MD5(password);
+			//accountInfo.password = password.toString(CryptoJS.enc.Hex);
+			accountInfo.password = password;
 		}
 
 
