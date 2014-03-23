@@ -92,11 +92,11 @@ body {
 #recentBox {
 	float:left;
 	height:600px;
-	width:300px;
+	width:360px;
 	border: 1px solid #aaaaaa;
 	border-radius: 4px;
-	margin-left: 45px;
-	padding: 15px;
+	margin-left: 5px;
+	padding: 10px;
 }
 
 #recentHeader {

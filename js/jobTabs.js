@@ -8,7 +8,7 @@ window.addEventListener('load', function(event) {
  		 return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	var random = getRandomInt(0,5);
+	var random = getRandomInt(0,6);
 	$('#randomText').empty();
 	if (random === 0)
 		$('#randomText').append('"HELP WILL ALWAYS BE GIVEN AT HOGWARTS, HARRY, TO THOSE WHO ASK FOR IT." - ALBUS DUMBLEDORE');
@@ -22,6 +22,8 @@ window.addEventListener('load', function(event) {
 		$('#randomText').append('"LET EACH OF YOU LOOK NOT ONLY TO HIS OWN INTERESTS, BUT ALSO TO THE INTERESTS OF OTHERS." - PHILIPPIANS 2:4');
 	else if (random === 5)
 		$('#randomText').append('"HELP ME... HELP YOU. HELP ME, HELP YOU." - JERRY MAGUIRE (1996)');
+	else if (random === 6)
+		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE JOBS');
 
 	for(var i=1;i<11;i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HAUNGREH" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/food.png' + '"></div></a>';
@@ -79,12 +81,12 @@ window.addEventListener('load', function(event) {
 		$('#other').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-	for(var i=1;i<4;i++) {
+	for(var i=1;i<5;i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="receNtPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + "5" + '</p><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></a>';
 		$('#recentJobs').append(html);
 	}
 	if($('#recentJobs').html() === '') {
-		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img src="http://s3.amazonaws.com/crunchbase_prod_assets/assets/images/resized/0001/0974/10974v7-max-250x250.jpg">');
+		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img src="img/jobs.png">');
 	}
 
 	/*$(".jobImage").hover(function(){
