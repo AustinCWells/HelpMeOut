@@ -6,7 +6,7 @@
 	<span class="currentPage" id="accountPage"></span>
 
 
-	<p>I RAN OUT OF WITTY THINGS TO SAY. INSTEAD, FEEL FREE TO STARE LONGINGLY INTO MY EYES.</p>
+	<p>I RAN OUT OF WITTY THINGS TO SAY. INSTEAD, FEEL FREE TO STARE LONGINGLY INTO SPENCER'S EYES.</p>
 	<div id="profile">
 		<div class="profileSection" id="upperSection">
 			<img src="" id="profilePic">
