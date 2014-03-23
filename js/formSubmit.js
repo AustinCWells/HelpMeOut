@@ -21,8 +21,10 @@ $(document).ready(function(){
 			content: 'application/json',
 			data: JSON.stringify(user),
 			success: function(data){
-				console.log(data);
+				
 				var obj = JSON.parse(data);
+				console.log(obj);
+
 				if(obj.info == false) {
 					$("#loginModal").css({"border":"2px solid red"});
 					$(".errorMessage").text("silly, your login information is not correct");
@@ -31,12 +33,9 @@ $(document).ready(function(){
 					console.log(data.error);
 				}
 				else {
-					obj = obj['info'];
-					console.log("loading cookie");
-					userInfo.userID = obj.user_id;
-					userInfo.email = obj.email;
-					userInfo.firstName = obj.first_name;
-					userInfo.lastName = obj.last_name;
+					//obj = obj['info'];
+
+					$.cookie("userInfo", obj);
 
 					console.log(obj);
 				}
