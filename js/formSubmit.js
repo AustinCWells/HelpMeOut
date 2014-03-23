@@ -36,4 +36,20 @@ $(document).ready(function(){
 
 	});
 
+	$(".jobPostForm").submit(function(){
+
+		var jobPostInfo = {};
+
+		jobPostInfo.category = $(this).children("#jobCategory").val();
+		jobPostInfo.description = $(this).children("#jobDescription").val();
+		jobPostInfo.payment = $(this).children("#jobPaymentAmount").val();
+		jobPostInfo.location = $(this).children("#jobLocation").val();
+		jobPostInfo.deadlineDate = $(this).children("#jobDeadlineDate").val();
+		jobPostInfo.deadlineTime = $(this).children("#jobDeadlineTime").val();
+		jobPostInfo.notes = $(this).children("#jobNotes").val();
+
+		console.log(jobPostInfo);
+
+	});
+
 });
