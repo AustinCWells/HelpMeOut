@@ -9,6 +9,8 @@ $(window).ready(function(){
 
 		var user = {};
 		var userInfo = {};
+		var isLog = false;
+		//console.log($.coookie("userInfo"));
 
 		user.email = $(this).children("#loginName").val();
 		user.password = $(this).children("#loginPassword").val();
@@ -27,7 +29,7 @@ $(window).ready(function(){
 				var obj = JSON.parse(data);
 				//console.log(obj);
 
-				if(obj.info == false) {
+				if(obj.userID == false) {
 					$("#loginModal").css({"border":"2px solid red"});
 					$(".errorMessage").text("silly, your login information is not correct");
 				}
@@ -36,11 +38,11 @@ $(window).ready(function(){
 				}
 				else {
 					//obj = obj['info'];
-
+					userInfo = obj;
+					isLog = true;
 					$.cookie("userInfo", obj);
 
 					console.log(obj);
-					//$(this).close();
 				}
 			},
 			error: function( ){
@@ -48,6 +50,8 @@ $(window).ready(function(){
 			}
 		});
 
+		if(isLog)
+			$(this).parent("div").removeClass("displayModal").addClass("modal");
 	});
 
 	$(".accountForm").submit(function(event){
