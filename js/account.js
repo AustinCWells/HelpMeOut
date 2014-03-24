@@ -1,7 +1,7 @@
 window.addEventListener('load', function(event) {
 
 	$("#profilePic").attr("src", "img/lab.png");
-	var contactInfoHTML =  "Name: " + "Poochy" + "<br>Phone #: " + "Yes, This is Dog." + "<br>Email: " + "barkingdogbro69@smu.edu" + "<br>Location: " + "Foundren Science Building";
+	var contactInfoHTML =  "Name: " + "Bob the Dog" + "<br>Phone #: " + "1-800-I-BARK." + "<br>Email: " + "BobTheDog@smu.edu" + "<br>Location: " + "Foundren Science Building";
 	$("#contactInfo").append(contactInfoHTML); 
 
 	var badges = [1,2,3];
@@ -14,17 +14,17 @@ window.addEventListener('load', function(event) {
 		if (badges[i] === 1) {
 			var badgeSrc = "img/multitasker.png";
 			var badgeName = "Multitasker";
-			var badgeDesc = "Multitasker description.";
+			var badgeDesc = "You take on multiple requests at a time";
 		}
 		else if (badges[i] === 2) {
 			var badgeSrc = "img/nightowl.png";
 			var badgeName = "Night Owl";
-			var badgeDesc = "Night Owl description.";
+			var badgeDesc = "You Work the Graveyard Shift";
 		}
 		else if (badges[i] === 3) {
 			var badgeSrc = "img/speeddemon.png";
 			var badgeName = "Speed Demon";
-			var badgeDesc = "Speed Demon description.";
+			var badgeDesc = "They call you... 'El Rapido'";
 		}
 
 		var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br><div class="badgeName">' + badgeName + ':</div><br><div class="badgeDesc">' + badgeDesc + '</div></div>';
