@@ -1,17 +1,18 @@
-window.onload=function(){
+window.onload=function()
+{
 var loginButton = document.getElementsByClassName('login');
 var paymentButton = document.getElementsByClassName('pay'); 
 var accountButton = document.getElementsByClassName('createAccount'); 
 var postJobButton = document.getElementsByClassName("postJob"); 
-var overlay = document.getElementById('overlay'); 
-var closeX = document.getElementsByClassName('close'); 
+var overlay = document.getElementById('navOverlay'); 
+/*var closeX = document.getElementsByClassName('close'); 
 
 
 
 for(var i= 0; i < closeX.length; i++)
 {
 	closeX[i].addEventListener('click',hideModal); 
-}
+}*/
 overlay.addEventListener('click',hideModal); 
 for(var i = 0; i < loginButton.length; i++)
 {
@@ -87,9 +88,9 @@ function displayJobPostModal()
 function displayModal(modalId)
 {
 	var modal = document.getElementById(modalId)
-	var background = document.getElementById("overlay");
+	var background = document.getElementById("navOverlay");
 	console.log("got backgroun" + background);
-	background.className = "overlay"
+	background.className = "navOverlay"
 	modal.className = "displayModal";
 	var width = modal.clientWidth; 
 	var height = modal.clientHeight; 
@@ -112,7 +113,7 @@ function hideModal()
 	{
 		document.getElementById('mapModal').className = "modal";
 	}
-	document.getElementById("overlay").className = "";  
+	document.getElementById("navOverlay").className = "";  
 
 
 }

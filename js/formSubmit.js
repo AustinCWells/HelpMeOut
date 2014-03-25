@@ -2,6 +2,8 @@ $(window).ready(function(){
 
 	$.cookie.json = true;
 
+	$(".close").click(closeModal);
+
 
 	$(".loginForm").submit(function(event){
 
@@ -146,6 +148,6 @@ var closeModal = function(){
 
 	$(".displayModal").addClass("modal");
 	$(".displayModal").removeClass("displayModal");
-	$(".overlay").removeClass("overlay");
+	$(".navOverlay").removeClass("navOverlay");
 
 }
