@@ -4,7 +4,7 @@
 </head>
 <body class="blue">
 	<?php include "components/nav.html"; ?> 
-	<span class="currentPage" id="accountPage"></span>
+	<!--<span class="currentPage" id="accountPage"></span>-->
 
 <div class="row yellow">
 	<div class="twelve columns">

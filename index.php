@@ -2,14 +2,15 @@
 	<!--TABS: -->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 	<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-	<script language="javascript"  type="text/javascript" src="js/jobTabs.js"> </script> 
+	<script language="javascript"  type="text/javascript" src="js/jobTabs.js"> </script>
+	<script language="javascript"  type="text/javascript" src="js/index.js"> </script> 
 	
 
 
 </head>
 <body class="blue">
 	<?php include "components/nav.html"; ?>
-	<span class="currentPage" id="indexPage"></span>
+	<!--<span class="currentPage" id="indexPage"></span>-->
 
 <div class="row yellow">
 	<div class="twelve columns">
