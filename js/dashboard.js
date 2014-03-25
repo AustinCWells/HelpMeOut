@@ -1,6 +1,7 @@
+$(window).ready(function(event) {
 
-
-window.addEventListener('load', function(event) {
+	$("#dashboardHeader").addClass("currentPage").removeClass("hoverable");
+	
 	var accordionLeft = $('#accordionLeft');
 	var accordionRight = $('#accordionRight');
 
@@ -59,4 +60,4 @@ window.addEventListener('load', function(event) {
 	});
 
 
-}, false);
+});
