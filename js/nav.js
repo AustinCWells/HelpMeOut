@@ -4,12 +4,12 @@ $(window).ready(function(event) {
 
 	var userInfo = $.cookie("userInfo");
 
-	userInfo = {};
+	//userInfo = {};
 
-	console.log(window.location);
+	//console.log(window.location);
 
 	if(userInfo !== undefined){
-		$("nav").addClass("loggedIn");
+		$("#navMenu li").toggleClass("navVisible");
 		console.log("here");
 	}
 	

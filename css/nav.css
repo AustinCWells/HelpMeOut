@@ -71,19 +71,7 @@
 	clear: both;
 }
 
-.loggedIn #navHome{
-	display: block;
-}
-
-.loggedIn #navPostJobs{
-	display: block;
-}
-
-.loggedIn #navMyJobs{
-	display: block;
-}
-
-.loggedIn #navAccount{
+.navVisible {
 	display: block;
 }
 
