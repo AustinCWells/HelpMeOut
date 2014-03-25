@@ -14,11 +14,6 @@
 	z-index: 20;
 }
 
-nav.logined {
-
-}
-
-
 #navMenu {
 	background-color: rgb(246,246,246);
 	position:relative;
@@ -45,9 +40,9 @@ nav.logined {
 	margin: 5px;
 }
 
-#navMenu li {
-	float:left;
-	width:125px;
+#navHome, #navPostJobs, #navMyJobs, #navAccount, #navSignUp{
+	float: left;
+	width: 125px;
 }
 
 #navMenu li a {
@@ -67,28 +62,29 @@ nav.logined {
 	display: block;
 }
 
-#navMenu li li {
-	border-bottom: 1px solid #ccc;
-	float:none;
-}
-
 #navLogin{
 	float: right;
-	margin-left: 25%;
-	display: block;
-
+	padding: 16px 2px;
 }
 
 .clear {
 	clear: both;
 }
 
-nav.loggedIn li {
+.loggedIn #navHome{
 	display: block;
 }
 
-.loggedIn #navLogin {
-	display:none;
+.loggedIn #navPostJobs{
+	display: block;
+}
+
+.loggedIn #navMyJobs{
+	display: block;
+}
+
+.loggedIn #navAccount{
+	display: block;
 }
 
 nav li {

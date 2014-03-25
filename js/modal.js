@@ -4,6 +4,8 @@ $(window).ready(function(){
 
 	$(".close").click(closeModal);
 
+	$("#navPostJobs").click(openModal);
+
 
 	$(".loginForm").submit(function(event){
 
@@ -146,8 +148,12 @@ $(window).ready(function(){
 
 var closeModal = function(){
 
-	$(".displayModal").addClass("modal");
-	$(".displayModal").removeClass("displayModal");
-	$(".navOverlay").removeClass("navOverlay");
+	$(".displayModal").addClass("modal").removeClass("displayModal");
+	$("#navOverlay").removeClass("navOverlay");
 
+}
+
+var openModal = function(){
+	$(".modal").addClass("displayModal").removeClass("modal");
+	$("#navOverlay").addClass("navOverlay");
 }
