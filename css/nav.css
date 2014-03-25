@@ -39,6 +39,7 @@ nav.logined {
 	text-decoration: none;
 	color: rgb(150,150,150);
 }
+
 #navMenu ul {
 	list-style:none;
 	margin: 5px;
@@ -61,14 +62,9 @@ nav.logined {
 	color: #000;
 	background-color: rgb(219,219,219);
 }
-#navMenu li ul {
-	display:none;
-	position:absolute;
-	padding:0px;
-}
 
 #navMenu li:hover ul{
-	display:block;
+	display: block;
 }
 
 #navMenu li li {
@@ -76,17 +72,25 @@ nav.logined {
 	float:none;
 }
 
-#navMenu li li a{
-	border: 0px;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc; 
+#navLogin{
+	float: right;
+	margin-left: 25%;
+	display: block;
+
 }
 
-#navLogin{
-	float:right;
-	padding-top: 0px;
-	margin-right: 100px;
-	margin-left: 320px;
-	width:150px !important;
+.clear {
+	clear: both;
+}
 
+nav.loggedIn li {
+	display: block;
+}
+
+.loggedIn #navLogin {
+	display:none;
+}
+
+nav li {
+	display: none;
 }

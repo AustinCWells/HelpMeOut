@@ -1,6 +1,6 @@
 $(window).ready(function(event) {
 
-	$("#dashboardHeader").addClass("currentPage").removeClass("hoverable");
+	$("#navMyJobs").addClass("currentPage").removeClass("hoverable");
 	
 	var accordionLeft = $('#accordionLeft');
 	var accordionRight = $('#accordionRight');

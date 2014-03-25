@@ -9,8 +9,8 @@ $(window).ready(function(event) {
 	console.log(window.location);
 
 	if(userInfo !== undefined){
-		alert("Your are not loged in.");
-		//window.location = "index.php";
+		$("nav").addClass("loggedIn");
+		console.log("here");
 	}
 	
 });

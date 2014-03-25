@@ -1,6 +1,6 @@
 $(window).ready(function(){
 
-	$("#indexHeader").addClass("currentPage").removeClass("hoverable");
+	$("#navIndex").addClass("currentPage").removeClass("hoverable");
 
 
 });
