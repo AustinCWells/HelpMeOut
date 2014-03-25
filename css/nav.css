@@ -18,129 +18,75 @@ nav.logined {
 
 }
 
-/* ~~~~~~~~~~~~ MODAL STYLING ~~~~~~~~~~~~ */
 
-.close {
-	cursor: pointer;
-
-}
-.hidden{
-
-	display: none;
-
+#navMenu {
+	background-color: rgb(246,246,246);
+	position:relative;
+	height: 50px;
+	margin-top: -5px;
+	border-bottom: solid 1px rgb(226,226,226);
 }
 
-.displayModal{
-	background-color:white;
-	position:fixed;
-	width:400px;
-	top: 50%;
-	left: 50%;
-	z-index: 21;
-	margin: 100px;
-	padding: 10px;
-	border:2px solid black;
-	border-radius: 10px;
 
+#navMenu h1 {
+	float:left;
+	margin-top:15px;
+	margin-left: 55px;
+	margin-right: 55px;
 }
 
-.modal {
+#navMenu a:visited, #navMenu a:link{
+	text-decoration: none;
+	color: rgb(150,150,150);
+}
+#navMenu ul {
+	list-style:none;
+	margin: 5px;
+}
+
+#navMenu li {
+	float:left;
+	width:125px;
+}
+
+#navMenu li a {
+	display: block;
+	background-color: transparent;
+	padding: 1em;
+	text-align: center;
+}
+
+#navMenu li.hoverable  a:hover{
+	text-decoration: none;
+	color: #000;
+	background-color: rgb(219,219,219);
+}
+#navMenu li ul {
 	display:none;
-}
-
-form{
-	width:100%;
-}
-
-.label {
-	width:20%;
-}
-
-.formElement{
-	width: 75%;	
-}
-
-#mapModal{
-	width:80%;
-	height: 80%;
-}
-
-.overlay{
-	background-image:url(../img/semi_transparent.png);
-	width: 100%;
-	height: 100%;
-	margin-top:-20px;
-	margin-left:-20px;
-	padding-right:20px;
-	padding-bottom:20px;
-	position: fixed;
-	z-index: 20;
-}
-
-
-.formElement {
-
-	width:90%;
-	margin:5%;
-    font-family: 'Raleway', sans-serif;
-    border-color:#000;
-    color: #000r;
-    font-size: 20px;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    border-bottom: 1px solid black;
-}
-
-/*JOB POSTINGS*/
-.jobPost {
-	 width:20%;
-	 min-width:100px;
-	 height:auto;
-	 position:relative;
-	 float:left;
-	 margin-right:5%;
-	 margin-bottom:30px;
-	 padding: 0px;
-}
-
-.jobImage {
-	width:100%;
-	min-width:85px;
-	height:auto;
-}
-
-.jobDesc {
 	position:absolute;
-	width:98%;
-	padding: 5px;
-	margin-left: 2px;
-	margin-right: 2px;
-	margin-top: -35px;
-	text-align: center;
-	color:black;
-	z-index: 1;
-	background-color: white;
-	opacity: 0.55;
-	font-size: 14px;
-}
-.jobPrice {
-	position:absolute;
-	width:25px;
-	height:25px;
-	border:2px solid rgb(75,75,75);
-	border-radius: 5px;
-	text-align: center;
-	color:black;
-	z-index: 1;
-	background-color: white;
-	bottom: 0;
-	right: 15px;
-	opacity: 0.90;
+	padding:0px;
 }
 
-.jobFiller {
-	height:100%;
-	width:100%;
-	z-index:5;
+#navMenu li:hover ul{
+	display:block;
+}
+
+#navMenu li li {
+	border-bottom: 1px solid #ccc;
+	float:none;
+}
+
+#navMenu li li a{
+	border: 0px;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc; 
+}
+
+#navLogin{
+	float:right;
+	padding-top: 0px;
+	margin-right: 100px;
+	margin-left: 320px;
+	width:150px !important;
+
 }

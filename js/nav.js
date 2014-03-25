@@ -8,16 +8,9 @@ $(window).ready(function(event) {
 
 	console.log(window.location);
 
-	if(userInfo === undefined){
+	if(userInfo !== undefined){
 		alert("Your are not loged in.");
 		//window.location = "index.php";
-	}
-
-
-	else{
-
-		console.log("here");
-
 	}
 	
 });
