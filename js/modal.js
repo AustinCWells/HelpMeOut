@@ -1,162 +1,153 @@
-window.onload=function()
-{
-var loginButton = document.getElementsByClassName('login');
-var paymentButton = document.getElementsByClassName('pay'); 
-var accountButton = document.getElementsByClassName('createAccount'); 
-var postJobButton = document.getElementsByClassName("postJob"); 
-var overlay = document.getElementById('navOverlay'); 
-/*var closeX = document.getElementsByClassName('close'); 
+$(window).ready(function(){
+
+	$.cookie.json = true;
+
+	$(".close").click(closeModal);
 
 
+	$(".loginForm").submit(function(event){
 
-for(var i= 0; i < closeX.length; i++)
-{
-	closeX[i].addEventListener('click',hideModal); 
-}*/
-overlay.addEventListener('click',hideModal); 
-for(var i = 0; i < loginButton.length; i++)
-{
-	loginButton[i].addEventListener('click',displayLoginModal);
-}
-for(var i = 0; i < paymentButton.length; i++)
-{
-	paymentButton[i].addEventListener('click',loadPaymentInfo);
-	paymentButton[i].addEventListener('click',displayPayModal);
-}
-for(var i = 0; i < accountButton.length; i++)
-{
-	accountButton[i].addEventListener('click',displayAccountModal);
-}
+		event.preventDefault();
 
-for(var i = 0; i < postJobButton.length; i++)
-{
-	postJobButton[i].addEventListener('click',displayJobPostModal);
-}
+		var user = {};
+		var userInfo = {};
+		var isLog = false;
+		//console.log($.coookie("userInfo"));
 
+		user.email = $(this).children("#loginName").val();
+		user.password = $(this).children("#loginPassword").val();
+		//var password = CryptoJS.MD5($(this).children("#loginPassword").val());
+		//user.password = password.toString(CryptoJS.enc.Hex);
+		console.log(user);
 
-function loadPaymentInfo()
-{
-	console.log("fetching payment info"); 
-	var user_id =  $.cookie("user_id"); //$.cookie(''); 
-	var user = new Object();
-	user.user_id = user_id; 
-	if(!user_id){
-		console.log("user_id not defined.");
-	} else {
-		console.log("user id defined, getting login info");
 
 		$.ajax({
 			type: 'POST',
-			url: '/api/paymentinfo',
+			url: 'api/login',
 			content: 'application/json',
 			data: JSON.stringify(user),
 			success: function(data){
-				var obj = JSON.parse(data); 
-				$("input[name=creditNumber]").val(obj.info.credit_no);
-				$("input[name=fname]").val(obj.info.given_name);
-				$("input[name=lname]").val(obj.info.surname);
-				var selector = "select.formElement[name=card] option[value=" + obj.info.credit_type + "]";
-				$(selector).prop('selected', true);
+				
+				var obj = JSON.parse(data);
+				//console.log(obj);
+
+				if(obj.userID == false) {
+					$("#loginModal").css({"border":"2px solid red"});
+					$(".errorMessage").text("silly, your login information is not correct");
+				}
+				else if(data.error != undefined) {
+					console.log(data.error);
+				}
+				else {
+					//obj = obj['info'];
+					userInfo = obj;
+					isLog = true;
+					$.cookie("userInfo", obj);
+
+					console.log(obj);
+					closeModal();
+				}
 			},
-			error: function(){
-				alert("OH NO! someone has gone and screwed up."); 
+			error: function( ){
+				alert("WE'RE SORRY SOMETHING WENT WRONG")
 			}
 		});
 
-	}
-}
-
-
-function displayLoginModal()
-{
-
-	displayModal('loginModal');
-}
-function displayPayModal()
-{
-	displayModal('paymentModal');
-}
-function displayAccountModal()
-{
-	displayModal('accountModal');
-}
-function displayJobPostModal()
-{
-	displayModal('jobPostModal');
-}
-
-function displayModal(modalId)
-{
-	var modal = document.getElementById(modalId)
-	var background = document.getElementById("navOverlay");
-	console.log("got backgroun" + background);
-	background.className = "navOverlay"
-	modal.className = "displayModal";
-	var width = modal.clientWidth; 
-	var height = modal.clientHeight; 
-	var displacementX = '-'+ (width/2) + 'px';
-	var displacementY = '-' + (height/2) + 'px';   
-	modal.style.marginLeft = displacementX;
-	modal.style.marginTop = displacementY; 
-
-
-}
-
-
-
-function hideModal()
-{
-	document.getElementById('loginModal').className = "modal";
-	document.getElementById('jobPostModal').className = "modal";
-	document.getElementById('accountModal').className = "modal";
-	if(document.getElementById('mapModal'))
-	{
-		document.getElementById('mapModal').className = "modal";
-	}
-	document.getElementById("navOverlay").className = "";  
-
-
-}
-
-}
-
-$(window).ready(function(){
-
-	$("#postJobHeader").click(function(){
-
-		var currentTime = new Date();
-		var hours = currentTime.getHours();
-		var mins = currentTime.getMinutes();
-		var year = currentTime.getFullYear();
-		var month = parseInt(currentTime.getMonth(), 10) + 1;
-		var day = parseInt(currentTime.getDate(), 10);
-
-		if(day < 10)
-			day = "0" + currentTime.getDate();
-		if(month < 10)
-			month = "0" + currentTime.getMonth();
-		currentTime =  year + "-" + month + "-" + day;
 		
-		if(hours < 10)
-			hours = "0" + hours.toString();
-		else
-			hours = hours.toString();
-
-		if(mins < 10)
-			mins = "0" + mins.toString();
-		else
-			mins = mins.toString();
-
-		var time = hours + ":" + mins;
-
-		$("input[type='time']").val(time);
-
-		$("input[type~='date'").val(currentTime);
 	});
 
-	$("#accountPhoneNumber").change(function(){
-		//$(this).number( true, 2 );
-		console.log("here");
+	$(".accountForm").submit(function(event){
+
+		event.preventDefault();
+
+		var accountInfo = {};
+
+		accountInfo.firstName = $(this).children("#accountFName").val();
+		accountInfo.lastName = $(this).children("#accountLName").val();
+		accountInfo.number = $(this).children("#accountPhoneNumber").val();
+		accountInfo.email = $(this).children("#accountEmail").val();
+		accountInfo.gender = $(this).children("#accountGender").val();
+		accountInfo.birthDate = $(this).children("#accountBirthDate").val();
+		var password = $(this).children("#accountPassword").val();
+		var confirmPassword = $(this).children("#accountConfirmPassword").val();
+		console.log(password + "\n" + confirmPassword);
+
+		if(password !== confirmPassword){
+			alert("Passwords do not match");
+		}
+			
+		else{
+			//password = CryptoJS.MD5(password);
+			//accountInfo.password = password.toString(CryptoJS.enc.Hex);
+			accountInfo.password = password;
+
+			$.ajax({
+			type: 'POST',
+			url: 'api/login',
+			content: 'application/json',
+			data: JSON.stringify(accountInfo),
+			success: function(data){
+				//data should same as when logged in
+				var obj = JSON.parse(data);
+				//console.log(obj);
+
+				if(obj.info == false) {
+					$("#loginModal").css({"border":"2px solid red"});
+					$(".errorMessage").text("silly, your login information is not correct");
+				}
+				else if(data.error != undefined) {
+					console.log(data.error);
+				}
+				else {
+					//obj = obj['info'];
+
+					$.cookie("userInfo", obj);
+
+					console.log(obj);
+					closeModal();
+					//$(this).close();
+				}
+			},
+			error: function( ){
+				alert("WE'RE SORRY SOMETHING WENT WRONG")
+			}
+		});
+		}
+
+
+		console.log(accountInfo);
+
 	});
+
+	$(".jobPostForm").submit(function(){
+
+		event.preventDefault();
+
+		var jobPostInfo = {};
+
+		jobPostInfo.category = $(this).children("#jobCategory").val();
+		jobPostInfo.description = $(this).children("#jobDescription").val();
+		jobPostInfo.price = parseInt($(this).children("#jobPrice").val(), 10);
+		jobPostInfo.location = $(this).children("#jobLocation").val();
+		jobPostInfo.deadlineDate = $(this).children("#jobDeadlineDate").val();
+		jobPostInfo.deadlineTime = $(this).children("#jobDeadlineTime").val();
+		jobPostInfo.notes = $(this).children("#jobNotes").val();
+
+		console.log(jobPostInfo);
+
+	});
+
+
+	var marginLeft = $("input").css("margin-left");
+
+	$("label").css("margin-left", marginLeft);
 
 });
+
+var closeModal = function(){
+
+	$(".displayModal").addClass("modal");
+	$(".displayModal").removeClass("displayModal");
+	$(".navOverlay").removeClass("navOverlay");
+
+}
