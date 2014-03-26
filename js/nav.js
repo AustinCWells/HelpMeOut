@@ -1,17 +1,10 @@
+var userInfo = {};
+
 $(window).ready(function(event) {
 
 	$.cookie.json = true;
 
-	var userInfo = $.cookie("userInfo");
-
-	userInfo = {};
-
-	//console.log(window.location);
-
-	if(userInfo !== undefined){
-		$("#navMenu li").toggleClass("navVisible");
-		console.log("here");
-	}
+	login();
 
 	$("li").hover(
 
@@ -23,16 +16,15 @@ $(window).ready(function(event) {
 		}
 	);
 
-	$(".loginForm").submit(function(event){
+	$("#loginForm").submit(function(event){
 
 		event.preventDefault();
 
 		var user = {};
-		var userInfo = {};
 		var isLog = false;
 		//console.log($.coookie("userInfo"));
 
-		user.email = $(this).children("#loginName").val();
+		user.email = $(this).children("#loginEmail").val();
 		user.password = $(this).children("#loginPassword").val();
 		//var password = CryptoJS.MD5($(this).children("#loginPassword").val());
 		//user.password = password.toString(CryptoJS.enc.Hex);
@@ -58,12 +50,12 @@ $(window).ready(function(event) {
 				}
 				else {
 					//obj = obj['info'];
-					userInfo = obj;
-					isLog = true;
+					//userInfo = obj;
 					$.cookie("userInfo", obj);
+					login();
 
-					console.log(obj);
-					closeModal();
+					//console.log(obj);
+					//closeModal();
 				}
 			},
 			error: function( ){
@@ -117,13 +109,9 @@ $(window).ready(function(event) {
 					console.log(data.error);
 				}
 				else {
-					//obj = obj['info'];
 
 					$.cookie("userInfo", obj);
-
-					console.log(obj);
-					closeModal();
-					//$(this).close();
+					login();
 				}
 			},
 			error: function( ){
@@ -172,4 +160,17 @@ var closeModal = function(){
 var openModal = function(){
 	$(this).children("div").addClass("displayModal").removeClass("modal");
 	$("#navOverlay").addClass("navOverlay");
+}
+
+var login = function(){
+
+	userInfo = $.cookie("userInfo");
+
+	console.log(userInfo);
+
+	if(userInfo !== undefined){
+		$("#navMenu li").toggleClass("navVisible");
+		console.log("here");
+	}
+
 }
