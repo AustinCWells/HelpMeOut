@@ -4,7 +4,7 @@ $(window).ready(function(event) {
 
 	var userInfo = $.cookie("userInfo");
 
-	//userInfo = {};
+	userInfo = {};
 
 	//console.log(window.location);
 

@@ -10,12 +10,9 @@
 
 .displayModal{
 	background-color:white;
-	position:fixed;
+	position: absolute;
 	width:400px;
-	top: 50%;
-	left: 50%;
 	z-index: 21;
-	margin: 100px;
 	padding: 10px;
 	border:2px solid black;
 	border-radius: 10px;
@@ -26,23 +23,14 @@
 	display:none;
 }
 
-/*form{
-	width:100%;
-}*/
-
 .label {
 	width:20%;
-}
-
-.formElement{
-	width: 75%;	
 }
 
 #mapModal{
 	width:80%;
 	height: 80%;
 }
-
 
 .formElement {
 

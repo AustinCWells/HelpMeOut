@@ -147,7 +147,7 @@ $(window).ready(function(){
 });
 
 var closeModal = function(){
-
+	console.log($(".displayModal"));
 	$(".displayModal").addClass("modal").removeClass("displayModal");
 	$("#navOverlay").removeClass("navOverlay");
 
