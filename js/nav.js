@@ -143,6 +143,12 @@ $(window).ready(function(event) {
 
 	});
 
+	$("#navLogOut a").click(function(event){
+
+		event.preventDefault();
+		logOut();
+	});
+
 
 	var marginLeft = $("input").css("margin-left");
 
@@ -173,4 +179,11 @@ var login = function(){
 		console.log("here");
 	}
 
+}
+
+var logOut = function(){
+
+	$.removeCookie("userInfo");
+	$("#navMenu li").toggleClass("navVisible");
+	
 }
