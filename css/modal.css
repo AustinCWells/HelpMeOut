@@ -8,7 +8,7 @@
 
 }
 
-.displayModal{
+.selected div {
 	background-color:white;
 	position: absolute;
 	width:400px;
@@ -16,20 +16,15 @@
 	padding: 10px;
 	border:2px solid black;
 	border-radius: 10px;
-
+	display: block;
 }
 
-.modal {
+li div {
 	display:none;
 }
 
 .label {
 	width:20%;
-}
-
-#mapModal{
-	width:80%;
-	height: 80%;
 }
 
 .formElement {

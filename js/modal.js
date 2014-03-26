@@ -2,10 +2,15 @@ $(window).ready(function(){
 
 	$.cookie.json = true;
 
-	$(".close").click(closeModal);
+	$("li").hover(
 
-	$("#navPostJobs").click(openModal);
-
+		function(){
+			$(this).addClass("selected");
+		},
+		function(){
+			$(this).removeClass("selected");
+		}
+	);
 
 	$(".loginForm").submit(function(event){
 
@@ -142,18 +147,18 @@ $(window).ready(function(){
 
 	var marginLeft = $("input").css("margin-left");
 
-	$("label").css("margin-left", marginLeft);
+	$("label").css(")margin-left", marginLeft);
 
 });
 
 var closeModal = function(){
-	console.log($(".displayModal"));
-	$(".displayModal").addClass("modal").removeClass("displayModal");
+	
+	$(this).parent().parent().addClass("modal").removeClass("displayModal");
 	$("#navOverlay").removeClass("navOverlay");
 
 }
 
 var openModal = function(){
-	$(".modal").addClass("displayModal").removeClass("modal");
+	$(this).children("div").addClass("displayModal").removeClass("modal");
 	$("#navOverlay").addClass("navOverlay");
 }
