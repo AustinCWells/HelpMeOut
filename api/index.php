@@ -372,14 +372,14 @@
 	{
 		//SERVER
 		$dbhost="127.0.0.1";
-		//$dbpass="lablabs";
+		$dbpass="lablabs";
 
 		//LOCAL
 		//$dbhost="localhost";
-		$dbpass="";
+		//$dbpass="";
 		
 		$dbuser="root";
-		$dbname="helpmeout";
+		$dbname="HelpMeOut";
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return $dbh;
