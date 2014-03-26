@@ -158,7 +158,7 @@ $(window).ready(function(event) {
 
 	var marginLeft = $("input").css("margin-left");
 
-	$("label").css(")margin-left", marginLeft);
+	$("label").css("margin-left", marginLeft);
 	
 });
 

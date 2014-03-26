@@ -67,6 +67,11 @@
 	padding: 16px 2px;
 }
 
+#navLogOut {
+	float: right;
+	width: 125px;
+}
+
 .clear {
 	clear: both;
 }
