@@ -149,6 +149,10 @@ $(window).ready(function(event) {
 		logOut();
 	});
 
+	var width = $("#navUser").width();
+	console.log(width);
+	$("#userNav li").width(width);
+
 
 	var marginLeft = $("input").css("margin-left");
 
@@ -176,6 +180,7 @@ var login = function(){
 
 	if(userInfo !== undefined){
 		$("#navMenu li").toggleClass("navVisible");
+		$("#navUserEmail").text(userInfo.email);
 		console.log("here");
 	}
 

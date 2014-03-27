@@ -1,3 +1,6 @@
+body {
+	margin: 0px;
+}
 .currentPage {
 	background-color: rgb(34,46,64);
 }
@@ -37,10 +40,15 @@
 
 #navMenu ul {
 	list-style:none;
-	margin: 5px;
+	margin: 0px;
 }
 
-#navHome, #navPostJobs, #navMyJobs, #navAccount, #navSignUp{
+#navUser ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+#navHome, #navPostJobs, #navSignUp{
 	float: left;
 	width: 125px;
 }
@@ -50,6 +58,10 @@
 	background-color: transparent;
 	padding: 1em;
 	text-align: center;
+}
+
+#userNav {
+	clear: both;
 }
 
 #navMenu li.hoverable  a:hover{
@@ -67,9 +79,8 @@
 	padding: 16px 2px;
 }
 
-#navLogOut {
+#navUser {
 	float: right;
-	width: 125px;
 }
 
 .clear {
@@ -94,7 +105,7 @@ nav li {
 
 }
 
-.selected div {
+.selected#navMenu div {
 	background-color:white;
 	position: absolute;
 	width:400px;
@@ -102,6 +113,13 @@ nav li {
 	padding: 10px;
 	border:2px solid black;
 	border-radius: 10px;
+	display: block;
+}
+
+.selected#navUser div {
+	background-color:white;
+	position: absolute;
+	z-index: 21;
 	display: block;
 }
 
