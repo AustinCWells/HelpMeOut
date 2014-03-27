@@ -14,8 +14,9 @@
 
 	$app->run();
 
-
-	// COMPLETE BUT NOT TESTED
+	//This function is used to login the user by finding in the user table where the submitted email and password are. 
+	//it then pass the user data in a JSON file.
+	// COMPLETE  AND WORKING
 	function login()
 	{
 		$app = \Slim\Slim::getInstance();
@@ -45,7 +46,8 @@
 		}
 	}
 
-
+    //Creates an account by inserting a new user into the user table and
+	//collecting the needed information
 	// COMPLETE BUT NOT TESTED	
 	function createAccount()
 	{
@@ -67,6 +69,7 @@
 				
 				//WE NEED TO DO SOMETHING SOMEWHERE TO ACCOUNT FOR FORMATTING
 				//THE DB STORES PHONE # AS 10 DIGITS WITHOUT FORMATTING
+				//RESEARCHING THIS TOPIC SAYS THAT'S A GUI ISSUE AND THAT STORING IT AS A VARCHAR LIKE WE ARE DOING IS CORRECT-Wilson
 				$stmt->bindParam("phone", $newAccount->number);
 				
 				$stmt->bindParam("birth_date", $newAccount->bday);
@@ -107,6 +110,7 @@
 
 	}
 
+	//Pulls the avaliable jobs in the database depending on if_______ SOMEONE EXPLAIN THE IF STATEMENT TO ME-Wilson
 	function pullJobs()
 	{
 		$request = \Slim\Slim::getInstance()->request();
@@ -133,7 +137,10 @@
 		}
 	}
 
+	//QUERY's the Database in an effort to get all the jobs that are not complete or in progress 
+	//and then passed this as an array back to pulljobs() function.
 	function getJobs()
+	{
 	{
 		//MODIFIED QUERY TO ACCOUNT FOR IN-PROGRESS JOBS
 		//This query will pull all ACTIVE jobs (not completed, not in progress)
@@ -157,6 +164,8 @@
 		}
 	}
 
+	//Pulls ALL the jobs in the DB including one's in progress
+	//and then passed this as an array back to pulljobs() function.
 	function getAllJobs($id)
 	{
 		$joblist['tasks'] = getJobs();
@@ -197,9 +206,32 @@
 		}
 	}
 
+	 //Gets all the user's profile information and sends it in a JSON File
+   //NOT TESTED BUT BEING WORKED ON
+	//function getUsersProfile()
+	//{
+	   //$request = \Slim\Slim::getInstance()->request();
+	//	$sql = "Select * from USER WHERE u.user_id = :id"
+		
+	//	try
+	//	{
+		//	$db = getConnection();
+		//	$stmt= $db->query($sql);
+		//	$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+		//	$db = null;
+		//	$userProfile = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'phone' => $userinfo['phone']);
+		//	echo json_encode($userProfile);
+		//}
+	//	catch(PDOException $e) 
+	//	{
+	//		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	//	}
+	//}
+	
 
 	//function getUserBadges()
 	//{
+	     //$request = \Slim\Slim::getInstance()->request();
 		//$sql = "SELECT u.first_name, u.last_name, b.title, b.description FROM BADGES b INNER JOIN BADGES_EARNED be ON be.badge_id = b.badge_id INNER JOIN USER u ON u.user_id = be.user_id WHERE u.user_id = :id";
 	//}
 
