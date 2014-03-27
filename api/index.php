@@ -228,6 +228,14 @@
 	//	}
 	//}
 	
+	//Pulls all the info on the Job for a detailed report
+	//function getJobInfo()
+//	{
+	    //$request = \Slim\Slim::getInstance()->request();
+		//$sql = "SELECT task.task_id, task.beggar_id, task.chooser_id, task.short_description, task.notes, task.price, task.negotiable, task.bid_id, task.time_frame_date, task.time_frame_time
+//FROM `task` WHERE task.task_id = :id"
+           
+	//}
 
 	//function getUserBadges()
 	//{
