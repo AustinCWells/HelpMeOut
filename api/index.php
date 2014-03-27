@@ -110,7 +110,7 @@
 
 	}
 
-	//Pulls the avaliable jobs in the database depending on if_______ SOMEONE EXPLAIN THE IF STATEMENT TO ME-Wilson
+	//Pulls the available jobs in the database depending on if_______ SOMEONE EXPLAIN THE IF STATEMENT TO ME-Wilson
 	function pullJobs()
 	{
 		$request = \Slim\Slim::getInstance()->request();
@@ -229,12 +229,26 @@
 	//}
 	
 	//Pulls all the info on the Job for a detailed report
+	//NOT CLOSE TO BEING DONE. BARE BONES COPY AND PASTE HAS HAPPENED SO FAR DON'T JUDGE ME
 	//function getJobInfo()
 //	{
 	    //$request = \Slim\Slim::getInstance()->request();
 		//$sql = "SELECT task.task_id, task.beggar_id, task.chooser_id, task.short_description, task.notes, task.price, task.negotiable, task.bid_id, task.time_frame_date, task.time_frame_time
 //FROM `task` WHERE task.task_id = :id"
-           
+           //	try
+	//	{
+		//	$db = getConnection();
+		//	$stmt= $db->query($sql);
+		//	$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+		//	$db = null;
+		//	$jobInfo = array('task_id' => (int)$jobInfo ['task_id'], 'beggar_id' => $jobInfo['beggar_id'], 'chooser_id' => $jobInfo['chooser_id'], 'short_description' => $jobInfo['short_description'], 'notes' => $jobInfo['notes'], 'price' => $jobInfo['price'], 'negotiable' => $jobInfo['negotiable'], 'bid_id' => $jobInfo['bid_id'], 'time_frame_date' => $jobInfo['time_frame_date'], 'time_frame_time' => $jobInfo['time_frame_time']);
+		//	echo json_encode($jobInfo);
+		//}
+	//	catch(PDOException $e) 
+	//	{
+	//		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	//	}
+	//}
 	//}
 
 	//function getUserBadges()
