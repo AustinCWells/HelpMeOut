@@ -11,7 +11,7 @@
 </head>
 <body class="blue">
 	<?php include "components/nav.html"; ?>  
-	<span class="currentPage" id="dashboardPage"></span>
+	
 
 
 

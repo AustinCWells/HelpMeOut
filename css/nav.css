@@ -117,6 +117,7 @@ nav li {
 }
 
 .selected#navUser div {
+	float: right;
 	background-color:white;
 	position: absolute;
 	z-index: 21;
