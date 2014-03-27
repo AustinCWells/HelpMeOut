@@ -24,10 +24,10 @@ Team: Lab Labs
 
 			<li class = "hoverable" id = "navPostJobs"> 
 				<a href = "#" class = "modalLink">Post A Job</a>
-				<div id="jobPostModal">
-					<form class="jobPostForm">
+				<div id = "jobPostModal">
+					<form class = "jobPostForm">
 						
-						<label for="jobCategory">Job Category</label>
+						<label for = "jobCategory">Job Category</label>
 						<select name="category" id="jobCategory" class="formElement">
 							<option value="Food">Food Pickup and Delivery</option>
 							<option value="Laundry">Laundry</option>
@@ -54,14 +54,6 @@ Team: Lab Labs
 					 </form>
 				</div>
 				
-			</li>
-
-			<li class = "hoverable" id = "navMyJobs"> 
-				<a href = "dashboard.php">My Jobs</a> 
-			</li>
-			
-			<li class = "hoverable" id = "navAccount"> 
-				<a href = "account.php">My Account</a> 
 			</li>
 
 			<li class = "hoverable navVisible" id = "navSignUp">
@@ -97,8 +89,29 @@ Team: Lab Labs
 
 			</li>
 
-			<li class = "hoverable" id = "navLogOut">
-				<a href = "#">Log Out</a>
+			<li class = "hoverable" id = "navUser">
+				<a href = "#" id = "navUserEmail">cmdunn@smu.edu</a>
+
+				<nav>
+					<div id = "userNav">
+						<ul>
+
+							<li class = "hoverable" id = "navAccount"> 
+								<a href = "account.php">My Account</a> 
+							</li>
+
+							<li class = "hoverable" id = "navMyJobs"> 
+								<a href = "dashboard.php">My Jobs</a> 
+							</li>
+
+							<li class = "hoverable" id = "navLogOut">
+								<a href = "#">Log Out</a>
+							</li>
+
+						</ul>
+					</div>
+				</nav>
+
 			</li>
 
 		</ul>
