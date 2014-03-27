@@ -105,7 +105,15 @@ nav li {
 
 }
 
-.selected#navMenu div {
+.selected div#userNav {
+	float: right;
+	background-color:white;
+	position: absolute;
+	z-index: 21;
+	display: block;
+}
+
+.selected div#accountModal, .selected div#jobPostModal {
 	background-color:white;
 	position: absolute;
 	width:400px;
@@ -113,14 +121,6 @@ nav li {
 	padding: 10px;
 	border:2px solid black;
 	border-radius: 10px;
-	display: block;
-}
-
-.selected#navUser div {
-	float: right;
-	background-color:white;
-	position: absolute;
-	z-index: 21;
 	display: block;
 }
 
