@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+--------------------------NOTES REGARDING LL SERVER DB--------------------------
+--------------------------------------------------------------------------------
+
+							3/27 - Updates:
+--------------------------------------------------------------------------------
+STRUCTURE:
+- Rearranged order of columns in USER for readbility
+- Corrected issue where beggar/chooser were switched
+	- Beggar is now required and Chooser can be null (before offer is accepted)
+- Added "is_hidden" to USER per Raley's comments about how we are going to 
+	manage which users have been hidden on the system (because they were 
+	reported # times)
+- Restructured OFFERS and added "offer_id" for usability
+
+
+CONTENT:
+- Added sample data to the following tables:
+	- USER: Added one user for each team member with their correct @smu.edu
+		email address and a password of 'password' followed single digit #
+	- USER_DATA: Added content for each user's profile
+	- TASK: Added sample tasks for each job category
+		- These tasks as 'simple' in the sense that they are not time
+			sensitive, they are not negotiable
+		- These tasks are not marked as complete
+	- REPORT: Added one sample report
+	- BADGES: Gave each user at least one badge
+	- OFFERS: Added sample offers
+		- Two offers have been accepted (see TASK)
+		- One offer has been accepted and is complete (see TASK)
+
+
+OVERALL STATUS:
+Completed Reference Tables (tables without sample data filled with valid content)
+	- BADGES
+	- CATEGORY
+	- REPORT_CATEGORY
+
+Tables with Sample Data for Testing
+	- USER
+	- USER_DATA (# of jobs requested/competed are not accurate)
+	- TASK
+	- REPORT
+	- BADGES_EARNED
+	- OFFERS
+
+Tables Ingnored (We will revisit these tables when we add additional features)
+	- BIDS (Not necessary until we begin work on USER.negotiable)
