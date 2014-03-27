@@ -64,7 +64,11 @@
 				$stmt->bindParam("password", $newAccount->password);
 				$stmt->bindParam("first_name", $newAccount->firstname);
 				$stmt->bindParam("last_name", md5($newAccount->lastname));
+				
+				//WE NEED TO DO SOMETHING SOMEWHERE TO ACCOUNT FOR FORMATTING
+				//THE DB STORES PHONE # AS 10 DIGITS WITHOUT FORMATTING
 				$stmt->bindParam("phone", $newAccount->number);
+				
 				$stmt->bindParam("birth_date", $newAccount->bday);
 				$stmt->bindParam("gender", $newAccount->gender);
 				$stmt->execute();
@@ -131,8 +135,9 @@
 
 	function getJobs()
 	{
-
-		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE t.is_complete = '0'";
+		//MODIFIED QUERY TO ACCOUNT FOR IN-PROGRESS JOBS
+		//This query will pull all ACTIVE jobs (not completed, not in progress)
+		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE t.is_complete = '0' AND t.chooser_id IS NULL";
 		try
 		{
 			$db = getConnection();
@@ -191,6 +196,12 @@
 			return '{"error":{"text":'. $e->getMessage() .'}}';
 		}
 	}
+
+
+	//function getUserBadges()
+	//{
+		//$sql = "SELECT u.first_name, u.last_name, b.title, b.description FROM BADGES b INNER JOIN BADGES_EARNED be ON be.badge_id = b.badge_id INNER JOIN USER u ON u.user_id = be.user_id WHERE u.user_id = :id";
+	//}
 
 
 /*
