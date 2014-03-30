@@ -204,12 +204,12 @@
 			return '{"error":{"text":'. $e->getMessage() .'}}';
 		}
 	}
-
+/*
 	 //Gets all the user's profile information and sends it in a JSON File
    //NOT TESTED BUT BEING WORKED ON
 	function getUsersProfile()
 	{
-	   $request = \Slim\Slim::getInstance()->request();
+	    $request = \Slim\Slim::getInstance()->request();
     	$sql = "Select * from USER WHERE u.user_id = :id"
 		
 		try
@@ -248,7 +248,6 @@
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 		}
 	}
-	}
 
 	function getUserBadges()
 	{
@@ -256,7 +255,6 @@
 		$sql = "SELECT u.first_name, u.last_name, b.title, b.description FROM BADGES b INNER JOIN BADGES_EARNED be ON be.badge_id = b.badge_id INNER JOIN USER u ON u.user_id = be.user_id WHERE u.user_id = :id";
 	}
 
-/*
 	// NOT TESTED, BUT FUNCTIONAL
 	function getPaymentInfo()
 	{
@@ -433,12 +431,12 @@
 	function getConnection() 
 	{
 		//SERVER
-		$dbhost="127.0.0.1";
-		$dbpass="lablabs";
+		//$dbhost="127.0.0.1";
+		//$dbpass="lablabs";
 
 		//LOCAL
-		//$dbhost="localhost";
-		//$dbpass="";
+		$dbhost="localhost";
+		$dbpass="";
 		
 		$dbuser="root";
 		$dbname="HelpMeOut";
