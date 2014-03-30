@@ -4,8 +4,8 @@
 	$app = new \Slim\Slim();
 
 	$app->post('/login', 'login');
-	$app->post('/newaccount', 'createAccount');
-	$app->get('/jobs',  'pullJobs');
+	//$app->post('/newaccount', 'createAccount');
+	//$app->get('/jobs',  'pullJobs');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 	//$app->post('/placeorder', 'createOrder');
 	//$app->post('/lastorder', 'getLastOrder');
@@ -141,7 +141,6 @@
 	//and then passed this as an array back to pulljobs() function.
 	function getJobs()
 	{
-	{
 		//MODIFIED QUERY TO ACCOUNT FOR IN-PROGRESS JOBS
 		//This query will pull all ACTIVE jobs (not completed, not in progress)
 		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE t.is_complete = '0' AND t.chooser_id IS NULL";
@@ -208,58 +207,56 @@
 
 	 //Gets all the user's profile information and sends it in a JSON File
    //NOT TESTED BUT BEING WORKED ON
-	//function getUsersProfile()
-	//{
-	   //$request = \Slim\Slim::getInstance()->request();
-	//	$sql = "Select * from USER WHERE u.user_id = :id"
+	function getUsersProfile()
+	{
+	   $request = \Slim\Slim::getInstance()->request();
+    	$sql = "Select * from USER WHERE u.user_id = :id"
 		
-	//	try
-	//	{
-		//	$db = getConnection();
-		//	$stmt= $db->query($sql);
-		//	$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
-		//	$db = null;
-		//	$userProfile = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'phone' => $userinfo['phone']);
-		//	echo json_encode($userProfile);
-		//}
-	//	catch(PDOException $e) 
-	//	{
-	//		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	//	}
-	//}
+		try
+	  {
+			$db = getConnection();
+			$stmt= $db->query($sql);
+		     $userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+			$db = null;
+			$userProfile = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'phone' => $userinfo['phone']);
+			echo json_encode($userProfile);
+		}
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}
+	}
 	
 	//Pulls all the info on the Job for a detailed report
 	//NOT CLOSE TO BEING DONE. BARE BONES COPY AND PASTE HAS HAPPENED SO FAR DON'T JUDGE ME
-	//function getJobInfo()
-//	{
-	    //$request = \Slim\Slim::getInstance()->request();
-		//$sql = "SELECT task.task_id, task.beggar_id, task.chooser_id, task.short_description, task.notes, task.price, task.negotiable, task.bid_id, task.time_frame_date, task.time_frame_time
-//FROM `task` WHERE task.task_id = :id"
-           //	try
-	//	{
-		//	$db = getConnection();
-		//	$stmt= $db->query($sql);
-		//	$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
-		//	$db = null;
-		//	$jobInfo = array('task_id' => (int)$jobInfo ['task_id'], 'beggar_id' => $jobInfo['beggar_id'], 'chooser_id' => $jobInfo['chooser_id'], 'short_description' => $jobInfo['short_description'], 'notes' => $jobInfo['notes'], 'price' => $jobInfo['price'], 'negotiable' => $jobInfo['negotiable'], 'bid_id' => $jobInfo['bid_id'], 'time_frame_date' => $jobInfo['time_frame_date'], 'time_frame_time' => $jobInfo['time_frame_time']);
-		//	echo json_encode($jobInfo);
-		//}
-	//	catch(PDOException $e) 
-	//	{
-	//		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	//	}
-	//}
-	//}
+	function getJobInfo()
+     {
+	    $request = \Slim\Slim::getInstance()->request();
+		$sql = "SELECT task.task_id, task.beggar_id, task.chooser_id, task.short_description, task.notes, task.price, task.negotiable, task.bid_id, task.time_frame_date, task.time_frame_time
+                FROM `task` WHERE task.task_id = :id"
+      	try
+	      {
+			$db = getConnection();
+			$stmt= $db->query($sql);
+			$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+			$db = null;
+			$jobInfo = array('task_id' => (int)$jobInfo ['task_id'], 'beggar_id' => $jobInfo['beggar_id'], 'chooser_id' => $jobInfo['chooser_id'], 'short_description' => $jobInfo['short_description'], 'notes' => $jobInfo['notes'], 'price' => $jobInfo['price'], 'negotiable' => $jobInfo['negotiable'], 'bid_id' => $jobInfo['bid_id'], 'time_frame_date' => $jobInfo['time_frame_date'], 'time_frame_time' => $jobInfo['time_frame_time']);
+		   echo json_encode($jobInfo);
+	      }  
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}
+	}
+	}
 
-	//function getUserBadges()
-	//{
-	     //$request = \Slim\Slim::getInstance()->request();
-		//$sql = "SELECT u.first_name, u.last_name, b.title, b.description FROM BADGES b INNER JOIN BADGES_EARNED be ON be.badge_id = b.badge_id INNER JOIN USER u ON u.user_id = be.user_id WHERE u.user_id = :id";
-	//}
-
+	function getUserBadges()
+	{
+	     $request = \Slim\Slim::getInstance()->request();
+		$sql = "SELECT u.first_name, u.last_name, b.title, b.description FROM BADGES b INNER JOIN BADGES_EARNED be ON be.badge_id = b.badge_id INNER JOIN USER u ON u.user_id = be.user_id WHERE u.user_id = :id";
+	}
 
 /*
-
 	// NOT TESTED, BUT FUNCTIONAL
 	function getPaymentInfo()
 	{
@@ -432,7 +429,7 @@
 	}
 */
 
-	// COMPLETE BUT NOT TESTED
+	// COMPLETE gets the connection 
 	function getConnection() 
 	{
 		//SERVER
