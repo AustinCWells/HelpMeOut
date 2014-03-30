@@ -26,7 +26,7 @@ window.addEventListener('load', function(event) {
 		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS');
 
 	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HUNGRY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "overlay"></div><img class="jobImage" src="' + 'img/food.png' + '"></div></a>';
+		var html = '<div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HUNGRY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "overlay"></div><img class="jobImage" src="' + 'img/food.png' + '"></div>';
 		$('#food').append(html);
 	}
 	if($('#food').html() === '') {
@@ -101,14 +101,14 @@ window.addEventListener('load', function(event) {
 		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img id="stevie" src="img/jobs.png">');
 	}
 
-	/*$(".jobImage").hover(function(){
+	$(".jobImage").hover(
+		function(){
+			console.log($(this).parent("div").children(".overlay"));
+		},
+		function(){
+			console.log("out");
 
-		$(this).css("width", "120%");
-
-	},function(){
-		$(this).css("box-shadow", "0px 0px 0px 0px");
-	});
-*/
+		});
 
 
 
