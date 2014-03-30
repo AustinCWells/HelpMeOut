@@ -102,8 +102,7 @@ $(window).ready(function(event) {
 				//console.log(obj);
 
 				if(obj.info == false) {
-					$("#loginModal").css({"border":"2px solid red"});
-					$(".errorMessage").text("silly, your login information is not correct");
+					alert("Something went wrong");
 				}
 				else if(data.error != undefined) {
 					console.log(data.error);
@@ -125,9 +124,10 @@ $(window).ready(function(event) {
 
 	});
 
-	$(".jobPostForm").submit(function(){
+	$(".jobPostForm").submit(function(event){
 
 		event.preventDefault();
+		console.log("Posting a Job")
 
 		var jobPostInfo = {};
 
@@ -141,6 +141,31 @@ $(window).ready(function(event) {
 
 		console.log(jobPostInfo);
 
+		$.ajax({
+			type: 'POST',
+			url: 'api/login',
+			content: 'application/json',
+			data: JSON.stringify(jobPostInfo),
+			success: function(data){
+				
+				var obj = JSON.parse(data);
+				//console.log(obj);
+
+				if(obj.userID == false) {
+					alert("Something went wrong");
+				}
+				else if(data.error != undefined) {
+					console.log(data.error);
+				}
+				else {
+					console.log("Job is Posted");
+				}
+			},
+			error: function( ){
+				alert("WE'RE SORRY SOMETHING WENT WRONG")
+			}
+		});
+
 	});
 
 	$("#navLogOut a").click(function(event){
@@ -149,7 +174,7 @@ $(window).ready(function(event) {
 		logOut();
 	});
 
-	var width = $("#navUser").width();
+	var width = $("li#navUser").width();
 	console.log(width);
 	$("#userNav li").width(width);
 
@@ -179,9 +204,12 @@ var login = function(){
 	console.log(userInfo);
 
 	if(userInfo !== undefined){
-		$("#navMenu li").toggleClass("navVisible");
-		$("#navUserEmail").text(userInfo.email);
-		console.log("here");
+
+		if(userInfo.userID !== 0){
+			$("#navMenu li").toggleClass("navVisible");
+			$("#navUserEmail").text(userInfo.email);
+			console.log("here");
+		}
 	}
 
 }

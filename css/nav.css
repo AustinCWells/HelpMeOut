@@ -48,6 +48,10 @@ body {
 	margin: 0px;
 }
 
+#navUser {
+	margin-right: 32px;
+}
+
 #navHome, #navPostJobs, #navSignUp{
 	float: left;
 	width: 125px;
