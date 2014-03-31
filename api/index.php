@@ -12,6 +12,7 @@
 	//$app->get('/locations', 'findTrucks');
 	//$app->get('/menu', 'getMenu');
 
+
 	$app->run();
 
 	//This function is used to login the user by finding in the user table where the submitted email and password are. 
