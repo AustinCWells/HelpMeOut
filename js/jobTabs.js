@@ -25,6 +25,31 @@ window.addEventListener('load', function(event) {
 	else if (random === 6)
 		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS');
 
+
+	$.getJSON("api/jobs2", function(getJobs) {
+
+		console.log(jobs2.tasks);
+
+		var tasks = jobs2.tasks;
+
+		var foodJobs = {};
+		for(var i=0;i<jobs2.tasks.length;i++) {
+			if(jobs2.tasks[i].category === 'food') {
+				foodJobs.push(jobs2.tasks[i]);
+			}
+		}
+
+		for(var i=1;i<foodJobs.length;i++) {
+			var html = '<div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + jobs2.tasks[i].title + '</p><p class="jobPrice">' + "$" + gobs2.tasks[i].price + '</p><div class = "overlay"></div><img class="jobImage" src="' + 'img/food.png' + '"></div>';
+			$('#food').append(html);
+		}
+
+
+	});
+
+
+
+/*
 	for(var i=1;i<getRandomInt(2,13);i++) {
 		var html = '<div class="jobPost" id="foodPosting' + i + '"><p class="jobDesc">' + "I AM HUNGRY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "overlay"></div><img class="jobImage" src="' + 'img/food.png' + '"></div>';
 		$('#food').append(html);
@@ -91,7 +116,7 @@ window.addEventListener('load', function(event) {
 		$('#other').append('Sorry, there are currently no jobs available in this category.');
 	}
 
-
+	*/
 	for(var i=1;i<5;i++) {
 		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></a>';
 
