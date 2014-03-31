@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 
 public class JobsDisplay extends ActionBarActivity {
@@ -20,6 +23,17 @@ public class JobsDisplay extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_jobs_display);
+		Button mHomeButton;
+		mHomeButton = (Button) findViewById(R.id.homeButton);
+		mHomeButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				toHome();
+				
+			}
+		});
+		
 		
 		// get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
@@ -32,6 +46,12 @@ public class JobsDisplay extends ActionBarActivity {
         // setting list adapter
         expListView.setAdapter(listAdapter);
 	}
+	
+	private void toHome(){
+		Intent intent = new Intent(this, HomePage.class);
+		startActivity(intent); 
+	}
+	
 
 	 /*
      * Preparing the list data
