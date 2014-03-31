@@ -281,13 +281,12 @@
 	function getConnection() 
 	{
 		//SERVER
-		//$dbhost="127.0.0.1";
 		//$dbpass="lablabs";
 
 		//LOCAL
-		$dbhost="localhost";
 		$dbpass="";
-		
+
+		$dbhost="127.0.0.1";
 		$dbuser="root";
 		$dbname="HelpMeOut";
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
