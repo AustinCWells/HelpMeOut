@@ -37,25 +37,31 @@ $(window).ready(function(event) {
 			content: 'application/json',
 			data: JSON.stringify(user),
 			success: function(data){
-				
-				var obj = JSON.parse(data);
-				//console.log(obj);
 
-				if(obj.userID == false) {
-					$("#loginModal").css({"border":"2px solid red"});
-					$(".errorMessage").text("silly, your login information is not correct");
-				}
-				else if(data.error != undefined) {
-					console.log(data.error);
-				}
-				else {
-					//obj = obj['info'];
-					//userInfo = obj;
-					$.cookie("userInfo", obj);
-					login();
+				if(data[0] !== "{")
+					alert("Database Error");
 
+				else{
+					
+					var obj = JSON.parse(data);
 					//console.log(obj);
-					//closeModal();
+
+					if(obj.userID == false) {
+						$("#loginModal").css({"border":"2px solid red"});
+						$(".errorMessage").text("silly, your login information is not correct");
+					}
+					else if(data.error != undefined) {
+						console.log(data.error);
+					}
+					else {
+						//obj = obj['info'];
+						//userInfo = obj;
+						$.cookie("userInfo", obj);
+						login();
+
+						//console.log(obj);
+						//closeModal();
+					}
 				}
 			},
 			error: function( ){
