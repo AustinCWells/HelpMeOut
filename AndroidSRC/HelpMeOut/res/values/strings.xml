@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HelpMeOut</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="header">Help Me Out</string>
+    <string name="signUpText">Sign Up</string>
+    <string name="loginText">Login</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="name">John Doe</string>
+    <string name="currentJobs">Current Jobs: 0</string>
+    <string name="jobsComplete">Jobs Complete: 0</string>
+    <string name="rank">Rank:SLOW</string>
+    <string name="getJobText">GET JOB</string>
+    <string name="postJobText">POST JOB</string>
+    <string name="profileText">PROFILE</string>
+    <string name="myJobsText">MY JOBS</string>
+    <string name="postJobHeader">GET HELP</string>
+    <string name="title_activity_post_job">PostJob</string>
+
+    <string-array name="jobCategories">
+        <item>Food</item>
+        <item>Laundry</item>
+        <item>Grocery</item>
+        <item>Cleaning</item>
+        <item>Rides</item>
+        <item>Tech-Support</item>
+        <item>Maintenance</item>
+        <item>Others</item>
+    </string-array>
+
+    <string name="categoryText">Category</string>
+    <string name="paymentText">Payment Amount</string>
+
+    <string-array name="payment_array">
+        <item>$3.00</item>
+        <item>$4.00</item>
+        <item>$5.00</item>
+        <item>$6.00</item>
+        <item>$7.00</item>
+        <item>$8.00</item>
+        <item>$9.00</item>
+        <item>$10.00</item>
+        <item>$11.00</item>
+        <item>$12.00</item>
+        <item>$13.00</item>
+        <item>$14.00</item>
+        <item>$15.00</item>
+        <item>$16.00</item>
+        <item>$17.00</item>
+        <item>$18.00</item>
+        <item>$19.00</item>
+        <item>$20.00</item>
+    </string-array>
+
+    <string name="meetingLocationText">Meeting Location</string>
+    <string name="locationHint">CM Room 223</string>
+    <string name="descriptionText">Description</string>
+    <string name="descriptionHint"></string>
+    <string name="timeText">Time</string>
+    <string name="dateText">Date</string>
+
+    <string-array name="negotiable_array">
+        <item>YES!</item>
+        <item>NO!</item>
+    </string-array>
+
+    <string name="negotiableText">Negotiable</string>
+    <string name="homeText">HOME</string>
+    <string name="submitText">SUBMIT</string>
+    <string name="title_activity_jobs_available">JobsAvailable</string>
+    <string name="allJobsText">All Jobs</string>
+    <string name="foodJobsText">Food Jobs</string>
+    <string name="laundryJobsText">Laundry Jobs</string>
+    <string name="groceryJobsText">Grocery Jobs</string>
+    <string name="cleaningJobsText">Cleaning Jobs</string>
+    <string name="ridesJobsText">Rides</string>
+    <string name="techSupportJobsText">Tech Support</string>
+    <string name="maintenanceJobsText">Maintenance Jobs</string>
+    <string name="otherJobsText">Other Jobs</string>
+    <string name="availableJobsHeader">Jobs Avialable</string>
+    <string name="title_activity_profile_page">ProfilePage</string>
+    <string name="overalRatingText">Overall Rating</string>
+    <string name="reliabilityText">Reliability Rating</string>
+    <string name="currentJobsText">Current Jobs</string>
+    <string name="title_activity_jobs_display">JobsDisplay</string>
+
+</resources>

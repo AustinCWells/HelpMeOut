@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.helpmeout.ProfilePage">
+    
+    <TextView 
+	    android:id="@+id/header"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="25dip"
+	    android:layout_centerHorizontal= "true"
+	    android:text= "@string/name"/>
+    
+    <LinearLayout  
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+        
+        <ImageView
+            android:src="@drawable/image"
+            android:layout_width="100dip"
+	    	android:layout_height="100dip"
+            />
+         <LinearLayout  
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+
+	        <TextView 
+		    android:id="@+id/stats1"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text= "@string/jobsComplete"
+		    android:layout_marginLeft= "30dip"/>
+	        <TextView 
+		    android:id="@+id/stats2"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text= "@string/currentJobs"
+		    android:layout_marginLeft= "30dip"/>
+	        <TextView 
+		    android:id="@+id/stats3"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text= "@string/rank"
+		    android:layout_marginLeft= "30dip"/>
+	   </LinearLayout>
+    </LinearLayout>
+    <TextView 
+        android:id="@+id/reliabilityRatingText"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textSize="25sp"
+	    android:layout_centerHorizontal= "true"
+	    android:text= "@string/reliabilityText"/>
+    <RatingBar 
+        android:id= "@+id/reliabilityRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:rating="4.0"
+        android:isIndicator="true"/>
+    <TextView 
+        android:id="@+id/overallRatingText"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textSize="25sp"
+	    android:layout_centerHorizontal= "true"
+	    android:text= "@string/overalRatingText"/>
+    <RatingBar 
+        android:id= "@+id/overallRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:rating="3.5"
+        android:isIndicator="true"/>
+	<LinearLayout
+	    android:layout_width= "fill_parent"
+		android:layout_height= "fill_parent"
+		android:orientation="horizontal" >
+         
+	    <Button 
+		    android:id="@+id/homeButton"
+		    android:text="@string/homeText"
+		    android:layout_weight=".5"
+			android:layout_width= "0dip"
+			android:layout_height= "wrap_content"/>
+	
+		 <Button
+		    android:id="@+id/currentJobsButton"
+		    android:layout_weight=".5"
+			android:layout_width= "0dip"
+		    android:layout_height="wrap_content"
+		    android:text="@string/currentJobsText" />
+	 </LinearLayout>
+
+    
+ </LinearLayout>

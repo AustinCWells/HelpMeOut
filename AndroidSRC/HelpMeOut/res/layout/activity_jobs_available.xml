@@ -1,0 +1,78 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:paddingBottom="@dimen/activity_vertical_margin"
+	    android:paddingLeft="@dimen/activity_horizontal_margin"
+	    android:paddingRight="@dimen/activity_horizontal_margin"
+	    android:paddingTop="@dimen/activity_vertical_margin"
+	    android:orientation="vertical"
+	    tools:context="com.example.helpmeout.JobsAvailable">
+	    
+	    <TextView 
+		    android:id="@+id/header"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:textSize="25sp"
+		    android:layout_centerHorizontal= "true"
+		    android:text= "@string/header"/>
+	    
+	  
+	    <Button 
+		    android:id="@+id/allJobsButton"
+		    android:text="@string/allJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	    <Button 
+		    android:id="@+id/foodJobButton"
+		    android:text="@string/foodJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	     <Button 
+		    android:id="@+id/laundryJobsButton"
+		    android:text="@string/laundryJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	      <Button 
+		    android:id="@+id/groceryJobsButton"
+		    android:text="@string/groceryJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	       <Button 
+		    android:id="@+id/cleaningJobsButton"
+		    android:text="@string/cleaningJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	        <Button 
+		    android:id="@+id/ridesJobsButton"
+		    android:text="@string/ridesJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	         <Button 
+		    android:id="@+id/techSupportJobsButton"
+		    android:text="@string/techSupportJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	          <Button 
+		    android:id="@+id/maintenanceJobsButton"
+		    android:text="@string/maintenanceJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	    <Button 
+		    android:id="@+id/otherJobsButton"
+		    android:text="@string/otherJobsText"
+			android:layout_width= "fill_parent"
+			android:layout_height= "wrap_content"/>
+	    <Button 
+		    android:id="@+id/homeButton"
+		    android:text="@string/homeText"
+			android:layout_width= "wrap_content"
+			android:layout_height= "wrap_content"/>
+	    
+	
+	    
+	 </LinearLayout>
+ </ScrollView>
