@@ -309,3 +309,9 @@ div[id*=recentPosting]{
 	width:45% !important;
 	margin-right:5% !important;
 }
+
+.overlay {
+	background-image:url(../img/semi_transparent.png);
+	position: absolute;
+	z-index: 20;
+}
