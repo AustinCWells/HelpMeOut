@@ -1,2 +1,3 @@
 *.DS_Store
-spencer.png
+vendor/
+TEST/
