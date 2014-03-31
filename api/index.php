@@ -4,9 +4,8 @@
 	$app = new \Slim\Slim();
 
 	$app->post('/login', 'login');
-	$app->get('/jobs2', 'getJobs');
 	//$app->post('/newaccount', 'createAccount');
-	//$app->get('/jobs',  'pullJobs');
+	$app->get('/jobs',  'pullJobs');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 	//$app->post('/placeorder', 'createOrder');
 	//$app->post('/lastorder', 'getLastOrder');
