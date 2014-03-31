@@ -34,7 +34,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="laundryPosting' + i + '"><p class="jobDesc">' + "WASH MY SOCKS" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/laundry2.png' + '"></div></a>';
+		var html = '<div class="jobPost" id="laundryPosting' + i + '"><p class="jobDesc">' + "WASH MY SOCKS" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/laundry2.png' + '"></div></div>';
 		$('#laundry').append(html);
 	}
 	if($('#laundry').html() === '') {
@@ -42,7 +42,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="groceriesPosting' + i + '"><p class="jobDesc">' + "KROGER RUN 4 ME" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/groceries.png' + '"></div></a>';
+		var html = '<div class="jobPost" id="groceriesPosting' + i + '"><p class="jobDesc">' + "KROGER RUN 4 ME" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/groceries.png' + '"></div></div>';
 		$('#groceries').append(html);
 	}
 	if($('#groceries').html() === '') {
@@ -50,7 +50,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="cleaningPosting' + i + '"><p class="jobDesc">' + "MY BATHROOM STAAANKS" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></a>';
+		var html = '<div class="jobPost" id="cleaningPosting' + i + '"><p class="jobDesc">' + "MY BATHROOM STAAANKS" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></div>';
 		$('#cleaning').append(html);
 	}
 	if($('#cleaning').html() === '') {
@@ -58,7 +58,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="ridesPosting' + i + '"><p class="jobDesc">' + "DUDE WHERE'S MY CAR" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/rides.png' + '"></div></a>';
+		var html = '<div class="jobPost" id="ridesPosting' + i + '"><p class="jobDesc">' + "DUDE WHERE'S MY CAR" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/rides.png' + '"></div></div>';
 		$('#rides').append(html);
 	}
 	if($('#rides').html() === '') {
@@ -68,7 +68,7 @@ window.addEventListener('load', function(event) {
 	var titles = ['','I DON\'T KNOW HOW TO COMPUTER', 'NEW WIFI ROUTER, NEED HELP SETTING UP','MYSQL DATABASE HELP!!!!','I CAN\'T CONNECT TO THE INTERNET', 'HELP ME SET UP A FACEBOOK ACCOUNT', 'TROUBLES WITH JAVASCRIPT']
 
 	for(var i=1;i<7;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + titles[i] + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></a>';
+		var html = '<div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + titles[i] + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></div>';
 		$('#techSupport').append(html);
 	}
 	if($('#rides').html() === '') {
@@ -76,7 +76,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="maintenancePosting' + i + '"><p class="jobDesc">' + "FIX MY COTTON CANDY MAKER" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/maintenance.png' + '"></div></a>';
+		var html = '<div class="jobPost" id="maintenancePosting' + i + '"><p class="jobDesc">' + "FIX MY COTTON CANDY MAKER" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/maintenance.png' + '"></div></div>';
 		$('#maintenance').append(html);
 	}
 	if($('#rides').html() === '') {
@@ -84,7 +84,7 @@ window.addEventListener('load', function(event) {
 	}
 
 	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/other.png' + '"></div></a>';
+		var html = '<div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/other.png' + '"></div></div>';
 		$('#other').append(html);
 	}
 	if($('#rides').html() === '') {
@@ -93,7 +93,7 @@ window.addEventListener('load', function(event) {
 
 
 	for(var i=1;i<5;i++) {
-		var html = '<a href="' + "index.php" + '"><div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></a>';
+		var html = '<div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></div>';
 
 		$('#recentJobs').append(html);
 	}
