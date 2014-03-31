@@ -1,0 +1,3 @@
+INDEX VERSION 1.126+/Applications/XAMPP/xamppfiles/htdocs/helpmeout/AndroidSRC/.metadata/.plugins/org.eclipse.jdt.core
+903118105.index
+2332603086.index
