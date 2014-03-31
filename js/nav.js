@@ -218,5 +218,7 @@ var logOut = function(){
 
 	$.removeCookie("userInfo");
 	$("#navMenu li").toggleClass("navVisible");
+	window.location = "index.php";
+
 	
 }
