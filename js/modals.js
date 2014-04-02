@@ -127,7 +127,15 @@ var closeModal = function(){
 }
 
 var openModal = function(id){
+	var windowWidth = $(window).width() / 2;
+	var windowHeight = $(window).height() / 2;
+	console.log(windowWidth);
 	$(id).addClass("modalSelected");
+	var formWidth = 12 + ($(id + " form").width() / 2);
+	var formHeight = 12 + ($(id + " form").height() / 2);
+	var left = windowWidth - formWidth;
+	var top = windowHeight - formHeight;
+	$(id + " form").css({"left": left, "top": top});
 	$("#modalOverlay").addClass("modalOverlay");
 }
 
