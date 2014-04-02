@@ -77,6 +77,8 @@ $(window).ready(function(){
 		closeModal();
 	});
 
+	$(".modal").hide();
+
 });
 
 
@@ -121,7 +123,8 @@ var dbRequest = function(url, content, json, type){
 
 var closeModal = function(){
 	
-	$(".modalSelected").removeClass("modalSelected");
+	//$(".modalSelected").removeClass("modalSelected");
+	$(".modal").hide();
 	$("#modalOverlay").removeClass("modalOverlay");
 
 }
@@ -130,6 +133,7 @@ var openModal = function(id){
 	var windowWidth = $(window).width() / 2;
 	var windowHeight = $(window).height() / 2;
 	console.log(windowWidth);
+	$(id).show();
 	$(id).addClass("modalSelected");
 	var formWidth = 12 + ($(id + " form").width() / 2);
 	var formHeight = 12 + ($(id + " form").height() / 2);

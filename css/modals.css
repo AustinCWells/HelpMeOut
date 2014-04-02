@@ -6,7 +6,7 @@
 	z-index: 20;
 }
 
-.modal form {
+.modal input, select, textarea{
 
 	width:90%;
 	/*margin:5%;*/
@@ -18,7 +18,6 @@
     cursor: pointer;
     border: none;
     border-bottom: 1px solid black;
-    display: none;
 }
 
 .modalSelected form{
