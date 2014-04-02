@@ -16,9 +16,6 @@ $(window).ready(function(event) {
 		}
 	);
 
-
-	});
-
 	$("#navLogOut a").click(function(event){
 
 		event.preventDefault();
@@ -51,6 +48,7 @@ var openModal = function(){
 var login = function(){
 
 	userInfo = $.cookie("userInfo");
+	userInfo.userID = 1;
 
 	console.log(userInfo);
 

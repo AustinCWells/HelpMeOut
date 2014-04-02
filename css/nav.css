@@ -2,7 +2,7 @@ body {
 	margin: 0px;
 }
 .currentPage {
-	background-color: rgb(34,46,64);
+	background-color: rgb(34,46,64)
 }
 
 .currentPage a {
@@ -52,7 +52,7 @@ body {
 	margin-right: 32px;
 }
 
-#navHome, #navPostJobs, #navSignUp{
+#navHome, #navPostJobs, #navSignUp, #navMyJobs{
 	float: left;
 	width: 125px;
 }
