@@ -1,6 +1,8 @@
 <?php
 	
 	require '../vendor/autoload.php';
+	require 'config.php';
+
 	$app = new \Slim\Slim();
 
 	$app->post('/login', 'login');
@@ -280,17 +282,10 @@
 	// COMPLETE gets the connection 
 	function getConnection() 
 	{
-		//SERVER
-		//$dbhost="127.0.0.1";
-		//$dbpass="lablabs";
-
-		//LOCAL
-		$dbhost="localhost";
-		$dbpass="";
-		
+		$dbhost="127.0.0.1";
 		$dbuser="root";
-		$dbname="HelpMeOut";
-		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
+		$dbname=dbname;
+		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, dbpass);	
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return $dbh;
 	}

@@ -37,25 +37,33 @@ $(window).ready(function(event) {
 			content: 'application/json',
 			data: JSON.stringify(user),
 			success: function(data){
-				
-				var obj = JSON.parse(data);
-				//console.log(obj);
 
-				if(obj.userID == false) {
-					$("#loginModal").css({"border":"2px solid red"});
-					$(".errorMessage").text("silly, your login information is not correct");
+				if(data[0] !== "{"){
+					alert("Database Error");
+					console.log(data);
 				}
-				else if(data.error != undefined) {
-					console.log(data.error);
-				}
-				else {
-					//obj = obj['info'];
-					//userInfo = obj;
-					$.cookie("userInfo", obj);
-					login();
 
+				else{
+					
+					var obj = JSON.parse(data);
 					//console.log(obj);
-					//closeModal();
+
+					if(obj.userID == false) {
+						$("#loginModal").css({"border":"2px solid red"});
+						$(".errorMessage").text("silly, your login information is not correct");
+					}
+					else if(data.error != undefined) {
+						console.log(data.error);
+					}
+					else {
+						//obj = obj['info'];
+						//userInfo = obj;
+						$.cookie("userInfo", obj);
+						login();
+
+						//console.log(obj);
+						//closeModal();
+					}
 				}
 			},
 			error: function( ){
@@ -97,20 +105,27 @@ $(window).ready(function(event) {
 			content: 'application/json',
 			data: JSON.stringify(accountInfo),
 			success: function(data){
-				//data should same as when logged in
-				var obj = JSON.parse(data);
-				//console.log(obj);
 
-				if(obj.info == false) {
-					alert("Something went wrong");
+				if(data[0] !== "{"){
+					alert("Database Error");
+					console.log(data);
 				}
-				else if(data.error != undefined) {
-					console.log(data.error);
-				}
-				else {
+				else{
+					//data should same as when logged in
+					var obj = JSON.parse(data);
+					//console.log(obj);
 
-					$.cookie("userInfo", obj);
-					login();
+					if(obj.info == false) {
+						alert("Something went wrong");
+					}
+					else if(data.error != undefined) {
+						console.log(data.error);
+					}
+					else {
+
+						$.cookie("userInfo", obj);
+						login();
+					}
 				}
 			},
 			error: function( ){
@@ -147,18 +162,26 @@ $(window).ready(function(event) {
 			content: 'application/json',
 			data: JSON.stringify(jobPostInfo),
 			success: function(data){
-				
-				var obj = JSON.parse(data);
-				//console.log(obj);
 
-				if(obj.userID == false) {
-					alert("Something went wrong");
+				if(data[0] !== "{"){
+					alert("Database Error");
+					console.log(data);
 				}
-				else if(data.error != undefined) {
-					console.log(data.error);
-				}
-				else {
-					console.log("Job is Posted");
+
+				else{
+				
+					var obj = JSON.parse(data);
+					//console.log(obj);
+
+					if(obj.userID == false) {
+						alert("Something went wrong");
+					}
+					else if(data.error != undefined) {
+						console.log(data.error);
+					}
+					else {
+						console.log("Job is Posted");
+					}
 				}
 			},
 			error: function( ){
