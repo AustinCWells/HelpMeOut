@@ -21,7 +21,7 @@
     display: none;
 }
 
-.selected div#accountModal, .selected div#jobPostModal {
+.modalSelected form{
 	background-color:white;
 	position: absolute;
 	width:400px;
@@ -31,3 +31,5 @@
 	border-radius: 10px;
 	display: block;
 }
+
+

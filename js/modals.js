@@ -68,6 +68,15 @@ $(window).ready(function(){
 		dbRequest('api/login', 'application/json', jobPostInfo, 'jobPost');
 	});
 
+	$(".modalLink").click(function(event){
+		event.preventDefault();
+		openModal($(this).attr('href'));
+	});
+
+	$("#modalOverlay").click(function(){
+		closeModal();
+	});
+
 });
 
 
@@ -112,14 +121,14 @@ var dbRequest = function(url, content, json, type){
 
 var closeModal = function(){
 	
-	$(this).parent().parent().addClass("modal").removeClass("displayModal");
-	$("#navOverlay").removeClass("navOverlay");
+	$(".modalSelected").removeClass("modalSelected");
+	$("#modalOverlay").removeClass("modalOverlay");
 
 }
 
-var openModal = function(){
-	$(this).children("div").addClass("displayModal").removeClass("modal");
-	$("#navOverlay").addClass("navOverlay");
+var openModal = function(id){
+	$(id).addClass("modalSelected");
+	$("#modalOverlay").addClass("modalOverlay");
 }
 
 var login = function(){
