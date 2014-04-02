@@ -10,6 +10,7 @@
 </head>
 <body class="blue">
 	<?php include "components/nav.html"; ?>
+	<?php include "components/modals.html"; ?>
 	<!--<span class="currentPage" id="indexPage"></span>-->
 
 <div class="row yellow">

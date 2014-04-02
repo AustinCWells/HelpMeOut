@@ -9,14 +9,6 @@ body {
 	color: rgb(255,255,255);
 }
 
-.navOverlay {
-	background-image:url(../img/semi_transparent.png);
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	z-index: 20;
-}
-
 #navMenu {
 	background-color: rgb(246,246,246);
 	position:relative;
@@ -117,39 +109,16 @@ nav li {
 	display: block;
 }
 
-.selected div#accountModal, .selected div#jobPostModal {
-	background-color:white;
-	position: absolute;
-	width:400px;
-	z-index: 21;
-	padding: 10px;
-	border:2px solid black;
-	border-radius: 10px;
-	display: block;
-}
-
 li div {
 	display:none;
 }
 
+/*
+Don't know if this affects anything
 .label {
 	width:20%;
 }
-
-.formElement {
-
-	width:90%;
-	margin:5%;
-    font-family: 'Raleway', sans-serif;
-    border-color:#000;
-    color: #000r;
-    font-size: 20px;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    border-bottom: 1px solid black;
-}
-
+*/
 /*JOB POSTINGS*/
 .jobPost {
 	 width:20%;
@@ -182,6 +151,7 @@ li div {
 	opacity: 0.55;
 	font-size: 14px;
 }
+
 .jobPrice {
 	position:absolute;
 	width:25px;

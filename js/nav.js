@@ -33,36 +33,6 @@ $(window).ready(function(event) {
 	
 });
 
-var closeModal = function(){
-	
-	$(this).parent().parent().addClass("modal").removeClass("displayModal");
-	$("#navOverlay").removeClass("navOverlay");
-
-}
-
-var openModal = function(){
-	$(this).children("div").addClass("displayModal").removeClass("modal");
-	$("#navOverlay").addClass("navOverlay");
-}
-
-var login = function(){
-
-	userInfo = $.cookie("userInfo");
-	userInfo.userID = 1;
-
-	console.log(userInfo);
-
-	if(userInfo !== undefined){
-
-		if(userInfo.userID !== 0){
-			$("#navMenu li").toggleClass("navVisible");
-			$("#navUserEmail").text(userInfo.email);
-			console.log("here");
-		}
-	}
-
-}
-
 var logOut = function(){
 
 	$.removeCookie("userInfo");

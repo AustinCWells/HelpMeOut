@@ -66,13 +66,14 @@ $(window).ready(function(){
 		jobPostInfo.notes = $(this).children("#jobNotes").val();
 
 		dbRequest('api/login', 'application/json', jobPostInfo, 'jobPost');
+	});
 
 });
 
 
 var dbRequest = function(url, content, json, type){
 
-	.ajax({
+	$.ajax({
 		type: 'POST',
 		url: url,
 		content: content,
@@ -95,7 +96,8 @@ var dbRequest = function(url, content, json, type){
 				}
 
 				else if(type === "login" || type === "signUp"){
-					console.log(obj);
+					$.cookie("userInfo", obj);
+					login();
 				}
 			}
 
@@ -107,3 +109,33 @@ var dbRequest = function(url, content, json, type){
 	});
 
 }
+
+var closeModal = function(){
+	
+	$(this).parent().parent().addClass("modal").removeClass("displayModal");
+	$("#navOverlay").removeClass("navOverlay");
+
+}
+
+var openModal = function(){
+	$(this).children("div").addClass("displayModal").removeClass("modal");
+	$("#navOverlay").addClass("navOverlay");
+}
+
+var login = function(){
+
+	userInfo = $.cookie("userInfo");
+
+	console.log(userInfo);
+
+	if(userInfo !== undefined){
+
+		if(userInfo.userID !== 0){
+			$("#navMenu li").toggleClass("navVisible");
+			$("#navUserEmail").text(userInfo.email);
+			console.log("here");
+		}
+	}
+
+}
+
