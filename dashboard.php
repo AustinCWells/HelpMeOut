@@ -10,7 +10,8 @@
 
 </head>
 <body class="blue">
-	<?php include "components/nav.html"; ?>  
+	<?php include "components/nav.html"; ?> 
+	<?php include "components/modals.html"; ?> 
 	
 
 
