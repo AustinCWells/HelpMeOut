@@ -108,7 +108,7 @@
 
 	}
 
-	//Pulls the available jobs in the database depending on if_______ SOMEONE EXPLAIN THE IF STATEMENT TO ME-Wilson
+	//Pulls the available jobs in the database depending on if user is guest (user_id = 0) or logged in. and then sends them as a JSON file
 	function pullJobs()
 	{
 		$request = \Slim\Slim::getInstance()->request();
@@ -117,12 +117,12 @@
 
 		try
 		{
-			if($userID == 0)
+			if($userID == 0) //User is not logged in
 			{
 				$taskList['tasks'] = getJobs();
 				echo json_encode($taskList);
 			}
-			else
+			else //user is logged in
 			{
 				$taskList = getAllJobs($userID);
 				echo json_encode($taskList);
@@ -161,8 +161,8 @@
 		}
 	}
 
-	//Pulls ALL the jobs in the DB including one's in progress
-	//and then passed this as an array back to pulljobs() function.
+	//Pulls ALL the jobs in the DB including one's in progress by the user
+	//and then passes this as an array back to pulljobs() function.
 	function getAllJobs($id)
 	{
 		$joblist['tasks'] = getJobs();
@@ -202,19 +202,19 @@
 			return '{"error":{"text":'. $e->getMessage() .'}}';
 		}
 	}
-/*
+
 	 //Gets all the user's profile information and sends it in a JSON File
    //NOT TESTED BUT BEING WORKED ON
 	function getUsersProfile()
 	{
 	    $request = \Slim\Slim::getInstance()->request();
-    	$sql = "Select * from USER WHERE u.user_id = :id"
+    	$sql = "Select * from USER WHERE u.user_id = :id";
 		
 		try
-	  {
+	    {
 			$db = getConnection();
 			$stmt= $db->query($sql);
-		     $userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+		    $userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
 			$db = null;
 			$userProfile = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'phone' => $userinfo['phone']);
 			echo json_encode($userProfile);
@@ -224,16 +224,17 @@
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 		}
 	}
-	
+
 	//Pulls all the info on the Job for a detailed report
 	//THE SQL COMMAND IS DONE WHICH IS WHAT NEEDED TO BE DONE FOR THIS ITERATION!! YAY PHRASING
 	//I went ahead and attempted to make the json object of stuff we need, just getting ahead on my work don't judge
 	function getJobInfo()
      {
-	    $request = \Slim\Slim::getInstance()->request();
+	   $request = \Slim\Slim::getInstance()->request();
 		$sql = "SELECT task.task_id, task.beggar_id, task.chooser_id, task.short_description, task.notes, task.price, task.negotiable, task.bid_id, task.time_frame_date, task.time_frame_time
-                FROM `task` WHERE task.task_id = :id"
-      	try
+                FROM `task` WHERE task.task_id = :id";			
+      	 
+		try
 	      {
 			$db = getConnection();
 			$stmt= $db->query($sql);
@@ -241,13 +242,15 @@
 			$db = null;
 			$jobInfo = array('task_id' => (int)$jobInfo ['task_id'], 'beggar_id' => $jobInfo['beggar_id'], 'chooser_id' => $jobInfo['chooser_id'], 'short_description' => $jobInfo['short_description'], 'notes' => $jobInfo['notes'], 'price' => $jobInfo['price'], 'negotiable' => $jobInfo['negotiable'], 'bid_id' => $jobInfo['bid_id'], 'time_frame_date' => $jobInfo['time_frame_date'], 'time_frame_time' => $jobInfo['time_frame_time']);
 		   echo json_encode($jobInfo);
+		   
 	      }  
 		catch(PDOException $e) 
 		{
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 		}
+		
 	}
-
+/*
 	function getUserBadges()
 	{
 	     $request = \Slim\Slim::getInstance()->request();
