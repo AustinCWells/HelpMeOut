@@ -1,7 +1,7 @@
 //LIST OF FUNCTIONS:
-//loginForm --- api/login()
-//accountForm --- api/createAccount()
-//jobPostForm --- ???
+//loginForm --- api/login
+//accountForm --- api/newaccount
+//jobPostForm --- api/postatask
 
 
 
@@ -62,8 +62,10 @@ $(window).ready(function(){
 		event.preventDefault();
 		console.log("Posting a Job")
 
+		userInfo = $.cookie("userInfo");
+		console.log(userInfo);
 		var jobPostInfo = {};
-
+		jobPostInfo.userID = userInfo.userID;
 		jobPostInfo.category = $(this).children("#jobCategory").val();
 		jobPostInfo.description = $(this).children("#jobDescription").val();
 		jobPostInfo.price = parseInt($(this).children("#jobPrice").val(), 10);
@@ -72,7 +74,7 @@ $(window).ready(function(){
 		jobPostInfo.deadlineTime = $(this).children("#jobDeadlineTime").val();
 		jobPostInfo.notes = $(this).children("#jobNotes").val();
 
-		dbRequest('api/login', 'application/json', jobPostInfo, 'jobPost');
+		dbRequest('api/postatask', 'application/json', jobPostInfo, 'jobPost');
 	});
 
 	$(".modalLink").click(function(event){

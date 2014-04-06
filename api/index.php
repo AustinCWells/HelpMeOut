@@ -6,8 +6,9 @@
 	$app = new \Slim\Slim();
 
 	$app->post('/login', 'login');
-	//$app->post('/newaccount', 'createAccount');
+	$app->post('/newaccount', 'createAccount');
 	$app->get('/jobs',  'pullJobs');
+	$app->post('/postatask', 'postTask');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
 	$app->run();
@@ -252,6 +253,35 @@
 		}
 		
 	}
+
+	function postTask():
+	{
+		$request = \Slim\Slim::getInstance()->request();
+		$taskInfo = json_decode($request->getBody());
+		$sql = "INSERT INTO USER (`beggar_id`, `category_id`, `short_description`, `price`, `location`, `time_frame_date`, `time_frame_time`, `notes`) VALUES (:beggar_id, :category_id, :short_description, :price, :location, :time_frame_date, :time_frame_time, :notes)";
+
+		try
+		{
+			$console.log("HERRO");
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("beggar_id", $taskInfo->userID);
+			$stmt->bindParam("category_id", $taskInfo->category);
+			$stmt->bindParam("short_description", $taskInfo->description);
+			$stmt->bindParam("price", $taskInfo->price);
+			$stmt->bindParam("location", $taskInfo->location);
+			$stmt->bindParam("time_frame_date", $taskInfo->deadlineDate);
+			$stmt->bindParam("time_frame_time", $taskInfo->deadlineTime);
+			$stmt->bindParam("notes", $taskInfo->notes);
+			$stmt->execute();
+			$db = null;
+		}
+		catch(PDOException e)
+		{
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
 /*
 	function getUserBadges()
 	{
