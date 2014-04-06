@@ -3,8 +3,6 @@
 	<script language="javascript"  type="text/javascript" src="js/rating.js"> </script> 
 </head>
 <body class="blue">
-	<?php include "components/nav.html"; ?> 
-	<?php include "components/modals.html"; ?>
 	<!--<span class="currentPage" id="accountPage"></span>-->
 
 <div class="row yellow">
