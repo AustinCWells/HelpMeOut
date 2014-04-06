@@ -14,7 +14,7 @@
 
 	//This function is used to login the user by finding in the user table where the submitted email and password are. 
 	//it then pass the user data in a JSON file.
-	// COMPLETE  AND WORKING
+	// COMPLETE AND WORKING (4/6/14)
 	function login()
 	{
 		$app = \Slim\Slim::getInstance();
