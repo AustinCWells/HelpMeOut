@@ -12,6 +12,7 @@
 
 	$app->run();
 
+
 	//This function is used to login the user by finding in the user table where the submitted email and password are. 
 	//it then pass the user data in a JSON file.
 	// COMPLETE AND WORKING (4/6/14)
@@ -44,9 +45,10 @@
 		}
 	}
 
+
     //Creates an account by inserting a new user into the user table and
 	//collecting the needed information
-	// COMPLETE BUT NOT TESTED	
+	// COMPLETE BUT NOT TESTED
 	function createAccount()
 	{
 		$app = \Slim\Slim::getInstance();
