@@ -1,3 +1,10 @@
+//LIST OF FUNCTIONS:
+//loginForm --- api/login()
+//accountForm --- api/createAccount()
+//jobPostForm --- ???
+
+
+
 $(window).ready(function(){
 
 
@@ -81,7 +88,8 @@ $(window).ready(function(){
 
 });
 
-
+//CHRIS --- WHAT DOES THIS DO?
+	//Can you explain how this works to the DB guys?
 var dbRequest = function(url, content, json, type){
 
 	$.ajax({
@@ -113,6 +121,11 @@ var dbRequest = function(url, content, json, type){
 			}
 
 		},
+
+		//CAN WE MAKE THIS ERROR MESSAGE MORE SPECIFIC?
+		//IF THIS IS BECAUSE OF A BROKEN LINK BETWEEN
+			//MODALS AND API, CAN WE MENTION THAT?
+
 		error: function(data){
 			alert("WE'RE SORRY SOMETHING WENT WRONG!");
 		}
