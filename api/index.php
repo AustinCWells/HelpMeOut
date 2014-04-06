@@ -152,7 +152,7 @@
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$taskID = $row['task_id'];
-				$tasks[$taskID] = array('category_id' => (int)$row['category_id'], 'title' => $row['title'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id'], 'chooser_id' => (int)$row['chooser_id'], 'title' => $row['title'], 'description' => $row['description'], 'price' => (int)$row['price'], 'category_id' => (int)$row['category_id'], 'negotiable' => (int)$row['negotiable']);
+				$tasks[$taskID] = array('category_id' => (int)$row['category_id'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id'], 'short_description' => $row['short_description'], 'price' => (int)$row['price'], 'category_id' => (int)$row['category_id'], 'negotiable' => (int)$row['negotiable'], 'is_complete' => (int)$row['is_complete']);
 			}
 			$db = null;
 			return $tasks;
