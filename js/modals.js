@@ -87,6 +87,11 @@ $(window).ready(function(){
 	});
 
 	$(".modal").hide();
+	$("#jobPrice").change(function(){
+		var num = $(this).val();
+		num = parseInt(num, 10).toFixed(2);
+		$(this).val(num);
+	});
 
 });
 
