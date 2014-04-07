@@ -86,7 +86,7 @@ body {
 
 #navTokens {
 	float: right;
-	padding: 16px;
+	padding: 0px;
 }
 
 li#navTokens a {
@@ -127,8 +127,23 @@ li div {
 	display:none;
 }
 
+#tokenImg {
+	float: left;
+	padding: 0px 6px;
+}
+
+h1#tokenCount{
+	float: right;
+	margin: 0px;
+	display: table-cell;
+    vertical-align: middle;
+    padding: 0px 6px;
+}
+
+
 #divToken {
-	display: block;
+	display: table;
+	/*border: 1px solid black;*/
 }
 
 /*

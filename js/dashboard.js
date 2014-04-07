@@ -5,7 +5,9 @@ $(window).ready(function(event) {
 	var accordionLeft = $('#accordionLeft');
 	var accordionRight = $('#accordionRight');
 
+	
 	var jobsList = [1,2,3];
+	/*
 	for(var i=0;i<jobsList.length;i++) {
 		if(i===0) {
 			accordionLeft.empty();
@@ -14,7 +16,7 @@ $(window).ready(function(event) {
 		accordionLeft.append(html);
 
 	}
-
+	*/
 	var cancelList = document.getElementsByClassName("cancelJob");
 	var completedList = document.getElementsByClassName("jobCompleted");
 

@@ -73,9 +73,11 @@ font-size: 14px !important;
 	top: -40px;
 }
 
+/*
 .ui-widget-content{
 	margin-top:41px !important;
 }
+*/
 
 #tabs {
 	width: 100%;
@@ -91,17 +93,36 @@ font-size: 14px !important;
 
 /*DASHBOARD*/
 
+.smallText {
+	font-size: 9px;
+}
+
+.center {
+	text-align: center;
+}
+
+
+.redOutline {
+
+}
+
+.seperator {
+	width: 0px;
+	float:left;
+	height:80px;
+	border:solid 1px rgb(210,210,210);
+}
+
 h3 {
 	text-align: center;
 }
 .dashboardSection {
 	float:left;
-	height:600px;
 	width: 100%;
 	border: 1px solid #aaaaaa;
 	border-radius: 4px;
 	background-color: white;
-	margin-bottom:100px;
+	margin-bottom:15px;
 }
 
 .dashboardTitle {
@@ -115,22 +136,23 @@ h3 {
 	position:relative;
 	width:85px;
 	float:left;
-	margin:15px;
+	margin-left: -15px;
 	margin-top: 0px;
+	margin-bottom: 15px;
 }
 
 .jobContactInfo {
 	float:left;
 	position:relative;
+	margin-left: -50px;
 	width: 75%;
 	font-size: 12px;
 
 }
 
 .jobDashPrice.left {
-	float:right;
-	margin-top: -75px;
-	margin-right: -15px;
+	margin-top: -25px;
+	text-align:center;
 }
 .jobDashPrice.right {
 	font-size: 14px;
@@ -154,6 +176,9 @@ h3 {
 	width:275px;
 	height:200px;
 	font-size: 14px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	overflow-y: auto;
 
 }
 
@@ -163,6 +188,7 @@ h3 {
 	border-bottom: 1px solid #aaaaaa;
 }
 
+/*
 .leftButton {
 	float:left;
 	margin-left:100px;
@@ -174,6 +200,7 @@ h3 {
 	margin-right:100px;
 	margin-top: 15px;
 }
+*/
 
 input[type="button"] {
 	border:1px solid #aaaaaa;
@@ -195,6 +222,10 @@ input[type="button"] {
 }
 
 /*ACCORDIAN*/
+
+.ui-accordion-content {
+	overflow: visible !important;
+}
 
 
 /*ACCOUNT*/
