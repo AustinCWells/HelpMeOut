@@ -30,6 +30,9 @@ $(window).ready(function(event) {
 	var marginLeft = $("input").css("margin-left");
 
 	$("label").css("margin-left", marginLeft);
+
+	var navHeight = $("#navMenu").height() - 10;
+	$("#tokenImg").height(navHeight);
 	
 });
 

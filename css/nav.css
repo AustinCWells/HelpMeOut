@@ -74,13 +74,23 @@ body {
 	display: block;
 }
 
-#navLogin{
+#navLogin {
 	float: right;
 	padding: 16px 2px;
 }
 
+
 #navUser {
 	float: right;
+}
+
+#navTokens {
+	float: right;
+	padding: 16px;
+}
+
+li#navTokens a {
+	padding: 6px;
 }
 
 .clear {
@@ -115,6 +125,10 @@ nav li {
 
 li div {
 	display:none;
+}
+
+#divToken {
+	display: block;
 }
 
 /*
