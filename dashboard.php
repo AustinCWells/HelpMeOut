@@ -12,8 +12,6 @@
 <body class="blue">
 	
 
-<!--RAGE GITHUB I HATE YOU UPDATE-->
-
 <div class="row yellow">
 	<div class="twelve columns">
 		<p>DON'T BE CONFUSED. THESE JOBS ARE MERELY AN ILLUSION.</p>
