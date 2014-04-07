@@ -254,7 +254,7 @@
 		
 	}
 
-	function postTask():
+	function postTask()
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$taskInfo = json_decode($request->getBody());
@@ -276,12 +276,52 @@
 			$stmt->execute();
 			$db = null;
 		}
-		catch(PDOException e)
+		catch(PDOException $e)
 		{
 			echo '{"error":{"text":'. $e->getMessage() .'}}';
 		}
 	}
 
+	function getJobsImDoing()
+	{
+	$request = \Slim\Slim::getInstance()->request();
+	$sql= "SELECT *, user.user_id, user.email, user.first_name, user.last_name, user.phoneFROM `task` INNER JOIN user ON user.user_id = task.beggar_id";
+	try
+	      {
+			$db = getConnection();
+			$stmt= $db->query($sql);
+			$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+			$db = null;
+			//HERE IS WHERE JSON SENDING INFO GOES I WILL WAIT FOR JORDAN TO TELL ME WHAT HE NEEDS BEFORE I DO THIS
+		   echo json_encode($jobInfo);
+		   
+	      }  
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}
+	}
+	
+	function getsJobsINeedCompleted()
+	{
+	$request = \Slim\Slim::getInstance()->request();
+	$sql= "SELECT *,user.user_id, user.email, user.first_name, user.last_name, user.phone FROM  `task`  INNER JOIN offers ON offers.chooser_id = task.chooser_id INNER JOIN user ON user.user_id = offers.chooser_id " ;
+	try
+	      {
+			$db = getConnection();
+			$stmt= $db->query($sql);
+			$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+			$db = null;
+			//HERE IS WHERE JSON SENDING INFO GOES I WILL WAIT FOR JORDAN TO TELL ME WHAT HE NEEDS BEFORE I DO THIS
+		   echo json_encode($jobInfo);
+		   
+	      }  
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}
+	
+	}
 /*
 	function getUserBadges()
 	{
