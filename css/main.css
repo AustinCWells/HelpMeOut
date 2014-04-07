@@ -73,11 +73,11 @@ font-size: 14px !important;
 	top: -40px;
 }
 
-/*
-.ui-widget-content{
+
+.ui-tabs.ui-widget-content{
 	margin-top:41px !important;
 }
-*/
+
 
 #tabs {
 	width: 100%;
