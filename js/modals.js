@@ -93,6 +93,13 @@ $(window).ready(function(){
 		$(this).val(num);
 	});
 
+	$(".closeButton").click(function(event){
+
+		event.preventDefault();
+		closeModal();
+
+	});
+
 });
 
 //CHRIS --- WHAT DOES THIS DO?
@@ -159,7 +166,7 @@ var openModal = function(id){
 	var formHeight = 12 + ($(id + " form").height() / 2);
 	var left = windowWidth - formWidth;
 	var top = windowHeight - formHeight;
-	$(id + " form").css({"left": left, "top": top});
+	$(id).css({"left": left, "top": top});
 	$("#modalOverlay").addClass("modalOverlay");
 }
 
