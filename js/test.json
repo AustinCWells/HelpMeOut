@@ -1,7 +1,7 @@
 {
 "tasks": [
-{ "task_id":1 , "beggar_id":1 , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 }, 
-{ "task_id":2 , "beggar_id":2 , "short_description":"THIS IS THE SECOND ONE" , "notes":"blablalba2" , "price":4 , "category_id":1 , "negotiable":0 , "is_complete":0 }, 
-{ "task_id":3 , "beggar_id":5 , "short_description":"THIS IS THE THIRD ONE" , "notes":"blablabla3" , "price":3 , "category_id":1 , "negotiable":0 , "is_complete":0 }
+{ "task_id":1 , "beggar_id":1 , "chooser_id":4 , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 }, 
+{ "task_id":2 , "beggar_id":2 , "chooser_id":5 , "short_description":"THIS IS THE SECOND ONE" , "notes":"blablalba2" , "price":4 , "category_id":1 , "negotiable":0 , "is_complete":0 }, 
+{ "task_id":3 , "beggar_id":5 , "chooser_id":6 , "short_description":"THIS IS THE THIRD ONE" , "notes":"blablabla3" , "price":3 , "category_id":1 , "negotiable":0 , "is_complete":0 }
 ]
 }
