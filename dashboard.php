@@ -26,6 +26,7 @@
 			<div id="accordionLeft">
 				<!--<h3>You have no jobs!</h3>
 				<div><p>You're pretty lame, aren't you?</p></div>-->
+				<!--
 				<h3>*beggar_id*: '*short_description*'</h3>
 				<div>
 					<div class = "row redOutline">
@@ -54,8 +55,38 @@
 						<input type="button" class="cancelJob five columns" value="Cancel Job">
 						<input type="button" class="jobCompleted five columns" value="Job Completed">
 					</div>
-					<!--<div class="jobMap">**Map not implemented**</div>-->
+				
 				</div>
+
+				<h3>Help offered to *beggar_name*</h3>
+				<div>
+					<div class = "row redOutline">
+							<span class = "bidHeader twelve column center">You have requested to complete *beggar_name*'s job: '*short_description*'</span>
+					</div>
+					<div class = "row redOutline">
+						<img class="jobPic three columns redOutline" src="img/food.png">
+						<div class="jobContactInfo seven columns redOutline">
+							Name: *first_name* *last_name*<br><br>
+							<span class="smallText">Start Time:</span> *start_time* <span class="smallText">End Time:</span> *end_time*
+						</div>
+						<div class = "seperator"></div>
+						<div class="three columns redOutline">
+							<div class="smallText">*beggar_name* has offered you:</div><br>
+							<div class="jobDashPrice left">$5</div>
+						</div>
+					</div>
+					<div class = "row redOutline">
+						<div class="jobNotes twelve columns">
+							<p class="notesHeader">Notes:</p>
+							*notes* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae quam in ligula iaculis tristique vel vitae tellus. Nullam semper condimentum mauris. Donec in mi nulla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum gravida odio a bibendum semper. Etiam cursus velit sit amet nisi adipiscing commodo. Quisque nec tortor ac nunc aliquet dictum eu vitae metus.
+							In quis tincidunt ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae quam in ligula iaculis tristique vel vitae tellus. Nullam semper condimentum mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae quam in ligula iaculis tristique vel vitae tellus. Nullam semper condimentum mauris. *notes*
+						</div>
+					</div>
+					<div class = "row redOutline center">
+						<input type="button" class="cancel center" value="Cancel Request">
+					</div>
+				</div>
+				-->
 
 			</div>
 		</div>
@@ -68,7 +99,7 @@
 				<div><p>You're pretty lame, aren't you?</p></div>-->
 				<h3>Help for: '*short_description*'</h3>
 				<div>
-					<div class = "row redOutline center">
+					<div class = "row redOutline">
 						<img class="jobPic three columns redOutline" src="img/food.png">
 						<div class="jobContactInfo seven columns redOutline">
 							Name: *first_name* *last_name*<br>
