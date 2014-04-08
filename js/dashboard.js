@@ -31,6 +31,7 @@ $(window).ready(function(event) {
 		);
 	}
 
+	/*
 	for(var i=0;i<jobsList.length;i++) {
 		if(i===0) {
 			accordionRight.empty();
@@ -40,6 +41,7 @@ $(window).ready(function(event) {
 		accordionRight.append(html);
 
 	}
+	*/
 
 	var acceptList = document.getElementsByClassName("acceptButton");
 	var declineList = document.getElementsByClassName("declineButton");
