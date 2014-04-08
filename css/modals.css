@@ -12,12 +12,9 @@ input{
 	font-family: 'Raleway', sans-serif;
 }
 
-
-
 .modalSelected{
 	background-color:white;
 	position: absolute;
-	/*width:400px;*/
 	z-index: 21;
 	border:2px solid black;
 	border-radius: 10px;
@@ -55,4 +52,23 @@ input{
 .buttonRight {
 	float: right;
 	cursor: pointer;
+}
+
+.modalColumnLeft {
+	float: left;
+	margin: 10px;
+}
+
+.modalColumnLeft label {
+	margin-top: 20px;
+	display: block;
+}
+
+.modalColumnRight {
+	float: right;
+	margin: 10px
+}
+
+.modalColumnRight input, .modalColumnRight textarea {
+	margin-top: 20%;
 }

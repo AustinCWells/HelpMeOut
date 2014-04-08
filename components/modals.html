@@ -2,49 +2,60 @@
 
 <div class = "modal" id="jobPostModal">
 
-	<div class = "modalTitle">
+	<div class = "modalTitle yellow">
 
 		<span>Post a Job</span>
-		<button title = "close" role = button>
-			<span class = "modalCloseIcon"></span>
-			<span class = "buttonText">close</span>
+		<button type = "button" class = "closeButton">
+			<span>X</span>
 		</button>
 		
 	</div>
 
-	<div class = "modalData">
 		<form>
+
+			<div class = "modalColumnLeft">
 			
-			<label for = "jobCategory">Job Category</label>
-			<select name="category" id="jobCategory" >
-				<option value="Food">Food Pickup and Delivery</option>
-				<option value="Laundry">Laundry</option>
-				<option value="Groceries">Groceries</option>
-				<option value="Tutoring">Cleaning</option>
-				<option value="Rides">Rides</option>
-				<option value="Tech">Tech Support</option>
-				<option value="Maintenance">Maintenance</option>
-				<option value="Other">Other</option>
-			</select>
+				<label for = "jobCategory">Job Category</label>
+				<select name="category" id="jobCategory" >
+					<option value="Food">Food Pickup and Delivery</option>
+					<option value="Laundry">Laundry</option>
+					<option value="Groceries">Groceries</option>
+					<option value="Tutoring">Cleaning</option>
+					<option value="Rides">Rides</option>
+					<option value="Tech">Tech Support</option>
+					<option value="Maintenance">Maintenance</option>
+					<option value="Other">Other</option>
+				</select>
 
-			<input type="text" id = "jobDescription" placeholder="SHORT DESCRIPTION" required>
 
-			<label for="jobPrice">Price:</label>
-			<input type="number" id = "jobPrice" name="quantity" value = "2.00" min="2.00" step = "1.00">
+				<label for="jobPrice">Price</label>
+				<input type="number" id = "jobPrice" name="quantity" value = "2.00" min="2.00" step = "1.00">
 
-			<input type="text" id = "jobLocation" placeholder="MEETING LOCATION" required>
+				<label for="jobDeadlineDate">Deadline Date</label>
+				<input  id="jobDeadlineDate" type="date" name="deadlineDate">
 
-			<label for="jobDeadlineDate">Deadline Date</label>
-			<input  id="jobDeadlineDate" type="date" name="deadlineDate">
+				<label for="jobDeadlineTime">Deadline Time</label>
+				<input id="jobDeadlineTime" type="time" name="deadlineTime" >
 
-			<label for="jobDeadlineTime">Deadline Time</label>
-			<input id="jobDeadlineTime" type="time" name="deadlineTime" >
-			
-			<textarea name="jobNotes" id="jobNotes" cols="30" rows="4" placeholder="NOTES"></textarea>
-	 
-		  	<input type="submit" value="Post Job"> 
+			</div>
+
+			<div class = "modalColumnRight">
+
+				<input type="text" id = "jobDescription" placeholder="SHORT DESCRIPTION" required>
+				<br>
+				<input type="text" id = "jobLocation" placeholder="MEETING LOCATION" required>
+				<br>
+				<textarea name="jobNotes" id="jobNotes" cols="30" rows="4" placeholder="NOTES"></textarea>
+
+			</div>
+
+
+			<div class = "modalRow clear">
+		 
+			  	<input type="submit" value="Post Job" class = "buttonRight">
+
+		  	</div>
 		 </form>
-	 </div>
 </div>
 
 <div class = "modal" id="accountModal">
@@ -78,8 +89,8 @@
 	  		<label for = "birthdate">Birthday</label>
 	  		<br>
 	  		<input type = "date" id = "birthdate">
-	  		<input type="radio" name = "gender" value = "male" checked = "true">Male
-		  	<input type="radio" name = "gender" value = "female">Female
+	  		<input type = "radio" name = "gender" value = "male" checked = "true">Male
+		  	<input type = "radio" name = "gender" value = "female">Female
 	  	</div>
 	  	
 	  	<div class = "modalRow">
