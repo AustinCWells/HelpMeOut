@@ -157,6 +157,7 @@ var closeModal = function(){
 }
 
 var openModal = function(id){
+
 	var windowWidth = $(window).width() / 2;
 	var windowHeight = $(window).height() / 2;
 	console.log(windowWidth);
@@ -168,6 +169,15 @@ var openModal = function(id){
 	var top = windowHeight - formHeight;
 	$(id).css({"left": left, "top": top});
 	$("#modalOverlay").addClass("modalOverlay");
+
+	if(id === "#jobPostModal"){
+		var currentTime = getCurrentTimeAndDate();
+		$("#jobDeadlineDate").val(currentTime.date);
+		$("#jobDeadlineDate").attr('min',currentTime.date);
+		$("#jobDeadlineTime").val(currentTime.time);
+		$("#jobDeadlineTime").attr('min',currentTime.time);
+		//console.log(currentTime);
+	}
 }
 
 var login = function(){
@@ -186,4 +196,73 @@ var login = function(){
 	}
 
 }
+
+var getCurrentTimeAndDate = function(){
+
+	var info = {};
+
+	var currentTime = new Date();
+
+	var hours = currentTime.getHours();
+	var mins = currentTime.getMinutes();
+
+	var year = currentTime.getFullYear();
+	var month = parseInt(currentTime.getMonth(), 10) + 1;
+	var day = parseInt(currentTime.getDate(), 10);
+
+	if(month < 10)
+		month = "0" + month;
+
+	if(day < 10)
+		day = "0" + day;
+
+	info.date = year + "-" + month + "-" + day;
+
+	if(hours < 10)
+		hours = "0" + hours.toString();
+	else
+		hours = hours.toString();
+
+	if(mins < 10)
+		mins = "0" + mins.toString();
+	else
+		mins = mins.toString();
+
+	info.time = hours + ":" + mins;
+
+	return info;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
