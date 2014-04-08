@@ -6,29 +6,53 @@
 	z-index: 20;
 }
 
-.modal input, select, textarea{
+input{
 
-	width:90%;
-	/*margin:5%;*/
-    font-family: 'Raleway', sans-serif;
-    border-color:#000;
-    color: #000r;
-    font-size: 20px;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    border-bottom: 1px solid black;
+	font-size: 18px;
+	font-family: 'Raleway', sans-serif;
 }
 
-.modalSelected form{
+
+
+.modalSelected{
 	background-color:white;
 	position: absolute;
-	width:400px;
+	/*width:400px;*/
 	z-index: 21;
-	padding: 10px;
 	border:2px solid black;
 	border-radius: 10px;
 	display: block;
 }
 
+.modal {
+	background-color: rgb(246,246,246);
+}
 
+
+.closeButton {
+	float: right;
+	border: 0;
+	color: white;
+	background: rgba(0, 0, 0, 0);
+	font: inherit;
+	cursor: pointer;
+}
+
+.modalTitle {
+	border-top-right-radius: inherit;
+	border-top-left-radius: inherit;
+	padding: 16px;
+}
+
+.modalTitle span {
+	font-size: 18px;
+}
+
+.modalRow {
+	margin: 10px;
+}
+
+.buttonRight {
+	float: right;
+	cursor: pointer;
+}
