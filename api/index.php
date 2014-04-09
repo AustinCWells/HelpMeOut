@@ -8,6 +8,7 @@
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
 	$app->get('/jobs',  'pullJobs');
+	$app->get('/jobsImDoing', 'getJobsImDoing')
 	$app->post('/postatask', 'postTask');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 

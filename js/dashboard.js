@@ -5,8 +5,11 @@ $(window).ready(function(event) {
 	var accordionLeft = $('#accordionLeft');
 	var accordionRight = $('#accordionRight');
 
-	$.getJSON("js/test.json",function(data){
-		var tasks = data.tasks;
+	$.getJSON("api/jobsImDoing",function(data){
+		console.log('hi');
+		console.log(data);
+
+		var tasks = {};
 
 
 		

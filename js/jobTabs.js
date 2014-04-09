@@ -8,6 +8,7 @@ window.addEventListener('load', function(event) {
 
 //Loading 
 $.getJSON("js/test.json",function(data){
+	
 		var tasks = data.tasks;
 
 		var foodList = new Array();
@@ -46,7 +47,7 @@ $.getJSON("js/test.json",function(data){
 			$('#food').append(html);
 		}
 		if($('#food').html() === '') {
-			$('#food').append('Sorry, there are currently no jobs available in this category.');
+			$('#food').append(' 	Sorry, there are currently no jobs available in this category.');
 		}
 
 		for(var i=0;i<laundryList.length;i++) {
