@@ -54,7 +54,7 @@
 	#	SUMMARY:	Creates a new user in the database and automagically logs them in to the HelpMeOut site.
 	#	INPUTS:		JSON(email, password, firstName, lastName, phone, birthDate, gender)	
 	#	OUTPUTS:	JSON(userID, firstName, lastName, email)
-	#	STATUS:		Not working
+	#	STATUS:		Working
     ##########
 	function createAccount()
 	{
@@ -96,12 +96,12 @@
 		$sql = "SELECT user_id, first_name, last_name, email FROM USER WHERE email = :email AND password = :password";
 		try 
 		{
-			if(isset($loginInfo))
+			if(isset($newAccount))
 			{
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
-				$stmt->bindParam("email", $loginInfo->email);
-				$stmt->bindParam("password", $loginInfo->password/*md5($loginInfo->password)*/);
+				$stmt->bindParam("email", $newAccount->email);
+				$stmt->bindParam("password", $newAccount->password/*md5($loginInfo->password)*/);
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
 				$db = null;
