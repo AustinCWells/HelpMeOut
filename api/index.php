@@ -9,6 +9,7 @@
 	$app->post('/newaccount', 'createAccount');
 	$app->get('/jobs',  'pullJobs');
 	$app->get('/jobsImDoing/:id', 'getJobsImDoing');
+	$app->get('/jobsINeedDone/:id', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
@@ -318,18 +319,33 @@
 		}
 	}
 	
-	function getsJobsINeedCompleted()
+	function getsJobsINeedCompleted($id)
 	{
 	$request = \Slim\Slim::getInstance()->request();
-	$sql= "SELECT *,user.user_id, user.email, user.first_name, user.last_name, user.phone FROM  `task`  INNER JOIN offers ON offers.chooser_id = task.chooser_id INNER JOIN user ON user.user_id = offers.chooser_id " ;
+	$sql= "SELECT * FROM TASK WHERE beggar_id = :id AND is_complete = 0";
 	try
 	      {
 			$db = getConnection();
-			$stmt= $db->query($sql);
-			$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+			$stmt= $db->prepare($sql);
+			$stmt->bindParam("id", $id);
+			$stmt->execute();
+			$jobsINeedDone = null;
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
+			{
+				$taskID = $row['task_id'];
+				$jobsINeedDone[$taskID] = array('beggar_id' => (int)$row['beggar_id'], 
+											  'chooser_id' => (int)$row['chooser_id'], 
+											  'short_description' => $row['short_description'], 
+											  'notes' => $row['notes'], 
+											  'price' => (int)$row['price'], 
+											  'category_id' => (int)$row['category_id'], 
+											  'negotiable' => (int)$row['negotiable'], 
+											  'time_frame_date' => $row['time_frame_date'], 
+											  'time_frame_time' => $row['time_frame_time'], 
+											  'location' => $row['location']);
+			}
 			$db = null;
-			//HERE IS WHERE JSON SENDING INFO GOES I WILL WAIT FOR JORDAN TO TELL ME WHAT HE NEEDS BEFORE I DO THIS
-		   echo json_encode($jobInfo);
+		   	echo json_encode($jobsINeedDone);
 		   
 	      }  
 		catch(PDOException $e) 
