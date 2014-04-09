@@ -103,9 +103,9 @@
 				$stmt->bindParam("email", $newAccount->email);
 				$stmt->bindParam("password", $newAccount->password/*md5($loginInfo->password)*/);
 				$stmt->execute();
-				$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
+				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
-				$response['info'] = $userinfo;
+				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email']);
 				echo json_encode($response);
 			}
 			else
