@@ -292,8 +292,8 @@
 			$stmt= $db->query($sql);
 			$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
 			$db = null;
-			//HERE IS WHERE JSON SENDING INFO GOES I WILL WAIT FOR JORDAN TO TELL ME WHAT HE NEEDS BEFORE I DO THIS
-		   echo json_encode($jobInfo);
+			$jobsBeingDone = array('task_id' => (int)$jobsBeingDone ['task_id'], 'beggar_id' => (int)$jobsBeingDone ['beggar_id'], 'beggar_id' => (int)$jobsBeingDone ['beggar_id'], 'chooser_id' => (int)$jobsBeingDone ['chooser_id'], 'short_description' => $jobsBeingDone ['short_description'], 'notes' => $jobsBeingDone ['notes'],'price' => (int)$jobsBeingDone ['price'], 'category_id' => (int)$jobsBeingDone ['category_id'],'negotiable' => (int)$jobsBeingDone ['negotiable'], 'is_complete' => (int)$jobsBeingDone ['is_complete']);
+		   echo json_encode($jobsBeingDone);
 		   
 	      }  
 		catch(PDOException $e) 
