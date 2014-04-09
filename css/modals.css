@@ -33,6 +33,7 @@ input{
 	background: rgba(0, 0, 0, 0);
 	font: inherit;
 	cursor: pointer;
+	vertical-align: center;
 }
 
 .modalTitle {
@@ -72,3 +73,40 @@ input{
 .modalColumnRight input, .modalColumnRight textarea {
 	margin-top: 20%;
 }
+
+label span {
+	font-size: 14px;
+	color: rgba(0, 0, 0, .7);
+}
+
+.modalTitle img {
+	float: left;
+	height: 5em;
+}
+
+.modalTitle h1 {
+	float: left;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

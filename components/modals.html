@@ -28,7 +28,9 @@
 				</select>
 
 
-				<label for="jobPrice">Price</label>
+				<label for="jobPrice">Price 
+					<span>(Dollar Amounts Only)</span>
+				</label>
 				<input type="number" id = "jobPrice" name="quantity" value = "2.00" min="2.00" step = "1.00">
 
 				<label for="jobDeadlineDate">Deadline Date</label>
@@ -96,6 +98,37 @@
 	  	<div class = "modalRow">
 		  	<input type="submit" value="Create Account" class = "buttonRight">
 		  	<div class = "clear"></div>
+		</div>
+
+	 </form>
+
+</div>
+
+<div class = "modal" id="tokenModal">
+
+	<div class = "modalTitle yellow">
+
+			<img src="img/tokenOne.png">
+			<h1>Tokens</h1>
+
+			<button type = "button" class = "closeButton">
+				<span>X</span>
+			</button>
+
+			<div class = "clear"></div>
+
+	</div>
+	<form class= "tokenForm">
+
+		<div class = "modalRow">
+		  	<h2>Currrent Token</h2>
+		  	<p>You currently have tokens.</p>
+		</div>	  
+
+	  	
+	  	<div class = "modalRow">
+		  	<h2>Tokens</h2>
+		  	<p></p>
 		</div>
 
 	 </form>
