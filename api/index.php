@@ -8,7 +8,7 @@
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
 	$app->get('/jobs',  'pullJobs');
-	$app->get('/jobsImDoing', 'getJobsImDoing')
+	$app->get('/jobsImDoing/:id', 'getJobsImDoing');
 	$app->post('/postatask', 'postTask');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
@@ -283,18 +283,33 @@
 		}
 	}
 
-	function getJobsImDoing()
+	function getJobsImDoing($id)
 	{
 	$request = \Slim\Slim::getInstance()->request();
-	$sql= "SELECT *, user.user_id, user.email, user.first_name, user.last_name, user.phoneFROM `task` INNER JOIN user ON user.user_id = task.beggar_id";
+	$sql= "SELECT * FROM TASK WHERE chooser_id = :id AND is_complete = 0";
 	try
 	      {
 			$db = getConnection();
-			$stmt= $db->query($sql);
-			$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
+			$stmt= $db->prepare($sql);
+			$stmt->bindParam("id", $id);
+			$stmt->execute();
+			$jobsImDoing = null;
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
+			{
+				$taskID = $row['task_id'];
+				$jobsImDoing[$taskID] = array('beggar_id' => (int)$row['beggar_id'], 
+											  'chooser_id' => (int)$row['chooser_id'], 
+											  'short_description' => $row['short_description'], 
+											  'notes' => $row['notes'], 
+											  'price' => (int)$row['price'], 
+											  'category_id' => (int)$row['category_id'], 
+											  'negotiable' => (int)$row['negotiable'], 
+											  'time_frame_date' => $row['time_frame_date'], 
+											  'time_frame_time' => $row['time_frame_time'], 
+											  'location' => $row['location']);
+			}
 			$db = null;
-			$jobsBeingDone = array('task_id' => (int)$jobsBeingDone ['task_id'], 'beggar_id' => (int)$jobsBeingDone ['beggar_id'], 'beggar_id' => (int)$jobsBeingDone ['beggar_id'], 'chooser_id' => (int)$jobsBeingDone ['chooser_id'], 'short_description' => $jobsBeingDone ['short_description'], 'notes' => $jobsBeingDone ['notes'],'price' => (int)$jobsBeingDone ['price'], 'category_id' => (int)$jobsBeingDone ['category_id'],'negotiable' => (int)$jobsBeingDone ['negotiable'], 'is_complete' => (int)$jobsBeingDone ['is_complete']);
-		   echo json_encode($jobsBeingDone);
+		   	echo json_encode($jobsImDoing);
 		   
 	      }  
 		catch(PDOException $e) 
