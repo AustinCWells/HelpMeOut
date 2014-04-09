@@ -136,6 +136,8 @@ var dbRequest = function(url, content, json, type){
 					$.cookie("userInfo", obj);
 					login();
 				}
+
+				closeModal();
 			}
 
 		},
