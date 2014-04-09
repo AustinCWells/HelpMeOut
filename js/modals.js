@@ -41,6 +41,7 @@ $(window).ready(function(){
 		var password = $(this).children("#accountPassword").val();
 		var confirmPassword = $(this).children("#accountConfirmPassword").val();
 		console.log(password + "\n" + confirmPassword);
+		console.log(accountInfo);
 
 		if(password !== confirmPassword){
 			alert("Passwords do not match");
@@ -51,7 +52,7 @@ $(window).ready(function(){
 			//password = CryptoJS.MD5(password);
 			//accountInfo.password = password.toString(CryptoJS.enc.Hex);
 			accountInfo.password = password;
-			dbRequest('api/login', 'application/json', accountInfo, 'signUp');
+			dbRequest('api/newaccount', 'application/json', accountInfo, 'signUp');
 
 		}
 

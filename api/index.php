@@ -15,10 +15,12 @@
 
 	$app->run();
 
-
-	//This function is used to login the user by finding in the user table where the submitted email and password are. 
-	//it then pass the user data in a JSON file.
-	// COMPLETE AND WORKING (4/6/14)
+	##########
+	#	SUMMARY:	This function is used to login the user.
+	#	INPUTS:		JSON(email, password)
+	#	OUTPUTS:	JSON(userID, firstName, lastName, email)
+	#	STATUS:		Working
+	##########
 	function login()
 	{
 		$app = \Slim\Slim::getInstance();
@@ -48,10 +50,12 @@
 		}
 	}
 
-
-    //Creates an account by inserting a new user into the user table and
-	//collecting the needed information
-	// COMPLETE BUT NOT TESTED
+	##########
+	#	SUMMARY:	Creates a new user in the database and automagically logs them in to the HelpMeOut site.
+	#	INPUTS:		JSON(email, password, firstName, lastName, phone, birthDate, gender)	
+	#	OUTPUTS:	JSON(userID, firstName, lastName, email)
+	#	STATUS:		Not working
+    ##########
 	function createAccount()
 	{
 		$app = \Slim\Slim::getInstance();
@@ -68,7 +72,7 @@
 				$stmt->bindParam("email", $newAccount->email);
 				$stmt->bindParam("password", $newAccount->password);
 				$stmt->bindParam("first_name", $newAccount->firstname);
-				$stmt->bindParam("last_name", md5($newAccount->lastname));
+				$stmt->bindParam("last_name", $newAccount->lastname);
 				
 				//WE NEED TO DO SOMETHING SOMEWHERE TO ACCOUNT FOR FORMATTING
 				//THE DB STORES PHONE # AS 10 DIGITS WITHOUT FORMATTING
