@@ -81,6 +81,7 @@
 				
 				$stmt->bindParam("birth_date", $newAccount->birthDate);
 				$stmt->bindParam("gender", $newAccount->gender);
+				//$stmt->bindParam("tokens", 10);
 				$stmt->execute();
 				$db = null;
 			}
@@ -100,7 +101,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $loginInfo->email);
-				$stmt->bindParam("password", md5($loginInfo->password));
+				$stmt->bindParam("password", $loginInfo->password/*md5($loginInfo->password)*/);
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_OBJ);
 				$db = null;
