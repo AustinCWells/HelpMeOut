@@ -32,14 +32,14 @@ $(window).ready(function(){
 
 		var accountInfo = {};
 
-		accountInfo.firstName = $(this).children("#accountFName").val();
-		accountInfo.lastName = $(this).children("#accountLName").val();
-		accountInfo.number = $(this).children("#accountPhoneNumber").val();
-		accountInfo.email = $(this).children("#accountEmail").val();
-		accountInfo.gender = $(this).children("#accountGender").val();
-		accountInfo.birthDate = $(this).children("#accountBirthDate").val();
-		var password = $(this).children("#accountPassword").val();
-		var confirmPassword = $(this).children("#accountConfirmPassword").val();
+		accountInfo.firstName = $("#accountFName").val();
+		accountInfo.lastName = $("#accountLName").val();
+		accountInfo.number = $("#accountPhoneNumber").val();
+		accountInfo.email = $("#accountEmail").val();
+		accountInfo.gender = parseInt($('[name=accountGender]:checked').val(), 10);
+		accountInfo.birthDate = $("#accountBirthDate").val();
+		var password = $("#accountPassword").val();
+		var confirmPassword = $("#accountConfirmPassword").val();
 		console.log(password + "\n" + confirmPassword);
 		console.log(accountInfo);
 
@@ -114,6 +114,8 @@ var dbRequest = function(url, content, json, type){
 		data: JSON.stringify(json),
 		success: function(data){
 
+			console.log(data);
+
 			if(data[0] !== '{'){
 				alert("Database Error");
 				console.log(data);
@@ -121,6 +123,7 @@ var dbRequest = function(url, content, json, type){
 
 			else{
 				var obj = JSON.parse(data);
+				console.log(obj);
 
 				if(type === "jobPost"){
 					if(obj.success)

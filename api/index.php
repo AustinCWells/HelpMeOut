@@ -71,15 +71,15 @@
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $newAccount->email);
 				$stmt->bindParam("password", $newAccount->password);
-				$stmt->bindParam("first_name", $newAccount->firstname);
-				$stmt->bindParam("last_name", $newAccount->lastname);
+				$stmt->bindParam("first_name", $newAccount->firstName);
+				$stmt->bindParam("last_name", $newAccount->lastName);
 				
 				//WE NEED TO DO SOMETHING SOMEWHERE TO ACCOUNT FOR FORMATTING
 				//THE DB STORES PHONE # AS 10 DIGITS WITHOUT FORMATTING
 				//RESEARCHING THIS TOPIC SAYS THAT'S A GUI ISSUE AND THAT STORING IT AS A VARCHAR LIKE WE ARE DOING IS CORRECT-Wilson
 				$stmt->bindParam("phone", $newAccount->number);
 				
-				$stmt->bindParam("birth_date", $newAccount->bday);
+				$stmt->bindParam("birth_date", $newAccount->birthDate);
 				$stmt->bindParam("gender", $newAccount->gender);
 				$stmt->execute();
 				$db = null;
@@ -108,7 +108,7 @@
 				echo json_encode($response);
 			}
 			else
-				echo '{"error":{"text": "Bad things happend! JSON was not valid" }}'; 		
+				echo '{"error":{"text": "Bad things happend! JSON was not valid 2" }}'; 		
 		} 
 		catch(PDOException $e) 
 		{
