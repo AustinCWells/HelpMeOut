@@ -14,7 +14,7 @@
 	$app->get('/jobsINeedDone/:id', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks/:num_tasks', 'recentTasks');
-	$app->post('/addTokens/:user_id', 'addTokens');
+	$app->get('/addTokens/:user_id/:new_tokens', 'addTokens');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
 	$app->run();
