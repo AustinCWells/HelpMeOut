@@ -10,8 +10,8 @@
 	$app->post('/newaccount', 'createAccount');
 	$app->get('/useraccount/:id', 'getUserAccount');
 	$app->get('/jobs',  'pullJobs');
-	$app->get('/jobsImDoing/:id', 'getJobsImDoing');
-	$app->get('/jobsINeedDone/:id', 'getsJobsINeedCompleted');
+	$app->get('/jobsImDoing', 'getJobsImDoing');
+	$app->get('/jobsINeedDone', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks/:num_tasks', 'recentTasks');
 	$app->post('/addTokens/:user_id', 'addTokens');
@@ -358,22 +358,23 @@
 
 
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		?	
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/9
+	#	SUMMARY:		Retrieves all jobs the current user is in the process of doing.
+	#	INPUTS:			JSON(user_id)
+	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
+	#	STATUS:			Working
     ##########
-	function getJobsImDoing($id)
+	function getJobsImDoing()
 	{
 	$request = \Slim\Slim::getInstance()->request();
+	$userInfo = json_decode($request->getBody());
 	$sql= "SELECT * FROM TASK WHERE chooser_id = :id AND is_complete = 0";
 	try
 	      {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam("id", $id);
+			$stmt->bindParam("id", $userInfo->user_id);
 			$stmt->execute();
 			$jobsImDoing = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
@@ -402,22 +403,23 @@
 	
 
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		?	
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/9
+	#	SUMMARY:		Gets all jobs the current user has asked for help with.
+	#	INPUTS:			JSON(user_id)
+	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
+	#	STATUS:			Working
     ##########
-	function getsJobsINeedCompleted($id)
+	function getsJobsINeedCompleted()
 	{
 	$request = \Slim\Slim::getInstance()->request();
+	$userInfo = json_decode($request->getBody());
 	$sql= "SELECT * FROM TASK WHERE beggar_id = :id AND is_complete = 0";
 	try
 	      {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam("id", $id);
+			$stmt->bindParam("id", $userInfo->user_id);
 			$stmt->execute();
 			$jobsINeedDone = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
