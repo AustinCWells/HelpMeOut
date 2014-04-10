@@ -2,8 +2,11 @@ $(window).ready(function(event) {
 
 	$("#navAccount").addClass("currentPage").removeClass("hoverable");
 
+
+	var UserInfo = {};
+
 	$("#profilePic").attr("src", "img/lab.png");
-	var contactInfoHTML =  "Name: " + "Bob the Dog" + "<br>Phone #: " + "1-800-I-BARK." + "<br>Email: " + "BobTheDog@smu.edu" + "<br>Location: " + "Foundren Science Building";
+	var contactInfoHTML =  "Name: " + UserInfo.firstName + ' ' + UserInfo.lastName + "<br>Phone #: " + UserInfo.phone + "<br>Email: " + UserInfo.email + "<br>Location: " + "Uhh.....";
 	$("#contactInfo").append(contactInfoHTML); 
 
 	var badges = [1,2,3];

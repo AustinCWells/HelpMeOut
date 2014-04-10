@@ -15,16 +15,36 @@
 <div class="row">
 	<div class="twelve columns">
 		<div id="profile">
-			<div class="profileSection" id="upperSection">
-				<img src="" id="profilePic">
-				<div id="contactInfo">
+			<div class="profileSection">
+				<div class = "five column">
+					<img src="" id="profilePic">
+					<div id="contactInfo">
+					</div>
 				</div>
-				<div class="ratingDiv">Overall Rating:<br><br>
-					<span class="ratingLabel"></span>
-		            <div class="barArea">
-			            <div class="ratingBg" ></div>
-			            <div class="ratingFg"></div>
-			        </div>
+				<div class = "five column">
+					<div class = "six column ratingDiv center">Overall Rating:
+						<div class="row">
+							<span class="ratingLabel two column">
+							</span>
+				            <div class="barArea">
+					            <div class="ratingBg"></div>
+					            <div class="ratingFg"></div>
+					        </div>
+					    </div>
+		       		</div>
+					<div class = "six column ratingDiv center">Speed Rating:
+						<div class="row">
+							<span class="ratingLabel two column">
+							</span>
+				            <div class="barArea">
+					            <div class="ratingBg"></div>
+					            <div class="ratingFg"></div>
+					        </div>
+					    </div>
+		       		</div>
+	       		</div>
+	       		<div class = "two column">
+	       			<input type="button" class="editProfile" value="Edit Profile">
 	       		</div>
 			</div>
 			<div class="profileSection" id="lowerSection">
