@@ -322,12 +322,12 @@
 
 
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		?	
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/9
+	#	SUMMARY:		This takes the form data for posting a job and inserts it into the database
+	#	INPUTS:			JSON(beggar_id, category_id, short_description, price, location, time_frame_date, time_frame_time, notes)
+	#	OUTPUTS:		None
+	#	STATUS:			Working
     ##########
 	function postTask()
 	{
