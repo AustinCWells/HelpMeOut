@@ -14,7 +14,7 @@
 	$app->get('/jobsINeedDone/:id', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks/:num_tasks', 'recentTasks');
-	$app->post('/addTokens', 'addTokens');
+	$app->post('/addTokens/:user_id', 'addTokens');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
 	$app->run();
@@ -284,36 +284,6 @@
 			return '{"error":{"text":'. $e->getMessage() .'}}';
 		}
 	}
-
-
-	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		Gets all the user's profile information and sends it in a JSON File
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			IN PROGRESS
-    ##########
-	function getUsersProfile()
-	{
-	    $request = \Slim\Slim::getInstance()->request();
-    	$sql = "Select * from USER WHERE u.user_id = :id";
-		
-		try
-	    {
-			$db = getConnection();
-			$stmt= $db->query($sql);
-		    $userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
-			$db = null;
-			$userProfile = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'phone' => $userinfo['phone']);
-			echo json_encode($userProfile);
-		}
-		catch(PDOException $e) 
-		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-		}
-	}
-
 	
 	##########
 	#	AUTHOR:			?
