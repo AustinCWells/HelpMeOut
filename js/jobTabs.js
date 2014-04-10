@@ -7,8 +7,9 @@ window.addEventListener('load', function(event) {
 
 
 //Loading 
-$.getJSON("js/test.json",function(data){
-	
+$.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server error
+		console.log("Jobs: ");
+		console.log(data);
 		var tasks = data.tasks;
 
 		var foodList = new Array();
@@ -204,14 +205,23 @@ $.getJSON("js/test.json",function(data){
 	}
 
 */
-	for(var i=1;i<5;i++) {
-		var html = '<div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + "MY NAME IS STEVE AND I NEED HELP" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></div>';
 
+$.getJSON("api/recentTasks/",function(data2){//TODO: replace numbers
+	console.log("Recent Jobs: ");
+	console.log(data2);
+
+	var recentTasks = data2.tasks;
+
+	for(var i=1;i<recentTasks.length;i++) {
+		console.log("yo");
+		var html = '<div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + recentTasks.short_description + '</p><p class="jobPrice">' + "$" + recentTasks.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></div>';
 		$('#recentJobs').append(html);
 	}
 	if($('#recentJobs').html() === '') {
 		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img id="stevie" src="img/jobs.png">');
 	}
+
+});
 
 	$(".currentJob").hover(
 		function(){

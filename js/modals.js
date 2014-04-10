@@ -88,7 +88,7 @@ $(window).ready(function(){
 		closeModal();
 	});
 
-	$(".modal").hide();
+	$(".modal").hide();//TODO: Move this outside of window-onready or into the CSS so that modals do not briefly appear on page load;
 	$("#jobPrice").change(function(){
 		var num = $(this).val();
 		num = parseInt(num, 10).toFixed(2);

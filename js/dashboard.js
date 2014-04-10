@@ -5,14 +5,14 @@ $(window).ready(function(event) {
 	var accordionLeft = $('#accordionLeft');
 	var accordionRight = $('#accordionRight');
 
-	$.getJSON('api/jobsImDoing/:6',function(data){
-		console.log('hi');
+	$.getJSON('api/jobsImDoing',function(data){
+		console.log('Job\'s I\'m Doing: ');
 		console.log(data);
 
-	var tasks = [1];//TODO: replace with data once it is not NULL
+		var tasks = [1];//TODO: replace with data once it is not NULL
 		//console.log(accordionLeft.html());
 
-	//LEFT
+		//LEFT
 		//Section: Jobs I'm Doing - In progress	
 		for(var i=0;i<tasks.length;i++) {
 			var html = 	'<h3>' + tasks[i].beggar_id + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
@@ -31,7 +31,20 @@ $(window).ready(function(event) {
 		}
 
 
-	//RIGHT
+		//Build Accordion:
+		$( "#accordionLeft" ).accordion({ heightStyle: "fill" , collapsible: true});
+
+	});
+
+
+
+	$.getJSON('api/jobsINeedDone',function(data){
+		console.log('Job\'s I Need Done: ');
+		console.log(data);
+
+
+		var tasks = [1];
+		//RIGHT
 		//Section: Help I'm Getting - In progress
 		for(var i=0;i<tasks.length;i++) {
 			var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
@@ -48,14 +61,15 @@ $(window).ready(function(event) {
 		}
 
 		//empty message
-		if(accordionLeft.html() === '') {
+		if(accordionRight.html() === '') {
 			accordionRight.append('You have no help. Try harder!');
 		}
 
 
+		//Build Accordion:
+		$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true/*, active: false*/});
 
-
-		
+		});
 		var cancelList = document.getElementsByClassName("cancelJob");
 		var completedList = document.getElementsByClassName("jobCompleted");
 
@@ -95,15 +109,5 @@ $(window).ready(function(event) {
 				}
 			);
 		}
-
-		$(function() {
-			$( "#accordionLeft" ).accordion({ heightStyle: "fill" , collapsible: true});
-			$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true/*, active: false*/});
-		});
-
-
-	});
-
-
 
 });
