@@ -265,11 +265,10 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$taskInfo = json_decode($request->getBody());
-		$sql = "INSERT INTO USER (`beggar_id`, `category_id`, `short_description`, `price`, `location`, `time_frame_date`, `time_frame_time`, `notes`) VALUES (:beggar_id, :category_id, :short_description, :price, :location, :time_frame_date, :time_frame_time, :notes)";
+		$sql = "INSERT INTO TASK (`beggar_id`, `category_id`, `short_description`, `price`, `location`, `time_frame_date`, `time_frame_time`, `notes`) VALUES (:beggar_id, :category_id, :short_description, :price, :location, DATE_FORMAT(:time_frame_date, '%Y-%m-%d'), TIME_FORMAT(:time_frame_time, '%T'), :notes)";
 
 		try
 		{
-			$console.log("HERRO");
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("beggar_id", $taskInfo->userID);
