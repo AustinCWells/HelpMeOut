@@ -8,6 +8,7 @@
 
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
+	$app->get('/useraccount/:id', 'getUserAccount');
 	$app->get('/jobs',  'pullJobs');
 	$app->get('/jobsImDoing/:id', 'getJobsImDoing');
 	$app->get('/jobsINeedDone/:id', 'getsJobsINeedCompleted');
@@ -126,6 +127,46 @@
 		}
 
 	}
+
+	##########
+	#	SUMMARY:	This function retrieves the current user's account information 
+	#				for when they want to view their personal info
+	#	INPUTS:		JSON(user_id)	
+	#	OUTPUTS:	JSON(userID, email, first_name, last_name, phone, birth_date, gender, times_reported, tokens)
+	#	STATUS:		WORKING
+    ##########
+    function getUserAccount($id)
+    {
+    	//use $id for testing, $userID for actual implementation
+    	$sql = "SELECT * FROM USER WHERE user_id = :id";
+    	$request = \Slim\Slim::getInstance()->request();
+		$userObj = json_decode($request->getBody());
+		//$userID = (int)$userObj->user_id;
+
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("id", $id); //un-comment above and use $userID instead of $id here for implementation on site
+			$stmt->execute();
+			$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+			$db = null;
+			$response = array('userID' => $userInfo['user_id'], 
+							  'email' => $userInfo['email'], 
+							  'first_name' => $userInfo['first_name'], 
+							  'last_name' => $userInfo['last_name'], 
+							  'phone' => $userInfo['phone'], 
+							  'birth_date' => $userInfo['birth_date'], 
+							  'gender' => $userInfo['gender'], 
+							  'times_reported' => $userInfo['times_reported'], 
+							  'tokens' => $userInfo['tokens']);
+			echo json_encode($response);
+		}
+		catch(PDOException $e)
+		{
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+    }
 
 
 	##########
