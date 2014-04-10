@@ -61,8 +61,8 @@
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$newAccount = json_decode($request->getBody());
-		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`)
-			VALUES (:email, :password, :first_name, :last_name, :phone, :birth_date, :gender)";
+		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`, `tokens`)
+			VALUES (:email, :password, :first_name, :last_name, :phone, :birth_date, :gender, 10)";
 		try 
 		{
 			if(isset($newAccount))
@@ -265,7 +265,7 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$taskInfo = json_decode($request->getBody());
-		$sql = "INSERT INTO TASK (`beggar_id`, `category_id`, `short_description`, `price`, `location`, `time_frame_date`, `time_frame_time`, `notes`) VALUES (:beggar_id, :category_id, :short_description, :price, :location, DATE_FORMAT(:time_frame_date, '%Y-%m-%d'), TIME_FORMAT(:time_frame_time, '%T'), :notes)";
+		$sql = "INSERT INTO TASK (`beggar_id`, `category_id`, `short_description`, `price`, `location`, `time_frame_date`, `time_frame_time`, `notes`) VALUES (:beggar_id, :category_id, :short_description, :price, :location, :time_frame_date, :time_frame_time, :notes)";
 
 		try
 		{
