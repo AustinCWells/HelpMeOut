@@ -374,12 +374,13 @@
 	function recentTasks($num_tasks)
 	{
 	$request = \Slim\Slim::getInstance()->request();
-	$sql = "SELECT * FROM TASK LIMIT :num_tasks";
+	$sql = "SELECT * FROM TASK GROUP BY task_id ORDER BY MAX(date_posted) LIMIT :num_tasks";
 	try
 		{
+			$num_tasks = intval($num_tasks);
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam("num_tasks", $num_tasks);
+			$stmt->bindParam('num_tasks', $num_tasks, PDO::PARAM_INT);
 			$stmt->execute();
 			$recentTasks = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
