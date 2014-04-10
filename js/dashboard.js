@@ -9,17 +9,52 @@ $(window).ready(function(event) {
 		console.log('hi');
 		console.log(data);
 
-		var tasks = [1];
-		console.log(accordionLeft.html());
+	var tasks = [1];//TODO: replace with data once it is not NULL
+		//console.log(accordionLeft.html());
 
-		
+	//LEFT
+		//Section: Jobs I'm Doing - In progress	
 		for(var i=0;i<tasks.length;i++) {
 			var html = 	'<h3>' + tasks[i].beggar_id + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
 			accordionLeft.append(html);
 		}
+
+		//Section: Jobs I'm Doing - Help offered
+		for(var i=0;i<tasks.length;i++) {
+			var html = 	'<h3>Help offered to: ' + tasks[i].beggar_id + '</h3><div><div class = "row"><span class = "bidHeader twelve column center">You have requested to complete *beggar_name*\'s job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five center" value="Cancel Request"></div></div>';
+			accordionLeft.append(html);
+		}
+
+		//empty message
 		if(accordionLeft.html() === '') {
 			accordionLeft.append('You have no jobs. Get started slacker!');
 		}
+
+
+	//RIGHT
+		//Section: Help I'm Getting - In progress
+		for(var i=0;i<tasks.length;i++) {
+			var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
+			accordionRight.append(html);
+		}
+
+
+
+		//Section: Help I'm Getting - Help offered
+		
+		for(var i=0;i<tasks.length;i++) {
+			var html = 	'<h3>' + tasks[i].chooser_id + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_id + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" value="Decline"><input type="button" class="accept five columns" value="Accept"></div></div>';
+			accordionRight.append(html);
+		}
+
+		//empty message
+		if(accordionLeft.html() === '') {
+			accordionRight.append('You have no help. Try harder!');
+		}
+
+
+
+
 		
 		var cancelList = document.getElementsByClassName("cancelJob");
 		var completedList = document.getElementsByClassName("jobCompleted");
@@ -60,7 +95,7 @@ $(window).ready(function(event) {
 				}
 			);
 		}
-		
+
 		$(function() {
 			$( "#accordionLeft" ).accordion({ heightStyle: "fill" , collapsible: true});
 			$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true/*, active: false*/});
