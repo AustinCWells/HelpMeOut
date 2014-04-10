@@ -13,7 +13,7 @@
 	$app->get('/jobsImDoing', 'getJobsImDoing');
 	$app->get('/jobsINeedDone', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
-	$app->get('/recentTasks/:num_tasks', 'recentTasks');
+	$app->get('/recentTasks/:num_tasks/:new_tokens', 'recentTasks');
 	$app->get('/addTokens/:user_id/:new_tokens', 'addTokens');
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
