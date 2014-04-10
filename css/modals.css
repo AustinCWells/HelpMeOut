@@ -6,7 +6,7 @@
 	z-index: 20;
 }
 
-input{
+input, select, textarea {
 
 	font-size: 18px;
 	font-family: 'Raleway', sans-serif;
