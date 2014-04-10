@@ -16,11 +16,14 @@
 
 	$app->run();
 
+
 	##########
-	#	SUMMARY:	This function is used to login the user.
-	#	INPUTS:		JSON(email, password)
-	#	OUTPUTS:	JSON(userID, firstName, lastName, email)
-	#	STATUS:		Working
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:		
+	#	SUMMARY:		This function is used to login the user.
+	#	INPUTS:			JSON(email, password)
+	#	OUTPUTS:		JSON(userID, firstName, lastName, email)
+	#	STATUS:			Working
 	##########
 	function login()
 	{
@@ -51,11 +54,14 @@
 		}
 	}
 
+
 	##########
-	#	SUMMARY:	Creates a new user in the database and automagically logs them in to the HelpMeOut site.
-	#	INPUTS:		JSON(email, password, firstName, lastName, phone, birthDate, gender)	
-	#	OUTPUTS:	JSON(userID, firstName, lastName, email)
-	#	STATUS:		Working
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		Creates a new user in the database and automagically logs them in to the HelpMeOut site.
+	#	INPUTS:			JSON(email, password, firstName, lastName, phone, birthDate, gender)	
+	#	OUTPUTS:		JSON(userID, firstName, lastName, email)
+	#	STATUS:			Working
     ##########
 	function createAccount()
 	{
@@ -119,11 +125,14 @@
 
 	}
 
+
 	##########
-	#	SUMMARY:	
-	#	INPUTS:		JSON()	
-	#	OUTPUTS:	JSON()
-	#	STATUS:		?
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		?	
+	#	INPUTS:			?	
+	#	OUTPUTS:		?
+	#	STATUS:			?
     ##########
 	function pullJobs()
 	{
@@ -151,12 +160,19 @@
 		}
 	}
 
-	//QUERY's the Database in an effort to get all the jobs that are not complete or in progress 
-	//and then passed this as an array back to pulljobs() function.
+	
+	##########
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		QUERY's the Database in an effort to get all the jobs that are not complete or in progress and then passed this as an array back to pulljobs() function.
+	#					MODIFIED QUERY TO ACCOUNT FOR IN-PROGRESS JOBS
+	#					This query will pull all ACTIVE jobs (not completed, not in progress)
+	#	INPUTS:			?	
+	#	OUTPUTS:		?
+	#	STATUS:			?
+    ##########
 	function getJobs()
 	{
-		//MODIFIED QUERY TO ACCOUNT FOR IN-PROGRESS JOBS
-		//This query will pull all ACTIVE jobs (not completed, not in progress)
 		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE t.is_complete = '0' AND t.chooser_id IS NULL";
 		try
 		{
@@ -177,8 +193,15 @@
 		}
 	}
 
-	//Pulls ALL the jobs in the DB including one's in progress by the user
-	//and then passes this as an array back to pulljobs() function.
+	
+	##########
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		Pulls ALL the jobs in the DB including one's in progress by the user and then passes this as an array back to pulljobs() function.
+	#	INPUTS:			?	
+	#	OUTPUTS:		?
+	#	STATUS:			?
+    ##########
 	function getAllJobs($id)
 	{
 		$joblist['tasks'] = getJobs();
@@ -219,8 +242,15 @@
 		}
 	}
 
-	 //Gets all the user's profile information and sends it in a JSON File
-   //NOT TESTED BUT BEING WORKED ON
+
+	##########
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		Gets all the user's profile information and sends it in a JSON File
+	#	INPUTS:			?	
+	#	OUTPUTS:		?
+	#	STATUS:			IN PROGRESS
+    ##########
 	function getUsersProfile()
 	{
 	    $request = \Slim\Slim::getInstance()->request();
@@ -241,9 +271,17 @@
 		}
 	}
 
-	//Pulls all the info on the Job for a detailed report
-	//THE SQL COMMAND IS DONE WHICH IS WHAT NEEDED TO BE DONE FOR THIS ITERATION!! YAY PHRASING
-	//I went ahead and attempted to make the json object of stuff we need, just getting ahead on my work don't judge
+	
+	##########
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		Pulls all the info on the Job for a detailed report
+	#					- THE SQL COMMAND IS DONE WHICH IS WHAT NEEDED TO BE DONE FOR THIS ITERATION!! YAY PHRASING
+	#					- I went ahead and attempted to make the json object of stuff we need, just getting ahead on my work don't judge
+	#	INPUTS:			?	
+	#	OUTPUTS:		?
+	#	STATUS:			?
+    ##########
 	function getJobInfo()
      {
 	   $request = \Slim\Slim::getInstance()->request();
@@ -267,6 +305,15 @@
 		
 	}
 
+
+	##########
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		?	
+	#	INPUTS:			?	
+	#	OUTPUTS:		?
+	#	STATUS:			?
+    ##########
 	function postTask()
 	{
 		$request = \Slim\Slim::getInstance()->request();
@@ -294,6 +341,15 @@
 		}
 	}
 
+
+	##########
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		?	
+	#	INPUTS:			?	
+	#	OUTPUTS:		?
+	#	STATUS:			?
+    ##########
 	function getJobsImDoing($id)
 	{
 	$request = \Slim\Slim::getInstance()->request();
@@ -329,6 +385,15 @@
 		}
 	}
 	
+
+	##########
+	#	AUTHOR:			?
+	#	LAST UPDATE:	?
+	#	SUMMARY:		?	
+	#	INPUTS:			?	
+	#	OUTPUTS:		?
+	#	STATUS:			?
+    ##########
 	function getsJobsINeedCompleted($id)
 	{
 	$request = \Slim\Slim::getInstance()->request();
@@ -365,11 +430,14 @@
 	
 	}
 
+
 	##########
-	#	SUMMARY:	
-	#	INPUTS:		Int - num_tasks	
-	#	OUTPUTS:	JSON()
-	#	STATUS:		In-Progress
+	# 	AUTHOR:			Spencer
+	#	LAST UPDATED:	4/10/14
+	#	SUMMARY:		Pulls a specified number of active jobs based on recency (most recent tasks are rated highest)
+	#	INPUTS:			INT num_tasks
+	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_date, location, date_posted)
+	#	STATUS:			NEEDS TESTING
     ##########
 	function recentTasks($num_tasks)
 	{
