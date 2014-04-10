@@ -10,8 +10,8 @@
 	$app->post('/newaccount', 'createAccount');
 	$app->get('/useraccount/:id', 'getUserAccount');
 	$app->get('/jobs',  'pullJobs');
-	$app->get('/jobsImDoing/:id', 'getJobsImDoing');
-	$app->get('/jobsINeedDone/:id', 'getsJobsINeedCompleted');
+	$app->get('/jobsImDoing', 'getJobsImDoing');
+	$app->get('/jobsINeedDone', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks/:num_tasks', 'recentTasks');
 	$app->get('/addTokens/:user_id/:new_tokens', 'addTokens');
@@ -22,7 +22,7 @@
 
 	##########
 	#	AUTHOR:			Charlie
-	#	LAST UPDATE:		
+	#	LAST UPDATE:	4/10
 	#	SUMMARY:		This function is used to login the user.
 	#	INPUTS:			JSON(email, password)
 	#	OUTPUTS:		JSON(userID, firstName, lastName, email)
@@ -59,8 +59,8 @@
 
 
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/10
 	#	SUMMARY:		Creates a new user in the database and automagically logs them in to the HelpMeOut site.
 	#	INPUTS:			JSON(email, password, firstName, lastName, phone, birthDate, gender)	
 	#	OUTPUTS:		JSON(userID, firstName, lastName, email)
@@ -129,11 +129,13 @@
 	}
 
 	##########
-	#	SUMMARY:	This function retrieves the current user's account information 
-	#				for when they want to view their personal info
-	#	INPUTS:		JSON(user_id)	
-	#	OUTPUTS:	JSON(userID, email, first_name, last_name, phone, birth_date, gender, times_reported, tokens)
-	#	STATUS:		WORKING
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/10
+	#	SUMMARY:		This function retrieves the current user's account information 
+	#					for when they want to view their personal info
+	#	INPUTS:			JSON(user_id)	
+	#	OUTPUTS:		JSON(userID, email, first_name, last_name, phone, birth_date, gender, times_reported, tokens)
+	#	STATUS:			WORKING
     ##########
     function getUserAccount($id)
     {
@@ -181,7 +183,7 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$userObj = json_decode($request->getBody());
-		$userID = (int)$userObj->user_id;
+		//$userID = (int)$userObj->user_id;
 
 		try
 		{
@@ -320,12 +322,12 @@
 
 
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		?	
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/9
+	#	SUMMARY:		This takes the form data for posting a job and inserts it into the database
+	#	INPUTS:			JSON(beggar_id, category_id, short_description, price, location, time_frame_date, time_frame_time, notes)
+	#	OUTPUTS:		None
+	#	STATUS:			Working
     ##########
 	function postTask()
 	{
@@ -356,22 +358,23 @@
 
 
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		?	
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/9
+	#	SUMMARY:		Retrieves all jobs the current user is in the process of doing.
+	#	INPUTS:			JSON(user_id)
+	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
+	#	STATUS:			Working
     ##########
-	function getJobsImDoing($id)
+	function getJobsImDoing()
 	{
 	$request = \Slim\Slim::getInstance()->request();
+	$userInfo = json_decode($request->getBody());
 	$sql= "SELECT * FROM TASK WHERE chooser_id = :id AND is_complete = 0";
 	try
 	      {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam("id", $id);
+			$stmt->bindParam("id", $userInfo->user_id);
 			$stmt->execute();
 			$jobsImDoing = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
@@ -400,22 +403,23 @@
 	
 
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		?	
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/9
+	#	SUMMARY:		Gets all jobs the current user has asked for help with.
+	#	INPUTS:			JSON(user_id)
+	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
+	#	STATUS:			Working
     ##########
-	function getsJobsINeedCompleted($id)
+	function getsJobsINeedCompleted()
 	{
 	$request = \Slim\Slim::getInstance()->request();
+	$userInfo = json_decode($request->getBody());
 	$sql= "SELECT * FROM TASK WHERE beggar_id = :id AND is_complete = 0";
 	try
 	      {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam("id", $id);
+			$stmt->bindParam("id", $userInfo->user_id);
 			$stmt->execute();
 			$jobsINeedDone = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
@@ -442,55 +446,6 @@
 		}
 	
 	}
-
-
-	##########
-	# 	AUTHOR:			Spencer
-	#	LAST UPDATED:	4/10/14
-	#	SUMMARY:		Pulls a specified number of active jobs based on recency (most recent tasks are rated highest)
-	#	INPUTS:			INT num_tasks
-	#	OUTPUTS:		JSON(task_id, beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_date, location, date_posted)
-	#	STATUS:			NEEDS TESTING
-    ##########
-#	function recentTasks($num_tasks)
-#	{
-#	$request = \Slim\Slim::getInstance()->request();
-#	$sql = "SELECT * FROM TASK GROUP BY task_id ORDER BY MAX(date_posted) LIMIT :num_tasks";
-#	try
-#		{
-#			$num_tasks = intval($num_tasks);
-#			$db = getConnection();
-#			$stmt= $db->prepare($sql);
-#			$stmt->bindParam('num_tasks', $num_tasks, PDO::PARAM_INT);
-#			$stmt->execute();
-#			$recentTasks = null;
-#			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
-#			{
-#				$taskID = $row['task_id'];
-#				$recentTasks[$taskID] = array('beggar_id' => (int)$row['beggar_id'], 
-#											  'chooser_id' => (int)$row['chooser_id'], 
-#											  'short_description' => $row['short_description'], 
-#											  'notes' => $row['notes'], 
-#											  'price' => (int)$row['price'], 
-#											  'category_id' => (int)$row['category_id'], 
-#											  'negotiable' => (int)$row['negotiable'], 
-#											  'time_frame_date' => $row['time_frame_date'], 
-#											  'time_frame_time' => $row['time_frame_time'], 
-#											  'location' => $row['location'],
-#											  'date_posted' => $row['date_posted']);
-#			}
-#			$db = null;
-#		   	echo json_encode($recentTasks);
-#	      	
-#      	}
-#	catch(PDOException $e) 
-#		{
-#			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-#		}
-#	}
-
-
-
 
 /*
 	function getUserBadges()
