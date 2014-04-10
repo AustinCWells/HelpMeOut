@@ -67,7 +67,7 @@ $(window).ready(function(){
 		console.log(userInfo);
 		var jobPostInfo = {};
 		jobPostInfo.userID = userInfo.userID;
-		jobPostInfo.category = $("#jobCategory").val();
+		jobPostInfo.category = parseInt($("#jobCategory").val(), 10);
 		jobPostInfo.description = $("#jobDescription").val();
 		jobPostInfo.price = parseInt($("#jobPrice").val(), 10);
 		jobPostInfo.location = $("#jobLocation").val();
@@ -198,6 +198,7 @@ var login = function(){
 		if(userInfo.userID !== 0){
 			$("#navMenu li").toggleClass("navVisible");
 			$("#navUserEmail").text(userInfo.email);
+			$("#tokenCount").text(userInfo.tokens);
 			console.log("here");
 		}
 	}
