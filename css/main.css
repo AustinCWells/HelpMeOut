@@ -101,11 +101,6 @@ font-size: 14px !important;
 	text-align: center;
 }
 
-
-.redOutline {
-
-}
-
 .seperator {
 	width: 0px;
 	float:left;
@@ -116,6 +111,7 @@ font-size: 14px !important;
 h3 {
 	text-align: center;
 }
+
 .dashboardSection {
 	float:left;
 	width: 100%;
@@ -123,6 +119,7 @@ h3 {
 	border-radius: 4px;
 	background-color: white;
 	margin-bottom:15px;
+	height: 98%;
 }
 
 .dashboardTitle {
@@ -229,24 +226,23 @@ input[type="button"] {
 
 /*ACCORDIAN*/
 
-.ui-accordion-content {
+/*.ui-accordion-content {
 	overflow: visible !important;
-}
+}*/
 
 
 /*ACCOUNT*/
 #profile {
 	border: 1px solid #aaaaaa;
 	border-radius: 4px;
-	height:550px;
 	width:95%;
 	margin-left: 45px;
 	background-color:white;
 }
 
 #profilePic {
-	height: 200px;
-	width: 200px;
+	height: 100px;
+	width: 100px;
 	float:left;
 	margin:15px;
 }
@@ -290,9 +286,14 @@ input[type="button"] {
 	border-bottom: solid 1px #aaaaaa;
 }
 
+.profileSection:nth-of-type(2) {
+	height:300px;
+}
+
 .profileSection {
-	height:43%;
 	margin: 15px;
+	min-height: 150px;
+	height: auto;
 }
 
 
