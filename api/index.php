@@ -436,7 +436,7 @@
 	#	LAST UPDATED:	4/10/14
 	#	SUMMARY:		Pulls a specified number of active jobs based on recency (most recent tasks are rated highest)
 	#	INPUTS:			INT num_tasks
-	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_date, location, date_posted)
+	#	OUTPUTS:		JSON(task_id, beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_date, location, date_posted)
 	#	STATUS:			NEEDS TESTING
     ##########
 	function recentTasks($num_tasks)
