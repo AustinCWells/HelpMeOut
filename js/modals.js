@@ -67,13 +67,14 @@ $(window).ready(function(){
 		console.log(userInfo);
 		var jobPostInfo = {};
 		jobPostInfo.userID = userInfo.userID;
-		jobPostInfo.category = $(this).children("#jobCategory").val();
-		jobPostInfo.description = $(this).children("#jobDescription").val();
-		jobPostInfo.price = parseInt($(this).children("#jobPrice").val(), 10);
-		jobPostInfo.location = $(this).children("#jobLocation").val();
-		jobPostInfo.deadlineDate = $(this).children("#jobDeadlineDate").val();
-		jobPostInfo.deadlineTime = $(this).children("#jobDeadlineTime").val();
-		jobPostInfo.notes = $(this).children("#jobNotes").val();
+		jobPostInfo.category = $("#jobCategory").val();
+		jobPostInfo.description = $("#jobDescription").val();
+		jobPostInfo.price = parseInt($("#jobPrice").val(), 10);
+		jobPostInfo.location = $("#jobLocation").val();
+		jobPostInfo.deadlineDate = $("#jobDeadlineDate").val();
+		jobPostInfo.deadlineTime = $("#jobDeadlineTime").val();
+		jobPostInfo.notes = $("#jobNotes").val();
+		console.log(jobPostInfo);
 
 		dbRequest('api/postatask', 'application/json', jobPostInfo, 'jobPost');
 	});
