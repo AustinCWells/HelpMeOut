@@ -53,7 +53,7 @@
 		} 
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
 	}
 
@@ -96,8 +96,7 @@
 				$db = null;
 			}
 			else
-				echo '{"error":{"text": "Bad things happend! JSON was not valid" }}'; 		
-		} 
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		catch(PDOException $e) 
 		{
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
@@ -119,7 +118,7 @@
 				echo json_encode($response);
 			}
 			else
-				echo '{"error":{"text": "Bad things happend! JSON was not valid 2" }}'; 		
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		} 
 		catch(PDOException $e) 
 		{
@@ -166,7 +165,7 @@
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}';
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
     }
 
@@ -201,7 +200,7 @@
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}';
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	}
 
@@ -234,7 +233,7 @@
 		}
 		catch(PDOException $e)
 		{
-			return '{"error":{"text":'. $e->getMessage() .'}}';
+			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	}
 
@@ -283,7 +282,7 @@
 		}
 		catch(PDOException $e)
 		{
-			return '{"error":{"text":'. $e->getMessage() .'}}';
+			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	}
 	
@@ -315,7 +314,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 		
 	}
@@ -352,7 +351,7 @@
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}';
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	}
 
@@ -397,7 +396,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	}
 	
@@ -442,7 +441,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	
 	}
@@ -473,7 +472,7 @@
 		}
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	}
 

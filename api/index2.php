@@ -41,7 +41,7 @@
       	}
 	catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	}
 
@@ -56,15 +56,15 @@
     ##########
 	function addTokens($user_id, $new_tokens)
 	{
-	$request = \Slim\Slim::getInstance()->request();
+		$request = \Slim\Slim::getInstance()->request();
 
-	//GET TOKENS TO ADD
-	$new_tokens = intval($new_tokens);
+		//GET TOKENS TO ADD
+		$new_tokens = intval($new_tokens);
 
-	//GET PREVIOUS BALANCE
-	$previous_tokens = null;
-	$sql = "SELECT tokens FROM USER WHERE user_id = :user_id;";
-	try
+		//GET PREVIOUS BALANCE
+		$previous_tokens = null;
+		$sql = "SELECT tokens FROM USER WHERE user_id = :user_id;";
+		try
 		{
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
@@ -74,17 +74,17 @@
 			$db = null;
 			$previous_tokens = $row['tokens'];
       	}
-	catch(PDOException $e) 
+		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 
-	//GET NEW BALANCE
-	$new_balance = $previous_tokens + $new_tokens;
+		//GET NEW BALANCE
+		$new_balance = $previous_tokens + $new_tokens;
 
-	//UPDATE BALANCE ON SERVER
-	$sql = "UPDATE USER SET tokens = :new_balance WHERE user_id = :user_id";
-	try
+		//UPDATE BALANCE ON SERVER
+		$sql = "UPDATE USER SET tokens = :new_balance WHERE user_id = :user_id";
+		try
 		{
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
@@ -93,9 +93,9 @@
 			$stmt->execute();
 			$db = null;
       	}
-	catch(PDOException $e) 
+		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
 		}
 	}
 
