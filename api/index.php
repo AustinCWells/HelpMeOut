@@ -241,8 +241,8 @@
 	
 	##########
 	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		Pulls ALL the jobs in the DB including one's in progress by the user and then passes this as an array back to pulljobs() function.
+	#	LAST UPDATE:	A while ago
+	#	SUMMARY:		Pulls ALL the jobs in the DB including one's in progress by the user and then passes this as an array back to pulljobs() function. 
 	#	INPUTS:			?	
 	#	OUTPUTS:		?
 	#	STATUS:			?
@@ -288,14 +288,14 @@
 	}
 	
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
+	#	AUTHOR:			Wilson
+	#	LAST UPDATE:	A while ago
 	#	SUMMARY:		Pulls all the info on the Job for a detailed report
 	#					- THE SQL COMMAND IS DONE WHICH IS WHAT NEEDED TO BE DONE FOR THIS ITERATION!! YAY PHRASING
 	#					- I went ahead and attempted to make the json object of stuff we need, just getting ahead on my work don't judge
 	#	INPUTS:			?	
 	#	OUTPUTS:		?
-	#	STATUS:			?
+	#	STATUS:			Waiting for gui guys to start function on so I can pass the right stuff
     ##########
 	function getJobInfo()
      {
@@ -358,7 +358,7 @@
 
 
 	##########
-	#	AUTHOR:			Charlie
+	#	AUTHOR:			Charlie/Wilson
 	#	LAST UPDATE:	4/9
 	#	SUMMARY:		Retrieves all jobs the current user is in the process of doing.
 	#	INPUTS:			JSON(user_id)
