@@ -41,7 +41,7 @@
       	}
 	catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 
@@ -76,7 +76,7 @@
       	}
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 
 		//GET NEW BALANCE
@@ -95,7 +95,7 @@
       	}
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 
