@@ -14,7 +14,7 @@
 	$sql = "SELECT * FROM TASK GROUP BY task_id ORDER BY MAX(date_posted) LIMIT :num_tasks";
 	try
 		{
-			$num_tasks = intval($num_tasks);
+			$num_tasks = intval(json_decode($request->getBody()));
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
 			$stmt->bindParam('num_tasks', $num_tasks, PDO::PARAM_INT);
