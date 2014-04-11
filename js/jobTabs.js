@@ -219,7 +219,7 @@ $.getJSON("api/recentTasks", myObject, function(data2){
 	console.log(check);
 
 	if(check === "error")
-		alert(data2.error.text);
+		console.log(data2.error.text);
 
 	else{
 
