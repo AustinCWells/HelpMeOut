@@ -96,10 +96,10 @@
 				$db = null;
 			}
 			else
-				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+				echo '{"error":{"text": "New Account can not be set because not set."}}'; 		} 
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
 		
 		$sql = "SELECT user_id, first_name, last_name, email, tokens FROM USER WHERE email = :email AND password = :password";
@@ -118,11 +118,11 @@
 				echo json_encode($response);
 			}
 			else
-				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+				echo '{"error":{"text": "New Account not set!"}}';
 		} 
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
 
 	}
