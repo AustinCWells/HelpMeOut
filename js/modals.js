@@ -180,11 +180,11 @@ var openModal = function(id){
 
 	if(id === "#jobPostModal"){
 		var currentTime = getCurrentTimeAndDate();
-		setJobPostDimensions;
 		$("#jobDeadlineDate").val(currentTime.date);
 		$("#jobDeadlineDate").attr('min',currentTime.date);
 		$("#jobDeadlineTime").val(currentTime.time);
 		$("#jobDeadlineTime").attr('min',currentTime.time);
+		setJobPostDimensions();
 		//console.log(currentTime);
 	}
 }
@@ -249,6 +249,8 @@ var setJobPostDimensions = function(){
 	var widthText = $("#jobDescription").width();
 	console.log(widthText);
 	$(".jobPostForm input").width(widthText);
+	$(".jobPostForm select").width(widthText);
+	$(".jobPostForm textarea").width(widthText);
 
 }
 

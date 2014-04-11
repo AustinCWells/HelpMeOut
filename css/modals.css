@@ -10,6 +10,7 @@ input, select, textarea {
 
 	font-size: 18px;
 	font-family: 'Raleway', sans-serif;
+
 }
 
 .modalSelected{
@@ -57,7 +58,8 @@ input, select, textarea {
 
 .modalColumnLeft {
 	float: left;
-	margin: 10px;
+	margin: 15px;
+	margin-top: 25px;
 }
 
 .modalColumnLeft label {
@@ -71,7 +73,7 @@ input, select, textarea {
 }
 
 .modalColumnRight input, .modalColumnRight textarea {
-	margin-top: 20%;
+	margin: 15px;
 }
 
 label span {
