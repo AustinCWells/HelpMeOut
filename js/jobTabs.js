@@ -214,15 +214,27 @@ $.getJSON("api/recentTasks", myObject, function(data2){
 	console.log("Recent Jobs: ");
 	console.log(data2);
 
-	var recentTasks = data2.tasks;
+	var check = Object.keys(data2)[0];
 
-	for(var i=1;i<recentTasks.length;i++) {
-		console.log("yo");
-		var html = '<div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + recentTasks.short_description + '</p><p class="jobPrice">' + "$" + recentTasks.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></div>';
-		$('#recentJobs').append(html);
-	}
-	if($('#recentJobs').html() === '') {
-		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img id="stevie" src="img/jobs.png">');
+	console.log(check);
+
+	if(check === "error")
+		alert(data2.error.text);
+
+	else{
+
+		var recentTasks = data2.tasks;
+
+		console.log(recentTasks);
+
+		for(var i=1;i<recentTasks.length;i++) {
+			console.log("yo");
+			var html = '<div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + recentTasks.short_description + '</p><p class="jobPrice">' + "$" + recentTasks.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></div>';
+			$('#recentJobs').append(html);
+		}
+		if($('#recentJobs').html() === '') {
+			$('#recentJobs').append('Sorry, there are no recent jobs.<br><img id="stevie" src="img/jobs.png">');
+		}
 	}
 
 });
