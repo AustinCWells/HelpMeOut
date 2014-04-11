@@ -3,10 +3,9 @@ $(window).ready(function(event) {
 	$("#navAccount").addClass("currentPage").removeClass("hoverable");
 
 
-	var UserInfo = {};
 
 	$("#profilePic").attr("src", "img/lab.png");
-	var contactInfoHTML =  "Name: " + UserInfo.firstName + ' ' + UserInfo.lastName + "<br>Phone #: " + UserInfo.phone + "<br>Email: " + UserInfo.email + "<br>Location: " + "Uhh.....";
+	var contactInfoHTML =  "Name: " + userInfo.firstName + ' ' + userInfo.lastName + "<br>Phone #: " + userInfo.phone + "<br>Email: " + userInfo.email + "<br>Location: " + "Uhh.....";
 	$("#contactInfo").append(contactInfoHTML); 
 
 	var badges = [1,2,3];

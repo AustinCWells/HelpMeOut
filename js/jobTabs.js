@@ -4,7 +4,7 @@ jQuery( "#tabs" ).tabs();
 
 window.addEventListener('load', function(event) {
 
-
+console.log(userInfo);
 
 //Loading 
 $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server error
@@ -205,8 +205,12 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 	}
 
 */
+var myObject = new Object();
+myObject.num_tasks = 8;
 
-$.getJSON("api/recentTasks/",function(data2){//TODO: replace numbers
+console.log(myObject);
+
+$.getJSON("api/recentTasks", myObject, function(data2){
 	console.log("Recent Jobs: ");
 	console.log(data2);
 
