@@ -116,15 +116,14 @@ var dbRequest = function(url, content, json, type){
 		data: JSON.stringify(json),
 		success: function(data){
 
-			console.log(data);
+			var obj = JSON.parse(data);
 
-			if(data[0] !== '{'){
-				alert("Database Error");
-				console.log(data);
+			if(Object.keys(obj)[0] === "error"){
+				displayError(obj.error.text);
 			}
 
 			else{
-				var obj = JSON.parse(data);
+	
 				console.log(obj);
 
 				if(type === "jobPost"){
@@ -252,6 +251,10 @@ var setJobPostDimensions = function(){
 	$(".jobPostForm select").width(widthText);
 	$(".jobPostForm textarea").width(widthText);
 
+}
+
+var displayError = function(info){
+	console.log(info);
 }
 
 
