@@ -26,11 +26,11 @@
 				</div>
 				<div class="row">
 					<div class="settingLabel five column">New Password:</div>
-					<input id="newPassword" class="setting five column">
+					<input type="password" id="newPassword" class="setting five column">
 				</div>
 				<div class="row">
 					<div class="settingLabel five column">Confirm Password:</div>
-					<input id="confirmPassword" class="setting five column">
+					<input type="password" id="confirmPassword" class="setting five column">
 				</div>
 				<input type="submit" value="Save Changes"><!--Does nothing-->
 			</form>
