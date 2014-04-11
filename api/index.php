@@ -49,7 +49,7 @@
 				echo json_encode($response);
 			}
 			else
-				echo '{"error":{"text": "Bad things happend! JSON was not valid" }}'; 		
+				echo '{"error":{"text": "Login Info was not set" }}'; 		
 		} 
 		catch(PDOException $e) 
 		{
@@ -96,7 +96,8 @@
 				$db = null;
 			}
 			else
-				echo '{"error":{"text": "New Account can not be set because not set."}}'; 		} 
+				echo '{"error":{"text": "New Account can not be set because not set."}}';
+		}
 		catch(PDOException $e) 
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
@@ -165,7 +166,7 @@
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
     }
 
@@ -200,7 +201,7 @@
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 
@@ -233,7 +234,7 @@
 		}
 		catch(PDOException $e)
 		{
-			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 
@@ -282,7 +283,7 @@
 		}
 		catch(PDOException $e)
 		{
-			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 	
@@ -314,7 +315,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 		
 	}
@@ -351,7 +352,7 @@
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 
@@ -396,7 +397,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 	
@@ -441,7 +442,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
 	
 	}
