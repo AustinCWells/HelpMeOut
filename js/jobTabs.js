@@ -53,7 +53,7 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 
 		for(var i=0;i<laundryList.length;i++) {
 			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="Posting' + laundryList[i].task_id + '"><p class="jobDesc">' + laundryList[i].short_description + '</p><p class="jobPrice">' + "$" + laundryList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/laundry2.png' + '"></div></div>';
+			var html = '<div class="jobPost" id="laundryPosting' + laundryList[i].task_id + '"><p class="jobDesc">' + laundryList[i].short_description + '</p><p class="jobPrice">' + "$" + laundryList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/laundry2.png' + '"></div></div>';
 			$('#laundry').append(html);
 		}
 		if($('#laundry').html() === '') {
@@ -113,6 +113,23 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 		if($('#other').html() === '') {
 			$('#other').append('Sorry, there are currently no jobs available in this category.');
 		}
+
+
+
+		$(".currentJob").hover(
+		function(){
+			var height = $(this).children(".jobImage").height();
+			var width = $(this).children(".jobImage").width();
+			$(this).children(".overlay").height(height);
+			$(this).children(".overlay").width(width);
+			console.log("HI");
+		},
+		function(){
+			$(this).children(".overlay").height(0);
+			$(this).children(".overlay").width(0);
+		});
+
+
   });
 
 
@@ -238,18 +255,6 @@ $.getJSON("api/recentTasks", myObject, function(data2){
 	}
 
 });
-
-	$(".currentJob").hover(
-		function(){
-			var height = $(this).children(".jobImage").height();
-			var width = $(this).children(".jobImage").width();
-			$(this).children(".overlay").height(height);
-			$(this).children(".overlay").width(width);
-		},
-		function(){
-			$(this).children(".overlay").height(0);
-			$(this).children(".overlay").width(0);
-		});
 
 
 
