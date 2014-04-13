@@ -44,9 +44,19 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 
 		for(var i=0;i<foodList.length;i++) {
 			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="foodPosting' + foodList[i].task_id + '"><p class="jobDesc">' + foodList[i].short_description + '</p><p class="jobPrice">' + "$" + foodList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/food.png' + '"></div></div>';
+			var html = '<div class="jobPost" id="foodPosting' + foodList[i].task_id + '" data-num="' + foodList[i].task_id + '"><p class="jobDesc">' + foodList[i].short_description + '</p><p class="jobPrice">' + "$" + foodList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/food.png' + '"></div></div>';
+			var hidden = '<div class="jobModal" id="foodModal' + foodList[i].task_id + '"><div class="modalTitle yellow">' + foodList[i].short_description + '</div>' + foodList[i].notes + '</div>';	
 			$('#food').append(html);
-		}
+			$("#contentArea").append(hidden);
+
+			var posting = "#foodPosting" + foodList[i].task_id;
+			console.log(posting);
+			$(posting).click(
+			function(){
+				var pop = "#foodModal" + $(this).data("num");
+				$(pop).show();
+			});
+			}
 		if($('#food').html() === '') {
 			$('#food').append(' 	Sorry, there are currently no jobs available in this category.');
 		}
@@ -122,7 +132,6 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 			var width = $(this).children(".jobImage").width();
 			$(this).children(".overlay").height(height);
 			$(this).children(".overlay").width(width);
-			console.log("HI");
 		},
 		function(){
 			$(this).children(".overlay").height(0);
