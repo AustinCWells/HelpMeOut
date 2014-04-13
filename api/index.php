@@ -363,7 +363,7 @@
 	#	SUMMARY:		Retrieves all jobs the current user is in the process of doing.
 	#	INPUTS:			JSON(user_id)
 	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
-	#	STATUS:			Working
+	#	STATUS:			Not Working- Object passing Null Values even though Jordan is sending us a "user_id"
     ##########
 	function getJobsImDoing()
 	{
@@ -408,7 +408,7 @@
 	#	SUMMARY:		Gets all jobs the current user has asked for help with.
 	#	INPUTS:			JSON(user_id)
 	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
-	#	STATUS:			Working
+	#	STATUS:			Not Working- Object passing Null Values even though Jordan is sending us a "user_id"
     ##########
 	function getsJobsINeedCompleted()
 	{
