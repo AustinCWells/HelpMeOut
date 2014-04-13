@@ -91,6 +91,15 @@ label span {
 	margin: 5px;
 }
 
+.subContent img {
+    float: left;
+    height: 45px;
+}
+
+.subContent h3{
+    float: right;
+}
+
 
 
 
