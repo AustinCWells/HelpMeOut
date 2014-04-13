@@ -5,7 +5,10 @@ $(window).ready(function(event) {
 	var accordionLeft = $('#accordionLeft');
 	var accordionRight = $('#accordionRight');
 
-	$.getJSON('api/jobsImDoing',function(data){
+	console.log("sent:");
+	console.log({user_id: userInfo.userID});
+
+	$.getJSON('api/jobsImDoing', {user_id: userInfo.userID}, function(data){
 		console.log('Job\'s I\'m Doing: ');
 		console.log(data);
 
@@ -37,8 +40,7 @@ $(window).ready(function(event) {
 	});
 
 
-
-	$.getJSON('api/jobsINeedDone',function(data){
+	$.getJSON('api/jobsINeedDone', {user_id: userInfo.userID}, function(data){
 		console.log('Job\'s I Need Done: ');
 		console.log(data);
 

@@ -161,11 +161,11 @@ function constructJob(job) {
 	
 	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
 	$('#' + category).append(html);
+
 	var hidden = '<div class="jobModal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '</div>' + job.notes + '<input type="button" class="requestJob" value="Request Job"></div>';	
 	$("#contentArea").append(hidden);
 
 	var posting = "#" + category + "Posting" + job.task_id;
-	console.log(posting);
 	$(posting).click(
 	function(){
 		var pop = "#" + category + "Modal" + $(this).data("num");
