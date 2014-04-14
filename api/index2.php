@@ -11,13 +11,13 @@
 	function recentTasks()
 	{
 	$request = \Slim\Slim::getInstance()->request();
-	$num_tasks = json_decode($request->getBody());
+	$data = json_decode($request->getBody());
 	$sql = "SELECT * FROM TASK GROUP BY task_id ORDER BY MAX(date_posted) LIMIT :num_tasks";
 	try
 		{
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam('num_tasks', $num_tasks, PDO::PARAM_INT);
+			$stmt->bindParam('num_tasks', (int)$data->num_tasks);
 			$stmt->execute();
 			$recentTasks = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
