@@ -5,7 +5,7 @@ $(window).ready(function(event) {
 
 
 	$("#profilePic").attr("src", "img/lab.png");
-	var contactInfoHTML =  "Name: " + userInfo.firstName + ' ' + userInfo.lastName + "<br>Phone #: " + userInfo.phone + "<br>Email: " + userInfo.email + "<br>Location: " + "Uhh.....";
+	var contactInfoHTML =  "Name: " + userInfo.firstName + ' ' + userInfo.lastName + "<br>Phone #: " + userInfo.phone + "<br>Email: " + userInfo.email;
 	$("#contactInfo").append(contactInfoHTML); 
 
 	var badges = [1,2,3];
