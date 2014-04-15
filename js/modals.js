@@ -53,6 +53,18 @@ var checkJobPostValidity = function(){
 
 var checkSignUpValidity = function(){
 
+	var password = $("#accountPassword");
+	var confirmPassword = $("#accountConfirmPassword");
+
+	if($(password).val() !== $(confirmPassword).val()){
+		//console.log("Setting");
+		confirmPassword[0].setCustomValidity("Passwords do not match!");
+	}
+	else{
+		//console.log("Unsetting");
+		confirmPassword[0].setCustomValidity('');
+	}
+
 }
 
 $(window).ready(function(){
@@ -71,6 +83,7 @@ $(window).ready(function(){
 		
 	});
 
+	$(".accountForm").change(checkSignUpValidity);
 	$(".accountForm").submit(function(event){
 
 		event.preventDefault();
@@ -83,20 +96,9 @@ $(window).ready(function(){
 		accountInfo.email = $("#accountEmail").val();
 		accountInfo.gender = parseInt($('[name=accountGender]:checked').val(), 10);
 		accountInfo.birthDate = $("#accountBirthDate").val();
-		var password = $("#accountPassword").val();
-		var confirmPassword = $("#accountConfirmPassword").val();
-		console.log(password + "\n" + confirmPassword);
-		console.log(accountInfo);
+		accountInfo.password= $("#accountPassword").val();
 
-		if(password !== confirmPassword){
-			alert("Passwords do not match");
-		}
-			
-		else{
-			accountInfo.password = password;
-			dbRequest('api/newaccount', 'application/json', accountInfo, 'signUp');
-
-		}
+		dbRequest('api/newaccount', 'application/json', accountInfo, 'signUp');
 
 	});
 
@@ -107,7 +109,7 @@ $(window).ready(function(){
 		event.preventDefault();
 		console.log("Posting a Job")
 
-		checkJobPostValidity();
+		//checkJobPostValidity();
 
 		var jobPostInfo = {};
 		jobPostInfo.userID = userInfo.userID;
