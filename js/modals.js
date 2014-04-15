@@ -3,10 +3,55 @@
 //accountForm --- api/newaccount
 //jobPostForm --- api/postatask
 
+var checkJobPostValidity = function(){
 
+	var description = $("#jobDescription");
+	if($(description).val() == ""){
+		//console.log("Setting");
+		description[0].setCustomValidity("Job Description is required!");
+	}
+	else{
+		//console.log("Unsetting");
+		description[0].setCustomValidity('');
+	}
+
+	var category = $("#jobCategory");
+
+	if($(category).val() == "0"){
+		//console.log("Setting");
+		category[0].setCustomValidity("Job Category is required!");
+	}
+	else{
+		//console.log("Unsetting");
+		category[0].setCustomValidity('');
+	}
+
+	var price = $("#jobPrice");
+
+	if(parseInt($(price).val(), 10) < 2){
+		//console.log("Setting");
+		price[0].setCustomValidity("Correct price is required!");
+	}
+	else{
+		//console.log("Unsetting");
+		price[0].setCustomValidity('');
+	}
+
+	var location = $("#jobLocation");
+
+	if($(location).val() == ""){
+		//console.log("Setting");
+		location[0].setCustomValidity("Job Location is required!");
+	}
+	else{
+		location[0].setCustomValidity('');
+	}
+	var deadlineDate = $("#jobDeadlineDate");
+	var deadlineTime = $("#jobDeadlineTime");
+
+}
 
 $(window).ready(function(){
-
 
 	$("#loginForm").submit(function(event){
 
@@ -14,13 +59,9 @@ $(window).ready(function(){
 
 		var user = {};
 		var isLog = false;
-		//console.log($.coookie("userInfo"));
 
 		user.email = $(this).children("#loginEmail").val();
 		user.password = $(this).children("#loginPassword").val();
-		//var password = CryptoJS.MD5($(this).children("#loginPassword").val());
-		//user.password = password.toString(CryptoJS.enc.Hex);
-		//console.log(user);
 
 		dbRequest('api/login', 'application', user, 'login');
 		
@@ -58,13 +99,15 @@ $(window).ready(function(){
 
 	});
 
+	$(".jobPostForm").change(checkJobPostValidity);
+
 	$(".jobPostForm").submit(function(event){
 
 		event.preventDefault();
 		console.log("Posting a Job")
 
-		userInfo = $.cookie("userInfo");
-		//console.log(userInfo);
+		checkJobPostValidity();
+
 		var jobPostInfo = {};
 		jobPostInfo.userID = userInfo.userID;
 		jobPostInfo.category = parseInt($("#jobCategory").val(), 10);
@@ -74,7 +117,7 @@ $(window).ready(function(){
 		jobPostInfo.deadlineDate = $("#jobDeadlineDate").val();
 		jobPostInfo.deadlineTime = $("#jobDeadlineTime").val();
 		jobPostInfo.notes = $("#jobNotes").val();
-		//console.log(jobPostInfo);
+		console.log(jobPostInfo);
 
 		dbRequest('api/postatask', 'application/json', jobPostInfo, 'jobPost');
 	});
