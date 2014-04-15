@@ -66,5 +66,7 @@ Post Job
 
 	Receive from server
 
-		Nothing as of now
+		Object {
+			success: true;
+		}
 
