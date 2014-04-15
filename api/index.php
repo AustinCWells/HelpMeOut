@@ -41,7 +41,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $loginInfo->email);
-				$stmt->bindParam("password", ($loginInfo->password));
+				$stmt->bindParam("password", md5($loginInfo->password));
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
@@ -80,7 +80,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $newAccount->email);
-				$stmt->bindParam("password", $newAccount->password);
+				$stmt->bindParam("password", md5($newAccount->password));
 				$stmt->bindParam("first_name", $newAccount->firstName);
 				$stmt->bindParam("last_name", $newAccount->lastName);
 				
@@ -111,7 +111,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $newAccount->email);
-				$stmt->bindParam("password", $newAccount->password/*md5($loginInfo->password)*/);
+				$stmt->bindParam("password", md5($newAccount->password));
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
