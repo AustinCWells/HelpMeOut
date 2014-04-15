@@ -18,7 +18,7 @@
 
 			<div class = "modalColumnLeft">
 			
-				<select name="category" id="jobCategory" >
+				<select name="category" id="jobCategory" title = "Select One" required>
 					<option value="0" selected = "1">Job Category</option>
 					<option value="1">Food</option>
 					<option value="2">Rides</option>
@@ -34,21 +34,21 @@
 				<label for="jobPrice">Price 
 					<span>(Dollar Amounts Only)</span>
 				</label>
-				<input type="number" id = "jobPrice" name="quantity" value = "2.00" min="2.00" step = "1.00">
+				<input type="number" id = "jobPrice" name="quantity" value = "2.00" min="2.00" step = "1.00" title = "Dollar Amounts Only greater than 2">
 
 				<label for="jobDeadlineDate">Deadline Date</label>
-				<input  id="jobDeadlineDate" type="date" name="deadlineDate">
+				<input  id="jobDeadlineDate" type="date" name="deadlineDate" text="Current day or Later">
 
 				<label for="jobDeadlineTime">Deadline Time</label>
-				<input id="jobDeadlineTime" type="time" name="deadlineTime">
+				<input id="jobDeadlineTime" type="time" name="deadlineTime" title="At least 30 minutes from current time">
 
 			</div>
 
 			<div class = "modalColumnRight">
 
-				<input type="text" id = "jobDescription" placeholder="SHORT DESCRIPTION" required>
+				<input type="text" id = "jobDescription" placeholder="SHORT DESCRIPTION" title = "Ex. Burgers and Fries" required>
 				<br>
-				<input type="text" id = "jobLocation" placeholder="MEETING LOCATION" required>
+				<input type="text" id = "jobLocation" placeholder="MEETING LOCATION" title = "Ex. Fondy Science" required>
 				<br>
 				<textarea name="jobNotes" id="jobNotes" cols="22" rows="4" placeholder="NOTES"></textarea>
 

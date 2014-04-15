@@ -51,6 +51,10 @@ var checkJobPostValidity = function(){
 
 }
 
+var checkSignUpValidity = function(){
+
+}
+
 $(window).ready(function(){
 
 	$("#loginForm").submit(function(event){
@@ -60,8 +64,8 @@ $(window).ready(function(){
 		var user = {};
 		var isLog = false;
 
-		user.email = $(this).children("#loginEmail").val();
-		user.password = $(this).children("#loginPassword").val();
+		user.email = $("#loginEmail").val();
+		user.password = $("#loginPassword").val();
 
 		dbRequest('api/login', 'application', user, 'login');
 		
@@ -89,9 +93,6 @@ $(window).ready(function(){
 		}
 			
 		else{
-
-			//password = CryptoJS.MD5(password);
-			//accountInfo.password = password.toString(CryptoJS.enc.Hex);
 			accountInfo.password = password;
 			dbRequest('api/newaccount', 'application/json', accountInfo, 'signUp');
 
