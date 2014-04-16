@@ -220,6 +220,7 @@ var closeModal = function(){
 	
 	//$(".modalSelected").removeClass("modalSelected");
 	$(".modal").hide();
+	$(".modalOverlay").height(0);
 	$("#modalOverlay").removeClass("modalOverlay");
 
 }
@@ -252,6 +253,7 @@ var openModal = function(id){
 	$(id).css({"left": left, "top": top});
 
 	$("#modalOverlay").addClass("modalOverlay");
+	$(".modalOverlay").height($(document).height());
 
 	if(id === "#jobPostModal"){
 		var currentTime = getCurrentTimeAndDate();
