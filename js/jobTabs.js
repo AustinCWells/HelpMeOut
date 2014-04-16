@@ -89,7 +89,7 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS');
 
 
-var myObject = new Object();
+var myObject = {};
 myObject.num_tasks = 8;
 
 console.log(myObject);
