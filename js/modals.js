@@ -200,8 +200,17 @@ var dbRequest = function(url, content, json, type){
 				}
 
 				else if(type === "login") {
-					$.cookie("userInfo", obj);
-					login();
+
+					if(obj.userID){
+						$.cookie("userInfo", obj);
+						login();
+					}
+
+					else{
+						obj.modal = "Login in Failure!";
+						displayError(obj);
+					}
+
 				}
 
 				else if(type === "signUp"){
@@ -344,7 +353,10 @@ var displayError = function(info){
 
 	openModal("#errorModal");
 	$(".errorTitle").text(info.modal);
-	$(".errorTitle p").text(info.error.text);
+	if(info.modal === "Login in Failure!")
+		$("#errorInfo").text("Email and password do not match!");
+	else
+		$("#errorInfo").text(info.error.text);
 
 	console.log(info);
 
