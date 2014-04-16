@@ -180,7 +180,14 @@ var dbRequest = function(url, content, json, type){
 			var obj = JSON.parse(data);
 
 			if(Object.keys(obj)[0] === "error"){
-				displayError(obj.error.text);
+				if(type === "jobPost")
+					obj.modal = "Job Post Error!";
+				else if(type === "login")
+					obj.modal = "Login Error!";
+				else if(type === "signUp")
+					obj.modal = "Sign Up Error!";
+
+				displayError(obj);
 			}
 
 			else{
@@ -188,18 +195,21 @@ var dbRequest = function(url, content, json, type){
 				//console.log(obj);
 
 				if(type === "jobPost"){
-					if(obj.success)
-						console.log("Job was Posted");
-					else
-						console.log("Job failed to Post");
+					obj.modal = "Job Post was SuccesFul!";
+					displaySuccess(obj);
 				}
 
-				else if(type === "login" || type === "signUp"){
+				else if(type === "login") {
 					$.cookie("userInfo", obj);
 					login();
 				}
 
-				closeModal();
+				else if(type === "signUp"){
+					$.cookie("userInfo", obj);
+					obj.modal = "Sign Up was SuccesFul!";
+					displaySuccess(obj);
+				}
+
 			}
 
 		},
@@ -331,6 +341,20 @@ var setJobPostDimensions = function(){
 }
 
 var displayError = function(info){
+
+	openModal("#errorModal");
+	$(".errorTitle").text(info.modal);
+	$(".errorTitle p").text(info.error.text);
+
+	console.log(info);
+
+}
+
+var displaySuccess = function(info){
+
+	openModal("#successModal");
+	$(".successTitle").text(info.modal);
+	//$(".successTitle p").text(info.error.text);
 	console.log(info);
 }
 
