@@ -224,6 +224,20 @@ var closeModal = function(){
 
 }
 
+$(window).resize(function(){
+
+	var windowWidth = $(window).width() / 2;
+	var windowHeight = $(window).height() / 2;
+	var formWidth = 12 + ($(".modalSelected").width() / 2);
+	var formHeight = 12 + ($(".modalSelected").height() / 2);
+	var left = windowWidth - formWidth;
+	var top = windowHeight - formHeight;
+	$(".modalSelected").css({"left": left, "top": top});
+
+	$(".modalOverlay").height($(document).height());
+
+});
+
 var openModal = function(id){
 
 	var windowWidth = $(window).width() / 2;
@@ -236,6 +250,7 @@ var openModal = function(id){
 	var left = windowWidth - formWidth;
 	var top = windowHeight - formHeight;
 	$(id).css({"left": left, "top": top});
+
 	$("#modalOverlay").addClass("modalOverlay");
 
 	if(id === "#jobPostModal"){
