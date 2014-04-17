@@ -162,7 +162,7 @@ function constructJob(job) {
 	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
 	$('#' + category).append(html);
 
-	var hidden = '<div class="jobModal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '</div><div class="row"><img class="two column" src="' + image + '"><div class="nine column">' + job.notes + '</div></div><div class="row"><div class="twelve column">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
+	var hidden = '<div class="jobModal modal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column" src="' + image + '"><div class="nine column">' + job.notes + '</div></div><div class="row"><div class="twelve column">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
 	$("#contentArea").append(hidden);
 
 	var posting = "#" + category + "Posting" + job.task_id;
@@ -186,9 +186,28 @@ function constructJob(job) {
 		$("#modalOverlay").addClass("modalOverlay");
 		$(".modalOverlay").height($(document).height());
 
+		$(".requestJob").click(function(){
+			$(".modal").hide();
+			$(".modalOverlay").height(0);
+			$("#modalOverlay").removeClass("modalOverlay");
+			//TODO: send job request
+		});
+
+		$(".closeButton").click(function(){
+			$(".modal").hide();
+			$(".modalOverlay").height(0);
+			$("#modalOverlay").removeClass("modalOverlay");
+			//TODO: send job request
+		});
+
 	});
 }
 
+$("#modalOverlay").click(function(){
+	$(".modal").hide();
+	$(".modalOverlay").height(0);
+	$("#modalOverlay").removeClass("modalOverlay");
+	});
 
 
 
