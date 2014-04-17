@@ -47,13 +47,14 @@ p:nth-of-type(1) {
 
 .jobModal {
 	display:none;
-	position: absolute;
+	/*position: absolute;
 	height:50%;
 	width: 80%;
 	background: white;
 	border: 1px solid #aaaaaa;
 	border-radius: 4px;
-	z-index: 20;
+	z-index: 20;*/
+
 }
 
 

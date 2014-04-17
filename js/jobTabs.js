@@ -162,14 +162,30 @@ function constructJob(job) {
 	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
 	$('#' + category).append(html);
 
-	var hidden = '<div class="jobModal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '</div>' + job.notes + '<input type="button" class="requestJob" value="Request Job"></div>';	
+	var hidden = '<div class="jobModal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '</div><div class="row"><img class="two column" src="' + image + '"><div class="nine column">' + job.notes + '</div></div><div class="row"><div class="twelve column">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
 	$("#contentArea").append(hidden);
 
 	var posting = "#" + category + "Posting" + job.task_id;
 	$(posting).click(
 	function(){
 		var pop = "#" + category + "Modal" + $(this).data("num");
+		//openModal($(pop));
+		var windowWidth = $(window).width() / 2;
+		var windowHeight = $(window).height() / 2;
+		//console.log(windowWidth);
 		$(pop).show();
+		$(pop).addClass("modalSelected");
+		//var jobWidth = 12 + ($(pop + " form").width() / 2);
+		//var jobHeight = 12 + ($(pop + " form").height() / 2);
+		var jobWidth = 200;
+		var jobHeight = 150;
+		var left = windowWidth - jobWidth;
+		var top = windowHeight - jobHeight;
+		$(pop).css({"left": left, "top": top});
+
+		$("#modalOverlay").addClass("modalOverlay");
+		$(".modalOverlay").height($(document).height());
+
 	});
 }
 
