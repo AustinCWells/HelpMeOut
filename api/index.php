@@ -8,7 +8,8 @@
 
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
-	//$app->post('/updateaccount', 'updateAccount');
+	$app->post('/updateaccount', 'updateAccount');
+	$app->post('/updatepassword', 'updatePassword');
 	$app->get('/useraccount', 'getUserAccount');
 	$app->get('/jobs',  'pullJobs');
 	$app->get('/jobsImDoing', 'getJobsImDoing');
@@ -128,23 +129,70 @@
 		}
 
 	}
-/*
+
 	##########
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/18
 	#	SUMMARY:		updates the user account with new information sent from the user
-	#	INPUTS:			JSON(user_id, updated info)	
-	#	OUTPUTS:		JSON(userID, email, first_name, last_name, phone, birth_date, gender, times_reported, tokens)
-	#	STATUS:			WORKING
+	#	INPUTS:			JSON(user_id, firstName, lastName, email, number)	
+	#	OUTPUTS:		JSON(success)
+	#	STATUS:			NOT
     ##########
 	function updateAccount()
 	{
+		$sql = "UPDATE USER SET first_name = :first_name, last_name = :last_name, phone = :phone, email = :email WHERE user_id = :user_id";
 		$request = \Slim\Slim::getInstance()->request();
 		$userInfo = json_decode($request->getBody());
 
-		if(array_key_exists('first_name', search))
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("first_name", $userInfo->firstName);
+			$stmt->bindParam("last_name", $userInfo->lastName);
+			$stmt->bindParam("phone", $userInfo->number);
+			$stmt->bindParam("email", $userInfo->email);
+			$stmt->bindParam("user_id", $userInfo->userID);
+			$stmt->execute();
+			$db = null;
+			echo '{"success": true}';
+		}
+		catch(PDOException $e)
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+		}
 	}
-*/
+
+	##########
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/18
+	#	SUMMARY:		This function update's the current user's password
+	#	INPUTS:			JSON(user_id, password)	
+	#	OUTPUTS:		JSON(success)
+	#	STATUS:			NOT TESTED
+    ##########
+	function updatePassword()
+	{
+		$sql = "UPDATE USER SET password = :password WHERE user_id = :user_id";
+		$request = \Slim\Slim::getInstance()->request();
+		$userInfo = json_decode($request->getBody());
+
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("password", md5($userInfo->password));
+			$stmt->bindParam("user_id", $userInfo->userID);
+			$stmt->execute();
+			$db = null;
+			echo '{"success": true}';
+		}
+		catch(PDOException $e)
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+		}
+	}
+
 	##########
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/10
