@@ -297,7 +297,7 @@ var login = function(){
 
 	userInfo = $.cookie("userInfo");
 
-	//console.log(userInfo);
+	console.log(userInfo);
 
 	if(userInfo !== undefined){
 
@@ -307,11 +307,12 @@ var login = function(){
 			$("#tokenCount").text(userInfo.tokens);
 			$("#currentToken strong").text(userInfo.tokens)
 		}
-
-		else {
-			window.location = "./";
-		}
 	}
+
+	/*else {
+		if(window.location.pathname !== /helpmeout/)
+			window.location = "./";
+	}*/
 
 }
 
