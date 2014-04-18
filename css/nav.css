@@ -53,7 +53,7 @@ body {
 	width: 125px;
 }
 
-#navMenu li a {
+#navMenu li a{
 	display: block;
 	background-color: transparent;
 	padding: 1em;
@@ -78,7 +78,6 @@ body {
 	float: right;
 	padding: 16px 2px;
 }
-
 
 #navUser {
 	float: right;
