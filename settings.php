@@ -40,7 +40,7 @@
 			</form>
 			<br>
 			<br>
-			<form enctype="multipart/form-data" action="uploader.php" method="POST">
+			<form enctype="multipart/form-data" action="api/changeProfileImage" method="POST">
 				<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
 				Upload New Profile Pic: <br><input name="uploadedfile" type="file" /><br /><br>
 				<input type="submit" value="Upload File" />
