@@ -6,7 +6,7 @@
 	#	SUMMARY:		Pulls a specified number of active jobs based on recency (most recent tasks are rated highest)
 	#	INPUTS:			INT num_tasks
 	#	OUTPUTS:		JSON(task_id, beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_date, location, date_posted)
-	#	STATUS:			NEEDS TESTING
+	#	STATUS:			COMPLETE
     ##########
 	function recentTasks()
 	{
@@ -52,7 +52,7 @@
 	#	SUMMARY:		Adds tokens to a user's account
 	#	INPUTS:			INT num_tokens, user_id
 	#	OUTPUTS:		
-	#	STATUS:			IN PROGRESS
+	#	STATUS:			COMPLETE
     ##########
 	function addTokens($user_id, $new_tokens)
 	{
@@ -99,4 +99,32 @@
 		}
 	}
 
+
+	##########
+	# 	AUTHOR:			Spencer
+	#	LAST UPDATED:	4/18/14
+	#	SUMMARY:		Allows a user to upload a custom profile picture; the function modifies is_custom and adds a file path parameter to custom_image_path
+	#	INPUTS:			user_id, file_path
+	#	OUTPUTS:		N/A
+	#	STATUS:			IN PROGRESS
+    ##########
+	function changeProfileImage($user_id, $file_path)
+	{
+		$request = \Slim\Slim::getInstance()->request();
+
+		$sql = "UPDATE USER SET is_custom = 1, custom_image_path = :file_path WHERE user_id = :user_id";
+		try
+		{
+			$db = getConnection();
+			$stmt= $db->prepare($sql);
+			$stmt->bindParam('user_id', $user_id);
+			$stmt->bindParam('file_path', $file_path);
+			$stmt->execute();
+			$db = null;
+      	}
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+		}
+	}
 ?>
