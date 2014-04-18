@@ -8,16 +8,14 @@
 	#	OUTPUTS:		JSON(task_id, beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_date, location, date_posted)
 	#	STATUS:			COMPLETE
     ##########
-	function recentTasks()
+	function recentTasks($numTasks)
 	{
-	$request = \Slim\Slim::getInstance()->request();
-	$data = json_decode($request->getBody());
 	$sql = "SELECT * FROM TASK GROUP BY task_id ORDER BY MAX(date_posted) LIMIT :num_tasks";
 	try
 		{
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam('num_tasks', (int)$data->num_tasks);
+			$stmt->bindParam('num_tasks', (int)$numTasks);
 			$stmt->execute();
 			$recentTasks = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
