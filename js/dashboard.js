@@ -7,36 +7,43 @@ $(window).ready(function(event) {
 
 	console.log("sent:");
 	console.log({user_id: userInfo.userID});
+	var json = {data:{user_id: userInfo.userID}};
 
-	$.getJSON('api/jobsImDoing', {user_id: userInfo.userID}, function(data){
-		console.log('Job\'s I\'m Doing: ');
-		console.log(data);
+	$.ajax({
+        type: "Post",
+        url: "api/jobsImDoing",
+        data: JSON.stringify(json), //Data to POST to the server
+        content: 'application/json',
+        success: function (data) { 
+			console.log('Job\'s I\'m Doing: ');
+			console.log(data);
 
-		var tasks = [1];//TODO: replace with data once it is not NULL
-		//console.log(accordionLeft.html());
+			var tasks = [1];//TODO: replace with data once it is not NULL
+			//console.log(accordionLeft.html());
 
-		//LEFT
-		//Section: Jobs I'm Doing - In progress	
-		for(var i=0;i<tasks.length;i++) {
-			var html = 	'<h3>' + tasks[i].beggar_id + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
-			accordionLeft.append(html);
+			//LEFT
+			//Section: Jobs I'm Doing - In progress	
+			for(var i=0;i<tasks.length;i++) {
+				var html = 	'<h3>' + tasks[i].beggar_id + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
+				accordionLeft.append(html);
+			}
+
+			//Section: Jobs I'm Doing - Help offered
+			for(var i=0;i<tasks.length;i++) {
+				var html = 	'<h3>Help offered to: ' + tasks[i].beggar_id + '</h3><div><div class = "row"><span class = "bidHeader twelve column center">You have requested to complete *beggar_name*\'s job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five center" value="Cancel Request"></div></div>';
+				accordionLeft.append(html);
+			}
+
+			//empty message
+			if(accordionLeft.html() === '') {
+				accordionLeft.append('You have no jobs. Get started slacker!');
+			}
+
+
+			//Build Accordion:
+			$( "#accordionLeft" ).accordion({ heightStyle: "fill" , collapsible: true});
+
 		}
-
-		//Section: Jobs I'm Doing - Help offered
-		for(var i=0;i<tasks.length;i++) {
-			var html = 	'<h3>Help offered to: ' + tasks[i].beggar_id + '</h3><div><div class = "row"><span class = "bidHeader twelve column center">You have requested to complete *beggar_name*\'s job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five center" value="Cancel Request"></div></div>';
-			accordionLeft.append(html);
-		}
-
-		//empty message
-		if(accordionLeft.html() === '') {
-			accordionLeft.append('You have no jobs. Get started slacker!');
-		}
-
-
-		//Build Accordion:
-		$( "#accordionLeft" ).accordion({ heightStyle: "fill" , collapsible: true});
-
 	});
 
 
