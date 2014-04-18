@@ -10,9 +10,9 @@
 	$app->post('/newaccount', 'createAccount');
 	$app->post('/updateaccount', 'updateAccount');
 	$app->post('/updatepassword', 'updatePassword');
-	$app->get('/useraccount/:id', 'getUserAccount');
+	$app->post('/useraccount', 'getUserAccount');
 	$app->get('/jobs',  'pullJobs');
-	$app->get('/jobsImDoing', 'getJobsImDoing');
+	$app->post('/jobsImDoing', 'getJobsImDoing');
 	$app->get('/jobsINeedDone', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks', 'recentTasks');
@@ -202,13 +202,13 @@
 	#	OUTPUTS:		JSON(userID, email, first_name, last_name, phone, birth_date, gender, times_reported, tokens)
 	#	STATUS:			WORKING
     ##########
-    function getUserAccount($id)
+    function getUserAccount()
     {
     	//use $id for testing, $userID for actual implementation
     	$sql = "SELECT * FROM USER WHERE user_id = :id";
     	$request = \Slim\Slim::getInstance()->request();
-		//$userObj = json_decode($request->getBody());
-		//$userID = (int)$userObj->user_id;
+		$userObj = json_decode($request->getBody());
+		$userID = (int)$userObj->user_id;
 
 		try
 		{
