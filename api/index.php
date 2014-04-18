@@ -195,7 +195,7 @@
 
 	##########
 	#	AUTHOR:			Charlie
-	#	LAST UPDATE:	4/10
+	#	LAST UPDATE:	4/18 - Added info to return profile image info (SK)
 	#	SUMMARY:		This function retrieves the current user's account information 
 	#					for when they want to view their personal info
 	#	INPUTS:			JSON(user_id)	
@@ -226,7 +226,9 @@
 							  'birth_date' => $userInfo['birth_date'], 
 							  'gender' => $userInfo['gender'], 
 							  'times_reported' => $userInfo['times_reported'], 
-							  'tokens' => $userInfo['tokens']);
+							  'tokens' => $userInfo['tokens'],
+							  'is_custom' => $userInfo['is_custom'],
+							  'custom_image_path' => $userInfo['custom_image_path']);
 			echo json_encode($response);
 		}
 		catch(PDOException $e)
