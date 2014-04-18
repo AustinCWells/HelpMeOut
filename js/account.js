@@ -3,9 +3,13 @@ $(window).ready(function(event) {
 	$("#navAccount").addClass("currentPage")
 	$("#navAccount").removeClass("hoverable");
 
-
-
-	$("#profilePic").attr("src", "img/fontenot.jpeg");
+	console.log("is_custom = " + userInfo.is_custom);
+	if(userInfo.is_custom === 0) {
+		$("#profilePic").attr("src", "img/fontenot.jpeg");
+	}
+	else {
+		$("#profilePic").attr("src", "img/fontenot.jpeg");//TODO: load custom profile image
+	}
 	var contactInfoHTML =  "Name: " + userInfo.firstName + ' ' + userInfo.lastName + "<br>Phone #: <span id='phone'>" + userInfo.phone + "</span><br>Email: " + userInfo.email;
 	$("#contactInfo").append(contactInfoHTML); 
 
