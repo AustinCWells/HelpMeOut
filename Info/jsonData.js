@@ -67,6 +67,21 @@ Post Job
 	Receive from server
 
 		Object {
-			success: true;
+			success: true
 		}
 
+Settings
+
+	Send to Server
+
+		Object{
+			userID: 13,
+			changeType: "first_name",
+			change: "Chris"
+		}
+
+	Receive from server
+
+		Object {
+			success: true
+		}
