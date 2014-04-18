@@ -51,7 +51,7 @@
 	#	LAST UPDATED:	4/18/14 - Modified to include return statement if successful
 	#	SUMMARY:		Adds tokens to a user's account
 	#	INPUTS:			INT num_tokens, user_id
-	#	OUTPUTS:		JSON - SUCESS
+	#	OUTPUTS:		JSON - SUCCESS
 	#	STATUS:			COMPLETE
     ##########
 	function addTokens($user_id, $new_tokens)
