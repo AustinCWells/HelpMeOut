@@ -51,12 +51,13 @@
 	#	LAST UPDATED:	4/10/14
 	#	SUMMARY:		Adds tokens to a user's account
 	#	INPUTS:			INT num_tokens, user_id
-	#	OUTPUTS:		
+	#	OUTPUTS:		N/A
 	#	STATUS:			COMPLETE
     ##########
 	function addTokens($user_id, $new_tokens)
 	{
 		$request = \Slim\Slim::getInstance()->request();
+		$success = array('success'=>true);
 
 		//GET TOKENS TO ADD
 		$new_tokens = intval($new_tokens);
@@ -73,6 +74,8 @@
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			$db = null;
 			$previous_tokens = $row['tokens'];
+      		echo json_encode($success);
+
       	}
 		catch(PDOException $e) 
 		{
