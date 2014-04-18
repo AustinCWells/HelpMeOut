@@ -360,8 +360,9 @@
 	#	AUTHOR:			Wilson
 	#	LAST UPDATE:	A while ago
 	#	SUMMARY:		Pulls all the info on the Job for a detailed report
-	#					- THE SQL COMMAND IS DONE WHICH IS WHAT NEEDED TO BE DONE FOR THIS ITERATION!! YAY PHRASING
-	#					- I went ahead and attempted to make the json object of stuff we need, just getting ahead on my work don't judge
+	#                   - This is meant for homepage when you click on the job to get more detail
+	#					- This pulls info for the job, right now it's all the info because I'm not sure what Chris wants
+	#					-If anyone uses this feel free to change it just tell me what ya did. 
 	#	INPUTS:			?	
 	#	OUTPUTS:		?
 	#	STATUS:			Waiting for gui guys to start function on so I can pass the right stuff
