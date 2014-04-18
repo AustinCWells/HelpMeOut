@@ -1,6 +1,7 @@
 $(window).ready(function(event) {
 
-	$("#navAccount").addClass("currentPage").removeClass("hoverable");
+	$("#navAccount").addClass("currentPage")
+	$("#navAccount").removeClass("hoverable");
 
 
 
