@@ -12,7 +12,7 @@
 	$app->post('/updatepassword', 'updatePassword');
 	$app->get('/useraccount/:id', 'getUserAccount');
 	$app->get('/jobs',  'pullJobs');
-	$app->get('/jobsImDoing/:id', 'getJobsImDoing');
+	$app->get('/jobsImDoing', 'getJobsImDoing');
 	$app->get('/jobsINeedDone', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks', 'recentTasks');
@@ -443,7 +443,7 @@
 	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
 	#	STATUS:			Not Working- Object passing Null Values even though Jordan is sending us a "user_id"
     ##########
-	function getJobsImDoing($id)
+	function getJobsImDoing()
 	{
 	$request = \Slim\Slim::getInstance()->request();
 	$userInfo = json_decode($request->getBody());
@@ -452,7 +452,7 @@
 	      {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam("id", /*$userInfo->user_id*/ $id);
+			$stmt->bindParam("id", $userInfo->user_id);
 			$stmt->execute();
 			$jobsImDoing = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
