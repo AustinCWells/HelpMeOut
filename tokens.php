@@ -1,5 +1,5 @@
 	<?php include "components/header.html" ?>
-	<script language="javascript"  type="text/javascript" src="js/settings.js"> </script> 
+	<script language="javascript"  type="text/javascript" src="js/tokens.js"> </script> 
 </head>
 <body class="blue">
 	<!--<span class="currentPage" id="accountPage"></span>-->
@@ -11,7 +11,7 @@
 </div>
 <br>
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" id = "paypay" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
 <table>
 <tr><td><input type="hidden" name="on0" value="Token Prices">Token Prices</td></tr><tr><td><select name="os0">
