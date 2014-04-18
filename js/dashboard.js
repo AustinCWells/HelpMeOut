@@ -18,7 +18,7 @@ $(window).ready(function(event) {
 			console.log('Job\'s I\'m Doing: ');
 			console.log(data);
 
-			var tasks = [1];//TODO: replace with data once it is not NULL
+			var tasks = data.tasks;
 			//console.log(accordionLeft.html());
 
 			//LEFT
@@ -57,7 +57,7 @@ $(window).ready(function(event) {
 			console.log(data);
 
 
-			var tasks = [1];
+			var tasks = data.tasks;
 			//RIGHT
 			//Section: Help I'm Getting - In progress
 			for(var i=0;i<tasks.length;i++) {
