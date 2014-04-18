@@ -6,8 +6,12 @@ $(window).ready(function(event) {
 
 
 	$("#profilePic").attr("src", "img/fontenot.jpeg");
-	var contactInfoHTML =  "Name: " + userInfo.firstName + ' ' + userInfo.lastName + "<br>Phone #: " + userInfo.phone + "<br>Email: " + userInfo.email;
+	var contactInfoHTML =  "Name: " + userInfo.firstName + ' ' + userInfo.lastName + "<br>Phone #: <span id='phone'>" + userInfo.phone + "</span><br>Email: " + userInfo.email;
 	$("#contactInfo").append(contactInfoHTML); 
+
+	$('#phone').text(function(i, text) {
+	    return text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+	});
 
 	var badges = [1,2,3];
 	var badgeSpace = $('#badgeSpace');
