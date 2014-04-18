@@ -161,7 +161,9 @@
 	function getOffers()
 	{
 	$request = \Slim\Slim::getInstance()->request();
-	$userInfo = json_decode($request->getBody());
+	$job_info = json_decode($request->getBody());
+	
+	#LEFT OFF HERE
 	$sql= "SELECT * FROM TASK WHERE beggar_id = :id AND is_complete = 0";
 	try
 	      {
