@@ -4,11 +4,11 @@ $(window).ready(function(event) {
 	$("#navAccount").removeClass("hoverable");
 
 	console.log("is_custom = " + userInfo.is_custom);
-	if(userInfo.is_custom === 0) {
+	if(userInfo.is_custom === "0") {
 		$("#profilePic").attr("src", "img/fontenot.jpeg");
 	}
 	else {
-		$("#profilePic").attr("src", "img/fontenot.jpeg");//TODO: load custom profile image
+		$("#profilePic").attr("src", userInfo.custom_image_path);//TODO: load custom profile image
 	}
 	var contactInfoHTML =  "Name: " + userInfo.firstName + ' ' + userInfo.lastName + "<br>Phone #: <span id='phone'>" + userInfo.phone + "</span><br>Email: " + userInfo.email;
 	$("#contactInfo").append(contactInfoHTML); 
