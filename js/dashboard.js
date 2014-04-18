@@ -11,7 +11,7 @@ $(window).ready(function(event) {
 
 	$.ajax({
         type: "Post",
-        url: "api/jobsImDoing",
+        url: "api/tasksImDoing",
         data: json, //Data to POST to the server
         content: 'application/json',
         success: function (data) { 
@@ -49,7 +49,7 @@ $(window).ready(function(event) {
 
 	$.ajax({
         type: "Post",
-        url: "api/jobsINeedDone",
+        url: "api/tasksINeedDone",
         data: json, //Data to POST to the server
         content: 'application/json',
         success: function (data) { 
@@ -57,7 +57,7 @@ $(window).ready(function(event) {
 			console.log(data);
 
 
-			var tasks = data.tasks;
+			var tasks = [1];
 			//RIGHT
 			//Section: Help I'm Getting - In progress
 			for(var i=0;i<tasks.length;i++) {

@@ -7,15 +7,43 @@ window.addEventListener('load', function(event) {
 console.log(userInfo);
 
 //Loading 
-$.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server error
+$.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 		console.log("Jobs: ");
 		console.log(data);
-		var tasks = data.tasks;
+		var tasks = data;
 
-		for(var i=0;i<tasks.length;i++) {
-			constructJob(tasks[i]);
-
+		for(var i=0;i<tasks["foodDelivery"].length;i++) {
+			constructJob(tasks["foodDelivery"][i], 1);
 		}
+
+		for(var i=0;i<tasks["laundry"].length;i++) {
+			constructJob(tasks["laundry"][i], 2);
+		}
+
+		for(var i=0;i<tasks["groceries"].length;i++) {
+			constructJob(tasks["groceries"][i], 3);
+		}
+
+		for(var i=0;i<tasks["cleaning"].length;i++) {
+			constructJob(tasks["cleaning"][i], 4);
+		}
+
+		for(var i=0;i<tasks["rides"].length;i++) {
+			constructJob(tasks["rides"][i], 5);
+		}
+
+		for(var i=0;i<tasks["techSupport"].length;i++) {
+			constructJob(tasks["techSupport"][i], 6);
+		}
+
+		for(var i=0;i<tasks["maintenance"].length;i++) {
+			constructJob(tasks["maintenance"][i], 7);
+		}
+
+		for(var i=0;i<tasks["other"].length;i++) {
+			constructJob(tasks["other"][i], 8);
+		}
+
 
 		if($('#food').html() === '') {
 			$('#food').append(' 	Sorry, there are currently no jobs available in this category.');
@@ -129,46 +157,46 @@ $.getJSON("api/recentTasks", myObject, function(data2){
    console.log("Failed to load recent jobs.");
 });
 
-function constructJob(job) {
+function constructJob(job, categoryId) {
 	var category = "";
 	var categoryFormatted = "";
 	var image = "";
-	if(job.category_id === 1) {
+	if(categoryId === 1) {
 		category = "food";
 		categoryFormatted = "Food";
 		image = "img/food.png";
 	}
-	else if(job.category_id === 2) {
+	else if(categoryId === 2) {
 		category = "laundry";
 		categoryFormatted = "Laundry";
 		image = "img/laundry2.png";
 	}
-	else if(job.category_id === 3) {
+	else if(categoryId === 3) {
 		category = "groceries";
 		categoryFormatted = "Groceries";
 		image = "img/groceries.png";
 	}
-	else if(job.category_id === 4) {
+	else if(categoryId === 4) {
 		category = "cleaning";
 		categoryFormatted = "Cleaning";
 		image = "img/cleaning.png";
 	}
-	else if(job.category_id === 5) {
+	else if(categoryId === 5) {
 		category = "rides";
 		categoryFormatted = "Rides";
 		image = "img/rides.png";
 	}
-	else if(job.category_id === 6) {
+	else if(categoryId === 6) {
 		category = "techSupport";
 		categoryFormatted = "Tech Support";
 		image = "img/techsupport.png";
 	}
-	else if(job.category_id === 7) {
+	else if(categoryId === 7) {
 		category = "maintenance";
 		categoryFormatted = "Maintenance";
 		image = "img/maintenance.png";
 	}
-	else if(job.category_id === 8) {
+	else if(categoryId === 8) {
 		category = "other";
 		categoryFormatted = "Other";
 		image = "img/other.png";
