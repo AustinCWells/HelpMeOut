@@ -312,7 +312,7 @@
 
 			$db = null;
 			$tasks['foodDelivery'] = $foodDelivery;
-			$tasks['Rides'] = $rides;
+			$tasks['rides'] = $rides;
 			$tasks['groceries'] = $groceryRun;
 			$tasks['cleaning'] = $cleaning;
 			$tasks['laundry'] = $laundry;
