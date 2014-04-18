@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	$("#paypay").submit(function(event){
 		event.preventDefault();
-		alert("This option is not live please use the on the left to update tokens");
+		//alert("This option is not live please use the on the left to update tokens");
 		var tokens = {};
 		tokens.new_tokens = parseInt($("#tokenAmount").val(), 10);
 		tokens.user_id = userInfo.userID;
