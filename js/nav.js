@@ -1,5 +1,9 @@
 var userInfo = {};
 
+$(document).ready(function(){
+	$(".modal").hide();
+});
+
 $(window).ready(function(event) {
 
 	$.cookie.json = true;
