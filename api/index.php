@@ -17,6 +17,8 @@
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks', 'recentTasks');
 	$app->get('/addTokens/:user_id/:new_tokens', 'addTokens');
+	$app->get('/changeProfileImage', 'changeProfileImage');
+
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
 	$app->run();
