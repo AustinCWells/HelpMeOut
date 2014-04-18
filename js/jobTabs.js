@@ -66,7 +66,7 @@ $.getJSON("api/jobs",function(data){//"api/jobs" gets 500 internal server error
 
   })
 .fail(function(){
-   console.log("Failed to load recent jobs.");
+   console.log("Failed to load jobs.");
 });
 
 
@@ -126,7 +126,7 @@ $.getJSON("api/recentTasks", myObject, function(data2){
 
 })
 .fail(function(){
-   console.log("Failed to load jobs.");
+   console.log("Failed to load recent jobs.");
 });
 
 function constructJob(job) {
