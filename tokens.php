@@ -6,7 +6,7 @@
 
 <div class="row yellow">
 	<div class="twelve columns">
-		<p>CHANGE IS GOOD!</p>	
+		<p>MORE YOU HAVE THE MORE MONEY YOU CAN EARN!</p>	
 	</div>
 </div>
 <br>
