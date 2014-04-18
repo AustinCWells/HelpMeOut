@@ -11,9 +11,9 @@
 	$app->post('/updateaccount', 'updateAccount');
 	$app->post('/updatepassword', 'updatePassword');
 	$app->post('/useraccount', 'getUserAccount');
-	$app->get('/jobs',  'pullJobs');
-	$app->post('/jobsImDoing', 'getJobsImDoing');
-	$app->post('/jobsINeedDone', 'getsJobsINeedCompleted');
+	$app->get('/tasks',  'pullTasks');
+	$app->post('/tasksImDoing', 'getTasksImDoing');
+	$app->post('/tasksINeedDone', 'getTasksINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks', 'recentTasks');
 	$app->get('/addTokens/:user_id/:new_tokens', 'addTokens');
@@ -248,7 +248,7 @@
 	#	OUTPUTS:		JSON(category: {taskID: {first_name, last_name, short_description, notes, price, time_frame_date, time_frame_time, location}})
 	#	STATUS:			NOT TESTED
     ##########
-	function pullJobs()
+	function pullTasks()
 	{
 		echo "PULL DU JAHBS BIG BOIIIII";
 	}
@@ -264,7 +264,7 @@
 	#	OUTPUTS:		?
 	#	STATUS:			Waiting for gui guys to start function on so I can pass the right stuff
     ##########
-	function getJobInfo()
+	function getTaskInfo()
      {
 	   $request = \Slim\Slim::getInstance()->request();
 		$sql = "SELECT task.task_id, task.beggar_id, task.chooser_id, task.short_description, task.notes, task.price, task.negotiable, task.bid_id, task.time_frame_date, task.time_frame_time
@@ -345,7 +345,7 @@
 	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
 	#	STATUS:			Not Working- Object passing Null Values even though Jordan is sending us a "user_id"
     ##########
-	function getJobsImDoing()
+	function getTasksImDoing()
 	{
 	$request = \Slim\Slim::getInstance()->request();
 	$userInfo = json_decode($request->getBody());
@@ -390,7 +390,7 @@
 	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
 	#	STATUS:			Not Working- Object passing Null Values even though Jordan is sending us a "user_id"
     ##########
-	function getsJobsINeedCompleted()
+	function getTasksINeedCompleted()
 	{
 	$request = \Slim\Slim::getInstance()->request();
 	$userInfo = json_decode($request->getBody());
