@@ -131,44 +131,53 @@ $.getJSON("api/recentTasks", myObject, function(data2){
 
 function constructJob(job) {
 	var category = "";
+	var categoryFormatted = "";
 	var image = "";
 	if(job.category_id === 1) {
 		category = "food";
+		categoryFormatted = "Food";
 		image = "img/food.png";
 	}
 	else if(job.category_id === 2) {
 		category = "laundry";
+		categoryFormatted = "Laundry";
 		image = "img/laundry2.png";
 	}
 	else if(job.category_id === 3) {
 		category = "groceries";
+		categoryFormatted = "Groceries";
 		image = "img/groceries.png";
 	}
 	else if(job.category_id === 4) {
 		category = "cleaning";
+		categoryFormatted = "Cleaning";
 		image = "img/cleaning.png";
 	}
 	else if(job.category_id === 5) {
 		category = "rides";
+		categoryFormatted = "Rides";
 		image = "img/rides.png";
 	}
 	else if(job.category_id === 6) {
 		category = "techSupport";
+		categoryFormatted = "Tech Support";
 		image = "img/techsupport.png";
 	}
 	else if(job.category_id === 7) {
 		category = "maintenance";
+		categoryFormatted = "Maintenance";
 		image = "img/maintenance.png";
 	}
 	else if(job.category_id === 8) {
 		category = "other";
+		categoryFormatted = "Other";
 		image = "img/other.png";
 	}
 	
 	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
 	$('#' + category).append(html);
 
-	var hidden = '<div class="jobModal modal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column" src="' + image + '"><div class="nine column">' + job.notes + '</div></div><div class="row"><div class="twelve column">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
+	var hidden = '<div class="jobModal modal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column jobIcon" src="' + image + '"><div class="eight column jobModalNotes">Notes: ' + job.notes + '<br>You\'ll make: $' + job.price + '<br>Category: ' + categoryFormatted + '</div></div><div class="row"><div class="twelve column jobContact">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
 	$("#contentArea").append(hidden);
 
 	var posting = "#" + category + "Posting" + job.task_id;

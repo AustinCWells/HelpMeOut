@@ -45,18 +45,36 @@ p:nth-of-type(1) {
 	padding: 15px;
 }
 
-.jobModal {
-	display:none;
-	/*position: absolute;
+/* Job Modal */
+/*.jobModal {
+	position: absolute;
 	height:50%;
 	width: 80%;
 	background: white;
 	border: 1px solid #aaaaaa;
 	border-radius: 4px;
-	z-index: 20;*/
+	z-index: 20;
 
+}*/
+
+.requestJob {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
+.jobContact {
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+.jobIcon {
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+.jobModalNotes {
+	margin-top:15px;
+}
 
 /* TABS */
 /* Default color for links inside the tabbed box */ 
