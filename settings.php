@@ -25,6 +25,10 @@
 					<input id="lastName" class="setting five column">
 				</div>
 				<div class="row">
+					<div class="settingLabel five column">Phone #:</div>
+					<input id="phoneNum" class="setting five column">
+				</div>
+				<div class="row">
 					<div class="settingLabel five column">New Password:</div>
 					<input type="password" id="newPassword" class="setting five column">
 				</div>
