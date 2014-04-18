@@ -16,7 +16,7 @@
 	$app->post('/tasksINeedDone', 'getTasksINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks', 'recentTasks');
-	$app->get('/addTokens', 'addTokens');
+	$app->post('/addTokens', 'addTokens');
 	$app->get('/changeProfileImage', 'changeProfileImage');
 
 	//$app->post('/paymentinfo', 'getPaymentInfo');
