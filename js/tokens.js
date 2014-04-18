@@ -7,47 +7,48 @@ $(document).ready(function(){
 		tokens.new_tokens = parseInt($("#tokenAmount").val(), 10);
 		tokens.user_id = userInfo.userID;
 		var current = userInfo.tokens;
-		//console.log(purchase);
+		var update = tokens.new_tokens + current;
+		console.log(update);
 
 
-		$.ajax({
-		type: 'POST',
-		url: 'api/addTokens',
-		content: 'application/json',
-		data: JSON.stringify(tokens),
-		success: function(data){
+			$.ajax({
+			type: 'POST',
+			url: 'api/addTokens',
+			content: 'application/json',
+			data: JSON.stringify(tokens),
+			success: function(data){
 
-			console.log(data);
+				console.log(data);
 
-			var obj = JSON.parse(data);
+				var obj = JSON.parse(data);
 
 
 
-			if(Object.keys(obj)[0] === "error"){
-				obj.modal = "Error occured while adding your tokens";
-				displayError(obj);
+				if(Object.keys(obj)[0] === "error"){
+					obj.modal = "Error occured while adding your tokens";
+					displayError(obj);
+				}
+
+				else{
+
+					obj.modal = "Sign Up was SuccesFul!";
+					displaySuccess(obj);
+					userInfo.tokens = current + tokens.new_tokens;
+					console.log(userInfo);
+
+				}
+
+			},
+
+			//CAN WE MAKE THIS ERROR MESSAGE MORE SPECIFIC?
+			//IF THIS IS BECAUSE OF A BROKEN LINK BETWEEN
+				//MODALS AND API, CAN WE MENTION THAT?
+
+			error: function(data){
+				alert("WE'RE SORRY SOMETHING WENT WRONG!");
 			}
 
-			else{
-
-				obj.modal = "Sign Up was SuccesFul!";
-				displaySuccess(obj);
-				userInfo.tokens = current + tokens.newTokens;
-				login();
-
-			}
-
-		},
-
-		//CAN WE MAKE THIS ERROR MESSAGE MORE SPECIFIC?
-		//IF THIS IS BECAUSE OF A BROKEN LINK BETWEEN
-			//MODALS AND API, CAN WE MENTION THAT?
-
-		error: function(data){
-			alert("WE'RE SORRY SOMETHING WENT WRONG!");
-		}
-
-	});
+		});
 	});
 
 });
