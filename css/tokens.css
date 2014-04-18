@@ -1,0 +1,14 @@
+#buyDiv {
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
+	background-color:white;
+	padding:15px;
+}
+
+#tokenPrices {
+	float: left;
+}
+
+#tokenBuy {
+	float: right;
+}
