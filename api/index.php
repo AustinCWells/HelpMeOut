@@ -13,7 +13,7 @@
 	$app->post('/useraccount', 'getUserAccount');
 	$app->get('/jobs',  'pullJobs');
 	$app->post('/jobsImDoing', 'getJobsImDoing');
-	$app->get('/jobsINeedDone', 'getsJobsINeedCompleted');
+	$app->post('/jobsINeedDone', 'getsJobsINeedCompleted');
 	$app->post('/postatask', 'postTask');
 	$app->get('/recentTasks', 'recentTasks');
 	$app->get('/addTokens/:user_id/:new_tokens', 'addTokens');
@@ -241,119 +241,16 @@
 
 
 	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		?	
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/18
+	#	SUMMARY:		Gets all Jobs (grouped by category) from the DB that have not been completed
+	#	INPUTS:			None	
+	#	OUTPUTS:		JSON(category: {taskID: {first_name, last_name, short_description, notes, price, time_frame_date, time_frame_time, location}})
+	#	STATUS:			NOT TESTED
     ##########
 	function pullJobs()
 	{
-		$request = \Slim\Slim::getInstance()->request();
-		$userObj = json_decode($request->getBody());
-		//$userID = (int)$userObj->user_id;
-
-		try
-		{
-			if($userID == 0) //User is not logged in
-			{
-				$taskList['tasks'] = getJobs();
-				echo json_encode($taskList);
-			}
-			else //user is logged in
-			{
-				$taskList = getAllJobs($userID);
-				echo json_encode($taskList);
-			}
-
-		}
-		catch(PDOException $e)
-		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
-		}
-	}
-
-	
-	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	?
-	#	SUMMARY:		QUERY's the Database in an effort to get all the jobs that are not complete or in progress and then passed this as an array back to pulljobs() function.
-	#					MODIFIED QUERY TO ACCOUNT FOR IN-PROGRESS JOBS
-	#					This query will pull all ACTIVE jobs (not completed, not in progress)
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
-    ##########
-	function getJobs()
-	{
-		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE t.is_complete = '0' AND t.chooser_id IS NULL";
-		try
-		{
-			$db = getConnection();
-			$stmt = $db->query($sql);
-			$tasks;
-			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-			{
-				$taskID = $row['task_id'];
-				$tasks[$taskID] = array('category_id' => (int)$row['category_id'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id'], 'short_description' => $row['short_description'], 'price' => (int)$row['price'], 'category_id' => (int)$row['category_id'], 'negotiable' => (int)$row['negotiable'], 'is_complete' => (int)$row['is_complete']);
-			}
-			$db = null;
-			return $tasks;
-		}
-		catch(PDOException $e)
-		{
-			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
-		}
-	}
-
-	
-	##########
-	#	AUTHOR:			?
-	#	LAST UPDATE:	A while ago
-	#	SUMMARY:		Pulls ALL the jobs in the DB including one's in progress by the user and then passes this as an array back to pulljobs() function. 
-	#	INPUTS:			?	
-	#	OUTPUTS:		?
-	#	STATUS:			?
-    ##########
-	function getAllJobs($id)
-	{
-		$joblist['tasks'] = getJobs();
-		$sql = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE beggar_id = :id";
-		$myquery = "SELECT * FROM CATEGORY c INNER JOIN TASK t ON c.category_id = t.category_id INNER JOIN USER u ON t.beggar_id = u.user_id WHERE chooser_id = :id";
-		try
-		{
-			$db = getConnection();
-			$stmt = $db->prepare($sql);
-			$stmt->bindParam("id", $id);
-			$stmt->execute();
-			$tasksRequested = null;
-			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-			{
-				$taskID = $row['task_id'];
-				$tasksRequested[$taskID] = array('category_id' => (int)$row['category_id'], 'title' => $row['title'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id'], 'chooser_id' => (int)$row['chooser_id'], 'title' => $row['title'], 'description' => $row['description'], 'price' => (int)$row['price'], 'category_id' => (int)$row['category_id'], 'negotiable' => (int)$row['negotiable']);
-			}
-			$joblist['tasksRequested'] = $tasksRequested;
-
-			$stmt2 = $db->prepare($myquery);
-			$stmt2->bindParam("id", $id);
-			$stmt2->execute();
-			$tasksChosen = null;
-			while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC))
-			{
-				$taskID = $row2['task_id'];
-				$tasksChosen[$taskID] = array('category_id' => (int)$row['category_id'], 'title' => $row['title'], 'task_id' => (int)$row['task_id'], 'beggar_id' => (int)$row['beggar_id'], 'chooser_id' => (int)$row['chooser_id'], 'title' => $row['title'], 'description' => $row['description'], 'price' => (int)$row['price'], 'category_id' => (int)$row['category_id'], 'negotiable' => (int)$row['negotiable']);;
-			}
-			$joblist['tasksChosen'] = $tasksChosen;
-
-			$db = null;
-
-			return $joblist;
-		}
-		catch(PDOException $e)
-		{
-			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
-		}
+		echo "PULL DU JAHBS BIG BOIIIII";
 	}
 	
 	##########
