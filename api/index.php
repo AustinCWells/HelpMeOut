@@ -271,7 +271,7 @@
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$category = $row['category'];
-				$tempObject = array('task_id' => $row['task_id'],
+				$tempObject = array('task_id' => (int)$row['task_id'],
 									'first_name' => $row['first_name'],
 									'last_name' => $row['last_name'],
 									'short_description' => $row['short_description'],
