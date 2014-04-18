@@ -74,8 +74,6 @@
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			$db = null;
 			$previous_tokens = $row['tokens'];
-      		echo json_encode($success);
-
       	}
 		catch(PDOException $e) 
 		{
@@ -95,6 +93,8 @@
 			$stmt->bindParam('new_balance', $new_balance, PDO::PARAM_INT);
 			$stmt->execute();
 			$db = null;
+      		echo json_encode($success);
+
       	}
 		catch(PDOException $e) 
 		{
