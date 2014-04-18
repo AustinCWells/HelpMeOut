@@ -7,7 +7,7 @@ window.addEventListener('load', function(event) {
 console.log(userInfo);
 
 //Loading 
-$.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server error
+$.getJSON("api/jobs",function(data){//"api/jobs" gets 500 internal server error
 		console.log("Jobs: ");
 		console.log(data);
 		var tasks = data.tasks;
@@ -64,7 +64,10 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 		});
 
 
-  });
+  })
+.fail(function(){
+   console.log("Failed to load recent jobs.");
+});
 
 
 	function getRandomInt(min, max) {
@@ -121,6 +124,9 @@ $.getJSON("api/recentTasks", myObject, function(data2){
 		}
 	}
 
+})
+.fail(function(){
+   console.log("Failed to load jobs.");
 });
 
 function constructJob(job) {

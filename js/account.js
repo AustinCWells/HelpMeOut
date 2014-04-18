@@ -4,7 +4,7 @@ $(window).ready(function(event) {
 
 
 
-	$("#profilePic").attr("src", "img/lab.png");
+	$("#profilePic").attr("src", "img/fontenot.jpeg");
 	var contactInfoHTML =  "Name: " + userInfo.firstName + ' ' + userInfo.lastName + "<br>Phone #: " + userInfo.phone + "<br>Email: " + userInfo.email;
 	$("#contactInfo").append(contactInfoHTML); 
 
