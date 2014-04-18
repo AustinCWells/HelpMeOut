@@ -71,17 +71,36 @@ Post Job
 		}
 
 Settings
+	
+	Update info
 
-	Send to Server
+		Send to Server
 
-		Object{
-			userID: 13,
-			changeType: "first_name",
-			change: "Chris"
-		}
+			Object{
+				userID: 13,
+				firstName: "Rainman",
+				lastName: "Dunn",
+				number: "954-830-1911",
+				email: "smulablabs@gmail.com"
+			}
 
-	Receive from server
+		Receive from server
 
-		Object {
-			success: true
-		}
+			Object {
+				success: true
+			}
+
+	Update password
+
+		Send to Server
+
+				Object{
+					userID: 13,
+					password: "HackersBeWare"
+				}
+
+			Receive from server
+
+				Object {
+					success: true
+				}

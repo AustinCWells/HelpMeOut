@@ -94,13 +94,24 @@ label span {
 	margin: 5px;
 }
 
-.subContent img {
-    float: left;
+.subContent img {  
     height: 45px;
 }
 
-.subContent h3{
-    float: right;
+#tokenModal {
+	width: 525px;
+}
+
+#currentToken, #tokenInfo {
+	width: 225px;
+}
+
+#currentToken div {
+	text-align: center;
+}
+
+#tokenModal {
+	text-align: center;
 }
 
 
