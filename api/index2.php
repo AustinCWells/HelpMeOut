@@ -113,25 +113,35 @@
 
 	##########
 	# 	AUTHOR:			Spencer
-	#	LAST UPDATED:	4/18/14
+	#	LAST UPDATED:	4/18/14 - Modified to accept parameters from JSON (SK)
 	#	SUMMARY:		Allows a user to upload a custom profile picture; the function modifies is_custom and adds a file path parameter to custom_image_path
-	#	INPUTS:			user_id, file_path
+	#	INPUTS:			JSON(user_id, file_path)
 	#	OUTPUTS:		N/A
 	#	STATUS:			IN PROGRESS
     ##########
-	function changeProfileImage($user_id, $file_path)
+	function changeProfileImage()
 	{
 		$request = \Slim\Slim::getInstance()->request();
+		$image_info = json_decode($request->getBody());
+
+		$success = array('success'=>true);
 
 		$sql = "UPDATE USER SET is_custom = 1, custom_image_path = :file_path WHERE user_id = :user_id";
 		try
 		{
-			$db = getConnection();
-			$stmt= $db->prepare($sql);
-			$stmt->bindParam('user_id', $user_id);
-			$stmt->bindParam('file_path', $file_path);
-			$stmt->execute();
-			$db = null;
+			if(isset($image_info))
+			{
+				$db = getConnection();
+				$stmt= $db->prepare($sql);
+				$stmt->bindParam('user_id', $image_info->user_id);
+				$stmt->bindParam('file_path', $image_info->file_path);
+				$stmt->execute();
+				$db = null;	
+				echo json_encode($success);
+
+			}
+			else
+				echo '{"error":{"text": "Login Info was not set" }}'; 				
       	}
 		catch(PDOException $e) 
 		{
