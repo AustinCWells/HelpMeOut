@@ -128,7 +128,7 @@
 		}
 
 	}
-
+/*
 	##########
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/18
@@ -144,7 +144,7 @@
 
 		if(array_key_exists('first_name', search))
 	}
-
+*/
 	##########
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/10
