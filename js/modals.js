@@ -297,6 +297,7 @@ var login = function(){
 			$("#navMenu li").toggleClass("navVisible");
 			$("#navUserEmail").text(userInfo.email);
 			$("#tokenCount").text(userInfo.tokens);
+			$("#currentToken strong").text(userInfo.tokens)
 		}
 	}
 
