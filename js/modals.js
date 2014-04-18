@@ -307,6 +307,10 @@ var login = function(){
 			$("#tokenCount").text(userInfo.tokens);
 			$("#currentToken strong").text(userInfo.tokens)
 		}
+
+		else {
+			window.location = "./";
+		}
 	}
 
 }
