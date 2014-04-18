@@ -311,14 +311,14 @@
 			}
 
 			$db = null;
-			$tasks['Food Delivery'] = $foodDelivery;
+			$tasks['foodDelivery'] = $foodDelivery;
 			$tasks['Rides'] = $rides;
-			$tasks['Grocery Run'] = $groceryRun;
-			$tasks['Cleaning'] = $cleaning;
-			$tasks['Laundry'] = $laundry;
-			$tasks['Maintenance'] = $maintenance;
-			$tasks['Tech Support'] = $techSupport;
-			$tasks['Other'] = $other;
+			$tasks['groceries'] = $groceryRun;
+			$tasks['cleaning'] = $cleaning;
+			$tasks['laundry'] = $laundry;
+			$tasks['maintenance'] = $maintenance;
+			$tasks['techSupport'] = $techSupport;
+			$tasks['other'] = $other;
 
 			echo json_encode($tasks);
 		}
