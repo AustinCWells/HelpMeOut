@@ -94,7 +94,7 @@ $(window).ready(function(){
 		accountInfo.lastName = $("#accountLName").val();
 		accountInfo.number = $("#accountPhoneNumber").val();
 		accountInfo.email = $("#accountEmail").val();
-		accountInfo.gender = $('[name=accountGender]:checked');
+		accountInfo.gender = $('[name=accountGender]:checked').val();
 		accountInfo.birthDate = $("#accountBirthDate").val();
 		accountInfo.password= $("#accountPassword").val();
 
