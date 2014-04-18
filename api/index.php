@@ -62,7 +62,7 @@
 
 	##########
 	#	AUTHOR:			Charlie
-	#	LAST UPDATE:	4/10
+	#	LAST UPDATE:	4/18 - Added info to return profile image info (SK)
 	#	SUMMARY:		Creates a new user in the database and automagically logs them in to the HelpMeOut site.
 	#	INPUTS:			JSON(email, password, firstName, lastName, phone, birthDate, gender)	
 	#	OUTPUTS:		JSON(userID, firstName, lastName, email)
@@ -132,7 +132,7 @@
 
 	##########
 	#	AUTHOR:			Charlie
-	#	LAST UPDATE:	4/18
+	#	LAST UPDATE:	4/18 - Added info to return profile image info (SK)
 	#	SUMMARY:		updates the user account with new information sent from the user
 	#	INPUTS:			JSON(user_id, firstName, lastName, email, number)	
 	#	OUTPUTS:		JSON(success)
