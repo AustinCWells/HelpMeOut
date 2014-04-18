@@ -48,10 +48,10 @@
 
 	##########
 	# 	AUTHOR:			Spencer
-	#	LAST UPDATED:	4/10/14
+	#	LAST UPDATED:	4/18/14 - Modified to include return statement if successful
 	#	SUMMARY:		Adds tokens to a user's account
 	#	INPUTS:			INT num_tokens, user_id
-	#	OUTPUTS:		N/A
+	#	OUTPUTS:		JSON - SUCESS
 	#	STATUS:			COMPLETE
     ##########
 	function addTokens($user_id, $new_tokens)
