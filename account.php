@@ -7,7 +7,7 @@
 
 <div class="row yellow">
 	<div class="twelve columns">
-		<p>WHO WANT'S THIS DOGE?</p>	
+		<p>WHO WANT'S THIS FONTENOT?</p>	
 	</div>
 </div>
 <br>

@@ -7,7 +7,7 @@ window.addEventListener('load', function(event) {
 console.log(userInfo);
 
 //Loading 
-$.getJSON("api/jobs",function(data){//"api/jobs" gets 500 internal server error
+$.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server error
 		console.log("Jobs: ");
 		console.log(data);
 		var tasks = data.tasks;
