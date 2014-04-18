@@ -214,7 +214,7 @@
 		{
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
-			$stmt->bindParam("id", $id); //un-comment above and use $userID instead of $id here for implementation on site
+			$stmt->bindParam("id", $userID); //un-comment above and use $userID instead of $id here for implementation on site
 			$stmt->execute();
 			$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 			$db = null;
