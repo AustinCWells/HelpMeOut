@@ -179,6 +179,8 @@ var dbRequest = function(url, content, json, type){
 
 			var obj = JSON.parse(data);
 
+
+
 			if(Object.keys(obj)[0] === "error"){
 				if(type === "jobPost")
 					obj.modal = "Job Post Error!";
@@ -193,6 +195,8 @@ var dbRequest = function(url, content, json, type){
 			else{
 	
 				//console.log(obj);
+
+				closeModal();
 
 				if(type === "jobPost"){
 					obj.modal = "Job Post was SuccesFul!";
@@ -215,6 +219,7 @@ var dbRequest = function(url, content, json, type){
 
 				else if(type === "signUp"){
 					$.cookie("userInfo", obj);
+					login();
 					obj.modal = "Sign Up was SuccesFul!";
 					displaySuccess(obj);
 				}
