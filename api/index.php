@@ -8,7 +8,8 @@
 
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
-	$app->get('/useraccount/:id', 'getUserAccount');
+	$app->post('/updateaccount', 'updateAccount');
+	$app->get('/useraccount', 'getUserAccount');
 	$app->get('/jobs',  'pullJobs');
 	$app->get('/jobsImDoing', 'getJobsImDoing');
 	$app->get('/jobsINeedDone', 'getsJobsINeedCompleted');
@@ -130,6 +131,22 @@
 
 	##########
 	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/18
+	#	SUMMARY:		updates the user account with new information sent from the user
+	#	INPUTS:			JSON(user_id, updated info)	
+	#	OUTPUTS:		JSON(userID, email, first_name, last_name, phone, birth_date, gender, times_reported, tokens)
+	#	STATUS:			WORKING
+    ##########
+	function updateAccount()
+	{
+		$request = \Slim\Slim::getInstance()->request();
+		$userInfo = json_decode($request->getBody());
+
+		if(array_key_exists('first_name', search))
+	}
+
+	##########
+	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/10
 	#	SUMMARY:		This function retrieves the current user's account information 
 	#					for when they want to view their personal info
@@ -137,19 +154,19 @@
 	#	OUTPUTS:		JSON(userID, email, first_name, last_name, phone, birth_date, gender, times_reported, tokens)
 	#	STATUS:			WORKING
     ##########
-    function getUserAccount($id)
+    function getUserAccount()
     {
     	//use $id for testing, $userID for actual implementation
     	$sql = "SELECT * FROM USER WHERE user_id = :id";
     	$request = \Slim\Slim::getInstance()->request();
 		$userObj = json_decode($request->getBody());
-		//$userID = (int)$userObj->user_id;
+		$userID = (int)$userObj->user_id;
 
 		try
 		{
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
-			$stmt->bindParam("id", $id); //un-comment above and use $userID instead of $id here for implementation on site
+			$stmt->bindParam("id", $userID); //un-comment above and use $userID instead of $id here for implementation on site
 			$stmt->execute();
 			$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 			$db = null;
