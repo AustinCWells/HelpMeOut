@@ -1,8 +1,10 @@
 .modalOverlay {
 	background-image:url(../img/semi_transparent.png);
+	top: 0px;
+	left: 0px;
 	width: 100%;
 	height: 100%;
-	position: fixed;
+	position: absolute;
 	z-index: 20;
 }
 
@@ -88,7 +90,16 @@ label span {
 
 .modalTitle h1 {
 	float: left;
+	margin: 5px;
+}
 
+.subContent img {
+    float: left;
+    height: 45px;
+}
+
+.subContent h3{
+    float: right;
 }
 
 

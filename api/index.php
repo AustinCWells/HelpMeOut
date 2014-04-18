@@ -41,7 +41,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $loginInfo->email);
-				$stmt->bindParam("password", ($loginInfo->password));
+				$stmt->bindParam("password", md5($loginInfo->password));
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
@@ -49,7 +49,7 @@
 				echo json_encode($response);
 			}
 			else
-				echo '{"error":{"text": "Bad things happend! JSON was not valid" }}'; 		
+				echo '{"error":{"text": "Login Info was not set" }}'; 		
 		} 
 		catch(PDOException $e) 
 		{
@@ -80,7 +80,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $newAccount->email);
-				$stmt->bindParam("password", $newAccount->password);
+				$stmt->bindParam("password", md5($newAccount->password));
 				$stmt->bindParam("first_name", $newAccount->firstName);
 				$stmt->bindParam("last_name", $newAccount->lastName);
 				
@@ -96,7 +96,8 @@
 				$db = null;
 			}
 			else
-				echo '{"error":{"text": "New Account can not be set because not set."}}'; 		} 
+				echo '{"error":{"text": "New Account can not be set because not set."}}';
+		}
 		catch(PDOException $e) 
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
@@ -110,7 +111,7 @@
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
 				$stmt->bindParam("email", $newAccount->email);
-				$stmt->bindParam("password", $newAccount->password/*md5($loginInfo->password)*/);
+				$stmt->bindParam("password", md5($newAccount->password));
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
@@ -165,7 +166,7 @@
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
     }
 
@@ -200,7 +201,7 @@
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 
@@ -233,7 +234,7 @@
 		}
 		catch(PDOException $e)
 		{
-			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 
@@ -282,7 +283,7 @@
 		}
 		catch(PDOException $e)
 		{
-			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			return '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 	
@@ -314,7 +315,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 		
 	}
@@ -332,6 +333,7 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$taskInfo = json_decode($request->getBody());
+		$success = array('success'=>true);
 		$sql = "INSERT INTO TASK (`beggar_id`, `category_id`, `short_description`, `price`, `location`, `time_frame_date`, `time_frame_time`, `notes`) VALUES (:beggar_id, :category_id, :short_description, :price, :location, :time_frame_date, :time_frame_time, :notes)";
 
 		try
@@ -348,10 +350,12 @@
 			$stmt->bindParam("notes", $taskInfo->notes);
 			$stmt->execute();
 			$db = null;
+			echo json_encode($success);
+			
 		}
 		catch(PDOException $e)
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 
@@ -362,7 +366,7 @@
 	#	SUMMARY:		Retrieves all jobs the current user is in the process of doing.
 	#	INPUTS:			JSON(user_id)
 	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
-	#	STATUS:			Working
+	#	STATUS:			Not Working- Object passing Null Values even though Jordan is sending us a "user_id"
     ##########
 	function getJobsImDoing()
 	{
@@ -396,7 +400,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
 	
@@ -407,7 +411,7 @@
 	#	SUMMARY:		Gets all jobs the current user has asked for help with.
 	#	INPUTS:			JSON(user_id)
 	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
-	#	STATUS:			Working
+	#	STATUS:			Not Working- Object passing Null Values even though Jordan is sending us a "user_id"
     ##########
 	function getsJobsINeedCompleted()
 	{
@@ -441,7 +445,7 @@
 	      }  
 		catch(PDOException $e) 
 		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
 	
 	}

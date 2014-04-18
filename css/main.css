@@ -34,6 +34,8 @@ p:nth-of-type(1) {
 	margin-right: auto;
 }
 
+
+
 #stevie{
 	margin-left: 20px;
 	float:left;
@@ -41,6 +43,18 @@ p:nth-of-type(1) {
 
 .postings {
 	padding: 15px;
+}
+
+.jobModal {
+	display:none;
+	/*position: absolute;
+	height:50%;
+	width: 80%;
+	background: white;
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
+	z-index: 20;*/
+
 }
 
 
@@ -64,6 +78,7 @@ color: #555555 !important;
 text-decoration: none !important;
 cursor: pointer !important;
 font-size: 14px !important;
+margin-bottom: 2px;
 }
 
 .ui-widget-header{ 
@@ -352,4 +367,27 @@ div[id*=recentPosting]{
 	background-image:url(../img/semi_transparent.png);
 	position: absolute;
 	z-index: 20;
+}
+
+
+
+
+/*SETTINGS*/
+
+#settings {
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
+	background-color:white;
+	padding:15px;
+}
+
+.settingLabel {
+	text-align: right;
+	margin-top: 4px;
+
+}
+
+.setting {
+	margin-right: 80px;
+	text-align: center;
 }

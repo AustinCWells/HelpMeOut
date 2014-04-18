@@ -12,107 +12,58 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 		console.log(data);
 		var tasks = data.tasks;
 
-		var foodList = new Array();
-		var laundryList = new Array();
-		var groceriesList = new Array();
-		var cleaningList = new Array();
-		var ridesList = new Array();
-		var techSupportList = new Array();
-		var maintenanceList = new Array();
-		var otherList = new Array();
-
 		for(var i=0;i<tasks.length;i++) {
-			if(tasks[i].category_id === 1)
-				foodList.push(tasks[i]);
-			if(tasks[i].category_id === 2)
-				laundryList.push(tasks[i]);
-			if(tasks[i].category_id === 3)
-				groceriesList.push(tasks[i]);
-			if(tasks[i].category_id === 4)
-				cleaningList.push(tasks[i]);
-			if(tasks[i].category_id === 5)
-				ridesList.push(tasks[i]);
-			if(tasks[i].category_id === 6)
-				techSupportList.push(tasks[i]);
-			if(tasks[i].category_id === 7)
-				maintenanceList.push(tasks[i]);
-			if(tasks[i].category_id === 8)
-				otherList.push(tasks[i]);
-
+			constructJob(tasks[i]);
 
 		}
 
-		for(var i=0;i<foodList.length;i++) {
-			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="foodPosting' + foodList[i].task_id + '"><p class="jobDesc">' + foodList[i].short_description + '</p><p class="jobPrice">' + "$" + foodList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/food.png' + '"></div></div>';
-			$('#food').append(html);
-		}
 		if($('#food').html() === '') {
 			$('#food').append(' 	Sorry, there are currently no jobs available in this category.');
 		}
 
-		for(var i=0;i<laundryList.length;i++) {
-			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="Posting' + laundryList[i].task_id + '"><p class="jobDesc">' + laundryList[i].short_description + '</p><p class="jobPrice">' + "$" + laundryList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/laundry2.png' + '"></div></div>';
-			$('#laundry').append(html);
-		}
 		if($('#laundry').html() === '') {
 			$('#laundry').append('Sorry, there are currently no jobs available in this category.');
 		}
 
-		for(var i=0;i<groceriesList.length;i++) {
-			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="groceriesPosting' + groceriesList[i].task_id + '"><p class="jobDesc">' + groceriesList[i].short_description + '</p><p class="jobPrice">' + "$" + groceriesList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/groceries.png' + '"></div></div>';
-			$('#groceries').append(html);
-		}
 		if($('#groceries').html() === '') {
 			$('#groceries').append('Sorry, there are currently no jobs available in this category.');
 		}
 
-		for(var i=0;i<cleaningList.length;i++) {
-			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="cleaningPosting' + cleaningList[i].task_id + '"><p class="jobDesc">' + cleaningList[i].short_description + '</p><p class="jobPrice">' + "$" + cleaningList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></div>';
-			$('#cleaning').append(html);
-		}
 		if($('#cleaning').html() === '') {
 			$('#cleaning').append('Sorry, there are currently no jobs available in this category.');
 		}
 
-		for(var i=0;i<ridesList.length;i++) {
-			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="ridesPosting' + ridesList[i].task_id + '"><p class="jobDesc">' + ridesList[i].short_description + '</p><p class="jobPrice">' + "$" + ridesList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/rides.png' + '"></div></div>';
-			$('#rides').append(html);
-		}
 		if($('#rides').html() === '') {
 			$('#rides').append('Sorry, there are currently no jobs available in this category.');
 		}
 
-		for(var i=0;i<techSupportList.length;i++) {
-			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="techSupportPosting' + techSupportList[i].task_id + '"><p class="jobDesc">' + techSupportList[i].short_description + '</p><p class="jobPrice">' + "$" + techSupportList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></div>';
-			$('#techSupport').append(html);
-		}
 		if($('#techSupport').html() === '') {
 			$('#techSupport').append('Sorry, there are currently no jobs available in this category.');
 		}
 
-		for(var i=0;i<maintenanceList.length;i++) {
-			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="maintenancePosting' + maintenanceList[i].task_id + '"><p class="jobDesc">' + maintenanceList[i].short_description + '</p><p class="jobPrice">' + "$" + maintenanceList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/maintenance.png' + '"></div></div>';
-			$('#maintenance').append(html);
-		}
 		if($('#maintenance').html() === '') {
 			$('#maintenance').append('Sorry, there are currently no jobs available in this category.');
 		}
 
-		for(var i=0;i<otherList.length;i++) {
-			//{ "task_id":1 , "beggar_id":1 , "chooser_id":NULL , "short_description":"I NEED TO MAKE BIG ORDAH" , "notes":"blablabla1" , "price":5 , "category_id":1 , "negotiable":0 , "is_complete":0 },
-			var html = '<div class="jobPost" id="otherPosting' + otherList[i].task_id + '"><p class="jobDesc">' + otherList[i].short_description + '</p><p class="jobPrice">' + "$" + otherList[i].price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/other.png' + '"></div></div>';
-			$('#other').append(html);
-		}
 		if($('#other').html() === '') {
 			$('#other').append('Sorry, there are currently no jobs available in this category.');
 		}
+
+
+
+		$(".currentJob").hover(
+		function(){
+			var height = $(this).children(".jobImage").height();
+			var width = $(this).children(".jobImage").width();
+			$(this).children(".overlay").height(height);
+			$(this).children(".overlay").width(width);
+		},
+		function(){
+			$(this).children(".overlay").height(0);
+			$(this).children(".overlay").width(0);
+		});
+
+
   });
 
 
@@ -137,75 +88,8 @@ $.getJSON("js/test.json",function(data){//"api/jobs" gets 500 internal server er
 	else if (random === 6)
 		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS');
 
-/*
-	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<div class="jobPost" id="foodPosting' + i+ '"><p class="jobDesc">' + "I AM HUNGRY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/food.png' + '"></div></div>';
-		$('#food').append(html);
-	}
-	if($('#food').html() === '') {
-		$('#food').append('Sorry, there are currently no jobs available in this category.');
-	}
 
-	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<div class="jobPost" id="laundryPosting' + i + '"><p class="jobDesc">' + "WASH MY SOCKS" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/laundry2.png' + '"></div></div>';
-		$('#laundry').append(html);
-	}
-	if($('#laundry').html() === '') {
-		$('#laundry').append('Sorry, there are currently no jobs available in this category.');
-	}
-
-	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<div class="jobPost" id="groceriesPosting' + i + '"><p class="jobDesc">' + "KROGER RUN 4 ME" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/groceries.png' + '"></div></div>';
-		$('#groceries').append(html);
-	}
-	if($('#groceries').html() === '') {
-		$('#groceries').append('Sorry, there are currently no jobs available in this category.');
-	}
-
-	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<div class="jobPost" id="cleaningPosting' + i + '"><p class="jobDesc">' + "MY BATHROOM STAAANKS" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/cleaning.png' + '"></div></div>';
-		$('#cleaning').append(html);
-	}
-	if($('#cleaning').html() === '') {
-		$('#cleaning').append('Sorry, there are currently no jobs available in this category.');
-	}
-
-	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<div class="jobPost" id="ridesPosting' + i + '"><p class="jobDesc">' + "DUDE WHERE'S MY CAR" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/rides.png' + '"></div></div>';
-		$('#rides').append(html);
-	}
-	if($('#rides').html() === '') {
-		$('#rides').append('Sorry, there are currently no jobs available in this category.');
-	}
-
-	var titles = ['','I DON\'T KNOW HOW TO COMPUTER', 'NEW WIFI ROUTER, NEED HELP SETTING UP','MYSQL DATABASE HELP!!!!','I CAN\'T CONNECT TO THE INTERNET', 'HELP ME SET UP A FACEBOOK ACCOUNT', 'TROUBLES WITH JAVASCRIPT']
-
-	for(var i=1;i<7;i++) {
-		var html = '<div class="jobPost" id="techSupportPosting' + i + '"><p class="jobDesc">' + titles[i] + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/techsupport.png' + '"></div></div>';
-		$('#techSupport').append(html);
-	}
-	if($('#rides').html() === '') {
-		$('#techSupport').append('Sorry, there are currently no jobs available in this category.');
-	}
-
-	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<div class="jobPost" id="maintenancePosting' + i + '"><p class="jobDesc">' + "FIX MY COTTON CANDY MAKER" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/maintenance.png' + '"></div></div>';
-		$('#maintenance').append(html);
-	}
-	if($('#rides').html() === '') {
-		$('#maintenance').append('Sorry, there are currently no jobs available in this category.');
-	}
-
-	for(var i=1;i<getRandomInt(2,13);i++) {
-		var html = '<div class="jobPost" id="otherPosting' + i + '"><p class="jobDesc">' + "NEED A CLOWN FOR A BIRTHDAY PARTY" + '</p><p class="jobPrice">' + "$" + getRandomInt(2,9) + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/other.png' + '"></div></div>';
-		$('#other').append(html);
-	}
-	if($('#rides').html() === '') {
-		$('#other').append('Sorry, there are currently no jobs available in this category.');
-	}
-
-*/
-var myObject = new Object();
+var myObject = {};
 myObject.num_tasks = 8;
 
 console.log(myObject);
@@ -214,33 +98,116 @@ $.getJSON("api/recentTasks", myObject, function(data2){
 	console.log("Recent Jobs: ");
 	console.log(data2);
 
-	var recentTasks = data2.tasks;
+	var check = Object.keys(data2)[0];
 
-	for(var i=1;i<recentTasks.length;i++) {
-		console.log("yo");
-		var html = '<div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + recentTasks.short_description + '</p><p class="jobPrice">' + "$" + recentTasks.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></div>';
-		$('#recentJobs').append(html);
-	}
-	if($('#recentJobs').html() === '') {
-		$('#recentJobs').append('Sorry, there are no recent jobs.<br><img id="stevie" src="img/jobs.png">');
+	console.log(check);
+
+	if(check === "error")
+		console.log(data2.error.text);
+
+	else{
+
+		var recentTasks = data2.tasks;
+
+		console.log(recentTasks);
+
+		for(var i=1;i<recentTasks.length;i++) {
+			console.log("yo");
+			var html = '<div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + recentTasks.short_description + '</p><p class="jobPrice">' + "$" + recentTasks.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></div>';
+			$('#recentJobs').append(html);
+		}
+		if($('#recentJobs').html() === '') {
+			$('#recentJobs').append('Sorry, there are no recent jobs.<br><img id="stevie" src="img/jobs.png">');
+		}
 	}
 
 });
 
-	$(".currentJob").hover(
-		function(){
-			var height = $(this).children(".jobImage").height();
-			var width = $(this).children(".jobImage").width();
-			$(this).children(".overlay").height(height);
-			$(this).children(".overlay").width(width);
-		},
-		function(){
-			$(this).children(".overlay").height(0);
-			$(this).children(".overlay").width(0);
+function constructJob(job) {
+	var category = "";
+	var image = "";
+	if(job.category_id === 1) {
+		category = "food";
+		image = "img/food.png";
+	}
+	else if(job.category_id === 2) {
+		category = "laundry";
+		image = "img/laundry2.png";
+	}
+	else if(job.category_id === 3) {
+		category = "groceries";
+		image = "img/groceries.png";
+	}
+	else if(job.category_id === 4) {
+		category = "cleaning";
+		image = "img/cleaning.png";
+	}
+	else if(job.category_id === 5) {
+		category = "rides";
+		image = "img/rides.png";
+	}
+	else if(job.category_id === 6) {
+		category = "techSupport";
+		image = "img/techsupport.png";
+	}
+	else if(job.category_id === 7) {
+		category = "maintenance";
+		image = "img/maintenance.png";
+	}
+	else if(job.category_id === 8) {
+		category = "other";
+		image = "img/other.png";
+	}
+	
+	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
+	$('#' + category).append(html);
+
+	var hidden = '<div class="jobModal modal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column" src="' + image + '"><div class="nine column">' + job.notes + '</div></div><div class="row"><div class="twelve column">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
+	$("#contentArea").append(hidden);
+
+	var posting = "#" + category + "Posting" + job.task_id;
+	$(posting).click(
+	function(){
+		var pop = "#" + category + "Modal" + $(this).data("num");
+		//openModal($(pop));
+		var windowWidth = $(window).width() / 2;
+		var windowHeight = $(window).height() / 2;
+		//console.log(windowWidth);
+		$(pop).show();
+		$(pop).addClass("modalSelected");
+		//var jobWidth = 12 + ($(pop + " form").width() / 2);
+		//var jobHeight = 12 + ($(pop + " form").height() / 2);
+		var jobWidth = 200;
+		var jobHeight = 150;
+		var left = windowWidth - jobWidth;
+		var top = windowHeight - jobHeight;
+		$(pop).css({"left": left, "top": top});
+
+		$("#modalOverlay").addClass("modalOverlay");
+		$(".modalOverlay").height($(document).height());
+
+		$(".requestJob").click(function(){
+			$(".modal").hide();
+			$(".modalOverlay").height(0);
+			$("#modalOverlay").removeClass("modalOverlay");
+			//TODO: send job request
 		});
 
+		$(".closeButton").click(function(){
+			$(".modal").hide();
+			$(".modalOverlay").height(0);
+			$("#modalOverlay").removeClass("modalOverlay");
+			//TODO: send job request
+		});
 
+	});
+}
 
+$("#modalOverlay").click(function(){
+	$(".modal").hide();
+	$(".modalOverlay").height(0);
+	$("#modalOverlay").removeClass("modalOverlay");
+	});
 
 
 

@@ -3,10 +3,71 @@
 //accountForm --- api/newaccount
 //jobPostForm --- api/postatask
 
+var checkJobPostValidity = function(){
 
+	var description = $("#jobDescription");
+	if($(description).val() == ""){
+		//console.log("Setting");
+		description[0].setCustomValidity("Job Description is required!");
+	}
+	else{
+		//console.log("Unsetting");
+		description[0].setCustomValidity('');
+	}
+
+	var category = $("#jobCategory");
+
+	if($(category).val() == "0"){
+		//console.log("Setting");
+		category[0].setCustomValidity("Job Category is required!");
+	}
+	else{
+		//console.log("Unsetting");
+		category[0].setCustomValidity('');
+	}
+
+	var price = $("#jobPrice");
+
+	if(parseInt($(price).val(), 10) < 2){
+		//console.log("Setting");
+		price[0].setCustomValidity("Correct price is required!");
+	}
+	else{
+		//console.log("Unsetting");
+		price[0].setCustomValidity('');
+	}
+
+	var location = $("#jobLocation");
+
+	if($(location).val() == ""){
+		//console.log("Setting");
+		location[0].setCustomValidity("Job Location is required!");
+	}
+	else{
+		location[0].setCustomValidity('');
+	}
+	var deadlineDate = $("#jobDeadlineDate");
+	var deadlineTime = $("#jobDeadlineTime");
+
+}
+
+var checkSignUpValidity = function(){
+
+	var password = $("#accountPassword");
+	var confirmPassword = $("#accountConfirmPassword");
+
+	if($(password).val() !== $(confirmPassword).val()){
+		//console.log("Setting");
+		confirmPassword[0].setCustomValidity("Passwords do not match!");
+	}
+	else{
+		//console.log("Unsetting");
+		confirmPassword[0].setCustomValidity('');
+	}
+
+}
 
 $(window).ready(function(){
-
 
 	$("#loginForm").submit(function(event){
 
@@ -14,18 +75,15 @@ $(window).ready(function(){
 
 		var user = {};
 		var isLog = false;
-		//console.log($.coookie("userInfo"));
 
-		user.email = $(this).children("#loginEmail").val();
-		user.password = $(this).children("#loginPassword").val();
-		//var password = CryptoJS.MD5($(this).children("#loginPassword").val());
-		//user.password = password.toString(CryptoJS.enc.Hex);
-		console.log(user);
+		user.email = $("#loginEmail").val();
+		user.password = $("#loginPassword").val();
 
 		dbRequest('api/login', 'application', user, 'login');
 		
 	});
 
+	$(".accountForm").change(checkSignUpValidity);
 	$(".accountForm").submit(function(event){
 
 		event.preventDefault();
@@ -38,33 +96,34 @@ $(window).ready(function(){
 		accountInfo.email = $("#accountEmail").val();
 		accountInfo.gender = parseInt($('[name=accountGender]:checked').val(), 10);
 		accountInfo.birthDate = $("#accountBirthDate").val();
-		var password = $("#accountPassword").val();
-		var confirmPassword = $("#accountConfirmPassword").val();
-		console.log(password + "\n" + confirmPassword);
-		console.log(accountInfo);
+		accountInfo.password= $("#accountPassword").val();
 
-		if(password !== confirmPassword){
-			alert("Passwords do not match");
-		}
-			
-		else{
-
-			//password = CryptoJS.MD5(password);
-			//accountInfo.password = password.toString(CryptoJS.enc.Hex);
-			accountInfo.password = password;
-			dbRequest('api/newaccount', 'application/json', accountInfo, 'signUp');
-
-		}
+		dbRequest('api/newaccount', 'application/json', accountInfo, 'signUp');
 
 	});
+
+	$("#accountPhoneNumber").keyup(function(event) {
+
+		this.value = this.value.replace(/[^\d]/g, "");
+		var length = this.value.length;
+		if(this.value.length === 3)
+			this.value = this.value.replace(/(\d{3})/, "$1-");
+		else if (length <= 6)
+			this.value = this.value.replace(/(\d{3})(\d{1,3})/, "$1-$2");
+		else
+			this.value = this.value.replace(/(\d{3})(\d{3})(\d{1,44})/, "$1-$2-$3");
+
+	});
+
+	$(".jobPostForm").change(checkJobPostValidity);
 
 	$(".jobPostForm").submit(function(event){
 
 		event.preventDefault();
 		console.log("Posting a Job")
 
-		userInfo = $.cookie("userInfo");
-		console.log(userInfo);
+		//checkJobPostValidity();
+
 		var jobPostInfo = {};
 		jobPostInfo.userID = userInfo.userID;
 		jobPostInfo.category = parseInt($("#jobCategory").val(), 10);
@@ -118,28 +177,48 @@ var dbRequest = function(url, content, json, type){
 
 			console.log(data);
 
-			if(data[0] !== '{'){
-				alert("Database Error");
-				console.log(data);
+			var obj = JSON.parse(data);
+
+			if(Object.keys(obj)[0] === "error"){
+				if(type === "jobPost")
+					obj.modal = "Job Post Error!";
+				else if(type === "login")
+					obj.modal = "Login Error!";
+				else if(type === "signUp")
+					obj.modal = "Sign Up Error!";
+
+				displayError(obj);
 			}
 
 			else{
-				var obj = JSON.parse(data);
-				console.log(obj);
+	
+				//console.log(obj);
 
 				if(type === "jobPost"){
-					if(obj.success)
-						console.log("Job was Posted");
-					else
-						console.log("Job failed to Post");
+					obj.modal = "Job Post was SuccesFul!";
+					displaySuccess(obj);
 				}
 
-				else if(type === "login" || type === "signUp"){
+				else if(type === "login") {
+
+					if(obj.userID){
+						$.cookie("userInfo", obj);
+						login();
+					}
+
+					else{
+						obj.modal = "Login in Failure!";
+						displayError(obj);
+					}
+
+				}
+
+				else if(type === "signUp"){
 					$.cookie("userInfo", obj);
-					login();
+					obj.modal = "Sign Up was SuccesFul!";
+					displaySuccess(obj);
 				}
 
-				closeModal();
 			}
 
 		},
@@ -160,15 +239,30 @@ var closeModal = function(){
 	
 	//$(".modalSelected").removeClass("modalSelected");
 	$(".modal").hide();
+	$(".modalOverlay").height(0);
 	$("#modalOverlay").removeClass("modalOverlay");
 
 }
+
+$(window).resize(function(){
+
+	var windowWidth = $(window).width() / 2;
+	var windowHeight = $(window).height() / 2;
+	var formWidth = 12 + ($(".modalSelected").width() / 2);
+	var formHeight = 12 + ($(".modalSelected").height() / 2);
+	var left = windowWidth - formWidth;
+	var top = windowHeight - formHeight;
+	$(".modalSelected").css({"left": left, "top": top});
+
+	$(".modalOverlay").height($(document).height());
+
+});
 
 var openModal = function(id){
 
 	var windowWidth = $(window).width() / 2;
 	var windowHeight = $(window).height() / 2;
-	console.log(windowWidth);
+	//console.log(windowWidth);
 	$(id).show();
 	$(id).addClass("modalSelected");
 	var formWidth = 12 + ($(id + " form").width() / 2);
@@ -176,7 +270,9 @@ var openModal = function(id){
 	var left = windowWidth - formWidth;
 	var top = windowHeight - formHeight;
 	$(id).css({"left": left, "top": top});
+
 	$("#modalOverlay").addClass("modalOverlay");
+	$(".modalOverlay").height($(document).height());
 
 	if(id === "#jobPostModal"){
 		var currentTime = getCurrentTimeAndDate();
@@ -193,7 +289,7 @@ var login = function(){
 
 	userInfo = $.cookie("userInfo");
 
-	console.log(userInfo);
+	//console.log(userInfo);
 
 	if(userInfo !== undefined){
 
@@ -201,7 +297,6 @@ var login = function(){
 			$("#navMenu li").toggleClass("navVisible");
 			$("#navUserEmail").text(userInfo.email);
 			$("#tokenCount").text(userInfo.tokens);
-			console.log("here");
 		}
 	}
 
@@ -247,11 +342,34 @@ var getCurrentTimeAndDate = function(){
 var setJobPostDimensions = function(){
 
 	var widthText = $("#jobDescription").width();
-	console.log(widthText);
+	//console.log(widthText);
 	$(".jobPostForm input").width(widthText);
 	$(".jobPostForm select").width(widthText);
 	$(".jobPostForm textarea").width(widthText);
 
+}
+
+var displayError = function(info){
+
+	openModal("#errorModal");
+	$(".errorTitle").text(info.modal);
+	if(info.modal === "Login in Failure!"){
+		$("#errorInfo").text("Email and password do not match!");
+		//console.log($("#errorInfo"));
+	}
+	else
+		$("#errorInfo").text(info.error.text);
+
+	console.log(info);
+
+}
+
+var displaySuccess = function(info){
+
+	openModal("#successModal");
+	$(".successTitle").text(info.modal);
+	//$(".successTitle p").text(info.error.text);
+	console.log(info);
 }
 
 

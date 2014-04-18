@@ -4,18 +4,21 @@
 
 	<div class = "modalTitle yellow">
 
-		<span>Post a Job</span>
-		<button type = "button" class = "closeButton">
-			<span>X</span>
-		</button>
-		
+			<h1>Post a Job</h1>
+
+			<button type = "button" class = "closeButton">
+				<span>X</span>
+			</button>
+
+			<div class = "clear"></div>
+
 	</div>
 
 		<form class = "jobPostForm">
 
 			<div class = "modalColumnLeft">
 			
-				<select name="category" id="jobCategory" >
+				<select name="category" id="jobCategory" title = "Select One" required>
 					<option value="0" selected = "1">Job Category</option>
 					<option value="1">Food</option>
 					<option value="2">Rides</option>
@@ -31,21 +34,21 @@
 				<label for="jobPrice">Price 
 					<span>(Dollar Amounts Only)</span>
 				</label>
-				<input type="number" id = "jobPrice" name="quantity" value = "2.00" min="2.00" step = "1.00">
+				<input type="number" id = "jobPrice" name="quantity" value = "2.00" min="2.00" step = "1.00" title = "Dollar Amounts Only greater than 2">
 
 				<label for="jobDeadlineDate">Deadline Date</label>
-				<input  id="jobDeadlineDate" type="date" name="deadlineDate">
+				<input  id="jobDeadlineDate" type="date" name="deadlineDate" text="Current day or Later">
 
 				<label for="jobDeadlineTime">Deadline Time</label>
-				<input id="jobDeadlineTime" type="time" name="deadlineTime">
+				<input id="jobDeadlineTime" type="time" name="deadlineTime" title="At least 30 minutes from current time">
 
 			</div>
 
 			<div class = "modalColumnRight">
 
-				<input type="text" id = "jobDescription" placeholder="SHORT DESCRIPTION" required>
+				<input type="text" id = "jobDescription" placeholder="SHORT DESCRIPTION" title = "Ex. Burgers and Fries" required>
 				<br>
-				<input type="text" id = "jobLocation" placeholder="MEETING LOCATION" required>
+				<input type="text" id = "jobLocation" placeholder="MEETING LOCATION" title = "Ex. Fondy Science" required>
 				<br>
 				<textarea name="jobNotes" id="jobNotes" cols="22" rows="4" placeholder="NOTES"></textarea>
 
@@ -64,11 +67,14 @@
 
 	<div class = "modalTitle yellow">
 
-		<span>Sign Up</span>
-		<button type = "button" class = "closeButton">
-			<span>X</span>
-		</button>
-		
+			<h1>Sign up</h1>
+
+			<button type = "button" class = "closeButton">
+				<span>X</span>
+			</button>
+
+			<div class = "clear"></div>
+
 	</div>
 	<form class= "accountForm">
 
@@ -79,12 +85,12 @@
 
 		<div class = "modalRow">
 		  	<input id="accountEmail" type="email" name="email" placeholder="EMAIL" required pattern="\w+@\w+.\w+" title="not a valid email address">
-		  	<input id="accountPhoneNumber" type="text" name="phonenumber" placeholder="PHONE NUMBER" required>
+		  	<input id="accountPhoneNumber" type="tel" name="phonenumber" placeholder="PHONE NUMBER" title = "Format XXX-XXX-XXXX" maxlength = "12" required>
 		</div>
 
 		<div class = "modalRow">
 		  	<input id="accountPassword" type="password" name="password" placeholder="PASSWORD" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
-		  	<input id="accountConfirmPassword" type="password" name="password" placeholder="CONFIRM PASSWORD" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
+		  	<input id="accountConfirmPassword" type="password" name="password" placeholder="CONFIRM PASSWORD" required pattern=".{8,}" title="Password must be greater than or equal to 8 characters">
 	  	</div>
 
 	  	<div class = "modalRow">
@@ -108,7 +114,6 @@
 
 	<div class = "modalTitle yellow">
 
-			<img src="img/tokenOne.png">
 			<h1>Tokens</h1>
 
 			<button type = "button" class = "closeButton">
@@ -118,23 +123,75 @@
 			<div class = "clear"></div>
 
 	</div>
-	<form class= "tokenForm">
 
-		<div class = "modalRow">
-		  	<h2>Currrent Token</h2>
-		  	<p>You currently have tokens.</p>
-		</div>	  
+
+	<div class = "modalColumnLeft">
+		<h2>Currrent Tokens</h2>
+		<div class = "subContent">
+			<img src="img/tokenOne.png">
+			<h3>10</h3>
+		</div>
+	</div>	  
 
 	  	
-	  	<div class = "modalRow">
-		  	<h2>Tokens</h2>
-		  	<p></p>
+  	<div class = "modalColumnRight">
+		<h2>Tokens</h2>
+		<div>
+			<p></p>
 		</div>
+	</div>
+
+	<form class= "tokenForm">
 
 	 </form>
 
 </div>
 
+<div class = "modal" id="successModal">
+
+	<div class = "modalTitle yellow">
+
+			<h1>Success</h1>
+
+			<button type = "button" class = "closeButton">
+				<span>X</span>
+			</button>
+
+			<div class = "clear"></div>
+
+	</div>
+
+	<div>
+		<h2 class = "succesTitle"</h2>
+		<div class = "subContent">
+			<p id="successInfo"></p>
+		</div>
+	</div>	   
+
+</div>
+
+<div class = "modal" id="errorModal">
+
+	<div class = "modalTitle yellow">
+
+			<h1>Error</h1>
+
+			<button type = "button" class = "closeButton">
+				<span>X</span>
+			</button>
+
+			<div class = "clear"></div>
+
+	</div>
+
+	<div>
+		<h2 class = "errorTitle"></h2>
+		<div class = "subContent">
+			<p id="errorInfo"></p>
+		</div>
+	</div>	   
+
+</div>
 
 
 

@@ -17,7 +17,7 @@
 	</div>
 </div>
 <br>
-<div class="row">
+<div class="row" id="contentArea">
 	<div class="eight columns">
 		<div id="tabs">
 			<ul>
