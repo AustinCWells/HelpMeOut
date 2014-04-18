@@ -309,7 +309,16 @@
 			$stmt= $db->query($sql);
 			$userinfo = $stmt->fetch(PDO::FETCH_ASSOC); //I'm not 100% sure about this line but I'm using login as a guide for this
 			$db = null;
-			$jobInfo = array('task_id' => (int)$jobInfo ['task_id'], 'beggar_id' => $jobInfo['beggar_id'], 'chooser_id' => $jobInfo['chooser_id'], 'short_description' => $jobInfo['short_description'], 'notes' => $jobInfo['notes'], 'price' => $jobInfo['price'], 'negotiable' => $jobInfo['negotiable'], 'bid_id' => $jobInfo['bid_id'], 'time_frame_date' => $jobInfo['time_frame_date'], 'time_frame_time' => $jobInfo['time_frame_time']);
+			$jobInfo = array('task_id' => (int)$jobInfo ['task_id'], 
+							 'beggar_id' => $jobInfo['beggar_id'], 
+							 'chooser_id' => $jobInfo['chooser_id'], 
+							 'short_description' => $jobInfo['short_description'],
+							 'notes' => $jobInfo['notes'],
+							 'price' => $jobInfo['price'], 
+							 'negotiable' => $jobInfo['negotiable'],
+							 'bid_id' => $jobInfo['bid_id'], 
+							 'time_frame_date' => $jobInfo['time_frame_date'], 
+							 'time_frame_time' => $jobInfo['time_frame_time']);
 		   echo json_encode($jobInfo);
 		   
 	      }  
