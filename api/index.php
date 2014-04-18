@@ -33,7 +33,7 @@
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$loginInfo = json_decode($request->getBody());
-		$sql = "SELECT user_id, first_name, last_name, email, tokens FROM USER WHERE email = :email AND password = :password";
+		$sql = "SELECT user_id, first_name, last_name, email, tokens, phone FROM USER WHERE email = :email AND password = :password";
 		try 
 		{
 			if(isset($loginInfo))
@@ -45,7 +45,7 @@
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
-				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'tokens' => $userinfo['tokens']);
+				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'tokens' => $userinfo['tokens'], 'phone' => $userinfo['phone']);
 				echo json_encode($response);
 			}
 			else
