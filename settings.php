@@ -15,7 +15,7 @@
 	<div class="three columns"></div>
 	<div class="six columns">
 		<div id="settings">
-			<form>
+			<form action="account.php">
 				<div class="row">
 					<div class="settingLabel five column">First Name:</div>
 					<input id="firstName" class="setting five column">
