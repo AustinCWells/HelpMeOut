@@ -250,7 +250,82 @@
     ##########
 	function pullTasks()
 	{
-		echo "PULL DU JAHBS BIG BOIIIII";
+		$sql = "SELECT title AS category, t1.* FROM CATEGORY INNER JOIN (SELECT USER.first_name, USER.last_name, TASK.task_id, TASK.category_id, TASK.short_description, TASK.notes, TASK.price, TASK.time_frame_date, TASK.time_frame_time, TASK.location FROM USER INNER JOIN TASK ON USER.user_id = TASK.beggar_id AND is_complete = 0) AS t1 ON CATEGORY.category_id = t1.category_id";
+		#	Define arrays for all job categories:
+		$foodDelivery = array();
+		$rides = array();
+		$groceryRun = array();
+		$cleaning = array();
+		$laundry = array();
+		$maintenance = array();
+		$techSupport = array();
+		$other = array();
+		#	Define array for main jobs array:
+		$tasks;
+
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->query($sql);
+
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+			{
+				$category = $row['category'];
+				$tempObject = array('task_id' => $row['task_id'],
+									'first_name' => $row['first_name'],
+									'last_name' => $row['last_name'],
+									'short_description' => $row['short_description'],
+									'notes' => $row['notes'],
+									'price' => (int)$row['price'],
+									'time_frame_date' => $row['time_frame_date'],
+									'time_frame_time' => $row['time_frame_time'],
+									'location' => $row['location']);
+
+				switch($category)
+				{
+					case "Food Delivery":
+						array_push($foodDelivery, $tempObject);
+						break;
+					case "Rides":
+						array_push($rides, $tempObject);
+						break;
+					case "Grocery Run":
+						array_push($groceryRun, $tempObject);
+						break;
+					case "Cleaning":
+						array_push($cleaning, $tempObject);
+						break;
+					case "Laundry":
+						array_push($laundry, $tempObject);
+						break;
+					case "Maintenance":
+						array_push($maintenance, $tempObject);
+						break;
+					case "Tech Support":
+						array_push($techSupport, $tempObject);
+						break;
+					case "Other":
+						array_push($other, $tempObject);
+						break;
+				}
+			}
+
+			$db = null;
+			$tasks['Food Delivery'] = $foodDelivery;
+			$tasks['Rides'] = $rides;
+			$tasks['Grocery Run'] = $groceryRun;
+			$tasks['Cleaning'] = $cleaning;
+			$tasks['Laundry'] = $laundry;
+			$tasks['Maintenance'] = $maintenance;
+			$tasks['Tech Support'] = $techSupport;
+			$tasks['Other'] = $other;
+
+			echo json_encode($tasks);
+		}
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+		}
 	}
 	
 	##########
