@@ -155,40 +155,46 @@
 	#	AUTHOR:			Spencer
 	#	LAST UPDATE:	4/18/14
 	#	SUMMARY:		
-	#	INPUTS:			JSON(user_id)
-	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
-	#	STATUS:			Not Working- Object passing Null Values even though Jordan is sending us a "user_id"
+	#	INPUTS:			
+	#	OUTPUTS:		
+	#	STATUS:			IN PROGRESS
     ##########
-	function getOffers()
+	function getOffers($user_id)
 	{
 	$request = \Slim\Slim::getInstance()->request();
-	$job_info = json_decode($request->getBody());
-	
+	#$user_info = json_decode($request->getBody());
+	$user_id = intval($user_id);
 	#LEFT OFF HERE
-	$sql= "SELECT * FROM TASK WHERE beggar_id = :id AND is_complete = 0";
+	$sql= "SELECT OFFERS.offer_id, TASK.task_id, TASK.beggar_id, TASK.price, TASK.category_id, TASK.short_description, TASK.time_frame_time, TASK.time_frame_date, TASK.date_posted, USER.first_name AS ChooserFirst, USER.last_name AS ChooserLast, USER_DATA.speed AS ChooserSpeed, USER_DATA.reliability AS ChooserReliability, USER.is_custom, USER.custom_image_path FROM TASK INNER JOIN OFFERS ON OFFERS.task_id = TASK.task_id INNER JOIN USER ON OFFERS.chooser_id = USER.user_id INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE TASK.beggar_id = :user_id AND OFFERS.is_hidden = 0";
 	try
 	      {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam("id", $userInfo->user_id);
+			#$stmt->bindParam("user_id", $user_info->user_id);
+			$stmt->bindParam("user_id", $user_id, PDO::PARAM_INT);
 			$stmt->execute();
-			$jobsINeedDone = null;
+			$offers = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
 			{
-				$taskID = $row['task_id'];
-				$jobsINeedDone[$taskID] = array('beggar_id' => (int)$row['beggar_id'], 
-											  'chooser_id' => (int)$row['chooser_id'], 
-											  'short_description' => $row['short_description'], 
-											  'notes' => $row['notes'], 
+				$offer_id = $row['offer_id'];
+				$offers[$offer_id] = array('task_id' => (int)$row['task_id'], 
+											  'beggar_id' => (int)$row['beggar_id'], 
 											  'price' => (int)$row['price'], 
-											  'category_id' => (int)$row['category_id'], 
-											  'negotiable' => (int)$row['negotiable'], 
-											  'time_frame_date' => $row['time_frame_date'], 
+											  'category_id' => $row['category_id'], 
+											  'short_description' => $row['short_description'], 
 											  'time_frame_time' => $row['time_frame_time'], 
-											  'location' => $row['location']);
+											  'time_frame_date' => $row['time_frame_date'], 
+											  'date_posted' => $row['date_posted'], 
+											  'ChooserFirst' => $row['ChooserFirst'],
+											  'ChooserLast' => $row['ChooserLast'],
+									  		  'ChooserSpeed' => $row['ChooserSpeed'],
+									  		  'ChooserReliability' => $row['ChooserReliability'],
+  									  		  'is_custom' => $row['is_custom'],
+  									  		  'custom_image_path' => $row['custom_image_path'],
+											  );
 			}
 			$db = null;
-		   	echo json_encode($jobsINeedDone);
+		   	echo json_encode($offers);
 		   
 	      }  
 		catch(PDOException $e) 
