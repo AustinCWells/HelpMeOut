@@ -207,14 +207,33 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$offer_info = json_decode($request->getBody());
-		$sql = "INSERT INTO OFFERS (`task_id`, `chooser_id`) VALUES (:task_id, :user_id)";
+		
+		$sql = "SELECT is_hidden FROM USER WHERE user_id = :user_id";
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("user_id", $offer_info->user_id);
+			$stmt->execute();
+			$is_hidden = $stmt->fetch(PDO::FETCH_OBJ);
+			$db = null;
 
+			//echo '{"success": true}';
+		}
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+		}
+
+		$sql = "INSERT INTO OFFERS (`task_id`, `chooser_id`) VALUES (:task_id, :user_id, :is_hidden)";
 		try
 		{
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("task_id", $offer_info->task_id);
 			$stmt->bindParam("user_id", $offer_info->user_id);
+			$stmt->bindParam("is_hidden", $is_hidden);
+
 			$stmt->execute();
 			$db = null;
 
