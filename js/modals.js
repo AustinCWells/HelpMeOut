@@ -382,7 +382,6 @@ var displaySuccess = function(info){
 
 	openModal("#successModal");
 	$(".successTitle").text(info.modal);
-	//$(".successTitle p").text(info.error.text);
 	console.log(info);
 }
 

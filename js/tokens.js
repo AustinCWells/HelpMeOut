@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 				else{
 
-					obj.modal = "Sign Up was SuccesFul!";
+					obj.modal = "Your token purchase was successful!";
 					displaySuccess(obj);
 					userInfo.tokens = current + tokens.new_tokens;
 					console.log(userInfo);
