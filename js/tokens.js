@@ -33,6 +33,8 @@ $(document).ready(function(){
 
 					obj.modal = "Your token purchase was successful!";
 					displaySuccess(obj);
+					userInfo.tokens = update;
+					$.cookie("userInfo", userInfo);
 					$("#tokenCount").text(update);
 					$("#currentToken strong").text(userInfo.tokens);
 
