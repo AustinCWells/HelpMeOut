@@ -19,25 +19,25 @@
 			$stmt= $db->prepare($sql);
 			$stmt->bindParam('num_tasks', $numTasks, PDO::PARAM_INT);
 			$stmt->execute();
-			$recentTasks = null;
+			$recentTasks = array();
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				$taskID = $row['task_id'];
-				$recentTasks[$taskID] = array('beggar_id' => (int)$row['beggar_id'], 
-											  'chooser_id' => (int)$row['chooser_id'], 
-											  'short_description' => $row['short_description'], 
-											  'notes' => $row['notes'], 
-											  'price' => (int)$row['price'], 
-											  'category_id' => (int)$row['category_id'], 
-											  'negotiable' => (int)$row['negotiable'], 
-											  'time_frame_date' => $row['time_frame_date'], 
-											  'time_frame_time' => $row['time_frame_time'], 
-											  'location' => $row['location'],
-											  'date_posted' => $row['date_posted']);
+				$tempObject  = array('task_id' => (int)$row['task_id'],
+									'beggar_id' => (int)$row['beggar_id'], 
+						   		    'chooser_id' => (int)$row['chooser_id'], 
+									'short_description' => $row['short_description'], 
+								 	'notes' => $row['notes'], 
+									'price' => (int)$row['price'], 
+									'category_id' => (int)$row['category_id'], 
+									'negotiable' => (int)$row['negotiable'], 
+									'time_frame_date' => $row['time_frame_date'], 
+									'time_frame_time' => $row['time_frame_time'], 
+									'location' => $row['location'],
+									'date_posted' => $row['date_posted']);
+				array_push($recentTasks, $tempObject)
 			}
 			$db = null;
-			$tasks['recentTasks'] = $recentTasks;
-		   	echo json_encode($tasks);
+		   	echo json_encode($recentTasks);
 	      	
       	}
 	catch(PDOException $e) 
