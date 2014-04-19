@@ -3,6 +3,7 @@
 	##########
 	# 	AUTHOR:			Spencer
 	#	LAST UPDATED:	4/18/14 - Modified return values to include additional information
+	#					4/18/14 - Fixed bugs (INT casting and other)(CA)
 	#	SUMMARY:		Pulls a specified number of active jobs based on recency (most recent tasks are rated highest)
 	#	INPUTS:			INT num_tasks
 	#	OUTPUTS:		JSON(task_id, beggar_id, first_name (beggar), last_name (beggar), short_description, notes, price, category_id, time_frame_date, time_frame_date, location, date_posted)
@@ -153,11 +154,11 @@
 
 	##########
 	#	AUTHOR:			Spencer
-	#	LAST UPDATE:	4/18/14
+	#	LAST UPDATE:	4/18/14 - Fixed array to actually include offer_id (CA)
 	#	SUMMARY:		
 	#	INPUTS:			
 	#	OUTPUTS:		
-	#	STATUS:			IN PROGRESS
+	#	STATUS:			COMPLETE
     ##########
 	function getOffers($user_id)
 	{
@@ -203,6 +204,14 @@
 		}
 	}
 
+	##########
+	#	AUTHOR:			Charlie
+	#	LAST UPDATE:	4/18/14 - Added functionality to set is_hidden field (SK/CA)
+	#	SUMMARY:		
+	#	INPUTS:			
+	#	OUTPUTS:		
+	#	STATUS:			COMPLETE
+    ##########
 	function makeOffer()
 	{
 		$request = \Slim\Slim::getInstance()->request();
