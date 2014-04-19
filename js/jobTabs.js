@@ -95,7 +95,7 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 
   })
 .fail(function(){
-   console.log("Failed to load jobs.");
+	$('#other').append('Sorry, there are currently no recent jobs available.');
 });
 
 
@@ -128,12 +128,12 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 
 var num_tasks = 8;
 
+
 $.getJSON("api/recentTasks/"+num_tasks, function(data2){
 	console.log("Recent Jobs: ");
 	console.log(data2);
 
 	for(var i=0;i<data2.length;i++) {
-		console.log("yo");
 		constructRecentJob(data2[i]);
 	}
 })
@@ -267,7 +267,7 @@ function constructRecentJob(job) {
 	else if(job.category_id === 7) {
 		category = "techSupport";
 		categoryFormatted = "techSupport";
-		image = "img/techSupport.png";
+		image = "img/techsupport.png";
 	}
 	else if(job.category_id === 8) {
 		category = "other";
