@@ -16,8 +16,8 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 			constructJob(tasks["foodDelivery"][i], 1);
 		}
 
-		for(var i=0;i<tasks["laundry"].length;i++) {
-			constructJob(tasks["laundry"][i], 2);
+		for(var i=0;i<tasks["rides"].length;i++) {
+			constructJob(tasks["rides"][i], 2);
 		}
 
 		for(var i=0;i<tasks["groceries"].length;i++) {
@@ -28,17 +28,18 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 			constructJob(tasks["cleaning"][i], 4);
 		}
 
-		for(var i=0;i<tasks["rides"].length;i++) {
-			constructJob(tasks["rides"][i], 5);
-		}
-
-		for(var i=0;i<tasks["techSupport"].length;i++) {
-			constructJob(tasks["techSupport"][i], 6);
+		for(var i=0;i<tasks["laundry"].length;i++) {
+			constructJob(tasks["laundry"][i], 5);
 		}
 
 		for(var i=0;i<tasks["maintenance"].length;i++) {
-			constructJob(tasks["maintenance"][i], 7);
+			constructJob(tasks["maintenance"][i], 6);
 		}
+
+		for(var i=0;i<tasks["techSupport"].length;i++) {
+			constructJob(tasks["techSupport"][i], 7);
+		}
+
 
 		for(var i=0;i<tasks["other"].length;i++) {
 			constructJob(tasks["other"][i], 8);
@@ -150,9 +151,9 @@ function constructJob(job, categoryId) {
 		image = "img/food.png";
 	}
 	else if(categoryId === 2) {
-		category = "laundry";
-		categoryFormatted = "Laundry";
-		image = "img/laundry2.png";
+		category = "rides";
+		categoryFormatted = "Rides";
+		image = "img/rides.png";
 	}
 	else if(categoryId === 3) {
 		category = "groceries";
@@ -165,19 +166,19 @@ function constructJob(job, categoryId) {
 		image = "img/cleaning.png";
 	}
 	else if(categoryId === 5) {
-		category = "rides";
-		categoryFormatted = "Rides";
-		image = "img/rides.png";
+		category = "laundry";
+		categoryFormatted = "Laundry";
+		image = "img/laundry2.png";
 	}
 	else if(categoryId === 6) {
-		category = "techSupport";
-		categoryFormatted = "Tech Support";
-		image = "img/techsupport.png";
-	}
-	else if(categoryId === 7) {
 		category = "maintenance";
 		categoryFormatted = "Maintenance";
 		image = "img/maintenance.png";
+	}
+	else if(categoryId === 7) {
+		category = "techSupport";
+		categoryFormatted = "Tech Support";
+		image = "img/techsupport.png";
 	}
 	else if(categoryId === 8) {
 		category = "other";
