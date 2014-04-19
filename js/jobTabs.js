@@ -215,7 +215,21 @@ function constructJob(job, categoryId) {
 			$(".modal").hide();
 			$(".modalOverlay").height(0);
 			$("#modalOverlay").removeClass("modalOverlay");
-			//TODO: send job request
+
+			var json = { "task_id" : job.task_id,
+						"user_id" : userInfo.userID};
+			console.log(json);
+
+			$.ajax({
+	        type: "Post",
+	        url: "api/makeOffer",
+	        data: json, //Data to POST to the server
+	        content: 'application/json',
+	        success: function () { 
+	        	console.log("success big boiii");
+	        }
+
+	       });
 		});
 
 		$(".closeButton").click(function(){
