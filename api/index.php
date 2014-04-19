@@ -18,6 +18,7 @@
 	$app->get('/recentTasks/:numTasks', 'recentTasks');
 	$app->post('/addTokens', 'addTokens');
 	$app->get('/changeProfileImage', 'changeProfileImage');
+	$app->get('/getOffers/:user_id', 'getOffers');
 
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
