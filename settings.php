@@ -18,23 +18,19 @@
 			<form action="account.php">
 				<div class="row">
 					<div class="settingLabel five column">First Name:</div>
-					<input id="firstName" class="setting five column">
+					<input id="firstName" class="setting five column" maxlength = "40">
 				</div>
 				<div class="row">
 					<div class="settingLabel five column">Last Name:</div>
-					<input id="lastName" class="setting five column">
+					<input id="lastName" class="setting five column" maxlength = "40">
 				</div>
 				<div class="row">
 					<div class="settingLabel five column">Phone #:</div>
-					<input id="phoneNum" class="setting five column">
-				</div>
-				<div class="row">
-					<div class="settingLabel five column">New Password:</div>
-					<input type="password" id="newPassword" class="setting five column">
+					<input id="phoneNum" class="setting five column" maxlength = "12">
 				</div>
 				<div class="row">
 					<div class="settingLabel five column">Confirm Password:</div>
-					<input type="password" id="confirmPassword" class="setting five column">
+					<input type="password" id="confirmPassword" class="setting five column" maxlength = "32">
 				</div>
 				<input type="submit" value="Save Changes"><!--Does nothing-->
 			</form>
@@ -44,6 +40,19 @@
 				<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
 				Upload New Profile Pic: <br><input name="uploadedfile" type="file" /><br /><br>
 				<input type="submit" value="Upload File" />
+			</form>
+			<br>
+			<br>
+			<form action="account.php">
+				<div class="row">
+					<div class="settingLabel five column">New Password:</div>
+					<input type="password" id="newPassword" class="setting five column" maxlength = "32">
+				</div>
+				<div class="row">
+					<div class="settingLabel five column">Confirm Password:</div>
+					<input type="password" id="confirmPassword" class="setting five column" maxlength = "32">
+				</div>
+				<input type="submit" value="Save Changes"><!--Does nothing-->
 			</form>
 		</div>
 	</div>

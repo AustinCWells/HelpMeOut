@@ -120,12 +120,14 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS');
 
 
-var myObject = {};
-myObject.num_tasks = 8;
+// var myObject = {};
+// myObject.num_tasks = 8;
 
-console.log(myObject);
+// console.log(myObject);
 
-$.getJSON("api/recentTasks", myObject, function(data2){
+var num_tasks = 8;
+
+$.getJSON("api/recentTasks/"+num_tasks, function(data2){
 	console.log("Recent Jobs: ");
 	console.log(data2);
 
@@ -205,7 +207,7 @@ function constructJob(job, categoryId) {
 	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
 	$('#' + category).append(html);
 
-	var hidden = '<div class="jobModal modal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column jobIcon" src="' + image + '"><div class="eight column jobModalNotes">Notes: ' + job.notes + '<br>You\'ll make: $' + job.price + '<br>Category: ' + categoryFormatted + '</div></div><div class="row"><div class="twelve column jobContact">Name: ' + job.first_name + ' ' + job.last_name + '<br>Location: ' + job.location + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + job.time_frame_time + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
+	var hidden = '<div class="jobModal modal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column jobIcon" src="' + image + '"><div class="eight column jobModalNotes">Notes: ' + job.notes + '<br>You\'ll make: $' + job.price + '<br>Category: ' + categoryFormatted + '</div></div><div class="row"><div class="twelve column jobContact">Name: ' + job.first_name + ' ' + job.last_name + '<br>Location: ' + job.location + '<br><br><span class="smallText">End Time:</span> ' + job.time_frame_time + ' on ' + job.time_frame_date + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
 	$("#contentArea").append(hidden);
 
 	var posting = "#" + category + "Posting" + job.task_id;
