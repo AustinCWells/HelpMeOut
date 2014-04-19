@@ -8,7 +8,7 @@ $(document).ready(function(){
 		tokens.user_id = userInfo.userID;
 		var current = userInfo.tokens;
 		var update = tokens.new_tokens + current;
-		console.log(update);
+		//console.log(update);
 
 
 			$.ajax({
@@ -33,8 +33,8 @@ $(document).ready(function(){
 
 					obj.modal = "Your token purchase was successful!";
 					displaySuccess(obj);
-					userInfo.tokens = current + tokens.new_tokens;
-					console.log(userInfo);
+					$("#tokenCount").text(update);
+					$("#currentToken strong").text(userInfo.tokens);
 
 				}
 

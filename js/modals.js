@@ -293,6 +293,7 @@ var openModal = function(id){
 	}
 }
 
+
 var login = function(){
 
 	userInfo = $.cookie("userInfo");
