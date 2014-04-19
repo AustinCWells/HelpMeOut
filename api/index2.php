@@ -207,7 +207,7 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$offer_info = json_decode($request->getBody());
-		$sql = "INSERT INTO OFFERS (`task_id`, `chooser_id`) VALUES (:task_id, :user_id";
+		$sql = "INSERT INTO OFFERS (`task_id`, `chooser_id`) VALUES (:task_id, :user_id)";
 
 		try
 		{
@@ -218,7 +218,7 @@
 			$stmt->execute();
 			$db = null;
 
-			echo '{"success": true}';
+			//echo '{"success": true}';
 		}
 		catch(PDOException $e) 
 		{

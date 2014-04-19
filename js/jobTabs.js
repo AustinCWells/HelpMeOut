@@ -216,14 +216,15 @@ function constructJob(job, categoryId) {
 			$(".modalOverlay").height(0);
 			$("#modalOverlay").removeClass("modalOverlay");
 
-			var json = { "task_id" : job.task_id,
-						"user_id" : userInfo.userID};
-			console.log(json);
+			var offer = {};
+			offer.task_id = job.task_id;
+			offer.user_id = userInfo.userID;
+			console.log(offer);
 
 			$.ajax({
-	        type: "Post",
+	        type: "POST",
 	        url: "api/makeOffer",
-	        data: json, //Data to POST to the server
+	        data: JSON.stringify(offer), //Data to POST to the server
 	        content: 'application/json',
 	        success: function () { 
 	        	console.log("success big boiii");
