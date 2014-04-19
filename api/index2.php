@@ -10,12 +10,14 @@
     ##########
 	function recentTasks($numTasks)
 	{
+	$numTasks = (int)$numTasks;
+	$request = \Slim\Slim::getInstance()->request();
 	$sql = "SELECT * FROM TASK GROUP BY task_id ORDER BY MAX(date_posted) LIMIT :num_tasks";
 	try
 		{
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam('num_tasks', (int)$numTasks);
+			$stmt->bindParam('num_tasks', $numTasks, PDO::PARAM_INT);
 			$stmt->execute();
 			$recentTasks = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
@@ -42,7 +44,7 @@
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
 	}
-
+	
 
 	##########
 	# 	AUTHOR:			Spencer
