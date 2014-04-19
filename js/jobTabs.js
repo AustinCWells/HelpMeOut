@@ -131,29 +131,10 @@ $.getJSON("api/recentTasks/"+num_tasks, function(data2){
 	console.log("Recent Jobs: ");
 	console.log(data2);
 
-	var check = Object.keys(data2)[0];
-
-	console.log(check);
-
-	if(check === "error")
-		console.log(data2.error.text);
-
-	else{
-
-		var recentTasks = data2.tasks;
-
-		console.log(recentTasks);
-
-		for(var i=1;i<recentTasks.length;i++) {
-			console.log("yo");
-			var html = '<div class="jobPost" id="recentPosting' + i + '"><p class="jobDesc">' + recentTasks.short_description + '</p><p class="jobPrice">' + "$" + recentTasks.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + 'img/jobs.png' + '" width="150px" height="150px"></div></div>';
-			$('#recentJobs').append(html);
-		}
-		if($('#recentJobs').html() === '') {
-			$('#recentJobs').append('Sorry, there are no recent jobs.<br><img id="stevie" src="img/jobs.png">');
-		}
+	for(var i=0;i<data2.length;i++) {
+		console.log("yo");
+		constructRecentJob(data2[i]);
 	}
-
 })
 .fail(function(){
    console.log("Failed to load recent jobs.");
@@ -206,6 +187,95 @@ function constructJob(job, categoryId) {
 	
 	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
 	$('#' + category).append(html);
+
+	var hidden = '<div class="jobModal modal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column jobIcon" src="' + image + '"><div class="eight column jobModalNotes">Notes: ' + job.notes + '<br>You\'ll make: $' + job.price + '<br>Category: ' + categoryFormatted + '</div></div><div class="row"><div class="twelve column jobContact">Name: ' + job.first_name + ' ' + job.last_name + '<br>Location: ' + job.location + '<br><br><span class="smallText">End Time:</span> ' + job.time_frame_time + ' on ' + job.time_frame_date + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
+	$("#contentArea").append(hidden);
+
+	var posting = "#" + category + "Posting" + job.task_id;
+	$(posting).click(
+	function(){
+		var pop = "#" + category + "Modal" + $(this).data("num");
+		//openModal($(pop));
+		var windowWidth = $(window).width() / 2;
+		var windowHeight = $(window).height() / 2;
+		//console.log(windowWidth);
+		$(pop).show();
+		$(pop).addClass("modalSelected");
+		//var jobWidth = 12 + ($(pop + " form").width() / 2);
+		//var jobHeight = 12 + ($(pop + " form").height() / 2);
+		var jobWidth = 200;
+		var jobHeight = 150;
+		var left = windowWidth - jobWidth;
+		var top = windowHeight - jobHeight;
+		$(pop).css({"left": left, "top": top});
+
+		$("#modalOverlay").addClass("modalOverlay");
+		$(".modalOverlay").height($(document).height());
+
+		$(".requestJob").click(function(){
+			$(".modal").hide();
+			$(".modalOverlay").height(0);
+			$("#modalOverlay").removeClass("modalOverlay");
+			//TODO: send job request
+		});
+
+		$(".closeButton").click(function(){
+			$(".modal").hide();
+			$(".modalOverlay").height(0);
+			$("#modalOverlay").removeClass("modalOverlay");
+			//TODO: send job request
+		});
+
+	});
+}
+
+function constructRecentJob(job) {
+	var category = "";
+	var categoryFormatted = "";
+	var image = "";
+	if(job.category_id === 1) {
+		category = "food";
+		categoryFormatted = "Food";
+		image = "img/food.png";
+	}
+	else if(job.category_id === 2) {
+		category = "laundry";
+		categoryFormatted = "Laundry";
+		image = "img/laundry2.png";
+	}
+	else if(job.category_id === 3) {
+		category = "groceries";
+		categoryFormatted = "Groceries";
+		image = "img/groceries.png";
+	}
+	else if(job.category_id === 4) {
+		category = "cleaning";
+		categoryFormatted = "Cleaning";
+		image = "img/cleaning.png";
+	}
+	else if(job.category_id === 5) {
+		category = "rides";
+		categoryFormatted = "Rides";
+		image = "img/rides.png";
+	}
+	else if(job.category_id === 6) {
+		category = "techSupport";
+		categoryFormatted = "Tech Support";
+		image = "img/techsupport.png";
+	}
+	else if(job.category_id === 7) {
+		category = "maintenance";
+		categoryFormatted = "Maintenance";
+		image = "img/maintenance.png";
+	}
+	else if(job.category_id === 8) {
+		category = "other";
+		categoryFormatted = "Other";
+		image = "img/other.png";
+	}
+	
+	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
+	$('#recentJobs').append(html);
 
 	var hidden = '<div class="jobModal modal" id="' + category + 'Modal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column jobIcon" src="' + image + '"><div class="eight column jobModalNotes">Notes: ' + job.notes + '<br>You\'ll make: $' + job.price + '<br>Category: ' + categoryFormatted + '</div></div><div class="row"><div class="twelve column jobContact">Name: ' + job.first_name + ' ' + job.last_name + '<br>Location: ' + job.location + '<br><br><span class="smallText">End Time:</span> ' + job.time_frame_time + ' on ' + job.time_frame_date + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
 	$("#contentArea").append(hidden);
