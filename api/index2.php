@@ -2,17 +2,17 @@
 
 	##########
 	# 	AUTHOR:			Spencer
-	#	LAST UPDATED:	4/10/14
+	#	LAST UPDATED:	4/18/14 - Modified return values to include additional information
 	#	SUMMARY:		Pulls a specified number of active jobs based on recency (most recent tasks are rated highest)
 	#	INPUTS:			INT num_tasks
-	#	OUTPUTS:		JSON(task_id, beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_date, location, date_posted)
+	#	OUTPUTS:		JSON(task_id, beggar_id, first_name (beggar), last_name (beggar), short_description, notes, price, category_id, time_frame_date, time_frame_date, location, date_posted)
 	#	STATUS:			COMPLETE
     ##########
 	function recentTasks($numTasks)
 	{
-	$numTasks = (int)$numTasks;
+	$numTasks = intval($numTasks);
 	$request = \Slim\Slim::getInstance()->request();
-	$sql = "SELECT * FROM TASK GROUP BY task_id ORDER BY MAX(date_posted) LIMIT :num_tasks";
+	$sql = "SELECT T.task_id, T.beggar_id, USER.first_name, USER.last_name, T.short_description, T.notes, T.price, T.category_id, T.time_frame_time, T.time_frame_date, T.location, T.date_posted FROM TASK T INNER JOIN USER ON T.beggar_id = USER.user_id GROUP BY task_id ORDER BY MAX(date_posted) desc LIMIT :num_tasks";
 	try
 		{
 			$db = getConnection();
@@ -24,14 +24,14 @@
 			{
 				$tempObject  = array('task_id' => (int)$row['task_id'],
 									'beggar_id' => (int)$row['beggar_id'], 
-						   		    'chooser_id' => (int)$row['chooser_id'], 
+									'first_name' => $row['first_name'], 
+									'last_name' => $row['last_name'], 
 									'short_description' => $row['short_description'], 
 								 	'notes' => $row['notes'], 
 									'price' => (int)$row['price'], 
 									'category_id' => (int)$row['category_id'], 
-									'negotiable' => (int)$row['negotiable'], 
-									'time_frame_date' => $row['time_frame_date'], 
 									'time_frame_time' => $row['time_frame_time'], 
+									'time_frame_date' => $row['time_frame_date'], 
 									'location' => $row['location'],
 									'date_posted' => $row['date_posted']);
 				array_push($recentTasks, $tempObject);
