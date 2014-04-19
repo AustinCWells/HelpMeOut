@@ -19,6 +19,7 @@
 	$app->post('/addTokens', 'addTokens');
 	$app->get('/changeProfileImage', 'changeProfileImage');
 	$app->get('/getOffers/:user_id', 'getOffers');
+	$app->post('/makeOffer', 'makeOffer');
 
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
