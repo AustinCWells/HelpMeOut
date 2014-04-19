@@ -239,9 +239,9 @@ function constructRecentJob(job) {
 		image = "img/food.png";
 	}
 	else if(job.category_id === 2) {
-		category = "laundry";
-		categoryFormatted = "Laundry";
-		image = "img/laundry2.png";
+		category = "rides";
+		categoryFormatted = "Rides";
+		image = "img/rides.png";
 	}
 	else if(job.category_id === 3) {
 		category = "groceries";
@@ -254,19 +254,19 @@ function constructRecentJob(job) {
 		image = "img/cleaning.png";
 	}
 	else if(job.category_id === 5) {
-		category = "rides";
-		categoryFormatted = "Rides";
-		image = "img/rides.png";
+		category = "laundry";
+		categoryFormatted = "Laundry";
+		image = "img/laundry2.png";
 	}
 	else if(job.category_id === 6) {
-		category = "techSupport";
-		categoryFormatted = "Tech Support";
-		image = "img/techsupport.png";
-	}
-	else if(job.category_id === 7) {
 		category = "maintenance";
 		categoryFormatted = "Maintenance";
 		image = "img/maintenance.png";
+	}
+	else if(job.category_id === 7) {
+		category = "techSupport";
+		categoryFormatted = "techSupport";
+		image = "img/techSupport.png";
 	}
 	else if(job.category_id === 8) {
 		category = "other";
