@@ -36,7 +36,8 @@
 											  'date_posted' => $row['date_posted']);
 			}
 			$db = null;
-		   	echo json_encode($recentTasks);
+			$tasks['recentTasks'] = $recentTasks;
+		   	echo json_encode($tasks);
 	      	
       	}
 	catch(PDOException $e) 
