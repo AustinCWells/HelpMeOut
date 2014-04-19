@@ -34,7 +34,7 @@
 									'time_frame_time' => $row['time_frame_time'], 
 									'location' => $row['location'],
 									'date_posted' => $row['date_posted']);
-				array_push($recentTasks, $tempObject)
+				array_push($recentTasks, $tempObject);
 			}
 			$db = null;
 		   	echo json_encode($recentTasks);
