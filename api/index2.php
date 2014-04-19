@@ -203,4 +203,27 @@
 		}
 	}
 
+	function makeOffer()
+	{
+		$request = \Slim\Slim::getInstance()->request();
+		$offer_info = json_decode($request->getBody());
+		$sql = "INSERT INTO OFFERS (`task_id`, `chooser_id`) VALUES (:task_id, :user_id";
+
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("task_id", $offer_info->task_id);
+			$stmt->bindParam("user_id", $offer_info->user_id);
+			$stmt->execute();
+			$db = null;
+
+			echo '{"success": true}';
+		}
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+		}
+	}
+
 ?>
