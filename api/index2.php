@@ -173,11 +173,11 @@
 			#$stmt->bindParam("user_id", $user_info->user_id);
 			$stmt->bindParam("user_id", $user_id, PDO::PARAM_INT);
 			$stmt->execute();
-			$offers = null;
+			$offers = array();
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
 			{
-				$offer_id = $row['offer_id'];
-				$offers[$offer_id] = array('task_id' => (int)$row['task_id'], 
+				$tempObject = array('offer_id' =>(int)$row['offer_id'],
+											  'task_id' => (int)$row['task_id'], 
 											  'beggar_id' => (int)$row['beggar_id'], 
 											  'price' => (int)$row['price'], 
 											  'category_id' => $row['category_id'], 
@@ -190,8 +190,8 @@
 									  		  'ChooserSpeed' => $row['ChooserSpeed'],
 									  		  'ChooserReliability' => $row['ChooserReliability'],
   									  		  'is_custom' => $row['is_custom'],
-  									  		  'custom_image_path' => $row['custom_image_path'],
-											  );
+  									  		  'custom_image_path' => $row['custom_image_path']);
+				array_push($offers, $tempObject);
 			}
 			$db = null;
 		   	echo json_encode($offers);
