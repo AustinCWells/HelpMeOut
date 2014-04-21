@@ -3,12 +3,15 @@ jQuery( "#tabs" ).tabs();
 });
 
 var sorry = 'Sorry, there are currently no jobs available in this category.';
+var num_tasks = 8;
+
 $(window).ready(function(event) {
 
-console.log(userInfo);
+	console.log(userInfo);
 
-//Loading 
-$.getJSON("api/tasks",function(data){
+	//Loading 
+	$.getJSON("api/tasks",function(data){
+
 		console.log("Jobs: ");
 		console.log(data);
 		
@@ -27,94 +30,21 @@ $.getJSON("api/tasks",function(data){
 
 		}
 
-		/*var tasks = data;
+	});
 
-		for(var i=0;i<tasks["foodDelivery"].length;i++) {
-			constructJob(tasks["foodDelivery"][i], 1);
+
+	$.getJSON("api/recentTasks/"+num_tasks, function(data2){
+		console.log("Recent Jobs: ");
+		console.log(data2);
+
+		for(var i=0;i<data2.length;i++) {
+			constructRecentJob(data2[i]);
 		}
 
-		for(var i=0;i<tasks["rides"].length;i++) {
-			constructJob(tasks["rides"][i], 2);
-		}
-
-		for(var i=0;i<tasks["groceries"].length;i++) {
-			constructJob(tasks["groceries"][i], 3);
-		}
-
-		for(var i=0;i<tasks["cleaning"].length;i++) {
-			constructJob(tasks["cleaning"][i], 4);
-		}
-
-		for(var i=0;i<tasks["laundry"].length;i++) {
-			constructJob(tasks["laundry"][i], 5);
-		}
-
-		for(var i=0;i<tasks["maintenance"].length;i++) {
-			constructJob(tasks["maintenance"][i], 6);
-		}
-
-		for(var i=0;i<tasks["techSupport"].length;i++) {
-			constructJob(tasks["techSupport"][i], 7);
-		}
-
-
-		for(var i=0;i<tasks["other"].length;i++) {
-			constructJob(tasks["other"][i], 8);
-		}
-
-		if($('#food').html() === '') {
-			$('#food').append(' 	Sorry, there are currently no jobs available in this category.');
-		}
-
-		if($('#laundry').html() === '') {
-			$('#laundry').append('Sorry, there are currently no jobs available in this category.');
-		}
-
-		if($('#groceries').html() === '') {
-			$('#groceries').append('Sorry, there are currently no jobs available in this category.');
-		}
-
-		if($('#cleaning').html() === '') {
-			$('#cleaning').append('Sorry, there are currently no jobs available in this category.');
-		}
-
-		if($('#rides').html() === '') {
-			$('#rides').append('Sorry, there are currently no jobs available in this category.');
-		}
-
-		if($('#techSupport').html() === '') {
-			$('#techSupport').append('Sorry, there are currently no jobs available in this category.');
-		}
-
-		if($('#maintenance').html() === '') {
-			$('#maintenance').append('Sorry, there are currently no jobs available in this category.');
-		}
-
-		if($('#other').html() === '') {
-			$('#other').append('Sorry, there are currently no jobs available in this category.');
-		}
-		*/
-});
-
-
-
-
-
-// var myObject = {};
-// myObject.num_tasks = 8;
-
-// console.log(myObject);
-
-var num_tasks = 8;
-
-
-$.getJSON("api/recentTasks/"+num_tasks, function(data2){
-	console.log("Recent Jobs: ");
-	console.log(data2);
-
-	for(var i=0;i<data2.length;i++) {
-		constructRecentJob(data2[i]);
-	}
+	})
+	.fail(function(){
+	   console.log("Failed to load recent jobs.");
+	});
 
 	$(".currentJob").hover(
 		function(){
@@ -126,13 +56,17 @@ $.getJSON("api/recentTasks/"+num_tasks, function(data2){
 		function(){
 			$(this).children(".overlay").height(0);
 			$(this).children(".overlay").width(0);
-		});
-})
-.fail(function(){
-   console.log("Failed to load recent jobs.");
+	});
+
+	$("#modalOverlay").click(function(){
+		$(".modal").hide();
+		$(".modalOverlay").height(0);
+		$("#modalOverlay").removeClass("modalOverlay");
+	});
+
 });
 
-function constructJob(job, categoryName) {
+var constructJob = function(job, categoryName) {
 	var category = "";
 	var categoryFormatted = "";
 	var image = "";
@@ -191,47 +125,7 @@ function constructJob(job, categoryName) {
 			return;
 
 	}
-	/*
-	if(categoryId === 1) {
-		category = "food";
-		categoryFormatted = "Food";
-		image = "img/food.png";
-	}
-	lse if(categoryId === 2) {
-		category = "rides";
-		categoryFormatted = "Rides";
-		image = "img/rides.png";
-	}
-	else if(categoryId === 3) {
-		category = "groceries";
-		categoryFormatted = "Groceries";
-		image = "img/groceries.png";
-	}
-	else if(categoryId === 4) {
-		category = "cleaning";
-		categoryFormatted = "Cleaning";
-		image = "img/cleaning.png";
-	}
-	else if(categoryId === 5) {
-		category = "laundry";
-		categoryFormatted = "Laundry";
-		image = "img/laundry2.png";
-	}
-	else if(categoryId === 6) {
-		category = "maintenance";
-		categoryFormatted = "Maintenance";
-		image = "img/maintenance.png";
-	}
-	else if(categoryId === 7) {
-		category = "techSupport";
-		categoryFormatted = "Tech Support";
-		image = "img/techsupport.png";
-	}
-	else if(categoryId === 8) {
-		category = "other";
-		categoryFormatted = "Other";
-		image = "img/other.png";
-	}*/
+
 	
 	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
 	$('#' + category).append(html);
@@ -380,13 +274,3 @@ function constructRecentJob(job) {
 
 	});
 }
-
-$("#modalOverlay").click(function(){
-	$(".modal").hide();
-	$(".modalOverlay").height(0);
-	$("#modalOverlay").removeClass("modalOverlay");
-	});
-
-
-
-});
