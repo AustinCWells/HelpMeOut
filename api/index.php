@@ -11,7 +11,7 @@
 	$app->post('/updateaccount', 'updateAccount');
 	$app->post('/updatepassword', 'updatePassword');
 	$app->post('/useraccount', 'getUserAccount');
-	$app->get('/tasks',  'pullTasks');
+	$app->get('/tasks', 'pullTasks');
 	$app->post('/tasksImDoing', 'getTasksImDoing');
 	$app->post('/tasksINeedDone', 'getTasksINeedCompleted');
 	$app->post('/postatask', 'postTask');
@@ -20,6 +20,7 @@
 	$app->get('/changeProfileImage', 'changeProfileImage');
 	$app->get('/getOffers/:user_id', 'getOffers');
 	$app->post('/makeOffer', 'makeOffer');
+	$app->get('/getMyTasksAndPendingOffers/:user_id', 'getMyTasksAndPendingOffers');
 
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
