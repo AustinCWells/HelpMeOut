@@ -10,7 +10,17 @@ console.log(userInfo);
 $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 		console.log("Jobs: ");
 		console.log(data);
-		var tasks = data;
+		
+		for(var keys in data){
+
+			for( var info in data[keys]){
+				//console.log(keys);
+				constructJob(data[keys][info], keys);
+			}
+
+		}
+
+		/*var tasks = data;
 
 		for(var i=0;i<tasks["foodDelivery"].length;i++) {
 			constructJob(tasks["foodDelivery"][i], 1);
@@ -43,7 +53,7 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 
 		for(var i=0;i<tasks["other"].length;i++) {
 			constructJob(tasks["other"][i], 8);
-		}
+		}*/
 
 
 		if($('#food').html() === '') {
@@ -79,7 +89,7 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 		}
 
 
-  })
+  	})
 .fail(function(){
 	$('#other').append('Sorry, there are currently no recent jobs available.');
 });
@@ -139,50 +149,105 @@ $.getJSON("api/recentTasks/"+num_tasks, function(data2){
    console.log("Failed to load recent jobs.");
 });
 
-function constructJob(job, categoryId) {
+function constructJob(job, categoryName) {
 	var category = "";
 	var categoryFormatted = "";
 	var image = "";
-	if(categoryId === 1) {
+
+	switch(categoryName){
+
+		case "foodDelivery":
+			category = "food";
+			categoryFormatted = "Food";
+			image = "img/food.png"
+			break;
+
+		case "rides":
+			category = "rides";
+			categoryFormatted = "Rides";
+			image = "img/rides.png";
+			break;
+
+		case "groceries":
+			category = "groceries";
+			categoryFormatted = "Groceries";
+			image = "img/groceries.png";
+			break;
+
+		case "cleaning":
+			category = "cleaning";
+			categoryFormatted = "Cleaning";
+			image = "img/cleaning.png";
+			break;
+
+		case "laundry":
+			category = "laundry";
+			categoryFormatted = "Laundry";
+			image = "img/laundry2.png";
+			break;
+
+		case "maintenance":
+			category = "maintenance";
+			categoryFormatted = "Maintenance";
+			image = "img/maintenance.png";
+			break;
+
+		case "techSupport":
+			category = "techSupport";
+			categoryFormatted = "Tech Support";
+			image = "img/techsupport.png";
+			break;
+
+		case "other":
+			category = "other";
+			categoryFormatted = "Other";
+			image = "img/other.png";
+			break;
+
+		default:
+			return;
+
+	}
+	/*if(categoryId === 1) {
 		category = "food";
 		categoryFormatted = "Food";
 		image = "img/food.png";
-	}
-	else if(categoryId === 2) {
+	}*/
+	/*lse if(categoryId === 2) {
 		category = "rides";
 		categoryFormatted = "Rides";
 		image = "img/rides.png";
-	}
+	}*//*
 	else if(categoryId === 3) {
 		category = "groceries";
 		categoryFormatted = "Groceries";
 		image = "img/groceries.png";
-	}
+	}*//*
 	else if(categoryId === 4) {
 		category = "cleaning";
 		categoryFormatted = "Cleaning";
 		image = "img/cleaning.png";
-	}
+	}*//*
 	else if(categoryId === 5) {
 		category = "laundry";
 		categoryFormatted = "Laundry";
 		image = "img/laundry2.png";
-	}
+	}*//*
 	else if(categoryId === 6) {
 		category = "maintenance";
 		categoryFormatted = "Maintenance";
 		image = "img/maintenance.png";
-	}
+	}*//*
 	else if(categoryId === 7) {
 		category = "techSupport";
 		categoryFormatted = "Tech Support";
 		image = "img/techsupport.png";
-	}
+	}*//*
 	else if(categoryId === 8) {
 		category = "other";
 		categoryFormatted = "Other";
 		image = "img/other.png";
-	}
+	}*/
 	
 	var html = '<div class="jobPost" id="' + category + 'Posting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
 	$('#' + category).append(html);
