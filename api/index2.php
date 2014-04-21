@@ -119,7 +119,7 @@
 	#	SUMMARY:		Allows a user to upload a custom profile picture; the function modifies is_custom and adds a file path parameter to custom_image_path
 	#	INPUTS:			JSON(user_id, file_path)
 	#	OUTPUTS:		N/A
-	#	STATUS:			IN PROGRESS
+	#	STATUS:			COMPLETE
     ##########
 	function changeProfileImage()
 	{
@@ -155,9 +155,9 @@
 	##########
 	#	AUTHOR:			Spencer
 	#	LAST UPDATE:	4/18/14 - Fixed array to actually include offer_id (CA)
-	#	SUMMARY:		
-	#	INPUTS:			
-	#	OUTPUTS:		
+	#	SUMMARY:		Returns a JSON array of all the offers a specific user has made
+	#	INPUTS:			user_id
+	#	OUTPUTS:		JSON array containing offer information and chooser information
 	#	STATUS:			COMPLETE
     ##########
 	function getOffers($user_id)
@@ -204,12 +204,13 @@
 		}
 	}
 
+
 	##########
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/18/14 - Added functionality to set is_hidden field (SK/CA)
-	#	SUMMARY:		
-	#	INPUTS:				
-	#	OUTPUTS:		
+	#	SUMMARY:		Uses a user_id and a task_id to make an offer to a user asking for help
+	#	INPUTS:			user_id, task_id
+	#	OUTPUTS:		N/A
 	#	STATUS:			COMPLETE
     ##########
 	function makeOffer()
