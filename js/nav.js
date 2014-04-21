@@ -66,7 +66,7 @@ var logOut = function(){
 }
 
 var checkLogin = function(){
-	console.log($.cookie("userInfo"));
+	
 	if($.cookie("userInfo") === undefined)
 		return false;
 	else
@@ -74,8 +74,10 @@ var checkLogin = function(){
 }
 
 var checkTokens = function(){
+
 	if(userInfo.tokens > 0)
 		return true;
 	else
 		return false;
+	
 }
