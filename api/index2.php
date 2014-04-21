@@ -396,7 +396,77 @@
 
 			$db = null;
       		echo json_encode($success);
+	      }  
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+		}
+	}
 
+
+	##########
+	#	AUTHOR:			Spencer
+	#	LAST UPDATE:	
+	#	SUMMARY:		Accepts an offer made by a user (user_id) for a specific task (task_id)
+	#						and declines all other pending offers for that task
+	#					- TASK.chooser_id is set as soon as the offer is accepted via the OFFER.accept_offer trigger
+	#	INPUTS:			user_id (essentially chooser_id), task_id
+	#	OUTPUTS:		N/A
+	#	STATUS:			COMPLETE
+    ##########
+	function acceptOffer($user_id, $task_id)
+	{
+	$request = \Slim\Slim::getInstance()->request();
+	#$user_info = json_decode($request->getBody());
+	$user_id = intval($user_id);
+	$task_id = intval($task_id);
+
+	#NOTE: The UPDATE command does not set TASK.chooser_id equal to the correct chooser_id...
+		#That is done automatically in the DB using the offer_accepted trigger
+	#SET IS_ACCEPTED = 1 FOR THE OFFER BEING ACCEPTED, AUTOMATICALLY SET TASK.CHOOSER_ID TO REFLECT ACCEPTANCE
+	$sql= "UPDATE OFFERS SET is_accepted = 1 WHERE chooser_id = :user_id AND task_id = :task_id;";
+	try
+	      {
+			$db = getConnection();
+			$stmt= $db->prepare($sql);
+			
+			#FOR INPUT JSON USE:
+			#$stmt->bindParam("user_id", $user_info->user_id, PDO::PARAM_INT);
+			#$stmt->bindParam("task_id", $user_info->task_id, PDO::PARAM_INT);
+			
+			#FOR PARAMETER USE:
+			$stmt->bindParam("user_id", $user_id, PDO::PARAM_INT);
+			$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+			
+			$stmt->execute();
+
+			$db = null;
+      		echo json_encode($success);
+	      }  
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+		}
+
+	#DECLINE ALL OTHER PENDING OFFERS
+	$sql= "UPDATE OFFERS SET is_declined = 1 WHERE chooser_id != :user_id AND task_id = :task_id;";
+	try
+	      {
+			$db = getConnection();
+			$stmt= $db->prepare($sql);
+			
+			#FOR INPUT JSON USE:
+			#$stmt->bindParam("user_id", $user_info->user_id, PDO::PARAM_INT);
+			#$stmt->bindParam("task_id", $user_info->task_id, PDO::PARAM_INT);
+			
+			#FOR PARAMETER USE:
+			$stmt->bindParam("user_id", $user_id, PDO::PARAM_INT);
+			$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+			
+			$stmt->execute();
+
+			$db = null;
+      		echo json_encode($success);
 	      }  
 		catch(PDOException $e) 
 		{

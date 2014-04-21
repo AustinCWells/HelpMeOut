@@ -22,7 +22,8 @@
 	$app->post('/makeOffer', 'makeOffer');
 	$app->get('/getMyTasksAndPendingOffers/:user_id', 'getMyTasksAndPendingOffers');
 	$app->get('/declineOffer/:user_id,:task_id', 'declineOffer');
-	
+	$app->get('/acceptOffer/:user_id,:task_id', 'acceptOffer');
+
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
 	$app->run();
