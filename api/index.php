@@ -255,7 +255,7 @@
 	{
 		$sql = "SELECT title AS category, t1.* FROM CATEGORY INNER JOIN (SELECT USER.first_name, USER.last_name, TASK.task_id, TASK.category_id, TASK.short_description, TASK.notes, TASK.price, TASK.time_frame_date, TASK.time_frame_time, TASK.location FROM USER INNER JOIN TASK ON USER.user_id = TASK.beggar_id AND is_complete = 0) AS t1 ON CATEGORY.category_id = t1.category_id";
 		#	Define arrays for all job categories:
-		$foodDelivery = array();
+		$food = array();
 		$rides = array();
 		$groceryRun = array();
 		$cleaning = array();
@@ -287,7 +287,7 @@
 				switch($category)
 				{
 					case "Food Delivery":
-						array_push($foodDelivery, $tempObject);
+						array_push($food, $tempObject);
 						break;
 					case "Rides":
 						array_push($rides, $tempObject);
@@ -314,7 +314,7 @@
 			}
 
 			$db = null;
-			$tasks['foodDelivery'] = $foodDelivery;
+			$tasks['food'] = $food;
 			$tasks['rides'] = $rides;
 			$tasks['groceries'] = $groceryRun;
 			$tasks['cleaning'] = $cleaning;
