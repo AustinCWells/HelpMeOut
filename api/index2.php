@@ -269,6 +269,8 @@
 		$myTasks = array();
 		$request = \Slim\Slim::getInstance()->request();
 		$user_id = intval($user_id);
+		
+		#GET ALL TASKS CREATED BY A USER
 		$sql = "SELECT task_id, beggar_id, price, category_id, short_description, 
 			time_frame_time, time_frame_date, date_posted FROM TASK WHERE beggar_id = :user_id";
 		try
@@ -277,8 +279,11 @@
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("user_id", $user_id, PDO::PARAM_INT);
 			$stmt->execute();
+			
+			#LOOP THROUGH EACH TASK POSTED BY USER
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
+				#STORE TASK_ID FOR USE IN NEXT LOOP
 				$temp_taskid = (int)$row['task_id'];
 				$tempObject = array('task_id' => (int)$row['task_id'], 
 										  'beggar_id' => (int)$row['beggar_id'], 
@@ -289,8 +294,10 @@
 										  'time_frame_date' => $row['time_frame_date'], 
 										  'date_posted' => $row['date_posted']);
 
+				#PUSH INDIVIDUAL TASKS INTO THE ARRAY
 				array_push($myTasks, $tempObject);
 
+				#PULL OFFERS FOR TASKS WHERE TASK_ID = TEMP_TASKID (EACH ROW OF THE ABOVE LOOP)
 				$sql2 = "SELECT OFFERS.offer_id, TASK.task_id, TASK.beggar_id, TASK.price, TASK.category_id, TASK.short_description, TASK.time_frame_time, TASK.time_frame_date, TASK.date_posted, USER.first_name AS ChooserFirst, USER.last_name AS ChooserLast, USER_DATA.speed AS ChooserSpeed, USER_DATA.reliability AS ChooserReliability, USER.is_custom, USER.custom_image_path FROM TASK INNER JOIN OFFERS ON OFFERS.task_id = TASK.task_id INNER JOIN USER ON OFFERS.chooser_id = USER.user_id INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE TASK.task_id = :task_id AND OFFERS.is_hidden = 0";
 				try
 				{
@@ -301,6 +308,7 @@
 						$stmt2->bindParam("task_id", $temp_taskid, PDO::PARAM_INT);
 						$stmt2->execute();	
 
+						#PUSH RELEVANT INFO TO ARRAY (TO BE INCLUDED IN JSON)
 						while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC))
 						{
 							$tempObject2 = array('offer_id' =>(int)$row2['offer_id'],
@@ -318,6 +326,8 @@
 						  		  'ChooserReliability' => $row2['ChooserReliability'],
 						  		  'is_custom' => $row2['is_custom'],
 						  		  'custom_image_path' => $row2['custom_image_path']);
+							
+							#ADD CORRESPONDING OFFERS TO ARRAY
 							array_push($myTasks, $tempObject2);
 						}
 						$db2 = null;
@@ -332,6 +342,7 @@
 				}
 			}
    			
+   			#RETURN OUTPUT IN [JOB, OFFER, OFFER, OFFER], [JOB, OFFER, ...] FORMAT
    			echo json_encode($myTasks);
    			$db = null;
 		}
