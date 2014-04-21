@@ -272,7 +272,7 @@
 		
 		#GET ALL TASKS CREATED BY A USER
 		$sql = "SELECT task_id, beggar_id, price, category_id, short_description, location, notes, 
-			time_frame_time, time_frame_date, date_posted FROM TASK WHERE beggar_id = :user_id";
+			time_frame_time, time_frame_date, date_posted FROM TASK WHERE beggar_id = :user_id AND is_complete = '0'";
 		try
 		{
 			$db = getConnection();

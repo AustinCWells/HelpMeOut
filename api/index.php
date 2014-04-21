@@ -417,7 +417,7 @@
 
 	##########
 	#	AUTHOR:			Charlie/Wilson
-	#	LAST UPDATE:	4/9
+	#	LAST UPDATE:	4/21 - Modified while loop to include additional parameters (SK)
 	#	SUMMARY:		Retrieves all jobs the current user is in the process of doing.
 	#	INPUTS:			JSON(user_id)
 	#	OUTPUTS:		JSON(beggar_id, chooser_id, short_description, notes, price, category_id, negotiable, time_frame_date, time_frame_time, location)
@@ -425,32 +425,38 @@
     ##########
 	function getTasksImDoing()
 	{
+	$tasksImDoing = array();
 	$request = \Slim\Slim::getInstance()->request();
 	$userInfo = json_decode($request->getBody());
-	$sql= "SELECT * FROM TASK WHERE chooser_id = :id AND is_complete = 0";
+
+	$sql= "SELECT * FROM TASK INNER JOIN USER ON TASK.beggar_id = USER.user_id WHERE chooser_id = :id AND is_complete = 0";
 	try
 	      {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
-			$stmt->bindParam("id", $userInfo->user_id);
+			$stmt->bindParam("id", $userInfo->user_id, PDO::PARAM_INT);
 			$stmt->execute();
-			$jobsImDoing = null;
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //I'm not 100% sure about this line but I'm using login as a guide for this
 			{
-				$taskID = $row['task_id'];
-				$jobsImDoing[$taskID] = array('beggar_id' => (int)$row['beggar_id'], 
-											  'chooser_id' => (int)$row['chooser_id'], 
-											  'short_description' => $row['short_description'], 
-											  'notes' => $row['notes'], 
-											  'price' => (int)$row['price'], 
-											  'category_id' => (int)$row['category_id'], 
-											  'negotiable' => (int)$row['negotiable'], 
-											  'time_frame_date' => $row['time_frame_date'], 
-											  'time_frame_time' => $row['time_frame_time'], 
-											  'location' => $row['location']);
+				$taskInfo = array('task_id' => (int)$row['task_id'], 
+									 		'beggar_id' => (int)$row['beggar_id'], 
+										   	'beggar_fName' => $row['first_name'], 
+										   	'beggar_lName' => $row['last_name'], 
+										   	'contact_number' => $row['phone'],
+										   	'contact_email' => $row['email'],
+										   	'chooser_id' => (int)$row['chooser_id'], 
+											'short_description' => $row['short_description'], 
+											'notes' => $row['notes'], 
+											'price' => (int)$row['price'], 
+											'location' => $row['location'],
+											'category_id' => (int)$row['category_id'], 
+											'negotiable' => (int)$row['negotiable'], 
+											'time_frame_date' => $row['time_frame_date'], 
+											'time_frame_time' => $row['time_frame_time']);
+				array_push($tasksImDoing, $taskInfo);
 			}
 			$db = null;
-		   	echo json_encode($jobsImDoing);
+		   	echo json_encode($tasksImDoing);
 		   
 	      }  
 		catch(PDOException $e) 
