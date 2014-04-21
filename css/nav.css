@@ -131,7 +131,7 @@ li div {
 	padding: 0px 6px;
 }
 
-h1#tokenCount{
+h1.tokenCount{
 	float: right;
 	margin: 0px;
 	display: table-cell;

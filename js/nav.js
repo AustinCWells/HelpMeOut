@@ -44,10 +44,16 @@ var login = function(){
 
 	if(checkLogin()){
 
-			$("#navMenu li").toggleClass("navVisible");
-			$("#navUserEmail").text(userInfo.email);
-			$("#tokenCount").text(userInfo.tokens);
-			$("#currentToken strong").text(userInfo.tokens);
+		userInfo = $.cookie("userInfo");
+
+		$("#navMenu li").toggleClass("navVisible");
+		$("#navUserEmail").text(userInfo.email);
+		$(".tokenCount").text(userInfo.tokens);
+
+	}
+
+	else {
+
 	}
 }
 
