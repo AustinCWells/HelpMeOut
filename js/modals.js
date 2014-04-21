@@ -210,6 +210,7 @@ var dbRequest = function(url, content, json, type){
 
 					if(obj.userID){
 						$.cookie("userInfo", obj);
+						console.log("login");
 						login();
 					}
 
@@ -291,30 +292,6 @@ var openModal = function(id){
 		setJobPostDimensions();
 		//console.log(currentTime);
 	}
-}
-
-
-var login = function(){
-
-	userInfo = $.cookie("userInfo");
-
-	console.log(userInfo);
-
-	if(userInfo !== undefined){
-
-		if(userInfo.userID !== 0){
-			$("#navMenu li").toggleClass("navVisible");
-			$("#navUserEmail").text(userInfo.email);
-			$("#tokenCount").text(userInfo.tokens);
-			$("#currentToken strong").text(userInfo.tokens)
-		}
-	}
-
-	/*else {
-		if(window.location.pathname !== /helpmeout/)
-			window.location = "./";
-	}*/
-
 }
 
 var getCurrentTimeAndDate = function(){
