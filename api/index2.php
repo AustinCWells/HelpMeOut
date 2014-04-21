@@ -208,7 +208,8 @@
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/18/14 - Added functionality to set is_hidden field (SK/CA)
 	#	SUMMARY:		
-	#	INPUTS:				#	OUTPUTS:		
+	#	INPUTS:				
+	#	OUTPUTS:		
 	#	STATUS:			COMPLETE
     ##########
 	function makeOffer()
@@ -258,11 +259,11 @@
 
 	##########
 	#	AUTHOR:			Spencer
-	#	LAST UPDATE:	
-	#	SUMMARY:		
-	#	INPUTS:			
-	#	OUTPUTS:		
-	#	STATUS:			In-Progress
+	#	LAST UPDATE:	4/21 - Modified loops and array to return additional information in a more efficient format
+	#	SUMMARY:		Using user_id as a parameter, pulls all tasks submitted by that user and their corresponding offers
+	#	INPUTS:			user_id (The person checking the status of their tasks)
+	#	OUTPUTS:		A JSON containing all tasks submitted by a user and any offers those tasks received
+	#	STATUS:			COMPLETE
     ##########
 	function getMyTasksAndPendingOffers($user_id)
 	{
@@ -301,7 +302,7 @@
 				array_push($myTasks, $tempObject);
 
 				#PULL OFFERS FOR TASKS WHERE TASK_ID = TEMP_TASKID (EACH ROW OF THE ABOVE LOOP)
-				$sql2 = "SELECT OFFERS.offer_id, TASK.task_id, TASK.beggar_id, TASK.price, TASK.category_id, TASK.short_description, TASK.time_frame_time, TASK.time_frame_date, TASK.date_posted, USER.user_id, USER.first_name AS chooser_fName, USER.last_name AS chooser_lName, USER_DATA.speed AS chooser_speed, USER_DATA.reliability AS chooser_reliability, USER.is_custom, USER.custom_image_path FROM TASK INNER JOIN OFFERS ON OFFERS.task_id = TASK.task_id INNER JOIN USER ON OFFERS.chooser_id = USER.user_id INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE TASK.task_id = :task_id AND OFFERS.is_hidden = 0";
+				$sql2 = "SELECT OFFERS.offer_id, TASK.task_id, TASK.beggar_id, TASK.price, TASK.category_id, TASK.short_description, TASK.time_frame_time, TASK.time_frame_date, TASK.date_posted, USER.user_id, USER.first_name AS chooser_fName, USER.last_name AS chooser_lName, USER.phone, USER.email, USER_DATA.speed AS chooser_speed, USER_DATA.reliability AS chooser_reliability, USER.is_custom, USER.custom_image_path FROM TASK INNER JOIN OFFERS ON OFFERS.task_id = TASK.task_id INNER JOIN USER ON OFFERS.chooser_id = USER.user_id INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE TASK.task_id = :task_id AND OFFERS.is_hidden = 0";
 				try
 				{
 					if(isset($temp_taskid))
@@ -327,6 +328,8 @@
 								  'chooser_id' => (int)$row2['user_id'],
 								  'chooser_fName' => $row2['chooser_fName'],
 								  'chooser_lName' => $row2['chooser_lName'],
+								  'contact_phone' => $row2['phone'],
+								  'contact_email' => $row2['email'],
 						  		  'chooser_speed' => $row2['chooser_speed'],
 						  		  'chooser_reliability' => $row2['chooser_reliability'],
 						  		  'is_custom' => $row2['is_custom'],
