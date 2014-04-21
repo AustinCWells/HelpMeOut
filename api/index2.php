@@ -208,8 +208,7 @@
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/18/14 - Added functionality to set is_hidden field (SK/CA)
 	#	SUMMARY:		
-	#	INPUTS:			
-	#	OUTPUTS:		
+	#	INPUTS:				#	OUTPUTS:		
 	#	STATUS:			COMPLETE
     ##########
 	function makeOffer()
@@ -256,4 +255,89 @@
 		}
 	}
 
-?>
+
+	##########
+	#	AUTHOR:			Spencer
+	#	LAST UPDATE:	
+	#	SUMMARY:		
+	#	INPUTS:			
+	#	OUTPUTS:		
+	#	STATUS:			In-Progress
+    ##########
+	function getMyTasksAndPendingOffers($user_id)
+	{
+		$myTasks = array();
+		$request = \Slim\Slim::getInstance()->request();
+		$user_id = intval($user_id);
+		$sql = "SELECT task_id, beggar_id, price, category_id, short_description, 
+			time_frame_time, time_frame_date, date_posted FROM TASK WHERE beggar_id = :user_id";
+		try
+		{
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("user_id", $user_id, PDO::PARAM_INT);
+			$stmt->execute();
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+			{
+				$temp_taskid = (int)$row['task_id'];
+				$tempObject = array('task_id' => (int)$row['task_id'], 
+										  'beggar_id' => (int)$row['beggar_id'], 
+										  'price' => (int)$row['price'], 
+										  'category_id' => $row['category_id'], 
+										  'short_description' => $row['short_description'], 
+										  'time_frame_time' => $row['time_frame_time'], 
+										  'time_frame_date' => $row['time_frame_date'], 
+										  'date_posted' => $row['date_posted']);
+
+				array_push($myTasks, $tempObject);
+
+				$sql2 = "SELECT OFFERS.offer_id, TASK.task_id, TASK.beggar_id, TASK.price, TASK.category_id, TASK.short_description, TASK.time_frame_time, TASK.time_frame_date, TASK.date_posted, USER.first_name AS ChooserFirst, USER.last_name AS ChooserLast, USER_DATA.speed AS ChooserSpeed, USER_DATA.reliability AS ChooserReliability, USER.is_custom, USER.custom_image_path FROM TASK INNER JOIN OFFERS ON OFFERS.task_id = TASK.task_id INNER JOIN USER ON OFFERS.chooser_id = USER.user_id INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE TASK.task_id = :task_id AND OFFERS.is_hidden = 0";
+				try
+				{
+					if(isset($temp_taskid))
+					{
+						$db2 = getConnection();
+						$stmt2 = $db2->prepare($sql2);
+						$stmt2->bindParam("task_id", $temp_taskid, PDO::PARAM_INT);
+						$stmt2->execute();	
+
+						while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC))
+						{
+							$tempObject2 = array('offer_id' =>(int)$row2['offer_id'],
+								  'task_id' => (int)$row2['task_id'], 
+								  'beggar_id' => (int)$row2['beggar_id'], 
+								  'price' => (int)$row2['price'], 
+								  'category_id' => $row2['category_id'], 
+								  'short_description' => $row2['short_description'], 
+								  'time_frame_time' => $row2['time_frame_time'], 
+								  'time_frame_date' => $row2['time_frame_date'], 
+								  'date_posted' => $row2['date_posted'], 
+								  'ChooserFirst' => $row2['ChooserFirst'],
+								  'ChooserLast' => $row2['ChooserLast'],
+						  		  'ChooserSpeed' => $row2['ChooserSpeed'],
+						  		  'ChooserReliability' => $row2['ChooserReliability'],
+						  		  'is_custom' => $row2['is_custom'],
+						  		  'custom_image_path' => $row2['custom_image_path']);
+							array_push($myTasks, $tempObject2);
+						}
+						$db2 = null;
+					}
+					else
+						echo '{"error":{"text": "No task_id!"}}';
+				}
+
+				catch(PDOException $e)
+				{
+					echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+				}
+			}
+   			
+   			echo json_encode($myTasks);
+   			$db = null;
+		}
+
+		catch(PDOException $e)
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+		}
+	}
