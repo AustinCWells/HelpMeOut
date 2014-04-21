@@ -271,7 +271,7 @@
 		$user_id = intval($user_id);
 		
 		#GET ALL TASKS CREATED BY A USER
-		$sql = "SELECT task_id, beggar_id, price, category_id, short_description, 
+		$sql = "SELECT task_id, beggar_id, price, category_id, short_description, location, notes, 
 			time_frame_time, time_frame_date, date_posted FROM TASK WHERE beggar_id = :user_id";
 		try
 		{
@@ -285,11 +285,14 @@
 			{
 				#STORE TASK_ID FOR USE IN NEXT LOOP
 				$temp_taskid = (int)$row['task_id'];
-				$tempObject = array('task_id' => (int)$row['task_id'], 
+				$tempObject = array('is_offer_for_help' => (int)"0",
+										  'task_id' => (int)$row['task_id'], 
 										  'beggar_id' => (int)$row['beggar_id'], 
 										  'price' => (int)$row['price'], 
 										  'category_id' => $row['category_id'], 
 										  'short_description' => $row['short_description'], 
+										  'location' => $row['location'], 
+										  'notes' => $row['notes'], 										  
 										  'time_frame_time' => $row['time_frame_time'], 
 										  'time_frame_date' => $row['time_frame_date'], 
 										  'date_posted' => $row['date_posted']);
@@ -298,7 +301,7 @@
 				array_push($myTasks, $tempObject);
 
 				#PULL OFFERS FOR TASKS WHERE TASK_ID = TEMP_TASKID (EACH ROW OF THE ABOVE LOOP)
-				$sql2 = "SELECT OFFERS.offer_id, TASK.task_id, TASK.beggar_id, TASK.price, TASK.category_id, TASK.short_description, TASK.time_frame_time, TASK.time_frame_date, TASK.date_posted, USER.first_name AS ChooserFirst, USER.last_name AS ChooserLast, USER_DATA.speed AS ChooserSpeed, USER_DATA.reliability AS ChooserReliability, USER.is_custom, USER.custom_image_path FROM TASK INNER JOIN OFFERS ON OFFERS.task_id = TASK.task_id INNER JOIN USER ON OFFERS.chooser_id = USER.user_id INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE TASK.task_id = :task_id AND OFFERS.is_hidden = 0";
+				$sql2 = "SELECT OFFERS.offer_id, TASK.task_id, TASK.beggar_id, TASK.price, TASK.category_id, TASK.short_description, TASK.time_frame_time, TASK.time_frame_date, TASK.date_posted, USER.user_id, USER.first_name AS chooser_fName, USER.last_name AS chooser_lName, USER_DATA.speed AS chooser_speed, USER_DATA.reliability AS chooser_reliability, USER.is_custom, USER.custom_image_path FROM TASK INNER JOIN OFFERS ON OFFERS.task_id = TASK.task_id INNER JOIN USER ON OFFERS.chooser_id = USER.user_id INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE TASK.task_id = :task_id AND OFFERS.is_hidden = 0";
 				try
 				{
 					if(isset($temp_taskid))
@@ -311,7 +314,8 @@
 						#PUSH RELEVANT INFO TO ARRAY (TO BE INCLUDED IN JSON)
 						while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC))
 						{
-							$tempObject2 = array('offer_id' =>(int)$row2['offer_id'],
+							$tempObject2 = array('is_offer_for_help' => (int)"1",
+								  'offer_id' =>(int)$row2['offer_id'],
 								  'task_id' => (int)$row2['task_id'], 
 								  'beggar_id' => (int)$row2['beggar_id'], 
 								  'price' => (int)$row2['price'], 
@@ -320,10 +324,11 @@
 								  'time_frame_time' => $row2['time_frame_time'], 
 								  'time_frame_date' => $row2['time_frame_date'], 
 								  'date_posted' => $row2['date_posted'], 
-								  'ChooserFirst' => $row2['ChooserFirst'],
-								  'ChooserLast' => $row2['ChooserLast'],
-						  		  'ChooserSpeed' => $row2['ChooserSpeed'],
-						  		  'ChooserReliability' => $row2['ChooserReliability'],
+								  'chooser_id' => (int)$row2['user_id'],
+								  'chooser_fName' => $row2['chooser_fName'],
+								  'chooser_lName' => $row2['chooser_lName'],
+						  		  'chooser_speed' => $row2['chooser_speed'],
+						  		  'chooser_reliability' => $row2['chooser_reliability'],
 						  		  'is_custom' => $row2['is_custom'],
 						  		  'custom_image_path' => $row2['custom_image_path']);
 							
