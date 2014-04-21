@@ -30,6 +30,9 @@ $(window).ready(function(event) {
 
 		}
 
+	})
+	.fail(function(){
+	   console.log("Failed to load jobs.");
 	});
 
 
@@ -73,7 +76,7 @@ var constructJob = function(job, categoryName) {
 
 	switch(categoryName){
 
-		case "foodDelivery":
+		case "food":
 			category = "food";
 			categoryFormatted = "Food";
 			image = "img/food.png"
