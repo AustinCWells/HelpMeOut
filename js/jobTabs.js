@@ -2,20 +2,27 @@ jQuery(function() {
 jQuery( "#tabs" ).tabs();
 });
 
-window.addEventListener('load', function(event) {
+var sorry = 'Sorry, there are currently no jobs available in this category.';
+$(window).ready(function(event) {
 
 console.log(userInfo);
 
 //Loading 
-$.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
+$.getJSON("api/tasks",function(data){
 		console.log("Jobs: ");
 		console.log(data);
 		
 		for(var keys in data){
 
-			for( var info in data[keys]){
-				//console.log(keys);
-				constructJob(data[keys][info], keys);
+			if(data[keys].length === 0)
+				$("#" + keys).append(sorry);
+
+			else {
+
+				for( var info in data[keys]){
+					//console.log(keys);
+					constructJob(data[keys][info], keys);
+				}
 			}
 
 		}
@@ -53,8 +60,7 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 
 		for(var i=0;i<tasks["other"].length;i++) {
 			constructJob(tasks["other"][i], 8);
-		}*/
-
+		}
 
 		if($('#food').html() === '') {
 			$('#food').append(' 	Sorry, there are currently no jobs available in this category.');
@@ -87,34 +93,11 @@ $.getJSON("api/tasks",function(data){//"api/jobs" gets 500 internal server error
 		if($('#other').html() === '') {
 			$('#other').append('Sorry, there are currently no jobs available in this category.');
 		}
-
-
-  	})
-.fail(function(){
-	$('#other').append('Sorry, there are currently no recent jobs available.');
+		*/
 });
 
 
-	function getRandomInt(min, max) {
- 		 return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
 
-	var random = getRandomInt(0,6);
-	$('#randomText').empty();
-	if (random === 0)
-		$('#randomText').append('"HELP WILL ALWAYS BE GIVEN AT HOGWARTS, HARRY, TO THOSE WHO ASK FOR IT." - ALBUS DUMBLEDORE');
-	else if (random === 1)
-		$('#randomText').append('"WON\'T YOU PLEASE, PLEASE HELP ME, HELP ME, HELP ME, OOH" - THE BEATLES. "HELP!"');
-	else if (random === 2)
-		$('#randomText').append('"IF YOU CAN, HELP OTHERS; IF YOU CANNOT DO THAT, AT LEAST DO NOT HARM THEM." - DALAI LAMA XIV');
-	else if (random === 3)
-		$('#randomText').append('"LIFE\'S MOST PERSISTENT AND URGENT QUESTION IS, \'WHAT ARE YOU DOING FOR OTHERS?\'" - MARTIN LUTHER KING JR.');
-	else if (random === 4)
-		$('#randomText').append('"LET EACH OF YOU LOOK NOT ONLY TO HIS OWN INTERESTS, BUT ALSO TO THE INTERESTS OF OTHERS." - PHILIPPIANS 2:4');
-	else if (random === 5)
-		$('#randomText').append('"HELP ME... HELP YOU. HELP ME, HELP YOU." - JERRY MAGUIRE (1996)');
-	else if (random === 6)
-		$('#randomText').append('"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS');
 
 
 // var myObject = {};
@@ -208,41 +191,42 @@ function constructJob(job, categoryName) {
 			return;
 
 	}
-	/*if(categoryId === 1) {
+	/*
+	if(categoryId === 1) {
 		category = "food";
 		categoryFormatted = "Food";
 		image = "img/food.png";
-	}*/
-	/*lse if(categoryId === 2) {
+	}
+	lse if(categoryId === 2) {
 		category = "rides";
 		categoryFormatted = "Rides";
 		image = "img/rides.png";
-	}*//*
+	}
 	else if(categoryId === 3) {
 		category = "groceries";
 		categoryFormatted = "Groceries";
 		image = "img/groceries.png";
-	}*//*
+	}
 	else if(categoryId === 4) {
 		category = "cleaning";
 		categoryFormatted = "Cleaning";
 		image = "img/cleaning.png";
-	}*//*
+	}
 	else if(categoryId === 5) {
 		category = "laundry";
 		categoryFormatted = "Laundry";
 		image = "img/laundry2.png";
-	}*//*
+	}
 	else if(categoryId === 6) {
 		category = "maintenance";
 		categoryFormatted = "Maintenance";
 		image = "img/maintenance.png";
-	}*//*
+	}
 	else if(categoryId === 7) {
 		category = "techSupport";
 		categoryFormatted = "Tech Support";
 		image = "img/techsupport.png";
-	}*//*
+	}
 	else if(categoryId === 8) {
 		category = "other";
 		categoryFormatted = "Other";
@@ -405,4 +389,4 @@ $("#modalOverlay").click(function(){
 
 
 
-}, false);
+});
