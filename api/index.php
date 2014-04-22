@@ -214,7 +214,7 @@
     function getUserAccount()
     {
     	//use $id for testing, $userID for actual implementation
-    	$sql = "SELECT * FROM USER WHERE user_id = :id";
+    	$sql = "SELECT * FROM (SELECT USER.*, USER_DATA.jobs_completed, USER_DATA.jobs_requested, USER_DATA.speed, USER_DATA.reliability FROM USER INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id) AS t1 WHERE t1.user_id = :id";
     	$request = \Slim\Slim::getInstance()->request();
 		$userObj = json_decode($request->getBody());
 		$userID = (int)$userObj->user_id;
@@ -237,7 +237,11 @@
 							  'times_reported' => $userInfo['times_reported'], 
 							  'tokens' => (int)$userInfo['tokens'],
 							  'is_custom' => $userInfo['is_custom'],
-							  'custom_image_path' => $userInfo['custom_image_path']);
+							  'custom_image_path' => $userInfo['custom_image_path'],
+							  'jobs_completed' => $userInfo['jobs_completed'],
+							  'jobs_requested' => $userInfo['jobs_requested'],
+							  'speed' => $userInfo['speed'],
+							  'reliability' => $userInfo['reliability']);
 			echo json_encode($response);
 		}
 		catch(PDOException $e)
