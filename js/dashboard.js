@@ -9,14 +9,14 @@ $(window).ready(function(event) {
 	console.log({user_id: userInfo.userID});
 	var json = {user_id: userInfo.userID};
 
-	var url = "api/getMyTasksAndPendingOffers/" + userInfo.userID;
+	var url = "api/tasksImDoing";
 
 	
 	$.ajax({
-        type: "Get",
+        type: "Post",
         url: url,
-        //data: json, //Data to POST to the server
-        //content: 'application/json',
+        data: json, //Data to POST to the server
+        content: 'application/json',
         success: function (data) { 
 			console.log('Job\'s I\'m Doing: ');
 			//console.log(JSON.parse(data));
