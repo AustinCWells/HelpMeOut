@@ -637,7 +637,28 @@
 	#BEGGAR CANCELS
 	if($user_id == (int)$task_info['beggar_id'])
 		{
-			#FILL ME AHP BIG BOI
+			$sql = "UPDATE OFFERS SET is_accepted = 0, is_declined = 1 WHERE task_id = :task_id AND beggar_id = :user_id";
+			try
+	    		{
+					$db = getConnection();
+					$stmt= $db->prepare($sql);
+					
+					#FOR INPUT JSON USE:
+					#$stmt->bindParam("user_id", $user_info->user_id, PDO::PARAM_INT);
+					#$stmt->bindParam("task_id", $user_info->task_id, PDO::PARAM_INT);
+					
+					#FOR PARAMETER USE:
+					$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+					$stmt->bindParam("user_id", $user_id, PDO::PARAM_INT);
+
+					$stmt->execute();
+
+					$db = null;
+				}  
+			catch(PDOException $e) 
+				{
+					echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+				}
 		}
 
 	#CHOOSER CANCELS
