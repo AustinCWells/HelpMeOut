@@ -31,9 +31,6 @@ $(window).ready(function(event) {
 	$("#updateAccountForm").submit(function(event){
 
 		event.preventDefault();
-		//console.log("Posting a Job")
-
-		//checkJobPostValidity();
 
 		var updateInfo = {};
 		if($("#firstName").val() != "")
@@ -68,7 +65,7 @@ $(window).ready(function(event) {
 		$.ajax({
         type: "Post",
         url: url,
-        data: updateInfo, //Data to POST to the server
+        data: updateInfo,
         content: 'application/json',
         success: function (data) { 
         	console.log(data);
@@ -77,12 +74,32 @@ $(window).ready(function(event) {
 	});
 
 
+$("#updatePicForm").submit(function(event){
+
+		event.preventDefault();
+
+		var updateInfo = {};
+		updateInfo.file_path = $("#uploadedFile").val();
+		updateInfo.user_id = userInfo.userID;
+
+		console.log(updateInfo);
+
+		var url = "api/changeProfileImage";
+		$.ajax({
+	        type: "Post",
+	        url: url,
+	        data: updateInfo,
+	        content: 'application/json',
+	        success: function (data) { 
+	        	console.log(data);
+			}
+		});
+	});
+
+
 	$("#updatePasswordForm").submit(function(event){
 
 		event.preventDefault();
-		//console.log("Posting a Job")
-
-		//checkJobPostValidity();
 
 		var updateInfo = {};
 		if($("#newPassword").val() === $("#confirmPassword").val()) {
@@ -95,7 +112,7 @@ $(window).ready(function(event) {
 		$.ajax({
 	        type: "Post",
 	        url: url,
-	        data: updateInfo, //Data to POST to the server
+	        data: updateInfo,
 	        content: 'application/json',
 	        success: function (data) { 
 	        	console.log(data);
