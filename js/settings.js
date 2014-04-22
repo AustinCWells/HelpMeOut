@@ -13,6 +13,7 @@ $(window).ready(function(event) {
 	$("#firstName").attr("placeholder", userInfo.firstName);
 	$("#lastName").attr("placeholder", userInfo.lastName);
 	$("#phoneNum").attr("placeholder", phoneNum);
+	$("#email").attr("placeholder", userInfo.email);
 
 		$("#phoneNum").keyup(function(event) {
 

@@ -100,6 +100,7 @@ $(window).ready(function(event) {
 
 			//RIGHT
 
+
 	function loadRight() {
 
 		var urlRight1 = "api/getMyTasksAndPendingOffers/" + userInfo.userID;
@@ -167,7 +168,7 @@ $(window).ready(function(event) {
 						accordionRight.append(html);
 					}
 					else {
-						var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span id="overall' + tasks[i].task_id + '"class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="overallFg' + tasks[i].task_id + '"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column" id="speed' + tasks[i].task_id + '"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="speedFg' + tasks[i].task_id + '"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '" value="Accept"></div></div>';
+						var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span id="overall' + tasks[i].task_id + '"class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="overallFg' + tasks[i].task_id + '"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column" id="speed' + tasks[i].task_id + '"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="speedFg' + tasks[i].task_id + '"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + i + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + i + '" value="Accept"></div></div>';
 						accordionRight.append(html);
 						var ratingLabel = document.getElementById("overall" + tasks[i].task_id);
 						var ratingBar = document.getElementById("overallFg" + tasks[i].task_id);
@@ -182,8 +183,9 @@ $(window).ready(function(event) {
 						AcceptButton.onclick = function(e) {
 							console.log("acccept");
 							console.log($(AcceptButton).data("task"));
+							var task = $(AcceptButton).data("task");
 
-							var url = "api/acceptOffer/:" + userInfo.userID + ",:" + $(AcceptButton).data("task");
+							var url = "api/acceptOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
 							$.ajax({
 						        type: "Get",
 						        url: url,
@@ -195,8 +197,9 @@ $(window).ready(function(event) {
 						DeclineButton.onclick = function(e) {
 							console.log("decccline");
 							console.log($(DeclineButton).data("task"));
+							var task = $(DeclineButton).data("task");
 
-							var url = "api/declineOffer/:" + userInfo.userID + ",:" + $(DeclineButton).data("task");
+							var url = "api/declineOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
 							$.ajax({
 						        type: "Get",
 						        url: url,
