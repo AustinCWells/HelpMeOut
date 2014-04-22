@@ -479,7 +479,7 @@
 	#	AUTHOR:			Spencer
 	#	LAST UPDATE:	
 	#	SUMMARY:		Marks a task as complete in the DB and updates the chooser's rating
-	#	INPUTS:			task_id, user_id, num_stars
+	#	INPUTS:			task_id, num_stars_speed, num_stars_reliability
 	#	OUTPUTS:		N/A
 	#	STATUS:			COMPLETE
     ##########
@@ -592,7 +592,106 @@
 	}
 
 
+	##########
+	#	AUTHOR:			Spencer
+	#	LAST UPDATE:	
+	#	SUMMARY:		Declines an offer made by a user (user_id) for a specific task (task_id)
+	#	INPUTS:			user_id (essentially chooser_id), task_id
+	#	OUTPUTS:		N/A
+	#	STATUS:			IN PROGRESS
+    ##########
+	function cancelTask($task_id, $user_id)
+	{
+	$request = \Slim\Slim::getInstance()->request();
+	#$user_info = json_decode($request->getBody());
+	$task_id = intval($task_id);
+	$user_id = intval($user_id);
+	$task_info = null;
 
+	#GET BEGGAR_ID & CHOOSER_ID FOR TASK TO COMPARE AGAINST USER_ID
+	$sql= "SELECT beggar_id, chooser_id FROM TASK WHERE task_id = :task_id";
+	try
+	    {
+			$db = getConnection();
+			$stmt= $db->prepare($sql);
+			
+			#FOR INPUT JSON USE:
+			#$stmt->bindParam("user_id", $user_info->user_id, PDO::PARAM_INT);
+			#$stmt->bindParam("task_id", $user_info->task_id, PDO::PARAM_INT);
+			
+			#FOR PARAMETER USE:
+			$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+			
+			$stmt->execute();
+
+			$db = null;
+
+			$task_info = $stmt->fetch(PDO::FETCH_ASSOC);
+	    }  
+	catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+		}
+
+
+	#BEGGAR CANCELS
+	if($user_id == (int)$task_info['beggar_id'])
+		{
+
+		}
+
+	#CHOOSER CANCELS
+	else if($user_id == (int)$task_info['chooser_id'])
+		{
+
+			$sql = "UPDATE OFFERS SET is_accepted = 0, is_declined = 1 WHERE task_id = :task_id AND chooser_id = :user_id";
+			try
+	    		{
+					$db = getConnection();
+					$stmt= $db->prepare($sql);
+					
+					#FOR INPUT JSON USE:
+					#$stmt->bindParam("user_id", $user_info->user_id, PDO::PARAM_INT);
+					#$stmt->bindParam("task_id", $user_info->task_id, PDO::PARAM_INT);
+					
+					#FOR PARAMETER USE:
+					$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+					$stmt->bindParam("user_id", $user_id, PDO::PARAM_INT);
+
+					$stmt->execute();
+
+					$db = null;
+
+					$sql = "UPDATE TASK SET chooser_id = null WHERE task_id = :task_id";
+					try
+				    	{
+							$db = getConnection();
+							$stmt= $db->prepare($sql);
+							
+							#FOR INPUT JSON USE:
+							#$stmt->bindParam("user_id", $user_info->user_id, PDO::PARAM_INT);
+							#$stmt->bindParam("task_id", $user_info->task_id, PDO::PARAM_INT);
+							
+							#FOR PARAMETER USE:
+							$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+							
+							$stmt->execute();
+
+							$db = null;
+				    	}  
+					catch(PDOException $e) 
+						{
+							echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+						}
+		    	}  
+			catch(PDOException $e) 
+				{
+					echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+				}
+
+		}
+
+	}
 
 
 
