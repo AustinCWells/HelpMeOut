@@ -236,7 +236,7 @@
 							  'gender' => $userInfo['gender'], 
 							  'times_reported' => $userInfo['times_reported'], 
 							  'tokens' => (int)$userInfo['tokens'],
-							  'is_custom' => $userInfo['is_custom'],
+							  'is_custom' => (int)$userInfo['is_custom'],
 							  'custom_image_path' => $userInfo['custom_image_path']);
 			echo json_encode($response);
 		}
