@@ -99,7 +99,7 @@ label span {
     height: 75px;
 }
 
-.tokenModal {
+#tokenModal {
 	width: 525px;
 }
 
@@ -114,6 +114,16 @@ label span {
 #tokenModal {
 	text-align: center;
 }
+
+#jobModal .jobImage{
+
+	width: 25px;
+}
+
+.subContent span {
+	color: black;
+}
+
 
 
 

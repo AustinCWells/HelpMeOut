@@ -28,7 +28,7 @@ $(window).ready(function(event) {
 	});
 
 	var width = $("li#navUser").width();
-	console.log(width);
+	//console.log(width);
 	$("#userNav li").width(width);
 
 

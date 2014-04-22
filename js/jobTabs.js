@@ -4,16 +4,17 @@ jQuery( "#tabs" ).tabs();
 
 var sorry = 'Sorry, there are currently no jobs available in this category.';
 var num_tasks = 8;
+var isAll = false;
+var isRecent = false;
+$(document).ready(function(event) {
 
-$(window).ready(function(event) {
-
-	console.log(userInfo);
+	//console.log(userInfo);
 
 	//Loading 
 	$.getJSON("api/tasks",function(data){
 
-		console.log("Jobs: ");
-		console.log(data);
+		//console.log("Jobs: ");
+		//console.log(data);
 		
 		for(var keys in data){
 
@@ -31,15 +32,18 @@ $(window).ready(function(event) {
 		}
 
 	})
-	.done(callback)
+	.done(function(){
+		isAll = true;
+		callback();
+	})
 	.fail(function(){
 	   console.log("Failed to load jobs.");
 	});
 
 
 	$.getJSON("api/recentTasks/"+num_tasks, function(data){
-		console.log("Recent Jobs: ");
-		console.log(data);
+		//console.log("Recent Jobs: ");
+		//console.log(data);
 		//console.log(JSON.stringify(data));
 
 		for(var i=0; i<data.length; i++) {
@@ -47,7 +51,10 @@ $(window).ready(function(event) {
 		}
 
 	})
-	.done(callback)
+	.done(function(){
+		isRecent = true;
+		callback();
+	})
 	.fail(function(){
 	   console.log("Failed to load recent jobs.");
 	});
@@ -56,21 +63,35 @@ $(window).ready(function(event) {
 });
 
 var callback = function(){
-	$(".currentJob").hover(
-		function(){
-			var height = $(this).children(".jobImage").height();
-			var width = $(this).children(".jobImage").width();
-			$(this).children(".overlay").height(height);
-			$(this).children(".overlay").width(width);
-		},
-		function(){
-			$(this).children(".overlay").height(0);
-			$(this).children(".overlay").width(0);
-	});
 
-	$(".jobPost").click(function(){
-		alert("hello");
-	});
+	if(isAll && isRecent){
+
+		$(".currentJob").hover(
+			function(){
+				var height = $(this).children(".jobImage").height();
+				var width = $(this).children(".jobImage").width();
+				$(this).children(".overlay").height(height);
+				$(this).children(".overlay").width(width);
+			},
+			function(){
+				$(this).children(".overlay").height(0);
+				$(this).children(".overlay").width(0);
+		});
+
+		$(".jobPost").click(function(){
+			var info = $(this).children(".jobInfo").val();
+			info = JSON.parse(info);
+			console.log(info);
+			$("#beggerName").text(info.first_name + " " + info.last_name);
+			$("#jobDeadline").text(info.time_frame_date + " by " + info.time_frame_time);
+			$("#modalDescription").text(info.short_description);
+			$("#modalPayment").text("Pays: $" + (info.price));
+			$("#modalLocation").text("Location: " + info.location);
+			$("#modalNotes").text("Notes: " + info.notes);
+
+			openModal("#jobModal");
+		});
+	}
 }
 
 var constructJob = function(job, categoryName) {
@@ -190,7 +211,7 @@ var constructJob = function(job, categoryName) {
 }
 
 var getJobHTML = function(job, image){
-	return '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden" value = "' + JSON.stringify(job) + '"</div>';
+	return '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden" value = \'' + JSON.stringify(job) + '\'</div>';
 }
 
 function constructRecentJob(job) {
@@ -239,7 +260,6 @@ function constructRecentJob(job) {
 	}
 	
 	$('#recentJobs').append(getJobHTML(job, image));
-
 
 
 }
