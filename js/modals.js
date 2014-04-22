@@ -141,6 +141,34 @@ $(window).ready(function(){
 		dbRequest('api/postatask', 'application/json', jobPostInfo, 'jobPost');
 	});
 
+	$(".offerHelp").submit(function(event){
+
+		event.preventDefault();
+		var info = {};
+		info.modal = "Offer Help";
+		info.error = {};
+
+		if(checkLogin()){
+
+			if(userInfo.tokens){
+
+			}
+
+			else {
+
+				info.error.text = "Must have tokens to offer help!";
+				//console.log(info);
+				displayError(info);
+
+			}
+
+		}
+		else{
+			info.error.text = "Need to be logged in to offer help!";
+			displayError(info);
+		}
+	});
+
 	$(".modalLink").click(function(event){
 		event.preventDefault();
 		openModal($(this).attr('href'));
@@ -347,7 +375,6 @@ var displayError = function(info){
 	$(".errorTitle").text(info.modal);
 	if(info.modal === "Login in Failure!"){
 		$("#errorInfo").text("Email and password do not match!");
-		//console.log($("#errorInfo"));
 	}
 	else
 		$("#errorInfo").text(info.error.text);

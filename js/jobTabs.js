@@ -6,6 +6,7 @@ var sorry = 'Sorry, there are currently no jobs available in this category.';
 var num_tasks = 8;
 var isAll = false;
 var isRecent = false;
+
 $(document).ready(function(event) {
 
 	//console.log(userInfo);
@@ -82,6 +83,7 @@ var callback = function(){
 			var info = $(this).children(".jobInfo").val();
 			info = JSON.parse(info);
 			//console.log(info);
+			$("#jobModal .jobImage").attr("src", info.image);
 			$("#modalCategory").text(info.category);
 			$("#beggerName").text(info.first_name + " " + info.last_name);
 			$("#jobDeadline").text(info.time_frame_date + " by " + info.time_frame_time);
@@ -156,6 +158,7 @@ var constructJob = function(job, categoryName) {
 	}
 
 	job.category = categoryFormatted;
+	job.image = image;
 	var text = $('#' + category).append(getJobHTML(job, image));
 	$(text).children(":last-child").children(".jobInfo").val(JSON.stringify(job));
 	//$("#" + category +":last-child .jobInfo").val(JSON.stringify(job));
@@ -245,6 +248,7 @@ function constructRecentJob(job) {
 		return;
 	
 	job.category = categoryFormatted;
+	job.image= image;
 	var text = $('#recentJobs').append(getJobHTML(job, image));
 	$(text).children(":last-child").children(".jobInfo").val(JSON.stringify(job));
 
