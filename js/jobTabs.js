@@ -36,18 +36,23 @@ $(window).ready(function(event) {
 	});
 
 
-	$.getJSON("api/recentTasks/"+num_tasks, function(data2){
+	$.getJSON("api/recentTasks/"+num_tasks, function(data){
 		console.log("Recent Jobs: ");
-		console.log(data2);
+		console.log(data);
+		//console.log(JSON.stringify(data));
 
-		for(var i=0;i<data2.length;i++) {
-			constructRecentJob(data2[i]);
+		for(var i=0; i<data.length; i++) {
+			constructRecentJob(data[i]);
 		}
 
 	})
 	.fail(function(){
 	   console.log("Failed to load recent jobs.");
 	});
+
+
+	/*need to insert after the async task has finish*/
+	console.log($(".currentJob"));
 
 	$(".currentJob").hover(
 		function(){
@@ -61,11 +66,6 @@ $(window).ready(function(event) {
 			$(this).children(".overlay").width(0);
 	});
 
-	$("#modalOverlay").click(function(){
-		$(".modal").hide();
-		$(".modalOverlay").height(0);
-		$("#modalOverlay").removeClass("modalOverlay");
-	});
 
 });
 
@@ -129,23 +129,7 @@ var constructJob = function(job, categoryName) {
 
 	}
 
-	/*
-
-	'<div class="jobPost">
-		<p class="jobDesc">' + job.short_description + '</p>
-		<p class="jobPrice">' + "$" + job.price + '</p>
-		<div class = "currentJob">
-			<div class = "overlay"></div>
-			<img class="jobImage" src="' + image + '">
-		</div>
-	</div>'
-
-
-	*/
-
-
-	var html = '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden" value = "' + JSON.stringify(job) + '"</div>';
-	$('#' + category).append(html);
+	$('#' + category).append(getJobHTML(job, image));
 
 
 	/*var posting = "#" + category + "Posting" + job.task_id;
@@ -201,6 +185,10 @@ var constructJob = function(job, categoryName) {
 	});*/
 }
 
+var getJobHTML = function(job, image){
+	return '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden" value = "' + JSON.stringify(job) + '"</div>';
+}
+
 function constructRecentJob(job) {
 	var category = "";
 	var categoryFormatted = "";
@@ -246,46 +234,8 @@ function constructRecentJob(job) {
 		image = "img/other.png";
 	}
 	
-	var html = '<div class="jobPost" id="recentPosting' + job.task_id + '" data-num="' + job.task_id + '"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div></div>';
-	$('#recentJobs').append(html);
+	$('#recentJobs').append(getJobHTML(job, image));
 
-	var hidden = '<div class="jobModal modal" id="recentModal' + job.task_id + '"><div class="modalTitle yellow">' + job.short_description + '<button type = "button" class = "closeButton"><span>X</span></button><div class = "clear"></div></div><div class="row"><img class="three column jobIcon" src="' + image + '"><div class="eight column jobModalNotes">Notes: ' + job.notes + '<br>You\'ll make: $' + job.price + '<br>Category: ' + categoryFormatted + '</div></div><div class="row"><div class="twelve column jobContact">Name: ' + job.first_name + ' ' + job.last_name + '<br>Location: ' + job.location + '<br><br><span class="smallText">End Time:</span> ' + job.time_frame_time + ' on ' + job.time_frame_date + '</div></div><div class="row center"><input type="button" class="requestJob" value="Offer Help"></div></div>';	
-	$("#contentArea").append(hidden);
 
-	var posting = "#" + "recentPosting" + job.task_id;
-	$(posting).click(
-	function(){
-		var pop = "#" + "recentModal" + $(this).data("num");
-		//openModal($(pop));
-		var windowWidth = $(window).width() / 2;
-		var windowHeight = $(window).height() / 2;
-		//console.log(windowWidth);
-		$(pop).show();
-		$(pop).addClass("modalSelected");
-		//var jobWidth = 12 + ($(pop + " form").width() / 2);
-		//var jobHeight = 12 + ($(pop + " form").height() / 2);
-		var jobWidth = 200;
-		var jobHeight = 150;
-		var left = windowWidth - jobWidth;
-		var top = windowHeight - jobHeight;
-		$(pop).css({"left": left, "top": top});
 
-		$("#modalOverlay").addClass("modalOverlay");
-		$(".modalOverlay").height($(document).height());
-
-		$(".requestJob").click(function(){
-			$(".modal").hide();
-			$(".modalOverlay").height(0);
-			$("#modalOverlay").removeClass("modalOverlay");
-			//TODO: send job request
-		});
-
-		$(".closeButton").click(function(){
-			$(".modal").hide();
-			$(".modalOverlay").height(0);
-			$("#modalOverlay").removeClass("modalOverlay");
-			//TODO: send job request
-		});
-
-	});
 }
