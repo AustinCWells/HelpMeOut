@@ -80,9 +80,9 @@ var callback = function(){
 
 		$(".jobPost").click(function(){
 			var info = $(this).children(".jobInfo").val();
-			//info = JSON.parse(info);
-			console.log(info);
-			/*$("#modalCategory").text(info.category);
+			info = JSON.parse(info);
+			//console.log(info);
+			$("#modalCategory").text(info.category);
 			$("#beggerName").text(info.first_name + " " + info.last_name);
 			$("#jobDeadline").text(info.time_frame_date + " by " + info.time_frame_time);
 			$("#modalDescription").text(info.short_description);
@@ -90,7 +90,7 @@ var callback = function(){
 			$("#modalLocation").text("Location: " + info.location);
 			$("#modalNotes").text("Notes: " + info.notes);
 
-			openModal("#jobModal");*/
+			openModal("#jobModal");
 		});
 	}
 }
@@ -155,10 +155,10 @@ var constructJob = function(job, categoryName) {
 
 	}
 
-	console.log(category);
-
-	$('#' + category).append(getJobHTML(job, image));
-	console.log($("#" + category +":last-child"));
+	job.category = categoryFormatted;
+	var text = $('#' + category).append(getJobHTML(job, image));
+	$(text).children(":last-child").children(".jobInfo").val(JSON.stringify(job));
+	//$("#" + category +":last-child .jobInfo").val(JSON.stringify(job));
 
 
 	/*var posting = "#" + category + "Posting" + job.task_id;
@@ -245,7 +245,7 @@ function constructRecentJob(job) {
 		return;
 	
 	job.category = categoryFormatted;
-	$('#recentJobs').append(getJobHTML(job, image));
-
+	var text = $('#recentJobs').append(getJobHTML(job, image));
+	$(text).children(":last-child").children(".jobInfo").val(JSON.stringify(job));
 
 }
