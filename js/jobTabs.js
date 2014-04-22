@@ -80,8 +80,9 @@ var callback = function(){
 
 		$(".jobPost").click(function(){
 			var info = $(this).children(".jobInfo").val();
-			info = JSON.parse(info);
+			//info = JSON.parse(info);
 			console.log(info);
+			/*$("#modalCategory").text(info.category);
 			$("#beggerName").text(info.first_name + " " + info.last_name);
 			$("#jobDeadline").text(info.time_frame_date + " by " + info.time_frame_time);
 			$("#modalDescription").text(info.short_description);
@@ -89,7 +90,7 @@ var callback = function(){
 			$("#modalLocation").text("Location: " + info.location);
 			$("#modalNotes").text("Notes: " + info.notes);
 
-			openModal("#jobModal");
+			openModal("#jobModal");*/
 		});
 	}
 }
@@ -154,34 +155,15 @@ var constructJob = function(job, categoryName) {
 
 	}
 
+	console.log(category);
+
 	$('#' + category).append(getJobHTML(job, image));
+	console.log($("#" + category +":last-child"));
 
 
 	/*var posting = "#" + category + "Posting" + job.task_id;
 	$(posting).click(
 	function(){
-		var pop = "#" + category + "Modal" + $(this).data("num");
-		//openModal($(pop));
-		var windowWidth = $(window).width() / 2;
-		var windowHeight = $(window).height() / 2;
-		//console.log(windowWidth);
-		$(pop).show();
-		$(pop).addClass("modalSelected");
-		//var jobWidth = 12 + ($(pop + " form").width() / 2);
-		//var jobHeight = 12 + ($(pop + " form").height() / 2);
-		var jobWidth = 200;
-		var jobHeight = 150;
-		var left = windowWidth - jobWidth;
-		var top = windowHeight - jobHeight;
-		$(pop).css({"left": left, "top": top});
-
-		$("#modalOverlay").addClass("modalOverlay");
-		$(".modalOverlay").height($(document).height());
-
-		$(".requestJob").click(function(){
-			$(".modal").hide();
-			$(".modalOverlay").height(0);
-			$("#modalOverlay").removeClass("modalOverlay");
 
 			var offer = {};
 			offer.task_id = job.task_id;
@@ -211,7 +193,7 @@ var constructJob = function(job, categoryName) {
 }
 
 var getJobHTML = function(job, image){
-	return '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden" value = \'' + JSON.stringify(job) + '\'</div>';
+	return '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden"</div>';
 }
 
 function constructRecentJob(job) {
@@ -250,7 +232,7 @@ function constructRecentJob(job) {
 	}
 	else if(job.category_id === 7) {
 		category = "techSupport";
-		categoryFormatted = "techSupport";
+		categoryFormatted = "Tech Support";
 		image = "img/techsupport.png";
 	}
 	else if(job.category_id === 8) {
@@ -258,7 +240,11 @@ function constructRecentJob(job) {
 		categoryFormatted = "Other";
 		image = "img/other.png";
 	}
+
+	else
+		return;
 	
+	job.category = categoryFormatted;
 	$('#recentJobs').append(getJobHTML(job, image));
 
 
