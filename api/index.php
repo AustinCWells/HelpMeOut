@@ -161,7 +161,7 @@
 			$stmt->bindParam("last_name", $userInfo->lastName);
 			$stmt->bindParam("phone", $userInfo->number);
 			$stmt->bindParam("email", $userInfo->email);
-			$stmt->bindParam("user_id", $userInfo->userID);
+			$stmt->bindParam("user_id", (int)$userInfo->userID);
 			$stmt->execute();
 			$db = null;
 			echo '{"success": true}';
@@ -191,7 +191,7 @@
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("password", md5($userInfo->password));
-			$stmt->bindParam("user_id", $userInfo->userID);
+			$stmt->bindParam("user_id", (int)$userInfo->userID);
 			$stmt->execute();
 			$db = null;
 			echo '{"success": true}';
