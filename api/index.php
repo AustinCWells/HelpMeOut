@@ -157,11 +157,11 @@
 		{
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
-			$stmt->bindParam("first_name", $userInfo->firstName);
-			$stmt->bindParam("last_name", $userInfo->lastName);
-			$stmt->bindParam("phone", $userInfo->number);
+			$stmt->bindParam("first_name", $userInfo->first_name);
+			$stmt->bindParam("last_name", $userInfo->last_name);
+			$stmt->bindParam("phone", $userInfo->phone);
 			$stmt->bindParam("email", $userInfo->email);
-			$stmt->bindParam("user_id", (int)$userInfo->userID);
+			$stmt->bindParam("user_id", (int)$userInfo->user_id);
 			$stmt->execute();
 			$db = null;
 			echo '{"success": true}';
