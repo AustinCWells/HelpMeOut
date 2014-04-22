@@ -56,7 +56,7 @@
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
-				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'tokens' => (int)$userinfo['tokens'], 'phone' => $userinfo['phone'], 'is_custom' => $userinfo['is_custom'], 'custom_image_path' => $userinfo['custom_image_path']);
+				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'tokens' => (int)$userinfo['tokens'], 'phone' => $userinfo['phone'], 'is_custom' => (int)$userinfo['is_custom'], 'custom_image_path' => $userinfo['custom_image_path']);
 				echo json_encode($response);
 			}
 			else
@@ -126,7 +126,7 @@
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
-				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'tokens' => (int)$userinfo['tokens'], 'is_custom' => $userinfo['is_custom'], 'custom_image_path' => $userinfo['custom_image_path']);
+				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'tokens' => (int)$userinfo['tokens'], 'is_custom' => (int)$userinfo['is_custom'], 'custom_image_path' => $userinfo['custom_image_path']);
 				echo json_encode($response);
 			}
 			else
@@ -227,7 +227,7 @@
 			$stmt->execute();
 			$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 			$db = null;
-			$response = array('userID' => $userInfo['user_id'], 
+			$response = array('userID' => (int)$userInfo['user_id'], 
 							  'email' => $userInfo['email'], 
 							  'first_name' => $userInfo['first_name'], 
 							  'last_name' => $userInfo['last_name'], 
@@ -236,12 +236,12 @@
 							  'gender' => $userInfo['gender'], 
 							  'times_reported' => $userInfo['times_reported'], 
 							  'tokens' => (int)$userInfo['tokens'],
-							  'is_custom' => $userInfo['is_custom'],
+							  'is_custom' => (int)$userInfo['is_custom'],
 							  'custom_image_path' => $userInfo['custom_image_path'],
-							  'jobs_completed' => $userInfo['jobs_completed'],
-							  'jobs_requested' => $userInfo['jobs_requested'],
-							  'speed' => $userInfo['speed'],
-							  'reliability' => $userInfo['reliability']);
+							  'jobs_completed' => (int)$userInfo['jobs_completed'],
+							  'jobs_requested' => (int)$userInfo['jobs_requested'],
+							  'speed' => (int)$userInfo['speed'],
+							  'reliability' => (int)$userInfo['reliability']);
 			echo json_encode($response);
 		}
 		catch(PDOException $e)
