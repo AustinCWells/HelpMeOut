@@ -400,6 +400,8 @@ var displayError = function(info){
 
 var displaySuccess = function(info){
 
+	closeModal();
+
 	openModal("#successModal");
 	$(".successTitle").text(info.modal);
 	console.log(info);
