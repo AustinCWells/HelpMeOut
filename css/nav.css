@@ -1,6 +1,10 @@
 body {
 	margin: 0px;
 }
+
+.currentJob {
+	cursor: pointer;
+}
 .currentPage {
 	background-color: rgb(34,46,64)
 }

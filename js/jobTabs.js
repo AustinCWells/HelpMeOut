@@ -31,6 +31,7 @@ $(window).ready(function(event) {
 		}
 
 	})
+	.done(callback)
 	.fail(function(){
 	   console.log("Failed to load jobs.");
 	});
@@ -46,14 +47,15 @@ $(window).ready(function(event) {
 		}
 
 	})
+	.done(callback)
 	.fail(function(){
 	   console.log("Failed to load recent jobs.");
 	});
 
 
-	/*need to insert after the async task has finish*/
-	console.log($(".currentJob"));
+});
 
+var callback = function(){
 	$(".currentJob").hover(
 		function(){
 			var height = $(this).children(".jobImage").height();
@@ -66,8 +68,10 @@ $(window).ready(function(event) {
 			$(this).children(".overlay").width(0);
 	});
 
-
-});
+	$(".jobPost").click(function(){
+		alert("hello");
+	});
+}
 
 var constructJob = function(job, categoryName) {
 	var category = "";
