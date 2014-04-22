@@ -15,7 +15,7 @@
 	<div class="three columns"></div>
 	<div class="six columns">
 		<div id="settings">
-			<form action="api/updateaccount" method="POST" id="updateForm">
+			<form action="api/updateaccount" method="POST" id="updateAccountForm">
 				<div class="row">
 					<div class="settingLabel five column">First Name:</div>
 					<input id="firstName" class="setting five column" maxlength = "40">
@@ -43,7 +43,7 @@
 			</form>
 			<br>
 			<br>
-			<form action="api/updatepassword" method="POST">
+			<form action="api/updatepassword" method="POST" id="updatePasswordForm">
 				<div class="row">
 					<div class="settingLabel five column">New Password:</div>
 					<input type="password" id="newPassword" class="setting five column" maxlength = "32">

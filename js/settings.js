@@ -28,7 +28,7 @@ $(window).ready(function(event) {
 	});
 
 
-	$("#updateForm").submit(function(event){
+	$("#updateAccountForm").submit(function(event){
 
 		event.preventDefault();
 		//console.log("Posting a Job")
@@ -36,10 +36,30 @@ $(window).ready(function(event) {
 		//checkJobPostValidity();
 
 		var updateInfo = {};
-		updateInfo.first_name = $("#firstName").val();
-		updateInfo.last_name = $("#lastName").val();
-		updateInfo.phone = $("#phoneNum").val();
-		updateInfo.email= $("#email").val();
+		if($("#firstName").val() != "")
+			updateInfo.first_name = $("#firstName").val();
+		else {
+			//console.log("first name empty");
+			updateInfo.first_name = userInfo.firstName;
+		}
+		if($("#lastName").val() != "")
+			updateInfo.last_name = $("#lastName").val();
+		else {
+			//console.log("last name empty");
+			updateInfo.last_name = userInfo.lastName;
+		}
+		if($("#phoneNum").val() != "")
+			updateInfo.phone = $("#phoneNum").val();
+		else {
+			//console.log("phone # empty");
+			updateInfo.phone = userInfo.phone;
+		}
+		if($("#email").val() != "")
+			updateInfo.email= $("#email").val();
+		else {
+			//console.log("email empty");
+			updateInfo.email = userInfo.email;
+		}
 		updateInfo.user_id = userInfo.userID;
 
 		console.log(updateInfo);
@@ -51,9 +71,37 @@ $(window).ready(function(event) {
         data: updateInfo, //Data to POST to the server
         content: 'application/json',
         success: function (data) { 
-        	console.log("Successfully updated.");
+        	console.log(data);
 		}
 	});
+	});
+
+
+	$("#updatePasswordForm").submit(function(event){
+
+		event.preventDefault();
+		//console.log("Posting a Job")
+
+		//checkJobPostValidity();
+
+		var updateInfo = {};
+		if($("#newPassword").val() === $("#confirmPassword").val()) {
+		updateInfo.password = $("#newPassword").val();
+		updateInfo.user_id = userInfo.userID;
+
+		console.log(updateInfo);
+
+		var url = "api/updatepassword";
+		$.ajax({
+	        type: "Post",
+	        url: url,
+	        data: updateInfo, //Data to POST to the server
+	        content: 'application/json',
+	        success: function (data) { 
+	        	console.log(data);
+			}
+		});
+	}
 	});
 
 
