@@ -28,4 +28,33 @@ $(window).ready(function(event) {
 	});
 
 
+	$("#updateForm").submit(function(event){
+
+		event.preventDefault();
+		//console.log("Posting a Job")
+
+		//checkJobPostValidity();
+
+		var updateInfo = {};
+		updateInfo.first_name = $("#firstName").val();
+		updateInfo.last_name = $("#lastName").val();
+		updateInfo.phone = $("#phoneNum").val();
+		updateInfo.email= $("#email").val();
+		updateInfo.user_id = userInfo.userID;
+
+		console.log(updateInfo);
+
+		var url = "api/updateaccount";
+		$.ajax({
+        type: "Post",
+        url: url,
+        data: updateInfo, //Data to POST to the server
+        content: 'application/json',
+        success: function (data) { 
+        	console.log("Successfully updated.");
+		}
+	});
+	});
+
+
 });

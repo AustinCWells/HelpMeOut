@@ -15,7 +15,7 @@
 	<div class="three columns"></div>
 	<div class="six columns">
 		<div id="settings">
-			<form action="api/updateaccount" method="POST">
+			<form action="api/updateaccount" method="POST" id="updateForm">
 				<div class="row">
 					<div class="settingLabel five column">First Name:</div>
 					<input id="firstName" class="setting five column" maxlength = "40">
@@ -29,8 +29,8 @@
 					<input id="phoneNum" class="setting five column" maxlength = "12">
 				</div>
 				<div class="row">
-					<div class="settingLabel five column">Confirm Password:</div>
-					<input type="password" id="confirmPassword" class="setting five column" maxlength = "32">
+					<div class="settingLabel five column">Email:</div>
+					<input id="email" class="setting five column" maxlength = "100">
 				</div>
 				<input type="submit" value="Save Changes"><!--Does nothing-->
 			</form>
