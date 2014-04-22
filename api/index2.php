@@ -637,7 +637,7 @@
 	#BEGGAR CANCELS
 	if($user_id == (int)$task_info['beggar_id'])
 		{
-
+			#FILL ME AHP BIG BOI
 		}
 
 	#CHOOSER CANCELS
