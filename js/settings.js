@@ -28,4 +28,98 @@ $(window).ready(function(event) {
 	});
 
 
+	$("#updateAccountForm").submit(function(event){
+
+		event.preventDefault();
+
+		var updateInfo = {};
+		if($("#firstName").val() != "")
+			updateInfo.first_name = $("#firstName").val();
+		else {
+			//console.log("first name empty");
+			updateInfo.first_name = userInfo.firstName;
+		}
+		if($("#lastName").val() != "")
+			updateInfo.last_name = $("#lastName").val();
+		else {
+			//console.log("last name empty");
+			updateInfo.last_name = userInfo.lastName;
+		}
+		if($("#phoneNum").val() != "")
+			updateInfo.phone = $("#phoneNum").val();
+		else {
+			//console.log("phone # empty");
+			updateInfo.phone = userInfo.phone;
+		}
+		if($("#email").val() != "")
+			updateInfo.email= $("#email").val();
+		else {
+			//console.log("email empty");
+			updateInfo.email = userInfo.email;
+		}
+		updateInfo.user_id = userInfo.userID;
+
+		console.log(updateInfo);
+
+		var url = "api/updateaccount";
+		$.ajax({
+        type: "Post",
+        url: url,
+        data: updateInfo,
+        content: 'application/json',
+        success: function (data) { 
+        	console.log(data);
+		}
+	});
+	});
+
+
+$("#updatePicForm").submit(function(event){
+
+		event.preventDefault();
+
+		var updateInfo = {};
+		updateInfo.file_path = $("#uploadedFile").val();
+		updateInfo.user_id = userInfo.userID;
+
+		console.log(updateInfo);
+
+		var url = "api/changeProfileImage";
+		$.ajax({
+	        type: "Post",
+	        url: url,
+	        data: updateInfo,
+	        content: 'application/json',
+	        success: function (data) { 
+	        	console.log(data);
+			}
+		});
+	});
+
+
+	$("#updatePasswordForm").submit(function(event){
+
+		event.preventDefault();
+
+		var updateInfo = {};
+		if($("#newPassword").val() === $("#confirmPassword").val()) {
+		updateInfo.password = $("#newPassword").val();
+		updateInfo.user_id = userInfo.userID;
+
+		console.log(updateInfo);
+
+		var url = "api/updatepassword";
+		$.ajax({
+	        type: "Post",
+	        url: url,
+	        data: updateInfo,
+	        content: 'application/json',
+	        success: function (data) { 
+	        	console.log(data);
+			}
+		});
+	}
+	});
+
+
 });

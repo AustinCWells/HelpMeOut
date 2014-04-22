@@ -152,6 +152,12 @@ $(window).ready(function(){
 
 			if(userInfo.tokens){
 
+				var offer = {};
+				offer.task_id = parseInt($("#modalTaskId").val(), 10);
+				offer.user_id = userInfo.userID;
+				console.log(offer);
+				dbRequest('api/makeOffer', 'application/json', offer, 'offerHelp');
+
 			}
 
 			else {
@@ -220,6 +226,8 @@ var dbRequest = function(url, content, json, type){
 					obj.modal = "Login Error!";
 				else if(type === "signUp")
 					obj.modal = "Sign Up Error!";
+				else if(type === "offerHelp")
+					obj.modal = "Offer Help Error!";
 
 				displayError(obj);
 			}
@@ -232,6 +240,11 @@ var dbRequest = function(url, content, json, type){
 
 				if(type === "jobPost"){
 					obj.modal = "Job Post was SuccesFul!";
+					displaySuccess(obj);
+				}
+
+				else if(type === "offerHelp"){
+					obj.modal = "You succesfully offer help!";
 					displaySuccess(obj);
 				}
 
@@ -371,6 +384,7 @@ var setJobPostDimensions = function(){
 }
 
 var displayError = function(info){
+	closeModal();
 
 	openModal("#errorModal");
 	$(".errorTitle").text(info.modal);
@@ -380,11 +394,13 @@ var displayError = function(info){
 	else
 		$("#errorInfo").text(info.error.text);
 
-	console.log(info);
+	//console.log(info);
 
 }
 
 var displaySuccess = function(info){
+
+	closeModal();
 
 	openModal("#successModal");
 	$(".successTitle").text(info.modal);

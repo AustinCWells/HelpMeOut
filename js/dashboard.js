@@ -9,14 +9,14 @@ $(window).ready(function(event) {
 	console.log({user_id: userInfo.userID});
 	var json = {user_id: userInfo.userID};
 
-	var url = "api/getMyTasksAndPendingOffers/" + userInfo.userID;
+	var url = "api/tasksImDoing";
 
 	
 	$.ajax({
-        type: "Get",
+        type: "Post",
         url: url,
-        //data: json, //Data to POST to the server
-        //content: 'application/json',
+        data: json, //Data to POST to the server
+        content: 'application/json',
         success: function (data) { 
 			console.log('Job\'s I\'m Doing: ');
 			//console.log(JSON.parse(data));
@@ -164,11 +164,49 @@ $(window).ready(function(event) {
 
 					if(tasks[i].is_offer_for_help === 0) {
 						var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
+						accordionRight.append(html);
 					}
 					else {
-						var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" value="Decline"><input type="button" class="accept five columns" value="Accept"></div></div>';
+						var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span id="overall' + tasks[i].task_id + '"class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="overallFg' + tasks[i].task_id + '"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column" id="speed' + tasks[i].task_id + '"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="speedFg' + tasks[i].task_id + '"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '" value="Accept"></div></div>';
+						accordionRight.append(html);
+						var ratingLabel = document.getElementById("overall" + tasks[i].task_id);
+						var ratingBar = document.getElementById("overallFg" + tasks[i].task_id);
+						$(ratingLabel).append(tasks[i].chooser_reliability + "%");
+						$(ratingBar).width(ratingLabel.innerHTML);
+						var ratingLabel2 = document.getElementById("speed" + tasks[i].task_id);
+						var ratingBar2 = document.getElementById("speedFg" + tasks[i].task_id);
+						$(ratingLabel2).append(tasks[i].chooser_speed + "%");
+						$(ratingBar2).width(ratingLabel.innerHTML);
+						var AcceptButton = document.getElementById("accept" + tasks[i].task_id);
+						var DeclineButton = document.getElementById("decline" + tasks[i].task_id);
+						AcceptButton.onclick = function(e) {
+							console.log("acccept");
+							console.log($(AcceptButton).data("task"));
+
+							var url = "api/acceptOffer/:" + userInfo.userID + ",:" + $(AcceptButton).data("task");
+							$.ajax({
+						        type: "Get",
+						        url: url,
+						        success: function (data) { 
+						        	console.log(data);
+								}
+							});
+						}
+						DeclineButton.onclick = function(e) {
+							console.log("decccline");
+							console.log($(DeclineButton).data("task"));
+
+							var url = "api/declineOffer/:" + userInfo.userID + ",:" + $(DeclineButton).data("task");
+							$.ajax({
+						        type: "Get",
+						        url: url,
+						        success: function (data) { 
+						        	console.log(data);
+								}
+							});
+						}
+
 					}
-					accordionRight.append(html);
 				}
 
 						

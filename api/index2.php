@@ -230,7 +230,7 @@
 			$is_hidden = $info->is_hidden;
 			$db = null;
 
-			//echo '{"success": true}';
+			echo '{"success": true}';
 		}
 		catch(PDOException $e) 
 		{

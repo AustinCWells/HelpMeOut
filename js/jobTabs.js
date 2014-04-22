@@ -82,7 +82,7 @@ var callback = function(){
 		$(".jobPost").click(function(){
 			var info = $(this).children(".jobInfo").val();
 			info = JSON.parse(info);
-			//console.log(info);
+			console.log(info);
 			$("#jobModal .jobImage").attr("src", info.image);
 			$("#modalCategory").text(info.category);
 			$("#beggerName").text(info.first_name + " " + info.last_name);
@@ -91,6 +91,7 @@ var callback = function(){
 			$("#modalPayment").text("Pays: $" + (info.price));
 			$("#modalLocation").text("Location: " + info.location);
 			$("#modalNotes").text("Notes: " + info.notes);
+			$("#modalTaskId").val(info.task_id);
 
 			openModal("#jobModal");
 		});
@@ -196,7 +197,7 @@ var constructJob = function(job, categoryName) {
 }
 
 var getJobHTML = function(job, image){
-	return '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden"</div>';
+	return '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden"></div>';
 }
 
 function constructRecentJob(job) {
