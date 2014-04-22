@@ -82,7 +82,7 @@ var callback = function(){
 		$(".jobPost").click(function(){
 			var info = $(this).children(".jobInfo").val();
 			info = JSON.parse(info);
-			//console.log(info);
+			console.log(info);
 			$("#jobModal .jobImage").attr("src", info.image);
 			$("#modalCategory").text(info.category);
 			$("#beggerName").text(info.first_name + " " + info.last_name);
@@ -91,6 +91,7 @@ var callback = function(){
 			$("#modalPayment").text("Pays: $" + (info.price));
 			$("#modalLocation").text("Location: " + info.location);
 			$("#modalNotes").text("Notes: " + info.notes);
+			$("#modalTaskId").val(info.task_id);
 
 			openModal("#jobModal");
 		});
