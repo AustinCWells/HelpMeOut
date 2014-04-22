@@ -251,7 +251,7 @@
 
 			//echo '{"success": true}';
 		}
-		catch(PDOException $e) 
+	catch(PDOException $e) 
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
@@ -345,7 +345,7 @@
 						echo '{"error":{"text": "No task_id!"}}';
 				}
 
-				catch(PDOException $e)
+			catch(PDOException $e)
 				{
 					echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 				}
@@ -356,7 +356,7 @@
    			$db = null;
 		}
 
-		catch(PDOException $e)
+	catch(PDOException $e)
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
@@ -380,7 +380,7 @@
 
 	$sql= "UPDATE OFFERS SET is_declined = 1 WHERE chooser_id = :user_id AND task_id = :task_id;";
 	try
-	      {
+	    {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
 			
@@ -396,8 +396,8 @@
 
 			$db = null;
       		echo json_encode($success);
-	      }  
-		catch(PDOException $e) 
+	    }  
+	catch(PDOException $e) 
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
@@ -426,7 +426,7 @@
 	#SET IS_ACCEPTED = 1 FOR THE OFFER BEING ACCEPTED, AUTOMATICALLY SET TASK.CHOOSER_ID TO REFLECT ACCEPTANCE
 	$sql= "UPDATE OFFERS SET is_accepted = 1 WHERE chooser_id = :user_id AND task_id = :task_id;";
 	try
-	      {
+	    {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
 			
@@ -441,9 +441,9 @@
 			$stmt->execute();
 
 			$db = null;
-      		echo json_encode($success);
-	      }  
-		catch(PDOException $e) 
+      		#echo json_encode($success);
+	    }  
+	catch(PDOException $e) 
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
@@ -451,7 +451,7 @@
 	#DECLINE ALL OTHER PENDING OFFERS
 	$sql= "UPDATE OFFERS SET is_declined = 1 WHERE chooser_id != :user_id AND task_id = :task_id;";
 	try
-	      {
+	    {
 			$db = getConnection();
 			$stmt= $db->prepare($sql);
 			
@@ -466,10 +466,137 @@
 			$stmt->execute();
 
 			$db = null;
-      		echo json_encode($success);
-	      }  
-		catch(PDOException $e) 
+      		#echo json_encode($success);
+	    }  
+	catch(PDOException $e) 
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
 	}
+
+
+	##########
+	#	AUTHOR:			Spencer
+	#	LAST UPDATE:	
+	#	SUMMARY:		Marks a task as complete in the DB and updates the chooser's rating
+	#	INPUTS:			task_id, user_id, num_stars
+	#	OUTPUTS:		N/A
+	#	STATUS:			COMPLETE
+    ##########
+	function completeTask($task_id, $num_stars_speed, $num_stars_reliability)
+	{
+	$request = \Slim\Slim::getInstance()->request();
+	#$user_info = json_decode($request->getBody());
+	
+	#FOR JSON USE
+	#$task_id = (int)$user_info['task_id'];
+	#$num_stars_speed = (int)$user_info['num_stars_speed'];
+	#$num_stars_reliability = (int)$user_info['num_stars_reliability'];
+
+	#FOR PARAMETER USE
+	$task_id = intval($task_id);
+	$num_stars_speed = intval($num_stars_speed);
+	$num_stars_reliability = intval($num_stars_reliability);
+
+	$chooser_id = 0;
+	$jobs_completed = 0;
+	$curr_speed = 0;
+	$curr_reliability = 0;
+
+	#MARK TASK AS COMPLETE
+	$sql= "UPDATE TASK SET is_complete = 1 WHERE task_id = :task_id AND is_complete != 1";
+	try
+	    {
+			$db = getConnection();
+			$stmt= $db->prepare($sql);
+
+			$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+			
+			$stmt->execute();
+
+			$db = null;
+      		#echo json_encode($success);
+
+
+			#RETRIEVE USER_ID & USER DATA
+			$sql="SELECT TASK.chooser_id, USER_DATA.jobs_completed, USER_DATA.speed, USER_DATA.reliability FROM TASK INNER JOIN USER_DATA ON TASK.chooser_id = USER_DATA.user_id WHERE task_id = :task_id";
+			try
+			    {
+					$db = getConnection();
+					$stmt= $db->prepare($sql);
+
+					$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+					
+					$stmt->execute();
+
+					$user_info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+					$chooser_id = (int)$user_info['chooser_id'];
+					$jobs_completed = (int)$user_info['jobs_completed'];
+					$curr_speed = (int)$user_info['speed'];
+					$curr_reliability = (int)$user_info['reliability'];
+
+					#$chooser_id = (int)$stmt-fetch(PDO::FETCH_ASSOC)['chooser_id'];
+
+					$db = null;
+		      		#echo json_encode($success);
+			    }  
+			catch(PDOException $e) 
+				{
+					echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+				}
+	    }  
+	catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+		}
+
+
+
+	#THIS DOES NOT WORK
+		#IF THE PREVIOUS TRY EXECUTED, CHOOSER WILL BE SET AND THIS WILL EXECUTE AS WELL
+
+	#CALCULATE NEW RATINGS
+	if($chooser_id != 0)
+	{
+		#NOTE: jobs_requested and jobs_completed are automatically incremented by a trigger in TASK
+			#At this point, the jobs_completed variable includes the job that was rated (hence the -1)
+
+		#New Reliability/Speed = ((# of Jobs Completed / # of Jobs Completed + 1) * (Current Reliability / 100)) + ((1/ # of Jobs Completed + 1) * (# stars / 5))
+
+		$updated_speed = (int)((((($jobs_completed - 1) / $jobs_completed) * ($curr_speed/100)) + ((1 / $jobs_completed) * ($num_stars_speed/5)))*100);
+		$updated_reliability = (int)((((($jobs_completed - 1) / $jobs_completed) * ($curr_reliability/100)) + ((1 / $jobs_completed) * ($num_stars_reliability/5)))*100);
+
+
+		#UPDATE RATINGS IN DB
+		$sql= "UPDATE USER_DATA SET speed = :updated_speed, reliability = :updated_reliability WHERE user_id = :user_id";
+		try
+		    {
+				$db = getConnection();
+				$stmt= $db->prepare($sql);
+				
+				$stmt->bindParam("user_id", $chooser_id, PDO::PARAM_INT);
+				$stmt->bindParam("updated_speed", $updated_speed, PDO::PARAM_INT);
+				$stmt->bindParam("updated_reliability", $updated_reliability, PDO::PARAM_INT);
+
+				$stmt->execute();
+
+				$db = null;
+	      		#echo json_encode($success);
+		    }  
+		catch(PDOException $e) 
+			{
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+			}
+	}
+	}
+
+
+
+
+
+
+
+
+
+

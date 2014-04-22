@@ -23,6 +23,7 @@
 	$app->get('/getMyTasksAndPendingOffers/:user_id', 'getMyTasksAndPendingOffers');
 	$app->get('/declineOffer/:user_id,:task_id', 'declineOffer');
 	$app->get('/acceptOffer/:user_id,:task_id', 'acceptOffer');
+	$app->get('/completeTask/:task_id,:num_stars_speed,:num_stars_reliability', 'completeTask');
 
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
