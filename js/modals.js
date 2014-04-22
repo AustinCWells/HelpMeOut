@@ -157,7 +157,7 @@ $(window).ready(function(){
 			else {
 
 				info.error.text = "Must have tokens to offer help!";
-				//console.log(info);
+				closeModal();
 				displayError(info);
 
 			}
@@ -165,6 +165,7 @@ $(window).ready(function(){
 		}
 		else{
 			info.error.text = "Need to be logged in to offer help!";
+			closeModal();
 			displayError(info);
 		}
 	});
