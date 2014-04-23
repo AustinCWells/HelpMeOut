@@ -161,7 +161,7 @@
 			$stmt->bindParam("last_name", $userInfo->last_name);
 			$stmt->bindParam("phone", $userInfo->phone);
 			$stmt->bindParam("email", $userInfo->email);
-			$stmt->bindParam("user_id", $userInfo->user_id, PDO::PARAM_INT);
+			$stmt->bindParam("user_id", $userInfo->user_id);
 			$stmt->execute();
 			$db = null;
 			echo '{"success": true}';

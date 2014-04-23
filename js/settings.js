@@ -64,9 +64,9 @@ $(window).ready(function(event) {
 
 		var url = "api/updateaccount";
 		$.ajax({
-        type: "Post",
+        type: "POST",
         url: url,
-        data: updateInfo,
+        data: JSON.stringify(updateInfo),
         content: 'application/json',
         success: function (data) { 
         	console.log(data);
