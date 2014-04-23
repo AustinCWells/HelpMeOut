@@ -20,7 +20,7 @@ $(window).ready(function(event) {
 	$("#phoneNum").attr("placeholder", phoneNum);
 	$("#email").attr("placeholder", userInfo.email);
 
-		$("#phoneNum").keyup(function(event) {
+	$("#phoneNum").keyup(function(event) {
 
 		this.value = this.value.replace(/[^\d]/g, "");
 		var length = this.value.length;
@@ -63,6 +63,7 @@ $(window).ready(function(event) {
 			//console.log("email empty");
 			updateInfo.email = userInfo.email;
 		}
+		updateInfo.password = $("#confirmPassword").val();
 		updateInfo.user_id = userInfo.userID;
 
 		console.log(updateInfo);
