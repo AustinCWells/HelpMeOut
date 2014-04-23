@@ -661,6 +661,30 @@
 					$db = null;
 					echo '{"success": true, "location": "BEGGAR_CANCEL"}';
 
+
+					$sql = "UPDATE TASK SET is_complete = 1 WHERE task_id = :task_id";
+					try
+				    	{
+							$db = getConnection();
+							$stmt= $db->prepare($sql);
+							
+							#FOR INPUT JSON USE:
+							#$stmt->bindParam("user_id", $user_info->user_id, PDO::PARAM_INT);
+							#$stmt->bindParam("task_id", $user_info->task_id, PDO::PARAM_INT);
+							
+							#FOR PARAMETER USE:
+							$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+							
+							$stmt->execute();
+
+							$db = null;
+				      		echo '{"success": true, "location": "TASK_COMPLETE"}';
+
+				    	}  
+					catch(PDOException $e) 
+						{
+							echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+						}
 				}  
 			catch(PDOException $e) 
 				{
