@@ -277,8 +277,6 @@
 		#GET ALL TASKS CREATED BY A USER
 		$sql = "SELECT task_id, beggar_id, price, category_id, short_description, location, notes, 
 			time_frame_time, time_frame_date, date_posted FROM TASK WHERE beggar_id = :user_id AND is_complete = '0'";
-		$sql = "SELECT OFFERS.offer_id, TASK.task_id, TASK.beggar_id, TASK.price, TASK.category_id, TASK.short_description, TASK.time_frame_time, TASK.time_frame_date, TASK.date_posted, USER.user_id, USER.first_name AS chooser_fName, USER.last_name AS chooser_lName, USER.phone, USER.email, USER_DATA.speed AS chooser_speed, USER_DATA.reliability AS chooser_reliability, USER.is_custom, USER.custom_image_path FROM TASK INNER JOIN OFFERS ON OFFERS.task_id = TASK.task_id INNER JOIN USER ON OFFERS.chooser_id = USER.user_id INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE TASK.beggar_id = :user_id AND TASK.is_complete = '0'";
-
 		try
 		{
 			$db = getConnection();
