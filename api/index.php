@@ -149,7 +149,7 @@
     ##########
 	function updateAccount()
 	{
-		$sql = "UPDATE USER SET first_name = :first_name, last_name = :last_name, phone = :phone, email = :email WHERE user_id = :user_id";
+		$sql = "UPDATE USER SET first_name = :first_name, last_name = :last_name, phone = :phone, email = :email WHERE user_id = :user_id AND password = :password";
 		$request = \Slim\Slim::getInstance()->request();
 		$userInfo = json_decode($request->getBody());
 
@@ -162,6 +162,7 @@
 			$stmt->bindParam("phone", $userInfo->phone);
 			$stmt->bindParam("email", $userInfo->email);
 			$stmt->bindParam("user_id", $userInfo->user_id);
+			$stmt->bindParam("password", md5($userInfo->password));
 			$stmt->execute();
 			$db = null;
 			echo '{"success": true}';
@@ -182,7 +183,7 @@
     ##########
 	function updatePassword()
 	{
-		$sql = "UPDATE USER SET password = :password WHERE user_id = :user_id";
+		$sql = "UPDATE USER SET password = :password WHERE user_id = :user_id AND password = :password";
 		$request = \Slim\Slim::getInstance()->request();
 		$userInfo = json_decode($request->getBody());
 
@@ -192,6 +193,7 @@
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("password", md5($userInfo->password));
 			$stmt->bindParam("user_id", $userInfo->userID);
+			$stmt->bindParam("password", md5($userInfo->old_password));
 			$stmt->execute();
 			$db = null;
 			echo '{"success": true}';
