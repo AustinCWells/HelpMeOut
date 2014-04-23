@@ -603,7 +603,7 @@
 	#	OUTPUTS:		N/A
 	#	STATUS:			IN PROGRESS
     ##########
-	function cancelTask($task_id, $user_id)
+	function cancelTask($user_id, $task_id)
 	{
 	$request = \Slim\Slim::getInstance()->request();
 	#$user_info = json_decode($request->getBody());

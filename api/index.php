@@ -24,7 +24,7 @@
 	$app->get('/declineOffer/:user_id,:task_id', 'declineOffer');
 	$app->get('/acceptOffer/:user_id,:task_id', 'acceptOffer');
 	$app->get('/completeTask/:task_id,:num_stars_speed,:num_stars_reliability', 'completeTask');
-	$app->get('/cancelTask/:task_id,:user_id', 'cancelTask');
+	$app->get('/cancelTask/:user_id,:task_id', 'cancelTask');
 
 	//$app->post('/paymentinfo', 'getPaymentInfo');
 
