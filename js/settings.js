@@ -79,17 +79,17 @@ $("#updatePicForm").submit(function(event){
 
 		event.preventDefault();
 
-		var updateInfo = {};
-		updateInfo.file_path = $("#uploadedFile").val();
-		updateInfo.user_id = userInfo.userID;
+		var updatePic = {};
+		updatePic.file_path = $("#uploadedFile").val();
+		updatePic.user_id = userInfo.userID;
 
-		console.log(updateInfo);
+		console.log(updatePic);
 
 		var url = "api/changeProfileImage";
 		$.ajax({
-	        type: "Post",
+	        type: "Get",
 	        url: url,
-	        data: updateInfo,
+	        data: JSON.stringify(updatePic),
 	        content: 'application/json',
 	        success: function (data) { 
 	        	console.log(data);
@@ -102,18 +102,18 @@ $("#updatePicForm").submit(function(event){
 
 		event.preventDefault();
 
-		var updateInfo = {};
+		var updatePass = {};
 		if($("#newPassword").val() === $("#confirmPassword").val()) {
-		updateInfo.password = $("#newPassword").val();
-		updateInfo.user_id = userInfo.userID;
+		updatePass.password = $("#newPassword").val();
+		updatePass.userID = userInfo.userID;
 
-		console.log(updateInfo);
+		console.log(updatePass);
 
 		var url = "api/updatepassword";
 		$.ajax({
 	        type: "Post",
 	        url: url,
-	        data: updateInfo,
+	        data: JSON.stringify(updatePass),
 	        content: 'application/json',
 	        success: function (data) { 
 	        	console.log(data);
