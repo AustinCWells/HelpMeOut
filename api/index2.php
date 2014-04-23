@@ -275,7 +275,7 @@
 
 		#WE NEED TO ADD ADDITIONAL INFORMATION TO THIS (SEE BOTTOM LOOP)
 		#GET ALL TASKS CREATED BY A USER
-		$sql = "SELECT task_id, beggar_id, price, category_id, short_description, location, notes, 
+		$sql = "SELECT task_id, beggar_id, chooser_id, price, category_id, short_description, location, notes, 
 			time_frame_time, time_frame_date, date_posted FROM TASK WHERE beggar_id = :user_id AND is_complete = '0'";
 		try
 		{
@@ -289,10 +289,12 @@
 			{
 				#STORE TASK_ID FOR USE IN NEXT LOOP
 				$temp_taskid = (int)$row['task_id'];
+				$temp_chooser_id = $row['chooser_id'];
 				
 				$tempObject = array('is_offer_for_help' => (int)"0",
 										  'task_id' => (int)$row['task_id'], 
 										  'beggar_id' => (int)$row['beggar_id'], 
+										  'chooser_id' => (int)$row['chooser_id'], 
 										  'price' => (int)$row['price'], 
 										  'category_id' => (int)$row['category_id'], 
 										  'short_description' => $row['short_description'], 
@@ -301,6 +303,39 @@
 										  'time_frame_time' => $row['time_frame_time'], 
 										  'time_frame_date' => $row['time_frame_date'], 
 										  'date_posted' => $row['date_posted']);
+
+				
+				if($temp_chooser_id != null)
+				{
+					$sql3 = "SELECT USER.first_name AS chooser_fName, USER.last_name AS chooser_lName, USER.phone AS contact_phone, USER.email AS contact_email, USER_DATA.speed AS chooser_speed, USER_DATA.reliability AS chooser_reliability, USER.is_custom, USER.custom_image_path FROM USER INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id WHERE USER.user_id = :user_id";
+					try
+						{
+							$db2 = getConnection();
+							$stmt3 = $db2->prepare($sql3);
+							$stmt3->bindParam("user_id", $temp_chooser_id, PDO::PARAM_INT);
+							$stmt3->execute();
+
+							$chooser_data = $stmt3->fetch(PDO::FETCH_ASSOC);
+							$additional_info = array('chooser_fName' => $chooser_data['chooser_fName'],
+								  'chooser_lName' => $chooser_data['chooser_lName'],
+								  'contact_phone' => $chooser_data['contact_phone'],
+								  'contact_email' => $chooser_data['contact_email'],
+						  		  'chooser_speed' => $chooser_data['chooser_speed'],
+						  		  'chooser_reliability' => $chooser_data['chooser_reliability'],
+						  		  'is_custom' => $chooser_data['is_custom'],
+						  		  'custom_image_path' => $chooser_data['custom_image_path']);
+
+							$tempObject = array_merge($tempObject, $additional_info);
+							#$tempObject = $tempObject2;
+							#echo json_encode($additional_info);
+
+						}
+					catch(PDOException $e)
+						{
+							echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+						} 
+				}
+				
 
 				#PUSH INDIVIDUAL TASKS INTO THE ARRAY
 				array_push($myTasks, $tempObject);
@@ -663,6 +698,7 @@
 					echo '{"success": true, "location": "BEGGAR_CANCEL"}';
 
 
+
 					$sql = "UPDATE TASK SET is_complete = 1 WHERE task_id = :task_id";
 					try
 				    	{
@@ -696,7 +732,6 @@
 	#CHOOSER CANCELS
 	else if($user_id == (int)$task_info['chooser_id'])
 		{
-
 			$sql = "UPDATE OFFERS SET is_accepted = 0, is_declined = 1 WHERE task_id = :task_id AND chooser_id = :user_id";
 			try
 	    		{
