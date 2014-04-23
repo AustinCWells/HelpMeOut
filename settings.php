@@ -26,15 +26,15 @@
 				</div>
 				<div class="row">
 					<div class="settingLabel five column">Phone #:</div>
-					<input id="phoneNum" class="setting five column" type="tel" name="phonenumber" placeholder="PHONE NUMBER" title = "Format XXX-XXX-XXXX" maxlength = "12">
+					<input id="phoneNum" class="setting five column" type="tel" title = "Format XXX-XXX-XXXX" maxlength = "12">
 				</div>
 				<div class="row">
 					<div class="settingLabel five column">Email:</div>
-					<input id="email" class="setting five column" type="email" name="email" placeholder="EMAIL" pattern="\w+@\w+.\w+" title="not a valid email address">
+					<input id="email" class="setting five column" type="email" pattern="\w+@\w+.\w+" title="not a valid email address">
 				</div>
 				<div class="row">
 					<div class="settingLabel five column">Confirm Password:</div>
-					<input id="confirmPassword" class="setting five column" type="password" name="password" placeholder="" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
+					<input id="confirmPassword" class="setting five column" type="password" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
 				</div>
 				<input type="submit" value="Save Changes"><!--Does nothing-->
 			</form>

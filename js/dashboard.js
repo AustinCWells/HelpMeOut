@@ -79,8 +79,38 @@ $(window).ready(function(event) {
 						image = "img/other.png";
 					}
 				tasks[i].contact_number = phoneFormat(tasks[i].contact_number);
-				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="completed' + tasks[i].task_id + '" value="Job Completed"></div></div>';
+				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" id="cancel' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="complete' + tasks[i].task_id + '" data-task="' + i + '"" " value="Job Completed"></div></div>';
 				accordionLeft.append(html);
+				var CompleteButton = document.getElementById("complete" + tasks[i].task_id);
+				var CancelButton = document.getElementById("cancel" + tasks[i].task_id);
+				CompleteButton.onclick = function(e) {
+					console.log("compleeeet");
+					console.log($(CompleteButton).data("task"));
+					var task = $(CompleteButton).data("task");
+//completeTask/:task_id,:num_stars_speed,:num_stars_reliability'
+					var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
+					$.ajax({
+				        type: "Get",
+				        url: url,
+				        success: function (data) { 
+				        	console.log(data);
+						}
+					});
+				}
+				CancelButton.onclick = function(e) {
+					console.log("can sell");
+					console.log($(CancelButton).data("task"));
+					var task = $(CancelButton).data("task");
+
+					var url = "api/cancelTask/" + tasks[task].task_id + "," + userInfo.userID;
+					$.ajax({
+				        type: "Get",
+				        url: url,
+				        success: function (data) { 
+				        	console.log(data);
+						}
+					});
+				}
 			}
 
 			//Section: Jobs I'm Doing - Help offered
@@ -128,157 +158,132 @@ $(window).ready(function(event) {
 		}
 		*/
 
-		loadRight();
-		//$( "#accordionRight" ).accordion({ heightStyle: "fill" , collapsible: true});
 
-		var acceptList = document.getElementsByClassName("acceptButton");
-		var declineList = document.getElementsByClassName("declineButton");
 
-		for(var i=0;i<acceptList.length;i++) {
-			$(acceptList[i]).click(function(event) {
-				 console.log("job accepted!");
+
+	var urlRight1 = "api/getMyTasksAndPendingOffers/" + userInfo.userID;
+	$.ajax({
+        type: "Get",
+        url: urlRight1,
+        success: function (data) { 
+			console.log('Job\'s I Need Done:');
+
+			var tasks = JSON.parse(data);
+			console.log(tasks);
+
+
+			//Section: Help I'm Getting - In progress
+			for(var i=0;i<tasks.length;i++) {
+				if(tasks[i].location==="")
+					tasks[i].location = "unspecified.";
+
+				var category;
+				var categoryFormatted;
+				var image;
+				if(tasks[i].category_id === 1) {
+					category = "food";
+					categoryFormatted = "Food";
+					image = "img/food.png";
 				}
-			);
-			$(declineList[i]).click(function(event) {
-				 console.log("job declined!");
+				else if(tasks[i].category_id === 2) {
+					category = "rides";
+					categoryFormatted = "Rides";
+					image = "img/rides.png";
 				}
-			);
-		}
-
-
-
-
-
-			//RIGHT
-
-
-	function loadRight() {
-
-		var urlRight1 = "api/getMyTasksAndPendingOffers/" + userInfo.userID;
-		$.ajax({
-	        type: "Get",
-	        url: urlRight1,
-	        success: function (data) { 
-				console.log('Job\'s I Need Done:');
-
-				var tasks = JSON.parse(data);
-				console.log(tasks);
-
-
-				//Section: Help I'm Getting - In progress
-				for(var i=0;i<tasks.length;i++) {
-					if(tasks[i].location==="")
-						tasks[i].location = "unspecified.";
-
-					var category;
-					var categoryFormatted;
-					var image;
-					if(tasks[i].category_id === 1) {
-						category = "food";
-						categoryFormatted = "Food";
-						image = "img/food.png";
-					}
-					else if(tasks[i].category_id === 2) {
-						category = "rides";
-						categoryFormatted = "Rides";
-						image = "img/rides.png";
-					}
-					else if(tasks[i].category_id === 3) {
-						category = "groceries";
-						categoryFormatted = "Groceries";
-						image = "img/groceries.png";
-					}
-					else if(tasks[i].category_id === 4) {
-						category = "cleaning";
-						categoryFormatted = "Cleaning";
-						image = "img/cleaning.png";
-					}
-					else if(tasks[i].category_id === 5) {
-						category = "laundry";
-						categoryFormatted = "Laundry";
-						image = "img/laundry2.png";
-					}
-					else if(tasks[i].category_id === 6) {
-						category = "maintenance";
-						categoryFormatted = "Maintenance";
-						image = "img/maintenance.png";
-					}
-					else if(tasks[i].category_id === 7) {
-						category = "techSupport";
-						categoryFormatted = "techSupport";
-						image = "img/techsupport.png";
-					}
-					else if(tasks[i].category_id === 8) {
-						category = "other";
-						categoryFormatted = "Other";
-						image = "img/other.png";
-					}
-
-					if(tasks[i].is_offer_for_help === 0) {
-						var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
-						accordionRight.append(html);
-					}
-					else {
-						var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span id="overall' + tasks[i].task_id + '"class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="overallFg' + tasks[i].task_id + '"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column" id="speed' + tasks[i].task_id + '"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="speedFg' + tasks[i].task_id + '"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + i + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + i + '" value="Accept"></div></div>';
-						accordionRight.append(html);
-						var ratingLabel = document.getElementById("overall" + tasks[i].task_id);
-						var ratingBar = document.getElementById("overallFg" + tasks[i].task_id);
-						$(ratingLabel).append(tasks[i].chooser_reliability + "%");
-						$(ratingBar).width(ratingLabel.innerHTML);
-						var ratingLabel2 = document.getElementById("speed" + tasks[i].task_id);
-						var ratingBar2 = document.getElementById("speedFg" + tasks[i].task_id);
-						$(ratingLabel2).append(tasks[i].chooser_speed + "%");
-						$(ratingBar2).width(ratingLabel.innerHTML);
-						var AcceptButton = document.getElementById("accept" + tasks[i].task_id);
-						var DeclineButton = document.getElementById("decline" + tasks[i].task_id);
-						AcceptButton.onclick = function(e) {
-							console.log("acccept");
-							console.log($(AcceptButton).data("task"));
-							var task = $(AcceptButton).data("task");
-
-							var url = "api/acceptOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
-							$.ajax({
-						        type: "Get",
-						        url: url,
-						        success: function (data) { 
-						        	console.log(data);
-								}
-							});
-						}
-						DeclineButton.onclick = function(e) {
-							console.log("decccline");
-							console.log($(DeclineButton).data("task"));
-							var task = $(DeclineButton).data("task");
-
-							var url = "api/declineOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
-							$.ajax({
-						        type: "Get",
-						        url: url,
-						        success: function (data) { 
-						        	console.log(data);
-								}
-							});
-						}
-
-					}
+				else if(tasks[i].category_id === 3) {
+					category = "groceries";
+					categoryFormatted = "Groceries";
+					image = "img/groceries.png";
+				}
+				else if(tasks[i].category_id === 4) {
+					category = "cleaning";
+					categoryFormatted = "Cleaning";
+					image = "img/cleaning.png";
+				}
+				else if(tasks[i].category_id === 5) {
+					category = "laundry";
+					categoryFormatted = "Laundry";
+					image = "img/laundry2.png";
+				}
+				else if(tasks[i].category_id === 6) {
+					category = "maintenance";
+					categoryFormatted = "Maintenance";
+					image = "img/maintenance.png";
+				}
+				else if(tasks[i].category_id === 7) {
+					category = "techSupport";
+					categoryFormatted = "techSupport";
+					image = "img/techsupport.png";
+				}
+				else if(tasks[i].category_id === 8) {
+					category = "other";
+					categoryFormatted = "Other";
+					image = "img/other.png";
 				}
 
-						
-				//empty message
-				if(accordionRight.html() === '') {
-					accordionRight.append('You have no help. Try harder!');
+				if(tasks[i].is_offer_for_help === 0) {
+					var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
+					accordionRight.append(html);
 				}
+				else {
+					var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span id="overall' + tasks[i].task_id + '"class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="overallFg' + tasks[i].task_id + '"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column" id="speed' + tasks[i].task_id + '"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="speedFg' + tasks[i].task_id + '"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + i + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + i + '" value="Accept"></div></div>';
+					accordionRight.append(html);
+					var ratingLabel = document.getElementById("overall" + tasks[i].task_id);
+					var ratingBar = document.getElementById("overallFg" + tasks[i].task_id);
+					$(ratingLabel).append(tasks[i].chooser_reliability + "%");
+					$(ratingBar).width(ratingLabel.innerHTML);
+					var ratingLabel2 = document.getElementById("speed" + tasks[i].task_id);
+					var ratingBar2 = document.getElementById("speedFg" + tasks[i].task_id);
+					$(ratingLabel2).append(tasks[i].chooser_speed + "%");
+					$(ratingBar2).width(ratingLabel.innerHTML);
+					var AcceptButton = document.getElementById("accept" + tasks[i].task_id);
+					var DeclineButton = document.getElementById("decline" + tasks[i].task_id);
+					AcceptButton.onclick = function(e) {
+						console.log("acccept");
+						console.log($(AcceptButton).data("task"));
+						var task = $(AcceptButton).data("task");
 
+						var url = "api/acceptOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
+						$.ajax({
+					        type: "Get",
+					        url: url,
+					        success: function (data) { 
+					        	console.log(data);
+							}
+						});
+					}
+					DeclineButton.onclick = function(e) {
+						console.log("decccline");
+						console.log($(DeclineButton).data("task"));
+						var task = $(DeclineButton).data("task");
 
-				//Build Accordion:
-				$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true/*, active: false*/});
+						var url = "api/declineOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
+						$.ajax({
+					        type: "Get",
+					        url: url,
+					        success: function (data) { 
+					        	console.log(data);
+							}
+						});
+					}
+
 				}
-			
-		});
+			}
+
+					
+			//empty message
+			if(accordionRight.html() === '') {
+				accordionRight.append('You have no help. Try harder!');
+			}
 
 
+			//Build Accordion:
+			$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true/*, active: false*/});
+			}
+		
+	});
 
-	}
+
 
 function phoneFormat(phone) {
   phone = phone.replace(/[^0-9]/g, '');
