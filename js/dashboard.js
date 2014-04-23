@@ -1,3 +1,8 @@
+$(document).ready(function(){
+	if(!checkLogin())
+		window.location = "index.php";
+});
+
 $(window).ready(function(event) {
 
 	$("#navMyJobs").addClass("currentPage").removeClass("hoverable");
