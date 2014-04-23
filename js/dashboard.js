@@ -79,30 +79,15 @@ $(window).ready(function(event) {
 						image = "img/other.png";
 					}
 				tasks[i].contact_number = phoneFormat(tasks[i].contact_number);
-				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" id="cancel' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="complete' + tasks[i].task_id + '" data-task="' + i + '"" " value="Job Completed"></div></div>';
+				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row"><input type="button" class="cancelLeft five column center" id="cancelLeft' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"></div></div>';
 				accordionLeft.append(html);
-				var CompleteButton = document.getElementById("complete" + tasks[i].task_id);
-				var CancelButton = document.getElementById("cancel" + tasks[i].task_id);
-				CompleteButton.onclick = function(e) {
-					console.log("compleeeet");
-					console.log($(CompleteButton).data("task"));
-					var task = $(CompleteButton).data("task");
-
-					var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
-					$.ajax({
-				        type: "Get",
-				        url: url,
-				        success: function (data) { 
-				        	console.log(data);
-						}
-					});
-				}
+				var CancelButton = document.getElementById("cancelLeft" + tasks[i].task_id);
 				CancelButton.onclick = function(e) {
-					console.log("can sell");
-					console.log($(CancelButton).data("task"));
+					// console.log("can sell");
+					// console.log($(CancelButton).data("task"));
 					var task = $(CancelButton).data("task");
 
-					var url = "api/cancelTask/" + tasks[task].task_id + "," + userInfo.userID;
+					var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
 					$.ajax({
 				        type: "Get",
 				        url: url,
@@ -147,10 +132,10 @@ $(window).ready(function(event) {
 
 
 
-	var urlRight1 = "api/getMyTasksAndPendingOffers/" + userInfo.userID;
+	var urlRight = "api/getMyTasksAndPendingOffers/" + userInfo.userID;
 	$.ajax({
         type: "Get",
-        url: urlRight1,
+        url: urlRight,
         success: function (data) { 
 			console.log('Job\'s I Need Done:');
 
@@ -208,13 +193,13 @@ $(window).ready(function(event) {
 				}
 
 				if(tasks[i].is_offer_for_help === 0) {
-					var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns"  id="cancel' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="complete' + tasks[i].task_id + '" data-task="' + i + '"" "  value="Job Completed"></div></div>';
+					var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="completeRight' + tasks[i].task_id + '" data-task="' + i + '"" "  value="Job Completed"></div></div>';
 					accordionRight.append(html);
-					var CompleteButton = document.getElementById("complete" + tasks[i].task_id);
-					var CancelButton = document.getElementById("cancel" + tasks[i].task_id);
+					var CompleteButton = document.getElementById("completeRight" + tasks[i].task_id);
+					var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
 					CompleteButton.onclick = function(e) {
-						console.log("compleeeet");
-						console.log($(CompleteButton).data("task"));
+						// console.log("compleeeet");
+						// console.log($(CompleteButton).data("task"));
 						var task = $(CompleteButton).data("task");
 						
 						var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
@@ -227,11 +212,11 @@ $(window).ready(function(event) {
 						});
 					}
 					CancelButton.onclick = function(e) {
-						console.log("can sell");
-						console.log($(CancelButton).data("task"));
+						// console.log("can sell");
+						// console.log($(CancelButton).data("task"));
 						var task = $(CancelButton).data("task");
 
-						var url = "api/cancelTask/" + tasks[task].task_id + "," + userInfo.userID;
+						var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
 						$.ajax({
 					        type: "Get",
 					        url: url,
@@ -255,8 +240,8 @@ $(window).ready(function(event) {
 					var AcceptButton = document.getElementById("accept" + tasks[i].task_id);
 					var DeclineButton = document.getElementById("decline" + tasks[i].task_id);
 					AcceptButton.onclick = function(e) {
-						console.log("acccept");
-						console.log($(AcceptButton).data("task"));
+						// console.log("acccept");
+						// console.log($(AcceptButton).data("task"));
 						var task = $(AcceptButton).data("task");
 
 						var url = "api/acceptOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
@@ -269,8 +254,8 @@ $(window).ready(function(event) {
 						});
 					}
 					DeclineButton.onclick = function(e) {
-						console.log("decccline");
-						console.log($(DeclineButton).data("task"));
+						// console.log("decccline");
+						// console.log($(DeclineButton).data("task"));
 						var task = $(DeclineButton).data("task");
 
 						var url = "api/declineOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
