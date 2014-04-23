@@ -129,7 +129,7 @@
 		<h2>Currrent Tokens</h2>
 		<div class = "subContent">
 			<img src="img/tokenOne.png">
-			<p><strong>10</strong></p>
+			<p><strong class = "tokenCount">10</strong></p>
 		</div>
 	</div>	  
 
@@ -145,6 +145,53 @@
 
 	<form action = "tokens.php">
 		<input type = "submit" value="Buy Tokens" class = "buttonRight">
+	</form>
+
+	<div class = "clear"></div>
+
+</div>
+
+<div class = "modal" id="jobModal">
+
+	<div class = "modalTitle yellow">
+
+		<h1 id = "modalCategory">Food</h1>
+
+		<button type = "button" class = "closeButton">
+			<span>X</span>
+		</button>
+
+		<div class = "clear"></div>
+
+	</div>
+
+	<div  class = "modalColumnLeft subContent">
+		<div>
+			<img class = "jobImage" src = "img/food.png">
+		</div>
+		<span id = "beggerName">Carter Dewey</span>
+		<br>
+		<span id = "jobDeadline">Complete By:</span>
+
+	</div>
+
+	<div class = "modalColumnRight">
+		<div class = "subContent">
+			<span id = "modalDescription">Description: </span>
+			<br>
+			<span id = "modalPayment">Pays: </span>
+			<br>
+			<span id = "modalLocation">Location: </span>
+			<br>
+			<span id = "modalNotes">Notes: </span>
+		</div>
+	</div>
+
+	<div class = "clear"></div>
+
+	<form class = "offerHelp">
+		<input type = "submit" value="Offer Help" class = "buttonRight">
+		<input id="modalTaskId" type = "hidden" value = "711">
 	</form>
 
 	<div class = "clear"></div>
