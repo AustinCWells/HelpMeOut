@@ -396,7 +396,6 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$taskInfo = json_decode($request->getBody());
-		$success = array('success'=>true);
 		$sql = "INSERT INTO TASK (`beggar_id`, `category_id`, `short_description`, `price`, `location`, `time_frame_date`, `time_frame_time`, `notes`) VALUES (:beggar_id, :category_id, :short_description, :price, :location, :time_frame_date, :time_frame_time, :notes)";
 
 		try
@@ -413,8 +412,7 @@
 			$stmt->bindParam("notes", $taskInfo->notes);
 			$stmt->execute();
 			$db = null;
-			echo json_encode($success);
-			
+			echo '{"success": true}';
 		}
 		catch(PDOException $e)
 		{
