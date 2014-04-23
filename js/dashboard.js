@@ -87,7 +87,7 @@ $(window).ready(function(event) {
 					console.log("compleeeet");
 					console.log($(CompleteButton).data("task"));
 					var task = $(CompleteButton).data("task");
-//completeTask/:task_id,:num_stars_speed,:num_stars_reliability'
+
 					var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
 					$.ajax({
 				        type: "Get",
@@ -131,20 +131,6 @@ $(window).ready(function(event) {
 		}
 	});
 
-
-		var cancelList = document.getElementsByClassName("cancelJob");
-		var completedList = document.getElementsByClassName("jobCompleted");
-
-		for(var i=0;i<cancelList.length;i++) {
-			$(cancelList[i]).click(function(event) {
-				 console.log("cancel!");
-				}
-			);
-			$(completedList[i]).click(function(event) {
-				 console.log("job completed!");
-				}
-			);
-		}
 
 		/*
 		for(var i=0;i<jobsList.length;i++) {
@@ -222,8 +208,38 @@ $(window).ready(function(event) {
 				}
 
 				if(tasks[i].is_offer_for_help === 0) {
-					var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
+					var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns"  id="cancel' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="complete' + tasks[i].task_id + '" data-task="' + i + '"" "  value="Job Completed"></div></div>';
 					accordionRight.append(html);
+					var CompleteButton = document.getElementById("complete" + tasks[i].task_id);
+					var CancelButton = document.getElementById("cancel" + tasks[i].task_id);
+					CompleteButton.onclick = function(e) {
+						console.log("compleeeet");
+						console.log($(CompleteButton).data("task"));
+						var task = $(CompleteButton).data("task");
+						
+						var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
+						$.ajax({
+					        type: "Get",
+					        url: url,
+					        success: function (data) { 
+					        	console.log(data);
+							}
+						});
+					}
+					CancelButton.onclick = function(e) {
+						console.log("can sell");
+						console.log($(CancelButton).data("task"));
+						var task = $(CancelButton).data("task");
+
+						var url = "api/cancelTask/" + tasks[task].task_id + "," + userInfo.userID;
+						$.ajax({
+					        type: "Get",
+					        url: url,
+					        success: function (data) { 
+					        	console.log(data);
+							}
+						});
+					}
 				}
 				else {
 					var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span id="overall' + tasks[i].task_id + '"class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="overallFg' + tasks[i].task_id + '"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column" id="speed' + tasks[i].task_id + '"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="speedFg' + tasks[i].task_id + '"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + i + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + i + '" value="Accept"></div></div>';

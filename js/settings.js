@@ -108,24 +108,28 @@ $("#updatePicForm").submit(function(event){
 
 		event.preventDefault();
 
-		var updatePass = {};
-		if($("#newPassword").val() === $("#confirmPassword").val()) {
-		updatePass.password = $("#newPassword").val();
-		updatePass.userID = userInfo.userID;
+		if($("#newPassword").val() === $("#confirmNewPassword").val()) {
+			var updatePass = {};
+			updatePass.userID = userInfo.userID;
+			updatePass.old_password = $("#currentPassword").val();
+			updatePass.password = $("#newPassword").val();
 
-		console.log(updatePass);
+			console.log(updatePass);
 
-		var url = "api/updatepassword";
-		$.ajax({
-	        type: "Post",
-	        url: url,
-	        data: JSON.stringify(updatePass),
-	        content: 'application/json',
-	        success: function (data) { 
-	        	console.log(data);
-			}
-		});
-	}
+			var url = "api/updatepassword";
+			$.ajax({
+		        type: "Post",
+		        url: url,
+		        data: JSON.stringify(updatePass),
+		        content: 'application/json',
+		        success: function (data) { 
+		        	console.log(data);
+				}
+			});
+		}
+		else {
+			console.log("New password and confirm password did not match");
+		}
 	});
 
 
