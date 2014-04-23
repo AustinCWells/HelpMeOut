@@ -263,7 +263,7 @@
     ##########
 	function pullTasks()
 	{
-		$sql = "SELECT title AS category, t1.* FROM CATEGORY INNER JOIN (SELECT USER.first_name, USER.last_name, TASK.task_id, TASK.category_id, TASK.short_description, TASK.notes, TASK.price, TASK.time_frame_date, TASK.time_frame_time, TASK.location FROM USER INNER JOIN TASK ON USER.user_id = TASK.beggar_id AND is_complete = 0) AS t1 ON CATEGORY.category_id = t1.category_id";
+		$sql = "SELECT title AS category, t1.* FROM CATEGORY INNER JOIN (SELECT USER.first_name, USER.last_name, TASK.task_id, TASK.category_id, TASK.short_description, TASK.notes, TASK.price, TASK.time_frame_date, TASK.time_frame_time, TASK.location FROM USER INNER JOIN TASK ON USER.user_id = TASK.beggar_id AND is_complete = 0 AND chooser_id is NULL) AS t1 ON CATEGORY.category_id = t1.category_id";
 		#	Define arrays for all job categories:
 		$food = array();
 		$rides = array();
