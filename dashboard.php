@@ -29,8 +29,7 @@
 	<div class="six columns">
 		<div class="dashboardSection" id="jobsINeedDone">
 			<p class="dashboardTitle">HELP I'M GETTING</p>
-			<div id="accordionRight">
-			</div>
+			<div id="accordionRight"></div>
 		</div>
 	</div>
 </div>
