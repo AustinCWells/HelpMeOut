@@ -191,7 +191,7 @@
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("password", md5($userInfo->password));
-			$stmt->bindParam("user_id", (int)$userInfo->userID);
+			$stmt->bindParam("user_id", $userInfo->userID);
 			$stmt->execute();
 			$db = null;
 			echo '{"success": true}';

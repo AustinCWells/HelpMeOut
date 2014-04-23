@@ -105,7 +105,7 @@ $("#updatePicForm").submit(function(event){
 		var updatePass = {};
 		if($("#newPassword").val() === $("#confirmPassword").val()) {
 		updatePass.password = $("#newPassword").val();
-		updatePass.user_id = userInfo.userID;
+		updatePass.userID = userInfo.userID;
 
 		console.log(updatePass);
 
