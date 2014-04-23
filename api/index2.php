@@ -640,7 +640,7 @@
 	#BEGGAR CANCELS
 	if($user_id == (int)$task_info['beggar_id'])
 		{
-			$sql = "UPDATE OFFERS SET is_accepted = 0, is_declined = 1 WHERE task_id = :task_id AND beggar_id = :user_id";
+			$sql = "UPDATE OFFERS SET is_accepted = 0, is_declined = 1 WHERE task_id = :task_id AND chooser_id != :user_id";
 			try
 	    		{
 					$db = getConnection();
