@@ -630,6 +630,8 @@
 			$db = null;
 
 			$task_info = $stmt->fetch(PDO::FETCH_ASSOC);
+      		echo json_encode($success);
+
 	    }  
 	catch(PDOException $e) 
 		{
@@ -657,6 +659,8 @@
 					$stmt->execute();
 
 					$db = null;
+					echo json_encode($success);
+
 				}  
 			catch(PDOException $e) 
 				{
@@ -685,6 +689,8 @@
 					$stmt->execute();
 
 					$db = null;
+		      		echo json_encode($success);
+
 
 					$sql = "UPDATE TASK SET chooser_id = null WHERE task_id = :task_id";
 					try
@@ -702,6 +708,8 @@
 							$stmt->execute();
 
 							$db = null;
+				      		echo json_encode($success);
+
 				    	}  
 					catch(PDOException $e) 
 						{
