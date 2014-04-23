@@ -630,7 +630,7 @@
 			$db = null;
 
 			$task_info = $stmt->fetch(PDO::FETCH_ASSOC);
-      		echo json_encode($success);
+      		echo '{"success": true, "location": "GET_ID"}';
 
 	    }  
 	catch(PDOException $e) 
@@ -659,7 +659,7 @@
 					$stmt->execute();
 
 					$db = null;
-					echo json_encode($success);
+					echo '{"success": true, "location": "BEGGAR_CANCEL"}';
 
 				}  
 			catch(PDOException $e) 
@@ -689,7 +689,7 @@
 					$stmt->execute();
 
 					$db = null;
-		      		echo json_encode($success);
+		      		echo '{"success": true, "location": "CHOOSER_CANCEL"}';
 
 
 					$sql = "UPDATE TASK SET chooser_id = null WHERE task_id = :task_id";
@@ -708,7 +708,7 @@
 							$stmt->execute();
 
 							$db = null;
-				      		echo json_encode($success);
+				      		echo '{"success": true, "location": "TASK_ACTIVE"}';
 
 				    	}  
 					catch(PDOException $e) 
