@@ -183,7 +183,7 @@
     ##########
 	function updatePassword()
 	{
-		$sql = "UPDATE USER SET password = :password WHERE user_id = :user_id AND password = :password";
+		$sql = "UPDATE USER SET password = :password WHERE user_id = :user_id AND password = :old_password";
 		$request = \Slim\Slim::getInstance()->request();
 		$userInfo = json_decode($request->getBody());
 
@@ -193,7 +193,7 @@
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("password", md5($userInfo->password));
 			$stmt->bindParam("user_id", $userInfo->userID);
-			$stmt->bindParam("password", md5($userInfo->old_password));
+			$stmt->bindParam("old_password", md5($userInfo->old_password));
 			$stmt->execute();
 			$db = null;
 			echo '{"success": true}';
