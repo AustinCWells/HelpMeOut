@@ -443,7 +443,7 @@
 			$stmt->execute();
 
 			$db = null;
-      		#echo json_encode($success);
+      		echo '{"success": true}';
 	    }  
 	catch(PDOException $e) 
 		{
