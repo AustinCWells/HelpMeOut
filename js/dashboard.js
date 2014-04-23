@@ -7,15 +7,15 @@ $(window).ready(function(event) {
 
 	console.log("sent:");
 	console.log({user_id: userInfo.userID});
-	var json = {user_id: userInfo.userID};
+	var json = {};
+	json.user_id = userInfo.userID;
 
 	var url = "api/tasksImDoing";
 
-	
 	$.ajax({
         type: "Post",
         url: url,
-        data: json, //Data to POST to the server
+        data: JSON.stringify(json), //Data to POST to the server
         content: 'application/json',
         success: function (data) { 
 			console.log('Job\'s I\'m Doing: ');
@@ -27,10 +27,10 @@ $(window).ready(function(event) {
 
 			//LEFT
 			//Section: Jobs I'm Doing - In progress	
-			// for(var i=0;i<tasks.length;i++) {
-			// 	var html = 	'<h3>' + tasks[i].beggar_id + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br>Phone: ' + '*phone_number*' + '<br>Email: ' + '*email_address*' + '<br>Location: ' + '*location*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
-			// 	accordionLeft.append(html);
-			// }
+			for(var i=0;i<tasks.length;i++) {
+				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="completed' + tasks[i].task_id + '" value="Job Completed"></div></div>';
+				accordionLeft.append(html);
+			}
 
 			//Section: Jobs I'm Doing - Help offered
 			// for(var i=0;i<tasks.length;i++) {
