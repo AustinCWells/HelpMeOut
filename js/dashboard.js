@@ -1,8 +1,7 @@
 $(document).ready(function(){
-	if(!checkLogin())
-		window.location = "index.php";
+ 	if(!checkLogin())
+ 		window.location = "index.php";
 });
-
 $(window).ready(function(event) {
 
 	$("#navMyJobs").addClass("currentPage").removeClass("hoverable");
@@ -33,7 +32,54 @@ $(window).ready(function(event) {
 			//LEFT
 			//Section: Jobs I'm Doing - In progress	
 			for(var i=0;i<tasks.length;i++) {
-				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="completed' + tasks[i].task_id + '" value="Job Completed"></div></div>';
+				if(tasks[i].location==="")
+					tasks[i].location = "unspecified.";
+
+					var category;
+					var categoryFormatted;
+					var image;
+					if(tasks[i].category_id === 1) {
+						category = "food";
+						categoryFormatted = "Food";
+						image = "img/food.png";
+					}
+					else if(tasks[i].category_id === 2) {
+						category = "rides";
+						categoryFormatted = "Rides";
+						image = "img/rides.png";
+					}
+					else if(tasks[i].category_id === 3) {
+						category = "groceries";
+						categoryFormatted = "Groceries";
+						image = "img/groceries.png";
+					}
+					else if(tasks[i].category_id === 4) {
+						category = "cleaning";
+						categoryFormatted = "Cleaning";
+						image = "img/cleaning.png";
+					}
+					else if(tasks[i].category_id === 5) {
+						category = "laundry";
+						categoryFormatted = "Laundry";
+						image = "img/laundry2.png";
+					}
+					else if(tasks[i].category_id === 6) {
+						category = "maintenance";
+						categoryFormatted = "Maintenance";
+						image = "img/maintenance.png";
+					}
+					else if(tasks[i].category_id === 7) {
+						category = "techSupport";
+						categoryFormatted = "techSupport";
+						image = "img/techsupport.png";
+					}
+					else if(tasks[i].category_id === 8) {
+						category = "other";
+						categoryFormatted = "Other";
+						image = "img/other.png";
+					}
+				tasks[i].contact_number = phoneFormat(tasks[i].contact_number);
+				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="completed' + tasks[i].task_id + '" value="Job Completed"></div></div>';
 				accordionLeft.append(html);
 			}
 
@@ -127,49 +173,49 @@ $(window).ready(function(event) {
 					var category;
 					var categoryFormatted;
 					var image;
-					if(tasks[i].category_id === "1") {
+					if(tasks[i].category_id === 1) {
 						category = "food";
 						categoryFormatted = "Food";
 						image = "img/food.png";
 					}
-					else if(tasks[i].category_id === "2") {
+					else if(tasks[i].category_id === 2) {
 						category = "rides";
 						categoryFormatted = "Rides";
 						image = "img/rides.png";
 					}
-					else if(tasks[i].category_id === "3") {
+					else if(tasks[i].category_id === 3) {
 						category = "groceries";
 						categoryFormatted = "Groceries";
 						image = "img/groceries.png";
 					}
-					else if(tasks[i].category_id === "4") {
+					else if(tasks[i].category_id === 4) {
 						category = "cleaning";
 						categoryFormatted = "Cleaning";
 						image = "img/cleaning.png";
 					}
-					else if(tasks[i].category_id === "5") {
+					else if(tasks[i].category_id === 5) {
 						category = "laundry";
 						categoryFormatted = "Laundry";
 						image = "img/laundry2.png";
 					}
-					else if(tasks[i].category_id === "6") {
+					else if(tasks[i].category_id === 6) {
 						category = "maintenance";
 						categoryFormatted = "Maintenance";
 						image = "img/maintenance.png";
 					}
-					else if(tasks[i].category_id === "7") {
+					else if(tasks[i].category_id === 7) {
 						category = "techSupport";
 						categoryFormatted = "techSupport";
 						image = "img/techsupport.png";
 					}
-					else if(tasks[i].category_id === "8") {
+					else if(tasks[i].category_id === 8) {
 						category = "other";
 						categoryFormatted = "Other";
 						image = "img/other.png";
 					}
 
 					if(tasks[i].is_offer_for_help === 0) {
-						var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
+						var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns" value="Cancel Job"><input type="button" class="jobCompleted five columns" value="Job Completed"></div></div>';
 						accordionRight.append(html);
 					}
 					else {
@@ -233,5 +279,11 @@ $(window).ready(function(event) {
 
 
 	}
+
+function phoneFormat(phone) {
+  phone = phone.replace(/[^0-9]/g, '');
+  phone = phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+  return phone;
+}
 
 });
