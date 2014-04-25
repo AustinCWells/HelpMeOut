@@ -46,10 +46,24 @@ var checkJobPostValidity = function(){
 	else{
 		location[0].setCustomValidity('');
 	}
-	var deadlineDate = $("#jobDeadlineDate");
-	var deadlineTime = $("#jobDeadlineTime");
+	var time = new Date();
+	var minTime = time.getTime() + 1800000;
+	var deadline = {};
+	deadline.time = $("#jobDeadlineTime").val();
+	deadline.date = $("#jobDeadlineDate").val();
+	console.log(deadline);
+	getRequestTime(deadline);
+	timeBox = $("#jobDeadlineTime");
+
+	if(time.getTime() < minTime){
+		timeBox[0].setCustomValidity("Job must have a least 30 minutes in the future!");
+	}
+	else
+		timeBox[0].setCustomValidity('');
 
 }
+
+
 
 var checkSignUpValidity = function(){
 
@@ -328,12 +342,30 @@ var openModal = function(id){
 	if(id === "#jobPostModal"){
 		var currentTime = getCurrentTimeAndDate();
 		$("#jobDeadlineDate").val(currentTime.date);
-		$("#jobDeadlineDate").attr('min',currentTime.date);
 		$("#jobDeadlineTime").val(currentTime.time);
-		$("#jobDeadlineTime").attr('min',currentTime.time);
 		setJobPostDimensions();
 		//console.log(currentTime);
 	}
+}
+
+var getRequestTime = function(info){
+	var hours = parseInt(info.time.substring(0, 2), 10);
+	var mins = parseInt(info.time.substring(3), 10);
+	var year = parseInt(info.date.substring(0, 4), 10);
+	var month = parseInt(info.date.substring(5, 7), 10) - 1;
+	var day = parseInt(info.date.substring(8), 10);
+	console.log(hours);
+	console.log(mins);
+	console.log(year);
+	console.log(month);
+	console.log(day);
+
+	var time = new Date();
+	console.log(time);
+	time.setFullYear(year, month, day);
+	time.setHours(hours, mins, 0, 0);
+
+	console.log(time);
 }
 
 var getCurrentTimeAndDate = function(){
