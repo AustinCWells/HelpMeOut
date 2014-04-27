@@ -74,6 +74,14 @@ var checkSignUpValidity = function(){
 	var password = $("#accountPassword");
 	var confirmPassword = $("#accountConfirmPassword");
 
+	var phone = $("#accountPhoneNumber");
+
+	if($(phone).val().length < 10){
+		phone[0].setCustomValidity("Phone Number must be 10 digits long!");
+	}
+	else
+		phone[0].setCustomValidity('');
+
 	if($(password).val() !== $(confirmPassword).val()){
 		//console.log("Setting");
 		confirmPassword[0].setCustomValidity("Passwords do not match!");
