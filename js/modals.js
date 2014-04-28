@@ -268,7 +268,7 @@ var dbRequest = function(url, content, json, type){
 					obj.modal = "Job Post was SuccesFul!";
 					$("#jobCategory").val('0');
 					$("#jobDescription").val('');
-					$("#jobPrice").val("2.00");
+					$("#jobPrice").val("3.00");
 					$("#jobLocation").val('');
 					$("#jobNotes").val('');
 					displaySuccess(obj);
