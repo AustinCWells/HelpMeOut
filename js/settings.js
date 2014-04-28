@@ -66,18 +66,21 @@ $(window).ready(function(event) {
 		updateInfo.password = $("#confirmPassword").val();
 		updateInfo.user_id = userInfo.userID;
 
+
 		//console.log(updateInfo);//Contains the user's password so not gunna log this
 
 		var url = "api/updateaccount";
 		$.ajax({
-        type: "POST",
-        url: url,
-        data: JSON.stringify(updateInfo),
-        content: 'application/json',
-        success: function (data) { 
+	        type: "POST",
+	        url: url,
+	        data: JSON.stringify(updateInfo),
+	        content: 'application/json',
+	        success: function (data) { 
+	        	//should return userInfo
         	console.log(data);
-		}
-	});
+			}
+		});
+
 	});
 
 

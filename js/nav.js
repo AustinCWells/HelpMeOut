@@ -101,3 +101,21 @@ var setQoute = function(){
 
 	$('#randomText').text(qoutes[random]);
 }
+
+/*Only called when user is logged in*/
+var refreshPageInfo = function(page, info){
+	switch (page){
+		case "Home":
+			//needs to pull all task user has not offered help to
+			//for both pulltask and pullrecenttask
+			break;
+		case "DashBoard":
+			//update this some how...
+			break;
+		case "Settings":
+			//sets the cookie probably and display update info on screen
+			break;
+		default:
+			break;
+	}
+}
