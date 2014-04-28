@@ -35,8 +35,7 @@ $(document).ready(function(){
 					displaySuccess(obj);
 					userInfo.tokens = update;
 					$.cookie("userInfo", userInfo);
-					$("#tokenCount").text(update);
-					$("#currentToken strong").text(userInfo.tokens);
+					$(".tokenCount").text(userInfo.tokens);
 
 				}
 
