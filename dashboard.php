@@ -14,7 +14,7 @@
 
 <div class="row yellow">
 	<div class="twelve columns">
-		<p>DON'T BE CONFUSED. THESE JOBS ARE MERELY AN ILLUSION.</p>
+		<p>THIS IS YOUR HELPDESK. ITS OPEN 24/7.</p>
 	</div>
 </div>
 <br>

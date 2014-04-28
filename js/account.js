@@ -9,7 +9,7 @@ $(window).ready(function(event) {
 	$("#navAccount").removeClass("hoverable");
 
 	console.log("is_custom = " + userInfo.is_custom);
-	if(userInfo.is_custom === "0") {
+	if(userInfo.is_custom === 0) {
 		$("#profilePic").attr("src", "img/fontenot.jpeg");
 	}
 	else {

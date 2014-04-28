@@ -66,7 +66,7 @@ $(window).ready(function(event) {
 		updateInfo.password = $("#confirmPassword").val();
 		updateInfo.user_id = userInfo.userID;
 
-		console.log(updateInfo);
+		//console.log(updateInfo);//Contains the user's password so not gunna log this
 
 		var url = "api/updateaccount";
 		$.ajax({
@@ -114,7 +114,7 @@ $("#updatePicForm").submit(function(event){
 			updatePass.old_password = $("#currentPassword").val();
 			updatePass.password = $("#newPassword").val();
 
-			console.log(updatePass);
+			//console.log(updatePass);//Contains the user's password so not gunna log this
 
 			var url = "api/updatepassword";
 			$.ajax({
