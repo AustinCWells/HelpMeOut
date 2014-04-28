@@ -266,7 +266,13 @@ var dbRequest = function(url, content, json, type){
 
 				if(type === "jobPost"){
 					obj.modal = "Job Post was SuccesFul!";
+					$("#jobCategory").val('0');
+					$("#jobDescription").val('');
+					$("#jobPrice").val("2.00");
+					$("#jobLocation").val('');
+					$("#jobNotes").val('');
 					displaySuccess(obj);
+
 				}
 
 				else if(type === "offerHelp"){
