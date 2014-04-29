@@ -699,7 +699,7 @@
 
 
 
-					$sql = "UPDATE TASK SET is_complete = 1 WHERE task_id = :task_id";
+					$sql = "UPDATE TASK SET is_complete = 1, chooser_id = null WHERE task_id = :task_id";
 					try
 				    	{
 							$db = getConnection();
