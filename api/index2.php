@@ -13,7 +13,7 @@
 	{
 	$numTasks = intval($numTasks);
 	$request = \Slim\Slim::getInstance()->request();
-	$sql = "SELECT T.task_id, T.beggar_id, USER.first_name, USER.last_name, T.short_description, T.notes, T.price, T.category_id, T.time_frame_time, T.time_frame_date, T.location, T.date_posted FROM TASK T INNER JOIN USER ON T.beggar_id = USER.user_id GROUP BY task_id ORDER BY MAX(date_posted) desc LIMIT :num_tasks";
+	$sql = "SELECT T.task_id, T.beggar_id, USER.first_name, USER.last_name, T.short_description, T.notes, T.price, T.category_id, T.time_frame_time, T.time_frame_date, T.location, T.date_posted FROM TASK T INNER JOIN USER ON T.beggar_id = USER.user_id WHERE T.is_complete = 0 GROUP BY task_id ORDER BY MAX(date_posted) desc LIMIT :num_tasks";
 	try
 		{
 			$db = getConnection();
