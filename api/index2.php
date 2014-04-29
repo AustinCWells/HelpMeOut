@@ -209,6 +209,7 @@
 	##########
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/18/14 - Added functionality to set is_hidden field (SK/CA)
+	#					4/29/14 - Fixed a bug that allowed users to offer help multiple times for the same job (SK/CA)
 	#	SUMMARY:		Uses a user_id and a task_id to make an offer to a user asking for help
 	#	INPUTS:			user_id, task_id
 	#	OUTPUTS:		N/A
@@ -219,6 +220,7 @@
 		$request = \Slim\Slim::getInstance()->request();
 		$offer_info = json_decode($request->getBody());
 		$is_hidden = null;
+		$existing_offer = FALSE;
 
 		$sql = "SELECT is_hidden FROM USER WHERE user_id = :user_id";
 		try
@@ -231,31 +233,62 @@
 			$is_hidden = $info->is_hidden;
 			$db = null;
 
-			echo '{"success": true}';
+			//echo '{"success": true}';
 		}
 		catch(PDOException $e) 
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
 
-		$sql = "INSERT INTO OFFERS (`task_id`, `chooser_id`, `is_hidden`) VALUES (:task_id, :user_id, :is_hidden)";
+
+		$sql = "SELECT * FROM OFFERS WHERE chooser_id = :user_id AND task_id = :task_id";
 		try
 		{
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
-			$stmt->bindParam("task_id", $offer_info->task_id);
 			$stmt->bindParam("user_id", $offer_info->user_id);
-			$stmt->bindParam("is_hidden", $is_hidden);
-
+			$stmt->bindParam("task_id", $offer_info->task_id);
 			$stmt->execute();
+			$info = $stmt->fetch(PDO::FETCH_ASSOC);
+			
+			if(empty($info))
+				$existing_offer = FALSE;
+			else
+				$existing_offer = TRUE;
+
 			$db = null;
 
 			//echo '{"success": true}';
 		}
-	catch(PDOException $e) 
+		catch(PDOException $e) 
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
+
+
+		if($existing_offer == FALSE)
+		{
+			$sql = "INSERT INTO OFFERS (`task_id`, `chooser_id`, `is_hidden`) VALUES (:task_id, :user_id, :is_hidden)";
+			try
+			{
+				$db = getConnection();
+				$stmt = $db->prepare($sql);
+				$stmt->bindParam("task_id", $offer_info->task_id);
+				$stmt->bindParam("user_id", $offer_info->user_id);
+				$stmt->bindParam("is_hidden", $is_hidden);
+
+				$stmt->execute();
+				$db = null;
+
+				echo '{"success": true}';
+			}
+			catch(PDOException $e) 
+			{
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+			}
+		}
+		else
+			echo '{"error":{"text": "You have already made an offer for this job!"}}';
 	}
 
 

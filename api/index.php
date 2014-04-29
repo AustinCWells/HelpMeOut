@@ -75,7 +75,8 @@
 
 	##########
 	#	AUTHOR:			Charlie
-	#	LAST UPDATE:	4/18 - Added info to return profile image info (SK)
+	#	LAST UPDATE:	4/18/14 - Added info to return profile image info (SK)
+	#					4/29/14 - Corrected issue where users could sign up multiple times with the same email address (SK/CA/WW)
 	#	SUMMARY:		Creates a new user in the database and automagically logs them in to the HelpMeOut site.
 	#	INPUTS:			JSON(email, password, firstName, lastName, phone, birthDate, gender)	
 	#	OUTPUTS:		JSON(userID, firstName, lastName, email)
@@ -86,7 +87,7 @@
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$newAccount = json_decode($request->getBody());
-		$account_exists = 0;
+		$account_exists = FALSE;
 		
 
 		$sqlTest = "SELECT user_id FROM USER WHERE email = :email";
@@ -99,9 +100,9 @@
 		   	$account_check = $stmtTest->fetch(PDO::FETCH_ASSOC);
 			
 			if(empty($account_check))
-				$account_exists = 0;
+				$account_exists = FALSE;
 			else
-				$account_exists = 1;
+				$account_exists = TRUE;
 			
 			$db = null;
 		}
@@ -111,7 +112,7 @@
 		}
 
 		
-		if($account_exists == 0)
+		if($account_exists == FALSE)
 		{
 			$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`, `tokens`)
 			VALUES (:email, :password, :first_name, :last_name, :phone, :birth_date, :gender, 10)";
