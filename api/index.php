@@ -6,7 +6,7 @@
 
 	$app = new \Slim\Slim();
 
-#index.php
+#index.php - Updated 4/29 (SK)
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
 	$app->post('/updateaccount', 'updateAccount');
@@ -31,8 +31,6 @@
 	$app->get('/acceptOffer/:user_id,:task_id', 'acceptOffer');
 	$app->get('/completeTask/:task_id,:num_stars_speed,:num_stars_reliability', 'completeTask');
 	$app->get('/cancelTask/:user_id,:task_id', 'cancelTask');
-
-	//$app->post('/paymentinfo', 'getPaymentInfo');
 
 	$app->run();
 
@@ -524,38 +522,6 @@
 		}
 	
 	}
-
-/*
-	function getUserBadges()
-	{
-	     $request = \Slim\Slim::getInstance()->request();
-		$sql = "SELECT u.first_name, u.last_name, b.title, b.description FROM BADGES b INNER JOIN BADGES_EARNED be ON be.badge_id = b.badge_id INNER JOIN USER u ON u.user_id = be.user_id WHERE u.user_id = :id";
-	}
-
-	// NOT TESTED, BUT FUNCTIONAL
-	function getPaymentInfo()
-	{
-		$request = \Slim\Slim::getInstance()->request();
-		$userID = json_decode($request->getBody());
-		$sql = "SELECT given_name, surname, email, phone_no, credit_type, credit_no FROM Users WHERE user_id = :id";
-		try
-		{
-			$db = getConnection();
-			$stmt = $db->prepare($sql);
-			$stmt->bindParam("id", $userID->user_id);
-			$stmt->execute();
-			$userInfo = $stmt->fetch(PDO::FETCH_OBJ);
-			$db = null;
-			$response['info'] = $userInfo;
-			echo json_encode($response);
-		}
-		catch(PDOException $e) 
-		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 		} 
-		}
-	}
-
-*/
 
 	// COMPLETE gets the connection 
 	function getConnection() 
