@@ -86,6 +86,17 @@
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$newAccount = json_decode($request->getBody());
+		
+		//$sqlTest = "SELECT user_id FROM USER WHERE email = :email";
+		//$db = getConnection();
+		//$stmtest = $db->prepare($sqlTest);
+		//$stmtest->bindParam("email", $newAccount->email);
+		//$stmt->execute();
+	   // $user_info = $stmtest->fetch(PDO::FETCH_ASSOC);
+		//$existing_account = $user_info => email;
+		//$db = null;
+		//if (email != NULL)
+		//{
 		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`, `tokens`)
 			VALUES (:email, :password, :first_name, :last_name, :phone, :birth_date, :gender, 10)";
 		try 
@@ -140,7 +151,7 @@
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
-
+      //}
 	}
 
 	##########
