@@ -114,7 +114,7 @@
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
 		
-		$sql = "SELECT user_id, first_name, last_name, phone, email, tokens, is_custom, custom_image_path FROM USER WHERE email = :email AND password = :password";
+		$sql = "SELECT user_id, first_name, last_name, email, phone, tokens, is_custom, custom_image_path FROM USER WHERE email = :email AND password = :password";
 		try 
 		{
 			if(isset($newAccount))
@@ -126,7 +126,7 @@
 				$stmt->execute();
 				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 				$db = null;
-				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'tokens' => (int)$userinfo['tokens'],'phone' => $userinfo['phone'], 'is_custom' => (int)$userinfo['is_custom'], 'custom_image_path' => $userinfo['custom_image_path']);
+				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'phone' => $userinfo['phone'], 'tokens' => (int)$userinfo['tokens'],'is_custom' => (int)$userinfo['is_custom'], 'custom_image_path' => $userinfo['custom_image_path']);
 				echo json_encode($response);
 			}
 			else
