@@ -86,72 +86,90 @@
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
 		$newAccount = json_decode($request->getBody());
+		$account_exists = 0;
 		
-		//$sqlTest = "SELECT user_id FROM USER WHERE email = :email";
-		//$db = getConnection();
-		//$stmtest = $db->prepare($sqlTest);
-		//$stmtest->bindParam("email", $newAccount->email);
-		//$stmt->execute();
-	   // $user_info = $stmtest->fetch(PDO::FETCH_ASSOC);
-		//$existing_account = $user_info => email;
-		//$db = null;
-		//if (email != NULL)
-		//{
-		$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`, `tokens`)
+
+		$sqlTest = "SELECT user_id FROM USER WHERE email = :email";
+		try
+		{
+			$db = getConnection();
+			$stmtTest = $db->prepare($sqlTest);
+			$stmtTest->bindParam("email", $newAccount->email);
+			$stmtTest->execute();
+		   	$account_check = $stmtTest->fetch(PDO::FETCH_ASSOC);
+			
+			if(empty($account_check))
+				$account_exists = 0;
+			else
+				$account_exists = 1;
+			
+			$db = null;
+		}
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+		}
+
+		
+		if($account_exists == 0)
+		{
+			$sql = "INSERT INTO USER (`email`, `password`, `first_name`, `last_name`, `phone`, `birth_date`, `gender`, `tokens`)
 			VALUES (:email, :password, :first_name, :last_name, :phone, :birth_date, :gender, 10)";
-		try 
-		{
-			if(isset($newAccount))
+			try 
 			{
-				$db = getConnection();
-				$stmt = $db->prepare($sql);
-				$stmt->bindParam("email", $newAccount->email);
-				$stmt->bindParam("password", md5($newAccount->password));
-				$stmt->bindParam("first_name", $newAccount->firstName);
-				$stmt->bindParam("last_name", $newAccount->lastName);
-				
-				//WE NEED TO DO SOMETHING SOMEWHERE TO ACCOUNT FOR FORMATTING
-				//THE DB STORES PHONE # AS 10 DIGITS WITHOUT FORMATTING
-				//RESEARCHING THIS TOPIC SAYS THAT'S A GUI ISSUE AND THAT STORING IT AS A VARCHAR LIKE WE ARE DOING IS CORRECT-Wilson
-				$stmt->bindParam("phone", $newAccount->number);
-				
-				$stmt->bindParam("birth_date", $newAccount->birthDate);
-				$stmt->bindParam("gender", $newAccount->gender);
-				//$stmt->bindParam("tokens", 10);
-				$stmt->execute();
-				$db = null;
+				if(isset($newAccount))
+				{
+					$db = getConnection();
+					$stmt = $db->prepare($sql);
+					$stmt->bindParam("email", $newAccount->email);
+					$stmt->bindParam("password", md5($newAccount->password));
+					$stmt->bindParam("first_name", $newAccount->firstName);
+					$stmt->bindParam("last_name", $newAccount->lastName);
+					
+					//WE NEED TO DO SOMETHING SOMEWHERE TO ACCOUNT FOR FORMATTING
+					//THE DB STORES PHONE # AS 10 DIGITS WITHOUT FORMATTING
+					//RESEARCHING THIS TOPIC SAYS THAT'S A GUI ISSUE AND THAT STORING IT AS A VARCHAR LIKE WE ARE DOING IS CORRECT-Wilson
+					$stmt->bindParam("phone", $newAccount->number);
+					
+					$stmt->bindParam("birth_date", $newAccount->birthDate);
+					$stmt->bindParam("gender", $newAccount->gender);
+					//$stmt->bindParam("tokens", 10);
+					$stmt->execute();
+					$db = null;
+				}
+				else
+					echo '{"error":{"text": "New Account can not be set because not set."}}';
 			}
-			else
-				echo '{"error":{"text": "New Account can not be set because not set."}}';
-		}
-		catch(PDOException $e) 
-		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
-		}
+			catch(PDOException $e) 
+			{
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+			}
 		
-		$sql = "SELECT user_id, first_name, last_name, email, phone, tokens, is_custom, custom_image_path FROM USER WHERE email = :email AND password = :password";
-		try 
-		{
-			if(isset($newAccount))
+			$sql = "SELECT user_id, first_name, last_name, email, phone, tokens, is_custom, custom_image_path FROM USER WHERE email = :email AND password = :password";
+			try 
 			{
-				$db = getConnection();
-				$stmt = $db->prepare($sql);
-				$stmt->bindParam("email", $newAccount->email);
-				$stmt->bindParam("password", md5($newAccount->password));
-				$stmt->execute();
-				$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
-				$db = null;
-				$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'phone' => $userinfo['phone'], 'tokens' => (int)$userinfo['tokens'],'is_custom' => (int)$userinfo['is_custom'], 'custom_image_path' => $userinfo['custom_image_path']);
-				echo json_encode($response);
+				if(isset($newAccount))
+				{
+					$db = getConnection();
+					$stmt = $db->prepare($sql);
+					$stmt->bindParam("email", $newAccount->email);
+					$stmt->bindParam("password", md5($newAccount->password));
+					$stmt->execute();
+					$userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
+					$db = null;
+					$response = array('userID' => (int)$userinfo['user_id'], 'firstName' => $userinfo['first_name'], 'lastName' => $userinfo['last_name'], 'email' => $userinfo['email'], 'phone' => $userinfo['phone'], 'tokens' => (int)$userinfo['tokens'],'is_custom' => (int)$userinfo['is_custom'], 'custom_image_path' => $userinfo['custom_image_path']);
+					echo json_encode($response);
+				}
+				else
+					echo '{"error":{"text": "New Account not set!"}}';
+			} 
+			catch(PDOException $e) 
+			{
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 			}
-			else
-				echo '{"error":{"text": "New Account not set!"}}';
-		} 
-		catch(PDOException $e) 
-		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
-      //}
+		else
+			echo '{"error":{"text": "An account with that email address already exists!"}}';
 	}
 
 	##########
