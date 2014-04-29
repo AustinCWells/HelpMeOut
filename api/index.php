@@ -6,15 +6,21 @@
 
 	$app = new \Slim\Slim();
 
+#index.php
 	$app->post('/login', 'login');
 	$app->post('/newaccount', 'createAccount');
 	$app->post('/updateaccount', 'updateAccount');
 	$app->post('/updatepassword', 'updatePassword');
 	$app->post('/useraccount', 'getUserAccount');
 	$app->get('/tasks', 'pullTasks');
+	#getTaskInfo() --- Pending Deletion
+	$app->post('/postatask', 'postTask');
 	$app->post('/tasksImDoing', 'getTasksImDoing');
 	$app->post('/tasksINeedDone', 'getTasksINeedCompleted');
-	$app->post('/postatask', 'postTask');
+	#getUserBadges() --- Pending Deletion
+	#getConnection() --- Used by functions to connect to DB
+
+#index2.php - Updated 4/29 (SK)
 	$app->get('/recentTasks/:numTasks', 'recentTasks');
 	$app->post('/addTokens', 'addTokens');
 	$app->get('/changeProfileImage', 'changeProfileImage');
