@@ -50,8 +50,8 @@
 
 	##########
 	# 	AUTHOR:			Spencer
-	#	LAST UPDATED:	4/18/14 - Modified to include return statement if successful
-	#					- Added functionality for reading in parameters from JSON
+	#	LAST UPDATED:	4/18/14 - Modified to include return statement if successful (SK)
+	#					- Added functionality for reading in parameters from JSON (SK)
 	#	SUMMARY:		Adds tokens to a user's account
 	#	INPUTS:			JSON(user_id, INT num_tokens)
 	#	OUTPUTS:		JSON - SUCCESS
@@ -260,7 +260,7 @@
 
 	##########
 	#	AUTHOR:			Spencer
-	#	LAST UPDATE:	4/21 - Modified loops and array to return additional information in a more efficient format
+	#	LAST UPDATE:	4/21 - Modified loops and array to return additional information in a more efficient format (SK)
 	#	SUMMARY:		Using user_id as a parameter, pulls all tasks submitted by that user and their corresponding offers
 	#	INPUTS:			user_id (The person checking the status of their tasks)
 	#	OUTPUTS:		A JSON containing all tasks submitted by a user and any offers those tasks received
@@ -637,7 +637,7 @@
 	#	SUMMARY:		Declines an offer made by a user (user_id) for a specific task (task_id)
 	#	INPUTS:			user_id (essentially chooser_id), task_id
 	#	OUTPUTS:		N/A
-	#	STATUS:			IN PROGRESS
+	#	STATUS:			NEEDS BUG FIXING
     ##########
 	function cancelTask($user_id, $task_id)
 	{
