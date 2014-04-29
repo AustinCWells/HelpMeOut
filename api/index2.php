@@ -4,6 +4,7 @@
 	# 	AUTHOR:			Spencer
 	#	LAST UPDATED:	4/18/14 - Modified return values to include additional information
 	#					4/18/14 - Fixed bugs (INT casting and other)(CA)
+	#					4/29/14 - Fixed bug where complete/cancelled jobs were still included (SK)
 	#	SUMMARY:		Pulls a specified number of active jobs based on recency (most recent tasks are rated highest)
 	#	INPUTS:			INT num_tasks
 	#	OUTPUTS:		JSON(task_id, beggar_id, first_name (beggar), last_name (beggar), short_description, notes, price, category_id, time_frame_date, time_frame_date, location, date_posted)
@@ -633,7 +634,7 @@
 
 	##########
 	#	AUTHOR:			Spencer
-	#	LAST UPDATE:	
+	#	LAST UPDATE:	4/29/14 - Modifed SQL query to ensure jobs_completed is not incremented when a beggar cancels their own task (SK)
 	#	SUMMARY:		Declines an offer made by a user (user_id) for a specific task (task_id)
 	#	INPUTS:			user_id (essentially chooser_id), task_id
 	#	OUTPUTS:		N/A
