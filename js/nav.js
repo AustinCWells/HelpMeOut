@@ -26,19 +26,22 @@ $(window).ready(function(event) {
 
 		event.preventDefault();
 		logOut();
+
 	});
 
+	//set the width of the email to fit the users email length
 	var width = $("li#navUser").width();
-	//console.log(width);
 	$("#userNav li").width(width);
 
-
+	//makes label line up with left side of sub input box
 	var marginLeft = $("input").css("margin-left");
-
 	$("label").css("margin-left", marginLeft);
 
-	var navHeight = $("#navMenu").height() - 10;
-	//$("#tokenImg").height(navHeight);
+	//Centers logo vertically in nav
+	var navHeight = $("#navMenu").height();
+	var logoHeight = $("#title").height();
+	$("#title").css("margin-top", (navHeight - logoHeight)/2)
+
 	
 });
 
