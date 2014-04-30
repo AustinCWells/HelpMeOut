@@ -83,7 +83,7 @@ color: #2954d1 !important;
 text-decoration: underline !important; 
 }
 
-/* Default styling for selected tab titles */ 
+/* Default styling for  tab titles */ 
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
 color: #212121 !important;
 text-decoration: none !important;

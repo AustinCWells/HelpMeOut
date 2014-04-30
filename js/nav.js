@@ -38,7 +38,7 @@ $(window).ready(function(event) {
 	$("label").css("margin-left", marginLeft);
 
 	var navHeight = $("#navMenu").height() - 10;
-	$("#tokenImg").height(navHeight);
+	//$("#tokenImg").height(navHeight);
 	
 });
 
