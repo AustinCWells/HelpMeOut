@@ -280,7 +280,59 @@ var refreshRecentJobs = function(){
 
 	$("#recentJobs").children().remove("div");
 
+	var request = {};
+	request.num_tasks = num_tasks;
+
 	if(checkLogin()){
+		request.user_id = userInfo.userID;
+	}
+
+	else {
+		request.user_id = 0;
+	}
+
+	//console.log(user);
+
+	$.ajax({
+		type: 'POST',
+		url: "api/recentTasks",
+		content: 'application/json',
+		data: JSON.stringify(request),
+		success: function(data){
+
+			var obj = JSON.parse(data);
+
+			if(Object.keys(obj)[0] === "error"){
+				
+				obj.modal = "Error Downloading Recent Jobs!";
+				displayError(obj);
+
+			}
+
+			else{
+
+				for(var i=0; i<obj.length; i++) {
+					constructRecentJob(obj[i]);
+				}
+
+				isRecent = true;
+				callback();
+
+			}
+
+		},
+
+		//CAN WE MAKE THIS ERROR MESSAGE MORE SPECIFIC?
+		//IF THIS IS BECAUSE OF A BROKEN LINK BETWEEN
+			//MODALS AND API, CAN WE MENTION THAT?
+
+		error: function(data){
+			alert("WE'RE SORRY SOMETHING WENT WRONG!");
+		}
+
+	});
+
+	/*if(checkLogin()){
 
 	}
 
@@ -300,6 +352,6 @@ var refreshRecentJobs = function(){
 		.fail(function(){
 			console.log("Failed to load recent jobs.");
 		});
-	}
+	}*/
 
 }

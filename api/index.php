@@ -22,7 +22,8 @@
 	#getConnection() --- Used by functions to connect to DB
 
 #index2.php - Updated 4/29 (SK)
-	$app->get('/recentTasks/:numTasks', 'recentTasks');
+	//$app->get('/recentTasks/:numTasks', 'recentTasks');
+	$app->post('/recentTasks', 'recentTasks');
 	$app->post('/addTokens', 'addTokens');
 	$app->get('/changeProfileImage', 'changeProfileImage');
 	$app->get('/getOffers/:user_id', 'getOffers');

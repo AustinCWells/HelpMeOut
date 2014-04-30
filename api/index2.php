@@ -6,15 +6,27 @@
 	#					4/18/14 - Fixed bugs (INT casting and other)(CA)
 	#					4/29/14 - Fixed bug where complete/cancelled jobs were still included (SK)
 	#	SUMMARY:		Pulls a specified number of active jobs based on recency (most recent tasks are rated highest)
-	#	INPUTS:			INT num_tasks
+	#	INPUTS:			User id and num-tasks
 	#	OUTPUTS:		JSON(task_id, beggar_id, first_name (beggar), last_name (beggar), short_description, notes, price, category_id, time_frame_date, time_frame_date, location, date_posted)
 	#	STATUS:			COMPLETE
     ##########
-	function recentTasks($numTasks)
+	function recentTasks()
 	{
-	$numTasks = intval($numTasks);
+
 	$request = \Slim\Slim::getInstance()->request();
-	$sql = "SELECT T.task_id, T.beggar_id, USER.first_name, USER.last_name, T.short_description, T.notes, T.price, T.category_id, T.time_frame_time, T.time_frame_date, T.location, T.date_posted FROM TASK T INNER JOIN USER ON T.beggar_id = USER.user_id WHERE T.is_complete = 0 GROUP BY task_id ORDER BY MAX(date_posted) desc LIMIT :num_tasks";
+	$userObj = json_decode($request->getBody());
+	$userID = (int)$userObj->user_id;
+	//limits the return of tasks
+	$numTasks = (int)$userObj->num_tasks;
+
+	//if not logged in returns at most num_tasks of jobs of all users
+	if($userID == 0){
+		$sql = "SELECT T.task_id, T.beggar_id, USER.first_name, USER.last_name, T.short_description, T.notes, T.price, T.category_id, T.time_frame_time, T.time_frame_date, T.location, T.date_posted FROM TASK T INNER JOIN USER ON T.beggar_id = USER.user_id WHERE T.is_complete = 0 GROUP BY task_id ORDER BY MAX(date_posted) desc LIMIT :num_tasks";
+	}
+	//if logged in returns at most num_tasks of jobs of all users not including current user
+	else {
+		$sql = "SELECT T.task_id, T.beggar_id, USER.first_name, USER.last_name, T.short_description, T.notes, T.price, T.category_id, T.time_frame_time, T.time_frame_date, T.location, T.date_posted FROM TASK T INNER JOIN USER ON T.beggar_id = USER.user_id WHERE USER.user_id != " . $userID . " AND T.is_complete = 0 GROUP BY task_id ORDER BY MAX(date_posted) desc LIMIT :num_tasks";
+	}
 	try
 		{
 			$db = getConnection();
