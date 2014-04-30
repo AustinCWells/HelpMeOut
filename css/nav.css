@@ -25,10 +25,7 @@ body {
 
 #navMenu h1 {
 	float:left;
-	margin-top:15px;
-	margin-left: 55px;
-	margin-right: 55px;
-	margin-bottom: 0px;
+	margin: 0px 55px;
 }
 
 #navMenu a:visited, #navMenu a:link{
