@@ -30,6 +30,7 @@ body {
 	margin-top:15px;
 	margin-left: 55px;
 	margin-right: 55px;
+	margin-bottom: 0px;
 }
 
 #navMenu a:visited, #navMenu a:link{
@@ -88,7 +89,7 @@ body {
 
 #navTokens {
 	float: right;
-	padding: 0px;
+	width: 125px;
 }
 
 li#navTokens a {
@@ -143,22 +144,6 @@ h1.tokenCount{
     padding: 0px 6px;
 }
 
-
-#divToken {
-	display: table;
-	border-bottom: -6px;
-	/*border: 1px solid black;*/
-}
-
-#navUserEmail {
-	border-bottom: -1px;
-}
-/*
-Don't know if this affects anything
-.label {
-	width:20%;
-}
-*/
 /*JOB POSTINGS*/
 .jobPost {
 	 width:20%;
