@@ -292,7 +292,7 @@
 	#	AUTHOR:			Charlie
 	#	LAST UPDATE:	4/18
 	#	SUMMARY:		Gets all Jobs (grouped by category) from the DB that have not been completed
-	#	INPUTS:			None	
+	#	INPUTS:			User_id if not log in zero if log in user_id number	
 	#	OUTPUTS:		JSON(category: {taskID: {first_name, last_name, short_description, notes, price, time_frame_date, time_frame_time, location}})
 	#	STATUS:			NOT TESTED
     ##########
@@ -302,10 +302,12 @@
 		$userObj = json_decode($request->getBody());
 		$userID = (int)$userObj->user_id;
 
+		//if not logged in returns all jobs
 		if($userID == 0){
 			$sql = "SELECT title AS category, t1.* FROM CATEGORY INNER JOIN (SELECT USER.first_name, USER.last_name, TASK.task_id, TASK.category_id, TASK.short_description, TASK.notes, TASK.price, TASK.time_frame_date, TASK.time_frame_time, TASK.location FROM USER INNER JOIN TASK ON USER.user_id = TASK.beggar_id AND is_complete = 0 AND chooser_id is NULL) AS t1 ON CATEGORY.category_id = t1.category_id";
 		}
 		
+		//returns all jobs not posted by the user
 		else {
 			$sql = "SELECT title AS category, t1.* FROM CATEGORY INNER JOIN (SELECT USER.first_name, USER.last_name, TASK.task_id, TASK.category_id, TASK.short_description, TASK.notes, TASK.price, TASK.time_frame_date, TASK.time_frame_time, TASK.location FROM USER INNER JOIN TASK ON USER.user_id = TASK.beggar_id AND is_complete = 0 AND chooser_id is NULL AND USER.user_id != " . $userID . ") AS t1 ON CATEGORY.category_id = t1.category_id";
 		}
