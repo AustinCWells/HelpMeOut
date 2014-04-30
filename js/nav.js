@@ -42,6 +42,10 @@ $(window).ready(function(event) {
 	var logoHeight = $("#title").height();
 	$("#title").css("margin-top", (navHeight - logoHeight)/2)
 
+	//Sizing token img on nav Menu
+	
+	$("#tokenImg").height(navHeight - 6);
+
 	
 });
 
