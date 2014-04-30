@@ -38,7 +38,7 @@ $(window).ready(function(event) {
 	$("label").css("margin-left", marginLeft);
 
 	//Centers logo vertically in nav
-	var navHeight = $("#navMenu").height();
+	var navHeight = $(".navVisible").height();
 	var logoHeight = $("#title").height();
 	$("#title").css("margin-top", (navHeight - logoHeight)/2)
 
@@ -48,8 +48,9 @@ $(window).ready(function(event) {
 
 
 	//Sizing token img on nav
-
-	$("#tokenImg").height(navHeight - 6);
+	var liHeight = $(".navVisible").height();
+	console.log(liHeight);
+	$("#tokenImg").height(liHeight - 6);
 
 	
 });
