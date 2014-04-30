@@ -67,8 +67,6 @@ var checkJobPostValidity = function(){
 
 }
 
-
-
 var checkSignUpValidity = function(){
 
 	var password = $("#accountPassword");
@@ -239,7 +237,7 @@ var dbRequest = function(url, content, json, type){
 		data: JSON.stringify(json),
 		success: function(data){
 
-			console.log(data);
+			//console.log(data);
 
 			var obj = JSON.parse(data);
 
@@ -284,7 +282,7 @@ var dbRequest = function(url, content, json, type){
 
 					if(obj.userID){
 						$.cookie("userInfo", obj);
-						console.log("login");
+						//console.log("login");
 						login();
 					}
 

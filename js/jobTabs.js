@@ -183,7 +183,7 @@ var refreshAllJobs = function(){
 
 	if(checkLogin()){
 		user.user_id = userInfo.userID;
-		console.log(user);
+		//console.log(user);
 	}
 
 	else {
