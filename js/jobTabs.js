@@ -187,7 +187,7 @@ var refreshAllJobs = function(){
 	}
 
 	else {
-		user.user_id = 0;
+		user.user_id = 4;
 	}
 
 	console.log(user);
