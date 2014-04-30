@@ -290,7 +290,8 @@ input[type="button"] {
 	border: 1px solid #aaaaaa;
 	border-radius: 4px;
 	width:95%;
-	margin-left: 45px;
+	margin-left: auto;
+	margin-right: auto;
 	background-color:white;
 }
 
@@ -315,6 +316,11 @@ input[type="button"] {
 
 #badgeSpace {
 	font-size:16px;
+	position: absolute;
+    left: 50%;
+    width: auto;
+    height: 300px;
+    /*margin-left: -100px;*/
 }
 
 .badge {

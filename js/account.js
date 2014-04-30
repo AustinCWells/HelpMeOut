@@ -26,6 +26,7 @@ $(window).ready(function(event) {
 	var badgeSpace = $('#badgeSpace');
 
 	for(var i=0;i<badges.length;i++) {
+		badgeSpace.css("margin-left",(parseFloat(badgeSpace.css("margin-left")) - 100) + 'px');
 		if(i===0) {
 			badgeSpace.empty();
 		}
