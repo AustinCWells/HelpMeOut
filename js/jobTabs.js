@@ -178,42 +178,47 @@ function constructRecentJob(job) {
 }
 
 var refreshAllJobs = function(){
-	if(checkLogin()){
 
+	var user = {};
+
+	if(checkLogin()){
+		user.user_id = userInfo.userID;
+		console.log(user);
 	}
 
 	else {
+		user.user_id = 0;
+	}
 
-		$.getJSON("api/tasks",function(data){
-	
-			for(var keys in data){
+	$.getJSON("api/tasks",function(data){
 
-				$("#" + keys).children().remove("div");
+		for(var keys in data){
 
-				if(data[keys].length === 0)
-					$("#" + keys).append(sorry);
+			$("#" + keys).children().remove("div");
 
-				else {
+			if(data[keys].length === 0)
+				$("#" + keys).append(sorry);
 
-					for( var info in data[keys]){
-						//console.log(keys);
-						constructJob(data[keys][info], keys);
-					}
+			else {
+
+				for( var info in data[keys]){
+					//console.log(keys);
+					constructJob(data[keys][info], keys);
 				}
-
 			}
 
-		})
+		}
 
-		.done(function(){
-			isAll = true;
-			callback();
-		})
-		
-		.fail(function(){
-		   console.log("Failed to load jobs.");
-		});
-	}
+	})
+
+	.done(function(){
+		isAll = true;
+		callback();
+	})
+
+	.fail(function(){
+	   console.log("Failed to load jobs.");
+	});
 
 }
 
