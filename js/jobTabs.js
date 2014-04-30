@@ -9,56 +9,9 @@ var isRecent = false;
 
 $(document).ready(function(event) {
 
-	//console.log(userInfo);
+	refreshAllJobs();
 
-	//Loading 
-	$.getJSON("api/tasks",function(data){
-
-		//console.log("Jobs: ");
-		//console.log(data);
-		
-		for(var keys in data){
-
-			if(data[keys].length === 0)
-				$("#" + keys).append(sorry);
-
-			else {
-
-				for( var info in data[keys]){
-					//console.log(keys);
-					constructJob(data[keys][info], keys);
-				}
-			}
-
-		}
-
-	})
-	.done(function(){
-		isAll = true;
-		callback();
-	})
-	.fail(function(){
-	   console.log("Failed to load jobs.");
-	});
-
-
-	$.getJSON("api/recentTasks/"+num_tasks, function(data){
-		//console.log("Recent Jobs: ");
-		//console.log(data);
-		//console.log(JSON.stringify(data));
-
-		for(var i=0; i<data.length; i++) {
-			constructRecentJob(data[i]);
-		}
-
-	})
-	.done(function(){
-		isRecent = true;
-		callback();
-	})
-	.fail(function(){
-	   console.log("Failed to load recent jobs.");
-	});
+	refreshRecentJobs();
 
 
 });
@@ -162,38 +115,7 @@ var constructJob = function(job, categoryName) {
 	job.image = image;
 	var text = $('#' + category).append(getJobHTML(job, image));
 	$(text).children(":last-child").children(".jobInfo").val(JSON.stringify(job));
-	//$("#" + category +":last-child .jobInfo").val(JSON.stringify(job));
 
-
-	/*var posting = "#" + category + "Posting" + job.task_id;
-	$(posting).click(
-	function(){
-
-			var offer = {};
-			offer.task_id = job.task_id;
-			offer.user_id = userInfo.userID;
-			console.log(offer);
-
-			$.ajax({
-	        type: "POST",
-	        url: "api/makeOffer",
-	        data: JSON.stringify(offer), //Data to POST to the server
-	        content: 'application/json',
-	        success: function () { 
-	        	console.log("success big boiii");
-	        }
-
-	       });
-		});
-
-		$(".closeButton").click(function(){
-			$(".modal").hide();
-			$(".modalOverlay").height(0);
-			$("#modalOverlay").removeClass("modalOverlay");
-			//TODO: send job request
-		});
-
-	});*/
 }
 
 var getJobHTML = function(job, image){
@@ -252,5 +174,73 @@ function constructRecentJob(job) {
 	job.image= image;
 	var text = $('#recentJobs').append(getJobHTML(job, image));
 	$(text).children(":last-child").children(".jobInfo").val(JSON.stringify(job));
+
+}
+
+var refreshAllJobs = function(){
+	if(checkLogin()){
+
+	}
+
+	else {
+
+		$.getJSON("api/tasks",function(data){
+	
+			for(var keys in data){
+
+				$("#" + keys).children().remove("div");
+
+				if(data[keys].length === 0)
+					$("#" + keys).append(sorry);
+
+				else {
+
+					for( var info in data[keys]){
+						//console.log(keys);
+						constructJob(data[keys][info], keys);
+					}
+				}
+
+			}
+
+		})
+
+		.done(function(){
+			isAll = true;
+			callback();
+		})
+		
+		.fail(function(){
+		   console.log("Failed to load jobs.");
+		});
+	}
+
+}
+
+var refreshRecentJobs = function(){
+
+	$("#recentJobs").children().remove("div");
+
+	if(checkLogin()){
+
+	}
+
+	else {
+
+		$.getJSON("api/recentTasks/"+num_tasks, function(data){
+
+			for(var i=0; i<data.length; i++) {
+				constructRecentJob(data[i]);
+			}
+
+		})
+		.done(function(){
+			isRecent = true;
+			callback();
+		})
+		.fail(function(){
+			console.log("Failed to load recent jobs.");
+		});
+	}
 
 }
