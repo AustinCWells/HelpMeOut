@@ -187,10 +187,10 @@ var refreshAllJobs = function(){
 	}
 
 	else {
-		user.user_id = 4;
+		user.user_id = 0;
 	}
 
-	console.log(user);
+	//console.log(user);
 
 	$.ajax({
 		type: 'POST',
