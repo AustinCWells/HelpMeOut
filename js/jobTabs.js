@@ -9,10 +9,8 @@ var isRecent = false;
 
 $(document).ready(function(event) {
 
-	//refreshAllJobs();
-
-	//refreshRecentJobs();
-
+	refreshAllJobs();
+	refreshRecentJobs();
 
 });
 

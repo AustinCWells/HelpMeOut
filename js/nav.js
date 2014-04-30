@@ -43,14 +43,10 @@ $(window).ready(function(event) {
 });
 
 var login = function(){
-	
-	userInfo = $.cookie("userInfo");
-
-	refreshAllJobs();
-	refreshRecentJobs();
 
 	if(checkLogin()){
 
+		userInfo = $.cookie("userInfo");
 
 		$("#navMenu li").toggleClass("navVisible");
 		$("#navUserEmail").text(userInfo.email);

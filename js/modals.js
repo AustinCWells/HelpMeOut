@@ -282,8 +282,9 @@ var dbRequest = function(url, content, json, type){
 
 					if(obj.userID){
 						$.cookie("userInfo", obj);
-						//console.log("login");
 						login();
+						refreshAllJobs();
+						refreshRecentJobs();
 					}
 
 					else{
