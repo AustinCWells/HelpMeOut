@@ -77,7 +77,12 @@ $(window).ready(function(event) {
 	        content: 'application/json',
 	        success: function (data) { 
 	        	//should return userInfo
-        	console.log(data);
+	        	console.log(data);
+	        	var obj = JSON.parse(data);
+
+	        	if(obj.success){
+	        		updateAcount(updateInfo);
+        		}
 			}
 		});
 
@@ -150,3 +155,16 @@ function readURL(input) {
 
 
 });
+
+var updateAcount = function(info){
+
+	userInfo.firstName = info.first_name;
+	userInfo.lastName = info.last_name;
+	userInfo.phone = info.phone;
+	userInfo.email = info.email;
+	$.cookie("userInfo", userInfo);
+
+	$("#navUserEmail").text(userInfo.email);
+
+
+}
