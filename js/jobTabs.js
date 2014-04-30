@@ -278,7 +278,8 @@ var refreshAllJobs = function(){
 
 var refreshRecentJobs = function(){
 
-	$("#recentJobs").children().remove("div");
+	console.log($("div#recentJobs .jobPost").remove());//remove("div");
+	console.log("Called");
 
 	var request = {};
 	request.num_tasks = num_tasks;

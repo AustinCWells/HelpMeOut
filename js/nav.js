@@ -47,6 +47,7 @@ var login = function(){
 
 		userInfo = $.cookie("userInfo");
 		refreshAllJobs();
+		refreshRecentJobs();
 
 		$("#navMenu li").toggleClass("navVisible");
 		$("#navUserEmail").text(userInfo.email);
