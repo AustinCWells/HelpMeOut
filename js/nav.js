@@ -48,9 +48,7 @@ $(window).ready(function(event) {
 
 
 	//Sizing token img on nav
-	var liHeight = $(".navVisible").height();
-	console.log(liHeight);
-	$("#tokenImg").height(liHeight - 6);
+	$("#tokenImg").height(navHeight - 6).css("margin-top", 3);
 
 	
 });
