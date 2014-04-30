@@ -190,7 +190,61 @@ var refreshAllJobs = function(){
 		user.user_id = 0;
 	}
 
-	$.getJSON("api/tasks",function(data){
+	console.log(user);
+
+	$.ajax({
+		type: 'POST',
+		url: "api/tasks",
+		content: 'application/json',
+		data: JSON.stringify(user),
+		success: function(data){
+
+			var obj = JSON.parse(data);
+
+			if(Object.keys(obj)[0] === "error"){
+				
+				obj.modal = "Error Downloading All Jobs!";
+				displayError(obj);
+
+			}
+
+			else{
+
+				for(var keys in obj){
+
+					$("#" + keys).children().remove("div");
+
+					if(obj[keys].length === 0)
+						$("#" + keys).append(sorry);
+
+					else {
+
+						for( var info in obj[keys]){
+							//console.log(keys);
+							constructJob(obj[keys][info], keys);
+						}
+					}
+
+				}
+
+				isAll = true;
+				callback();
+
+			}
+
+		},
+
+		//CAN WE MAKE THIS ERROR MESSAGE MORE SPECIFIC?
+		//IF THIS IS BECAUSE OF A BROKEN LINK BETWEEN
+			//MODALS AND API, CAN WE MENTION THAT?
+
+		error: function(data){
+			alert("WE'RE SORRY SOMETHING WENT WRONG!");
+		}
+
+	});
+
+	/*$.getJSON("api/tasks",function(data){
 
 		for(var keys in data){
 
@@ -218,7 +272,7 @@ var refreshAllJobs = function(){
 
 	.fail(function(){
 	   console.log("Failed to load jobs.");
-	});
+	});*/
 
 }
 
