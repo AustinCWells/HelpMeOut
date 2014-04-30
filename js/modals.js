@@ -363,6 +363,24 @@ var openModal = function(id){
 		setJobPostDimensions();
 		//console.log(currentTime);
 	}
+
+	else if(id === "#accountModal"){
+		var minBirthDate = new Date();
+		var year = minBirthDate.getFullYear() - 18;
+		var month = minBirthDate.getMonth() + 1;
+		var day = minBirthDate.getDate();
+
+		if(month < 10)
+			month = "0" + month;
+
+		if(day < 10)
+			day = "0" + day;
+
+		minBirthDate = year + "-" + month + "-" + day;
+
+		//console.log(minBirthDate);
+		$("#accountBirthDate").attr("max", minBirthDate);
+	}
 }
 
 var getRequestTime = function(info){
@@ -372,14 +390,9 @@ var getRequestTime = function(info){
 	var year = parseInt(info.date.substring(0, 4), 10);
 	var month = parseInt(info.date.substring(5, 7), 10) - 1;
 	var day = parseInt(info.date.substring(8), 10);
-	/*console.log(hours);
-	console.log(mins);
-	console.log(year);
-	console.log(month);
-	console.log(day);*/
+
 
 	var time = new Date();
-	//console.log(time);
 	time.setFullYear(year, month, day);
 	time.setHours(hours, mins, 0, 0);
 
