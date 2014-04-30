@@ -119,7 +119,7 @@ var constructJob = function(job, categoryName) {
 }
 
 var getJobHTML = function(job, image){
-	return '<div class="jobPost"><p class="jobDesc">' + job.short_description + '</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden"></div>';
+	return '<div class="jobPost"><p class="jobDesc">' + job.short_description.substring(0,12) + '...</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden"></div>';
 }
 
 function constructRecentJob(job) {
