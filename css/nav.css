@@ -19,9 +19,7 @@ body {
 
 #navMenu {
 	background-color: rgb(246,246,246);
-	/*height: 50px;
-	margin-top: -5px;*/
-	border-bottom: solid 1px rgb(226,226,226);
+	/*border-bottom: solid 1px rgb(226,226,226);*/
 }
 
 
@@ -90,11 +88,6 @@ body {
 #navTokens {
 	float: right;
 	width: 125px;
-}
-
-li#navTokens a {
-	padding: 6px;
-	height: 40px;
 }
 
 .clear {
