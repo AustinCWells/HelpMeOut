@@ -128,8 +128,13 @@ label span {
 	width: 250px;
 }
 
+#successModal h2 {
+	padding: 10px;
+}
 
-
+#errorInfo, .errorTitle {
+	padding: 10px;
+}
 
 
 

@@ -43,6 +43,7 @@ $(window).ready(function(event) {
 });
 
 var login = function(){
+	
 	userInfo = $.cookie("userInfo");
 
 	refreshAllJobs();
