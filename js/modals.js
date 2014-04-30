@@ -330,10 +330,10 @@ $(window).resize(function(){
 
 	var windowWidth = $(window).width() / 2;
 	var windowHeight = $(window).height() / 2;
-	var formWidth = 12 + ($(".modalSelected").width() / 2);
-	var formHeight = 12 + ($(".modalSelected").height() / 2);
-	var left = windowWidth - formWidth;
-	var top = windowHeight - formHeight;
+	var modalWidth = ($(".modalSelected").width() / 2);
+	var modalHeight = ($(".modalSelected").height() / 2);
+	var left = windowWidth - modalWidth;
+	var top = windowHeight - modalHeight;
 	$(".modalSelected").css({"left": left, "top": top});
 
 	$(".modalOverlay").height($(document).height());
@@ -347,10 +347,10 @@ var openModal = function(id){
 	//console.log(windowWidth);
 	$(id).show();
 	$(id).addClass("modalSelected");
-	var formWidth = 12 + ($(id + " form").width() / 2);
-	var formHeight = 12 + ($(id + " form").height() / 2);
-	var left = windowWidth - formWidth;
-	var top = windowHeight - formHeight;
+	var modalWidth = ($(".modalSelected").width() / 2);
+	var modalHeight = ($(".modalSelected").height() / 2);
+	var left = windowWidth - modalWidth;
+	var top = windowHeight - modalHeight;
 	$(id).css({"left": left, "top": top});
 
 	$("#modalOverlay").addClass("modalOverlay");
