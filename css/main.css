@@ -136,6 +136,23 @@ margin-bottom: 2px;
 
 .cancelLeft {
 	margin-left:165px;
+	cursor:pointer;
+}
+
+.cancelJob {
+	cursor:pointer;
+}
+
+.jobCompleted {
+	cursor:pointer;
+}
+
+.decline {
+	cursor:pointer;
+}
+
+.accept {
+	cursor:pointer;
 }
 
 .seperator {
@@ -412,4 +429,8 @@ div[id*=recentPosting]{
 .setting {
 	margin-right: 80px;
 	text-align: center;
+}
+
+#imagePreview {
+	height:150px;
 }

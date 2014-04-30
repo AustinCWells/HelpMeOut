@@ -84,27 +84,40 @@ $(window).ready(function(event) {
 	});
 
 
-$("#updatePicForm").submit(function(event){
+$("#uploadedFile").change(function() {
+	readURL(this);
+});
 
-		event.preventDefault();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();            
+        reader.onload = function (e) {
+            $("#imagePreview").attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
-		var updatePic = {};
-		updatePic.file_path = $("#uploadedFile").val();
-		updatePic.user_id = userInfo.userID;
+//  $("#updatePicForm").submit(function(event){
 
-		console.log(updatePic);
+//  		event.preventDefault();
+// 		var updatePic = {};
+// 		updatePic.file_path = $("#uploadedFile").val();
+// 		updatePic.user_id = userInfo.userID;
 
-		var url = "api/changeProfileImage";
-		$.ajax({
-	        type: "Get",
-	        url: url,
-	        data: JSON.stringify(updatePic),
-	        content: 'application/json',
-	        success: function (data) { 
-	        	console.log(data);
-			}
-		});
-	});
+// 		console.log(updatePic);
+
+// 		var url = "api/changeProfileImage";
+// 		$.ajax({
+// 	        type: "Get",
+// 	        url: url,
+// 	        data: JSON.stringify(updatePic),
+// 	        content: 'application/json',
+// 	        success: function (data) { 
+// 	        	console.log(data);
+// 			}
+// 		});
+// 	});
 
 
 	$("#updatePasswordForm").submit(function(event){

@@ -45,7 +45,7 @@
 	       		</div>
 	       		<div class = "two column">
 	       			<!-- <input type="button" class="editProfile" value="Edit Profile"> -->
-	       			<a href="settings.php">Settings</a>
+	       			<!-- <a href="settings.php">Settings</a> -->
 	       		</div>
 			</div>
 			<div class="profileSection" id="lowerSection">
