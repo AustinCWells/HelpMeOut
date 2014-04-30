@@ -3,6 +3,7 @@ var userInfo = {};
 $(document).ready(function(){
 	$(".modal").hide();
 	setQoute();
+	
 });
 
 $(window).ready(function(event) {
@@ -42,12 +43,13 @@ $(window).ready(function(event) {
 });
 
 var login = function(){
+	userInfo = $.cookie("userInfo");
+
+	refreshAllJobs();
+	refreshRecentJobs();
 
 	if(checkLogin()){
 
-		userInfo = $.cookie("userInfo");
-		refreshAllJobs();
-		refreshRecentJobs();
 
 		$("#navMenu li").toggleClass("navVisible");
 		$("#navUserEmail").text(userInfo.email);

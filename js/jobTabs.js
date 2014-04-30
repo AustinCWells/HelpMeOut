@@ -9,9 +9,9 @@ var isRecent = false;
 
 $(document).ready(function(event) {
 
-	refreshAllJobs();
+	//refreshAllJobs();
 
-	refreshRecentJobs();
+	//refreshRecentJobs();
 
 
 });
@@ -278,8 +278,9 @@ var refreshAllJobs = function(){
 
 var refreshRecentJobs = function(){
 
-	console.log($("div#recentJobs .jobPost").remove());//remove("div");
+	$("#recentJobs .jobPost").remove();
 	console.log("Called");
+	console.log($("#recentJobs .jobPost"));
 
 	var request = {};
 	request.num_tasks = num_tasks;
