@@ -42,8 +42,13 @@ $(window).ready(function(event) {
 	var logoHeight = $("#title").height();
 	$("#title").css("margin-top", (navHeight - logoHeight)/2)
 
-	//Sizing token img on nav Menu
-	
+	//Centers login verticaly in nav
+	var loginHeight = $("#navLogin").height();
+	$("#navLogin").css("margin-top", (navHeight - loginHeight)/2);
+
+
+	//Sizing token img on nav
+
 	$("#tokenImg").height(navHeight - 6);
 
 	
