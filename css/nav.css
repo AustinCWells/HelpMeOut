@@ -146,9 +146,13 @@ h1.tokenCount{
 
 #divToken {
 	display: table;
+	border-bottom: -6px;
 	/*border: 1px solid black;*/
 }
 
+#navUserEmail {
+	border-bottom: -1px;
+}
 /*
 Don't know if this affects anything
 .label {
