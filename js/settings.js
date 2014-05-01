@@ -119,8 +119,8 @@ function readURL(input) {
         }
         reader.readAsDataURL(input.files[0]);
 
-         var file = $("#uploadedFile").prop('files')[0];
-         console.log(file);
+         // var file = $("#uploadedFile").prop('files')[0];
+         // console.log(file);
 
          var filePath = $("#uploadedFile").val();
          console.log("path: " + filePath);
@@ -141,8 +141,32 @@ function readURL(input) {
 
 $("#updatePicForm").submit(function(event){
 	event.preventDefault();
-	var formData = new FormData($(this)[0]);
+
+	var formData = new FormData($('#updatePicForm')[0]);
+
 	console.log(formData);
+
+	$.ajax({
+        url: 'api/uploadProfileImage',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (data) { 
+        	console.log(data);
+   //      	$.ajax({
+	  //       url: "api/changeProfileImage",
+	  //       type: "POST",
+	  //       content: 'application/json',
+			// data: JSON.stringify(fileJSON),
+			// success: function (data) { 
+		 //        	console.log(data);
+		 //        	console.log(fileJSON);
+			// 	}
+	  //   	});
+        }
+    });
+
 	// $.ajax({
 	//         url: "api/changeProfileImage",
 	//         type: "POST",

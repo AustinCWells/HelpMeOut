@@ -40,12 +40,12 @@
 			</form>
 			<br>
 			<br>
-			<form enctype="multipart/form-data" action="/upload/image" method="post" id="updatePicForm">
+			<form enctype="multipart/form-data" action="api/uploadProfileImage" method="POST" id="updatePicForm">
 				<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
 				<div id="preview">
 					<img src="img/fontenot.jpeg" id="imagePreview">
 				</div>
-				Upload New Profile Pic: <br><input name="uploadedfile" type="file" id="uploadedFile" /><br /><br>
+				Upload New Profile Pic: <br><input id="uploadedFile" name='file' accept="image/x-png, image/gif, image/jpeg, image/jpg, image/png, image/pjpeg" type="file" /><br /><br>
 				<input type="submit" value="Upload File" />
 			</form>
 			<br>
