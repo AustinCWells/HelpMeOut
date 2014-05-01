@@ -5,6 +5,8 @@ $(document).ready(function(){
 
 $(window).ready(function(event) {
 
+	var fileJSON = {};
+
 	$("#navSettings").addClass("currentPage").removeClass("hoverable");
 
 	function phoneFormat(phone) {
@@ -111,14 +113,36 @@ function readURL(input) {
          var file = $("#uploadedFile").prop('files')[0];
          console.log(file);
 
-	    $.ajax({
-	        url: "api/changeProfileImage",
-	        type: "GET",
-	        data: file,
-	        processData: false
-	    });
+         var filePath = $("#uploadedFile").val();
+         console.log("path: " + filePath);
+
+
+         fileJSON.user_id = userInfo.userID;
+         fileJSON.file_path = filePath;
+         console.log(fileJSON);
+	    // $.ajax({
+	    //     url: "api/changeProfileImage",
+	    //     type: "GET",
+	    //     data: file,
+	    //     processData: false
+	    // });
+
 	    }
 }
+
+$("#updatePicForm").submit(function(event){
+	event.preventDefault();
+	$.ajax({
+	        url: "api/changeProfileImage",
+	        type: "GET",
+	        content: 'application/json',
+			data: JSON.stringify(fileJSON),
+			success: function (data) { 
+		        	console.log(data);
+				}
+	    });
+
+});
 
 //  $("#updatePicForm").submit(function(event){
 
