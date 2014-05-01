@@ -82,7 +82,7 @@
 	#	SUMMARY:		Creates a new user in the database and automagically logs them in to the HelpMeOut site.
 	#	INPUTS:			JSON(email, password, firstName, lastName, phone, birthDate, gender)	
 	#	OUTPUTS:		JSON(userID, firstName, lastName, email)
-	#	STATUS:			Working
+	#	STATUS:			COMPLETE
     ##########
 	function createAccount()
 	{
@@ -181,7 +181,7 @@
 	#	SUMMARY:		updates the user account with new information sent from the user
 	#	INPUTS:			JSON(user_id, firstName, lastName, email, number)	
 	#	OUTPUTS:		JSON(success)
-	#	STATUS:			NOT
+	#	STATUS:			COMPLETE
     ##########
 	function updateAccount()
 	{
@@ -245,7 +245,7 @@
 	#	SUMMARY:		This function update's the current user's password
 	#	INPUTS:			JSON(user_id, password)	
 	#	OUTPUTS:		JSON(success)
-	#	STATUS:			NOT TESTED
+	#	STATUS:			COMPLETE
     ##########
 	function updatePassword()
 	{
@@ -272,12 +272,13 @@
 
 	##########
 	#	AUTHOR:			Charlie
-	#	LAST UPDATE:	4/18 - Added info to return profile image info (SK)
+	#	LAST UPDATE:	4/18/14 - Added info to return profile image info (SK)
+	#					4/30/14 – Massive overhaul to calculate badge tiers and return info about which badges users have unlocked (SK)
 	#	SUMMARY:		This function retrieves the current user's account information 
 	#					for when they want to view their personal info
 	#	INPUTS:			JSON(user_id)	
 	#	OUTPUTS:		JSON(userID, email, first_name, last_name, phone, birth_date, gender, times_reported, tokens)
-	#	STATUS:			WORKING
+	#	STATUS:			COMPLETE
     ##########
     function getUserAccount()
     {
@@ -295,21 +296,93 @@
 			$stmt->execute();
 			$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 			$db = null;
+
+
+			$num_completions = (int)$userInfo['jobs_completed'];
+			$num_requests = (int)$userInfo['jobs_requested'];
+			$num_night_tasks;
+
+
+			$completions_tier;
+			$requests_tier;
+			$night_owl_tier;
+
+
+			#TASKS_TIER			
+			if($num_completions < 1)
+				$completions_tier = 0;
+			if($num_completions < 25)
+				$completions_tier = 1;
+			if($num_completions < 50)
+				$completions_tier = 2;
+			if($num_completions < 100)
+				$completions_tier = 3;
+			if($num_completions >= 100)
+				$completions_tier = 4;
+
+			#REQUESTS_TIER
+			if($num_requests < 1)
+				$requests_tier = 0;
+			if($num_requests < 25)
+				$requests_tier = 1;
+			if($num_requests < 50)
+				$requests_tier = 2;
+			if($num_requests < 100)
+				$requests_tier = 3;
+			if($num_requests >= 100)
+				$requests_tier = 4;
+
+
+			$sql = "SELECT COUNT(night_task) AS night_tasks FROM TASK WHERE chooser_id = :user_id";
+			try
+			{
+				$db = getConnection();
+				$stmt = $db->prepare($sql);
+				$stmt->bindParam("user_id", $userID);
+				$stmt->execute();
+				$db = null;
+
+				$night_task_info = $stmt->fetch(PDO::FETCH_ASSOC);
+				$num_night_tasks = (int)$night_task_info['night_tasks'];
+			}
+			catch(PDOException $e)
+			{
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+			}
+
+
+			#NIGHT_OWL_TIER
+			if($num_night_tasks < 1)
+				$night_owl_tier = 0;
+			if($num_night_tasks < 25)
+				$night_owl_tier = 1;
+			if($num_night_tasks < 50)
+				$night_owl_tier = 2;
+			if($num_night_tasks < 100)
+				$night_owl_tier = 3;
+			if($num_night_tasks >= 100)
+				$night_owl_tier = 4;
+
+
+
 			$response = array('userID' => (int)$userInfo['user_id'], 
-							  'email' => $userInfo['email'], 
-							  'first_name' => $userInfo['first_name'], 
-							  'last_name' => $userInfo['last_name'], 
-							  'phone' => $userInfo['phone'], 
-							  'birth_date' => $userInfo['birth_date'], 
-							  'gender' => $userInfo['gender'], 
-							  'times_reported' => $userInfo['times_reported'], 
-							  'tokens' => (int)$userInfo['tokens'],
-							  'is_custom' => (int)$userInfo['is_custom'],
-							  'custom_image_path' => $userInfo['custom_image_path'],
-							  'jobs_completed' => (int)$userInfo['jobs_completed'],
-							  'jobs_requested' => (int)$userInfo['jobs_requested'],
-							  'speed' => (int)$userInfo['speed'],
-							  'reliability' => (int)$userInfo['reliability']);
+							'email' => $userInfo['email'], 
+							'first_name' => $userInfo['first_name'], 
+							'last_name' => $userInfo['last_name'], 
+							'phone' => $userInfo['phone'], 
+							'birth_date' => $userInfo['birth_date'], 
+							'gender' => $userInfo['gender'], 
+							'times_reported' => $userInfo['times_reported'], 
+							'tokens' => (int)$userInfo['tokens'],
+							'is_custom' => (int)$userInfo['is_custom'],
+							'custom_image_path' => $userInfo['custom_image_path'],
+							'jobs_completed' => (int)$userInfo['jobs_completed'],
+							'jobs_requested' => (int)$userInfo['jobs_requested'],
+							'speed' => (int)$userInfo['speed'],
+							'reliability' => (int)$userInfo['reliability'],
+							'tasks_tier' => (int)$tasks_tier,
+							'requests_tier' => (int)$requests_tier,
+							'night_owl_tier' => (int)$night_owl_tier);
 			echo json_encode($response);
 		}
 		catch(PDOException $e)
