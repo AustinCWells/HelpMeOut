@@ -134,7 +134,7 @@ $("#updatePicForm").submit(function(event){
 	event.preventDefault();
 	$.ajax({
 	        url: "api/changeProfileImage",
-	        type: "GET",
+	        type: "POST",
 	        content: 'application/json',
 			data: JSON.stringify(fileJSON),
 			success: function (data) { 
