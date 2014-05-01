@@ -127,12 +127,12 @@ function readURL(input) {
          fileJSON.user_id = userInfo.userID;
          fileJSON.file_path = filePath.substring(12);
          console.log(fileJSON);
-	    $.ajax({
-	        url: "api/changeProfileImage",
-	        type: "GET",
-	        data: file,
-	        processData: false
-	    });
+	    // $.ajax({
+	    //     url: "api/changeProfileImage",
+	    //     type: "GET",
+	    //     data: file,
+	    //     processData: false
+	    // });
 
 	    }
 }
@@ -160,16 +160,16 @@ $("#updatePicForm").submit(function(event){
         processData: false,
         success: function (data) { 
         	console.log(data);
-   //      	$.ajax({
-	  //       url: "api/changeProfileImage",
-	  //       type: "POST",
-	  //       content: 'application/json',
-			// data: JSON.stringify(fileJSON),
-			// success: function (data) { 
-		 //        	console.log(data);
-		 //        	console.log(fileJSON);
-			// 	}
-	  //   	});
+        	$.ajax({
+	        url: "api/changeProfileImage",
+	        type: "POST",
+	        content: 'application/json',
+			data: JSON.stringify(fileJSON),
+			success: function (data) { 
+		        	console.log(data);
+		        	console.log(fileJSON);
+				}
+	    	});
         }
     });
 
