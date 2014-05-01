@@ -156,7 +156,7 @@
 
 			}
 			else
-				echo '{"error":{"text": "Login Info was not set" }}'; 				
+				echo '{"error":{"text": "JSON Was Empty" }}'; 				
       	}
 		catch(PDOException $e) 
 		{
