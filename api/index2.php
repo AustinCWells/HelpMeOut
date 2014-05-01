@@ -138,13 +138,14 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$image_info = json_decode($request->getBody());
+		$test_id = $image_info->user_id;
 
-		$success = array('success'=>true);
+		//$success = array('success'=>true);
 
 		$sql = "UPDATE USER SET is_custom = 1, custom_image_path = :file_path WHERE user_id = :user_id";
 		try
 		{
-			if(isset($image_info))
+			if(isset($test_id))
 			{
 				$db = getConnection();
 				$stmt= $db->prepare($sql);
@@ -152,8 +153,8 @@
 				$stmt->bindParam('file_path', $image_info->file_path);
 				$stmt->execute();
 				$db = null;	
-				echo json_encode($success);
 
+				echo '{"success": true}';
 			}
 			else
 				echo '{"error":{"text": "JSON Was Empty" }}'; 				

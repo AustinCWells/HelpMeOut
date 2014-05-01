@@ -25,7 +25,7 @@
 	//$app->get('/recentTasks/:numTasks', 'recentTasks');
 	$app->post('/recentTasks', 'recentTasks');
 	$app->post('/addTokens', 'addTokens');
-	$app->get('/changeProfileImage', 'changeProfileImage');
+	$app->post('/changeProfileImage', 'changeProfileImage');
 	$app->get('/getOffers/:user_id', 'getOffers');
 	$app->post('/makeOffer', 'makeOffer');
 	$app->get('/getMyTasksAndPendingOffers/:user_id', 'getMyTasksAndPendingOffers');
