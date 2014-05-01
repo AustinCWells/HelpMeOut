@@ -28,7 +28,8 @@ $(window).ready(function(event) {
 				$("#profilePic").attr("src", "img/fontenot.jpeg");
 			}
 			else {
-				$("#profilePic").attr("src", user_info.custom_image_path);//TODO: load custom profile image
+				var imagePath = "img/user/" + user_info.custom_image_path;
+				$("#profilePic").attr("src", imagePath);
 			}
 			var contactInfoHTML =  "Name: " + user_info.first_name + ' ' + user_info.last_name + "<br>Phone #: <span id='phone'>" + user_info.phone + "</span><br>Email: " + user_info.email + "<br><br>Jobs Completed: " + user_info.jobs_completed + "<br>Jobs Requested: " + user_info.jobs_requested;
 			$("#contactInfo").append(contactInfoHTML); 
