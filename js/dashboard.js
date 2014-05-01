@@ -218,18 +218,24 @@ $(window).ready(function(event) {
 						var CompleteButton = document.getElementById("completeRight" + tasks[i].task_id);
 						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
 						CompleteButton.onclick = function(e) {
+							openModal("#jobCompleteModal");
+							$("#jobCompleteForm").submit(function(event){
+								event.preventDefault();
+								console.log("Hallo");
+								closeModal("#jobCompleteModal");
+							});
 							// console.log("compleeeet");
 							// console.log($(CompleteButton).data("task"));
-							var task = $(CompleteButton).data("task");
+							// var task = $(CompleteButton).data("task");
 							
-							var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
-							$.ajax({
-						        type: "Get",
-						        url: url,
-						        success: function (data) { 
-						        	console.log(data);
-								}
-							});
+							// var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
+							// $.ajax({
+						 //        type: "Get",
+						 //        url: url,
+						 //        success: function (data) { 
+						 //        	console.log(data);
+							// 	}
+							// });
 						}
 						CancelButton.onclick = function(e) {
 							openModal("#cancelJobModal");
