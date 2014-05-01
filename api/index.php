@@ -282,17 +282,17 @@
     ##########
     function getUserAccount()
     {
-    	//use $id for testing, $userID for actual implementation
+    	//use $id for testing, $user_id for actual implementation
     	$sql = "SELECT * FROM (SELECT USER.*, USER_DATA.jobs_completed, USER_DATA.jobs_requested, USER_DATA.speed, USER_DATA.reliability FROM USER INNER JOIN USER_DATA ON USER.user_id = USER_DATA.user_id) AS t1 WHERE t1.user_id = :id";
     	$request = \Slim\Slim::getInstance()->request();
 		$userObj = json_decode($request->getBody());
-		$userID = (int)$userObj->user_id;
+		$user_id = (int)$userObj->user_id;
 
 		try
 		{
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
-			$stmt->bindParam("id", $userID); //un-comment above and use $userID instead of $id here for implementation on site
+			$stmt->bindParam("id", $user_id); //un-comment above and use $user_id instead of $id here for implementation on site
 			$stmt->execute();
 			$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 			$db = null;
@@ -303,31 +303,28 @@
 			$num_night_tasks;
 
 
-			$completions_tier;
-			$requests_tier;
-			$night_owl_tier;
+			$completions_tier = 0;
+			$requests_tier = 0;
+			$night_owl_tier = 0;
 
 
-			#TASKS_TIER			
-			if($num_completions < 1)
-				$completions_tier = 0;
-			if($num_completions < 25)
+			#COMPLETIONS_TIER			
+			if($num_completions > 0)
 				$completions_tier = 1;
-			if($num_completions < 50)
+			if($num_completions >= 25)
 				$completions_tier = 2;
-			if($num_completions < 100)
+			if($num_completions >= 50)
 				$completions_tier = 3;
 			if($num_completions >= 100)
 				$completions_tier = 4;
 
+
 			#REQUESTS_TIER
-			if($num_requests < 1)
-				$requests_tier = 0;
-			if($num_requests < 25)
+			if($num_requests > 0)
 				$requests_tier = 1;
-			if($num_requests < 50)
+			if($num_requests >= 25)
 				$requests_tier = 2;
-			if($num_requests < 100)
+			if($num_requests >= 50)
 				$requests_tier = 3;
 			if($num_requests >= 100)
 				$requests_tier = 4;
@@ -338,7 +335,7 @@
 			{
 				$db = getConnection();
 				$stmt = $db->prepare($sql);
-				$stmt->bindParam("user_id", $userID);
+				$stmt->bindParam("user_id", $user_id);
 				$stmt->execute();
 				$db = null;
 
@@ -352,20 +349,18 @@
 
 
 			#NIGHT_OWL_TIER
-			if($num_night_tasks < 1)
-				$night_owl_tier = 0;
-			if($num_night_tasks < 25)
+			if($num_night_tasks > 0)
 				$night_owl_tier = 1;
-			if($num_night_tasks < 50)
+			if($num_night_tasks >= 25)
 				$night_owl_tier = 2;
-			if($num_night_tasks < 100)
+			if($num_night_tasks >= 50)
 				$night_owl_tier = 3;
 			if($num_night_tasks >= 100)
 				$night_owl_tier = 4;
 
 
 
-			$response = array('userID' => (int)$userInfo['user_id'], 
+			$response = array('user_id' => (int)$userInfo['user_id'], 
 							'email' => $userInfo['email'], 
 							'first_name' => $userInfo['first_name'], 
 							'last_name' => $userInfo['last_name'], 
@@ -380,7 +375,7 @@
 							'jobs_requested' => (int)$userInfo['jobs_requested'],
 							'speed' => (int)$userInfo['speed'],
 							'reliability' => (int)$userInfo['reliability'],
-							'tasks_tier' => (int)$tasks_tier,
+							'completions_tier' => (int)$completions_tier,
 							'requests_tier' => (int)$requests_tier,
 							'night_owl_tier' => (int)$night_owl_tier);
 			echo json_encode($response);
