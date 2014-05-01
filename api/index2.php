@@ -136,12 +136,43 @@
     ##########
 	function changeProfileImage()
 	{
-		$request = \Slim\Slim::getInstance()->request();
-		$image_info = json_decode($request->getBody());
-		$compatible = FALSE;
+	$request = \Slim\Slim::getInstance()->request();
+	$image_info = json_decode($request->getBody());
 
-		//$success = array('success'=>true);
+		$sql = "UPDATE USER SET is_custom = 1, custom_image_path = :file_path WHERE user_id = :user_id";
+		try
+		{
+			if(isset($image_info))
+			{
+				$db = getConnection();
+				$stmt= $db->prepare($sql);
+				$stmt->bindParam('user_id', $image_info->user_id);
+				$stmt->bindParam('file_path', $image_info->file_path);
+				$stmt->execute();
+				$db = null;	
 
+				echo '{"success": true}';
+			}
+			else
+				echo '{"error":{"text": "JSON Was Empty" }}'; 				
+      	}
+		catch(PDOException $e) 
+		{
+			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+		}
+	}
+
+
+	##########
+	# 	AUTHOR:			Spencer
+	#	LAST UPDATED:	
+	#	SUMMARY:		
+	#	INPUTS:			
+	#	OUTPUTS:		
+	#	STATUS:			
+    ##########
+	function uploadProfileImage()
+	{
 		#SOURCE: http://www.w3schools.com/php/php_file_upload.asp
 		$allowedExts = array("gif", "jpeg", "jpg", "png");
 		$temp = explode(".", $_FILES["file"]["name"]);
@@ -167,42 +198,13 @@
 		    } else {
 		      move_uploaded_file($_FILES["file"]["tmp_name"],
 		      "img/user/" . $_FILES["file"]["name"]);
-		      echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+		      echo "Stored in: " . "img/user/" . $_FILES["file"]["name"];
 		    }
 		  }
 		} else {
 		  echo "Invalid file";
 		}
 		#END CITATION
-
-
-
-		if($compatible == TRUE)
-		{
-			$sql = "UPDATE USER SET is_custom = 1, custom_image_path = :file_path WHERE user_id = :user_id";
-			try
-			{
-				if(isset($image_info))
-				{
-					$db = getConnection();
-					$stmt= $db->prepare($sql);
-					$stmt->bindParam('user_id', $image_info->user_id);
-					$stmt->bindParam('file_path', $image_info->file_path);
-					$stmt->execute();
-					$db = null;	
-
-					echo '{"success": true}';
-				}
-				else
-					echo '{"error":{"text": "JSON Was Empty" }}'; 				
-	      	}
-			catch(PDOException $e) 
-			{
-				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
-			}
-		}
-		else
-			echo '{"error":{"text": "Invalid File Type!" }}'; 
 	}
 
 
