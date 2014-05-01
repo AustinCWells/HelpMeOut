@@ -82,6 +82,13 @@ $(window).ready(function(event) {
 
 	        	if(obj.success){
 	        		updateAcount(updateInfo);
+	        		obj.modal = "Account Info was successfully updated!";
+	        		displaySuccess(obj);
+        		}
+        		else{
+        			console.log(obj);
+        			obj.modal = "Account Info Update Error";
+        			displayError(obj);
         		}
 			}
 		});
