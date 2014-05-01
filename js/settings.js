@@ -9,11 +9,15 @@ $(window).ready(function(event) {
 
 	console.log(userInfo);	
 	if(userInfo.is_custom === 0) {
-		$("#preview").attr("src", "img/fontenot.jpeg");
+		$("#imagePreview").attr("src", "img/fontenot.jpeg");
+		$("#imagePreview").css("height", "100px");
+		$("#imagePreview").css("width", "100px");
 	}
 	else {
 		var imagePath = "img/user/" + userInfo.custom_image_path;
-		$("#preview").attr("src", imagePath);
+		$("#imagePreview").attr("src", imagePath);
+		$("#imagePreview").css("height", "100px");
+		$("#imagePreview").css("width", "100px");
 	}
 
 	$("#navSettings").addClass("currentPage").removeClass("hoverable");
@@ -121,18 +125,10 @@ function readURL(input) {
 
 
          var filePath = $("#uploadedFile").val();
-         console.log("path: " + filePath);
 
 
          fileJSON.user_id = userInfo.userID;
          fileJSON.file_path = filePath.substring(12);
-         console.log(fileJSON);
-	    // $.ajax({
-	    //     url: "api/changeProfileImage",
-	    //     type: "GET",
-	    //     data: file,
-	    //     processData: false
-	    // });
 
 	    }
 }
@@ -141,16 +137,10 @@ $("#updatePicForm").submit(function(event){
 	event.preventDefault();
 
 	var file = $("#uploadedFile").prop('files')[0];
-    console.log(file);
 
 	var formData = new FormData(this);
 	formData.append("file", file);
 
-	console.log(formData);
-
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', 'api/uploadProfileImage', true);
-	xhr.send(formData);
 
 	$.ajax({
         url: 'api/uploadProfileImage',
@@ -166,46 +156,14 @@ $("#updatePicForm").submit(function(event){
 	        content: 'application/json',
 			data: JSON.stringify(fileJSON),
 			success: function (data) { 
-		        	console.log(data);
-		        	console.log(fileJSON);
+		        	// console.log(data);
+		        	// console.log(fileJSON);
 				}
 	    	});
         }
     });
 
-	// $.ajax({
-	//         url: "api/changeProfileImage",
-	//         type: "POST",
-	//         content: 'application/json',
-	// 		data: JSON.stringify(fileJSON),
-	// 		success: function (data) { 
-	// 	        	console.log(data);
-	// 	        	console.log(fileJSON);
-	// 			}
-	//     });
-
 });
-
-//  $("#updatePicForm").submit(function(event){
-
-//  		event.preventDefault();
-// 		var updatePic = {};
-// 		updatePic.file_path = $("#uploadedFile").val();
-// 		updatePic.user_id = userInfo.userID;
-
-// 		console.log(updatePic);
-
-// 		var url = "api/changeProfileImage";
-// 		$.ajax({
-// 	        type: "Get",
-// 	        url: url,
-// 	        data: JSON.stringify(updatePic),
-// 	        content: 'application/json',
-// 	        success: function (data) { 
-// 	        	console.log(data);
-// 			}
-// 		});
-// 	});
 
 
 	$("#updatePasswordForm").submit(function(event){

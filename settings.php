@@ -43,7 +43,7 @@
 			<form enctype="multipart/form-data" action="api/uploadProfileImage" method="POST" id="updatePicForm">
 			<!-- 	<input type="hidden" name="MAX_FILE_SIZE" value="100000"/> -->
 				<div id="preview">
-					<img src="img/fontenot.jpeg" id="imagePreview">
+					<img src="" id="imagePreview">
 				</div>
 				Upload New Profile Pic: <br><input id="uploadedFile" name='file' accept="image/x-png, image/gif, image/jpeg, image/jpg, image/png, image/pjpeg" type="file" /><br /><br>
 				<input type="submit" value="Upload File" />
