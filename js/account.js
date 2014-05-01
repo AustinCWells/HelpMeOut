@@ -5,6 +5,7 @@ $(document).ready(function(){
 
 $(window).ready(function(event) {
 
+
 	$("#navAccount").addClass("currentPage")
 	$("#navAccount").removeClass("hoverable");
 
@@ -35,6 +36,41 @@ $(window).ready(function(event) {
 			$('#phone').text(function(i, text) {
 			    return text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 			});
+
+			var radiobtn;
+			if(user_info.reliability >= 80) {
+				radiobtn = document.getElementById("overallRating5");
+			}
+			if(user_info.reliability >= 60 && user_info.reliability < 80) {
+				radiobtn = document.getElementById("overallRating4");
+			}
+			if(user_info.reliability >= 40 && user_info.reliability < 60) {
+				radiobtn = document.getElementById("overallRating3");
+			}
+			if(user_info.reliability >= 20 && user_info.reliability < 40) {
+				radiobtn = document.getElementById("overallRating2");
+			}
+			if(user_info.reliability < 20) {
+				radiobtn = document.getElementById("overallRating1");
+			}
+			radiobtn.checked = true;
+
+			if(user_info.speed > 80) {
+				radiobtn = document.getElementById("speedRating5");
+			}
+			if(user_info.speed > 60 && user_info.speed < 80) {
+				radiobtn = document.getElementById("speedRating4");
+			}
+			if(user_info.speed > 40 && user_info.speed < 60) {
+				radiobtn = document.getElementById("speedRating3");
+			}
+			if(user_info.speed > 20 && user_info.speed < 40) {
+				radiobtn = document.getElementById("speedRating2");
+			}
+			if(user_info.speed < 20) {
+				radiobtn = document.getElementById("speedRating1");
+			}
+			radiobtn.checked = true;
 
 			var badges = [user_info.completions_tier, user_info.night_owl_tier, user_info.requests_tier];
 			var badgeSpace = $('#badgeSpace');

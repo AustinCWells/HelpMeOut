@@ -24,22 +24,62 @@
 				<div class = "five column">
 					<div class = "six column ratingDiv center">Overall Rating:
 						<div class="row">
-							<span class="ratingLabel two column">
-							</span>
-				            <div class="barArea">
+							<!-- <span class="ratingLabel two column">
+							</span> -->
+				            <!-- <div class="barArea">
 					            <div class="ratingBg"></div>
 					            <div class="ratingFg"></div>
-					        </div>
+					        </div> -->
+					        <div class="starRating">
+								<div>
+							    	<div>
+							      		<div>
+							        		<div>
+							          			<input id="overallRating1" type="radio" name="overallRating" value="1">
+							       			  	<label for="overallRating1"><span>1</span></label>
+								    			</div>
+								    		    <input id="overallRating2" type="radio" name="overallRating" value="2">
+								   		     	<label for="overallRating2"><span>2</span></label>
+								   		   	</div>
+								  		   	<input id="overallRating3" type="radio" name="overallRating" value="3">
+										    <label for="overallRating3"><span>3</span></label>
+									    </div>
+									    <input id="overallRating4" type="radio" name="overallRating" value="4">
+									    <label for="overallRating4"><span>4</span></label>
+								  	</div>
+								<input id="overallRating5" type="radio" name="overallRating" value="5">
+								<label for="overallRating5"><span>5</span></label>
+							</div>
 					    </div>
 		       		</div>
 					<div class = "six column ratingDiv center">Speed Rating:
 						<div class="row">
-							<span class="ratingLabel two column">
+							<!-- <span class="ratingLabel two column">
 							</span>
 				            <div class="barArea">
 					            <div class="ratingBg"></div>
 					            <div class="ratingFg"></div>
-					        </div>
+					        </div> -->
+					        <div class="starRating">
+								<div>
+							    	<div>
+							      		<div>
+							        		<div>
+							          			<input id="speedRating1" type="radio" name="speedRating" value="1" disabled="true">
+							       			  	<label for="speedRating1"><span>1</span></label>
+								    			</div>
+								    		    <input id="speedRating2" type="radio" name="speedRating" value="2" disabled="true">
+								   		     	<label for="speedRating2"><span>2</span></label>
+								   		   	</div>
+								  		   	<input id="speedRating3" type="radio" name="speedRating" value="3" disabled="true">
+										    <label for="speedRating3"><span>3</span></label>
+									    </div>
+									    <input id="speedRating4" type="radio" name="speedRating" value="4" disabled="true">
+									    <label for="speedRating4"><span>4</span></label>
+								  	</div>
+								<input id="speedRating5" type="radio" name="speedRating" value="5" disabled="true">
+								<label for="speedRating5"><span>5</span></label>
+							</div>
 					    </div>
 		       		</div>
 	       		</div>
