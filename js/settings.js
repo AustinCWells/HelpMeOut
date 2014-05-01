@@ -127,12 +127,12 @@ function readURL(input) {
          fileJSON.user_id = userInfo.userID;
          fileJSON.file_path = filePath.substring(12);
          console.log(fileJSON);
-	    // $.ajax({
-	    //     url: "api/changeProfileImage",
-	    //     type: "GET",
-	    //     data: file,
-	    //     processData: false
-	    // });
+	    $.ajax({
+	        url: "api/changeProfileImage",
+	        type: "GET",
+	        data: file,
+	        processData: false
+	    });
 
 	    }
 }
