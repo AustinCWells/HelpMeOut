@@ -138,31 +138,71 @@
 	{
 		$request = \Slim\Slim::getInstance()->request();
 		$image_info = json_decode($request->getBody());
-		$test_id = $image_info->user_id;
+		$compatible = FALSE;
 
 		//$success = array('success'=>true);
 
-		$sql = "UPDATE USER SET is_custom = 1, custom_image_path = :file_path WHERE user_id = :user_id";
-		try
-		{
-			if(isset($test_id))
-			{
-				$db = getConnection();
-				$stmt= $db->prepare($sql);
-				$stmt->bindParam('user_id', $image_info->user_id);
-				$stmt->bindParam('file_path', $image_info->file_path);
-				$stmt->execute();
-				$db = null;	
+		#SOURCE: http://www.w3schools.com/php/php_file_upload.asp
+		$allowedExts = array("gif", "jpeg", "jpg", "png");
+		$temp = explode(".", $_FILES["file"]["name"]);
+		$extension = end($temp);
 
-				echo '{"success": true}';
-			}
-			else
-				echo '{"error":{"text": "JSON Was Empty" }}'; 				
-      	}
-		catch(PDOException $e) 
-		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+		if ((($_FILES["file"]["type"] == "image/gif")
+		|| ($_FILES["file"]["type"] == "image/jpeg")
+		|| ($_FILES["file"]["type"] == "image/jpg")
+		|| ($_FILES["file"]["type"] == "image/pjpeg")
+		|| ($_FILES["file"]["type"] == "image/x-png")
+		|| ($_FILES["file"]["type"] == "image/png"))
+		&& ($_FILES["file"]["size"] < 20000)
+		&& in_array($extension, $allowedExts)) {
+		  if ($_FILES["file"]["error"] > 0) {
+		    echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
+		  } else {
+		    echo "Upload: " . $_FILES["file"]["name"] . "<br>";
+		    echo "Type: " . $_FILES["file"]["type"] . "<br>";
+		    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+		    echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+		    if (file_exists("upload/" . $_FILES["file"]["name"])) {
+		      echo $_FILES["file"]["name"] . " already exists. ";
+		    } else {
+		      move_uploaded_file($_FILES["file"]["tmp_name"],
+		      "img/user/" . $_FILES["file"]["name"]);
+		      echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+		    }
+		  }
+		} else {
+		  echo "Invalid file";
 		}
+		#END CITATION
+
+
+
+		if($compatible == TRUE)
+		{
+			$sql = "UPDATE USER SET is_custom = 1, custom_image_path = :file_path WHERE user_id = :user_id";
+			try
+			{
+				if(isset($image_info))
+				{
+					$db = getConnection();
+					$stmt= $db->prepare($sql);
+					$stmt->bindParam('user_id', $image_info->user_id);
+					$stmt->bindParam('file_path', $image_info->file_path);
+					$stmt->execute();
+					$db = null;	
+
+					echo '{"success": true}';
+				}
+				else
+					echo '{"error":{"text": "JSON Was Empty" }}'; 				
+	      	}
+			catch(PDOException $e) 
+			{
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+			}
+		}
+		else
+			echo '{"error":{"text": "Invalid File Type!" }}'; 
 	}
 
 
