@@ -41,37 +41,38 @@ $(window).ready(function(event) {
 			console.log(badges);
 
 			for(var i=0;i<badges.length;i++) {
-				badgeSpace.css("margin-left",(parseFloat(badgeSpace.css("margin-left")) - 100) + 'px');
-
 				if(i === 0) {
 					badgeSpace.empty();
+					if(badges[i] != 0) {
+						badgeSpace.css("margin-left",(parseFloat(badgeSpace.css("margin-left")) - 100) + 'px');
+						if (badges[i] === 1) {
+							var badgeName = "Money Maker Basic";
+							var badgeSrc =  "img/Badges/completions_basic.png";
+							var badgeDesc = "Completed 1 Job";
+						}
+						if (badges[i] === 2) {
+							var badgeName = "Money Maker Bronze";
+							var badgeSrc =  "img/Badges/completions_bronze.png";
+							var badgeDesc = "Completed 25 Jobs";
+						}
+						else if (badges[i] === 3) {
+							var badgeName = "Money Maker Silver";
+							var badgeSrc =  "img/Badges/completions_silver.png";
+							var badgeDesc = "Completed 50 Jobs";
+						}
+						else if (badges[i] === 4) {
+							var badgeName = "Money Maker Gold";
+							var badgeSrc =  "img/Badges/completions_gold.png";
+							var badgeDesc = "Completed 100 Jobs";
+						}
 
-					if (badges[i] === 1) {
-						var badgeName = "Money Maker Basic";
-						var badgeSrc =  "img/Badges/completions_basic.png";
-						var badgeDesc = "Completed 1 Job";
+						var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br><div class="badgeName">' + badgeName + ':</div><br><div class="badgeDesc">' + badgeDesc + '</div></div>';
+						badgeSpace.append(badgeHTML);
 					}
-					if (badges[i] === 2) {
-						var badgeName = "Money Maker Bronze";
-						var badgeSrc =  "img/Badges/completions_bronze.png";
-						var badgeDesc = "Completed 25 Jobs";
-					}
-					else if (badges[i] === 3) {
-						var badgeName = "Money Maker Silver";
-						var badgeSrc =  "img/Badges/completions_silver.png";
-						var badgeDesc = "Completed 50 Jobs";
-					}
-					else if (badges[i] === 4) {
-						var badgeName = "Money Maker Gold";
-						var badgeSrc =  "img/Badges/completions_gold.png";
-						var badgeDesc = "Completed 100 Jobs";
-					}
-
-					var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br><div class="badgeName">' + badgeName + ':</div><br><div class="badgeDesc">' + badgeDesc + '</div></div>';
-					badgeSpace.append(badgeHTML);
 				}
 
-				if(i === 1) {
+				if(i === 1 && badges[i] !=0) {
+					badgeSpace.css("margin-left",(parseFloat(badgeSpace.css("margin-left")) - 100) + 'px');
 					var badgeDesc = "You Work the Graveyard Shift";
 					if (badges[i] === 1) {
 						var badgeName = "Night Owl Basic";
@@ -98,7 +99,8 @@ $(window).ready(function(event) {
 					badgeSpace.append(badgeHTML);
 				}
 
-				if(i === 2) {
+				if(i === 2 && badges[i] !=0) {
+					badgeSpace.css("margin-left",(parseFloat(badgeSpace.css("margin-left")) - 100) + 'px');
 					if (badges[i] === 1) {
 						var badgeName = "The Helpless Basic";
 						var badgeSrc =  "img/Badges/requests_basic.png";
