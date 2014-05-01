@@ -199,17 +199,17 @@ $(window).ready(function(event) {
 						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
 						CancelButton.onclick = function(e) {
 							// console.log("can sell");
-							// console.log($(CancelButton).data("task"));
-							// var task = $(CancelButton).data("task");
+							console.log($(CancelButton).data("task"));
+							var task = $(CancelButton).data("task");
 
-							// var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
-							// $.ajax({
-						 //        type: "Get",
-						 //        url: url,
-						 //        success: function (data) { 
-						 //        	console.log(data);
-							// 	}
-							// });
+							var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
+							$.ajax({
+						        type: "Get",
+						        url: url,
+						        success: function (data) { 
+						        	console.log(data);
+								}
+							});
 						}
 					}
 					else {//TODO: populate with chooser's info
@@ -221,8 +221,19 @@ $(window).ready(function(event) {
 							openModal("#jobCompleteModal");
 							$("#jobCompleteForm").submit(function(event){
 								event.preventDefault();
-								console.log("Hallo");
+								var overall = $('input[name=overallRating]:checked').val();
+								var speed = $('input[name=speedRating]:checked').val();
 								closeModal("#jobCompleteModal");
+								var task = $(CompleteButton).data("task");//TODO: MAKE THIS THE RIGHT TASK
+								var url = "api/completeTask/" + tasks[task].task_id + "," + overall + "," + speed;
+								$.ajax({
+							        type: "Get",
+							        url: url,
+							        success: function (data) { 
+							        	console.log(data);
+							        	location.reload();
+									}
+								});
 							});
 							// console.log("compleeeet");
 							// console.log($(CompleteButton).data("task"));
@@ -242,16 +253,16 @@ $(window).ready(function(event) {
 
 							// console.log("can sell");
 							// console.log($(CancelButton).data("task"));
-							// var task = $(CancelButton).data("task");
+							var task = $(CancelButton).data("task");
 
-							// var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
-							// $.ajax({
-						 //        type: "Get",
-						 //        url: url,
-						 //        success: function (data) { 
-						 //        	console.log(data);
-							// 	}
-							// });
+							var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
+							$.ajax({
+						        type: "Get",
+						        url: url,
+						        success: function (data) { 
+						        	console.log(data);
+								}
+							});
 						}
 					}
 				}
