@@ -40,7 +40,7 @@
 			</form>
 			<br>
 			<br>
-			<form enctype="multipart/form-data" method="GET" id="updatePicForm">
+			<form enctype="multipart/form-data" action="/upload/image" method="post" id="updatePicForm">
 				<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
 				<div id="preview">
 					<img src="img/fontenot.jpeg" id="imagePreview">

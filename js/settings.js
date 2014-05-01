@@ -7,6 +7,15 @@ $(window).ready(function(event) {
 
 	var fileJSON = {};
 
+	console.log(userInfo);	
+	if(userInfo.is_custom === 0) {
+		$("#preview").attr("src", "img/fontenot.jpeg");
+	}
+	else {
+		var imagePath = "img/user/" + userInfo.custom_image_path;
+		$("#preview").attr("src", imagePath);
+	}
+
 	$("#navSettings").addClass("currentPage").removeClass("hoverable");
 
 	function phoneFormat(phone) {
@@ -132,16 +141,18 @@ function readURL(input) {
 
 $("#updatePicForm").submit(function(event){
 	event.preventDefault();
-	$.ajax({
-	        url: "api/changeProfileImage",
-	        type: "POST",
-	        content: 'application/json',
-			data: JSON.stringify(fileJSON),
-			success: function (data) { 
-		        	console.log(data);
-		        	console.log(fileJSON);
-				}
-	    });
+	var formData = new FormData($(this)[0]);
+	console.log(formData);
+	// $.ajax({
+	//         url: "api/changeProfileImage",
+	//         type: "POST",
+	//         content: 'application/json',
+	// 		data: JSON.stringify(fileJSON),
+	// 		success: function (data) { 
+	// 	        	console.log(data);
+	// 	        	console.log(fileJSON);
+	// 			}
+	//     });
 
 });
 
