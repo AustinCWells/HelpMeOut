@@ -119,8 +119,6 @@ function readURL(input) {
         }
         reader.readAsDataURL(input.files[0]);
 
-         // var file = $("#uploadedFile").prop('files')[0];
-         // console.log(file);
 
          var filePath = $("#uploadedFile").val();
          console.log("path: " + filePath);
@@ -142,9 +140,17 @@ function readURL(input) {
 $("#updatePicForm").submit(function(event){
 	event.preventDefault();
 
-	var formData = new FormData($('#updatePicForm')[0]);
+	var file = $("#uploadedFile").prop('files')[0];
+    console.log(file);
+
+	var formData = new FormData(this);
+	formData.append("file", file);
 
 	console.log(formData);
+
+	var xhr = new XMLHttpRequest;
+	xhr.open('POST', 'api/uploadProfileImage', true);
+	xhr.send(formData);
 
 	$.ajax({
         url: 'api/uploadProfileImage',
