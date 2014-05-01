@@ -562,7 +562,7 @@
 
 	##########
 	#	AUTHOR:			Spencer
-	#	LAST UPDATE:	
+	#	LAST UPDATE:	4/30/19 - Added an additional loop a previously_completed to prevent rating inflation
 	#	SUMMARY:		Marks a task as complete in the DB and updates the chooser's rating
 	#	INPUTS:			task_id, num_stars_speed, num_stars_reliability
 	#	OUTPUTS:		N/A
