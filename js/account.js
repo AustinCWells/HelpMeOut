@@ -48,23 +48,23 @@ $(window).ready(function(event) {
 
 					if (badges[i] === 1) {
 						var badgeName = "Money Maker Basic";
-						var badgeSrc =  "img/badges/completions_basic.png";
-						var badgeDesc = "Completed [SPENCER HOW MANY JOBS IS THIS] Jobs";
+						var badgeSrc =  "img/Badges/completions_basic.png";
+						var badgeDesc = "Completed 1 Job";
 					}
 					if (badges[i] === 2) {
 						var badgeName = "Money Maker Bronze";
-						var badgeSrc =  "img/badges/completions_bronze.png";
-						var badgeDesc = "Completed [SPENCER HOW MANY JOBS IS THIS] Jobs";
+						var badgeSrc =  "img/Badges/completions_bronze.png";
+						var badgeDesc = "Completed 25 Jobs";
 					}
 					else if (badges[i] === 3) {
 						var badgeName = "Money Maker Silver";
-						var badgeSrc =  "img/badges/completions_silver.png";
+						var badgeSrc =  "img/Badges/completions_silver.png";
 						var badgeDesc = "Completed 50 Jobs";
 					}
 					else if (badges[i] === 4) {
 						var badgeName = "Money Maker Gold";
-						var badgeSrc =  "img/badges/completions_gold.png";
-						var badgeDesc = "Completed [SPENCER HOW MANY JOBS IS THIS] Jobs";
+						var badgeSrc =  "img/Badges/completions_gold.png";
+						var badgeDesc = "Completed 100 Jobs";
 					}
 
 					var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br><div class="badgeName">' + badgeName + ':</div><br><div class="badgeDesc">' + badgeDesc + '</div></div>';
@@ -75,19 +75,23 @@ $(window).ready(function(event) {
 					var badgeDesc = "You Work the Graveyard Shift";
 					if (badges[i] === 1) {
 						var badgeName = "Night Owl Basic";
-						var badgeSrc =  "img/badges/night_owl_basic.png";
+						var badgeSrc =  "img/Badges/night_owl_basic.png";
+						var badgeDesc = "[nightowl description]";
 					}
 					if (badges[i] === 2) {
 						var badgeName = "Night Owl Bronze";
-						var badgeSrc =  "img/badges/night_owl_bronze.png";
+						var badgeSrc =  "img/Badges/night_owl_bronze.png";
+						var badgeDesc = "[nightowl description]";
 					}
 					else if (badges[i] === 3) {
 						var badgeName = "Night Owl Silver";
-						var badgeSrc =  "img/badges/night_owl_silver.png";
+						var badgeSrc =  "img/Badges/night_owl_silver.png";
+						var badgeDesc = "[nightowl description]";
 					}
 					else if (badges[i] === 4) {
 						var badgeName = "Night Owl Gold";
-						var badgeSrc =  "img/badges/night_owl_gold.png";
+						var badgeSrc =  "img/Badges/night_owl_gold.png";
+						var badgeDesc = "[nightowl description]";
 					}
 
 					var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br><div class="badgeName">' + badgeName + ':</div><br><div class="badgeDesc">' + badgeDesc + '</div></div>';
@@ -95,26 +99,25 @@ $(window).ready(function(event) {
 				}
 
 				if(i === 2) {
-					var badgeDesc = "You Work the Graveyard Shift";
 					if (badges[i] === 1) {
-						var badgeName = "[SPENCER I NEED NAMES] Basic";
-						var badgeSrc =  "img/badges/completions_basic.png";
-						var badgeDesc = "Asked for help 10 times";
+						var badgeName = "The Helpless Basic";
+						var badgeSrc =  "img/Badges/requests_basic.png";
+						var badgeDesc = "Asked for help 1 time";
 					}
 					if (badges[i] === 2) {
-						var badgeName = "[SPENCER I NEED NAMES] Bronze";
-						var badgeSrc =  "img/badges/completions_bronze.png";
-						var badgeDesc = "Asked for help [SPENCER HALP] times";
+						var badgeName = "The Helpless Bronze";
+						var badgeSrc =  "img/Badges/requests_bronze.png";
+						var badgeDesc = "Asked for help 25 times";
 					}
 					else if (badges[i] === 3) {
-						var badgeName = "[SPENCER I NEED NAMES] Silver";
-						var badgeSrc =  "img/badges/completions_silver.png";
-						var badgeDesc = "Asked for help [SPENCER HALP] times";
+						var badgeName = "The Helpless Silver";
+						var badgeSrc =  "img/Badges/requests_silver.png";
+						var badgeDesc = "Asked for help 50 times";
 					}
 					else if (badges[i] === 4) {
-						var badgeName = "[SPENCER I NEED NAMES] Gold";
-						var badgeSrc =  "img/badges/completions_gold.png";
-						var badgeDesc = "Asked for help [SPENCER HALP] times";
+						var badgeName = "The Helpless Gold";
+						var badgeSrc =  "img/Badges/requests_gold.png";
+						var badgeDesc = "Asked for help 100 times";
 					}
 
 					var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br><div class="badgeName">' + badgeName + ':</div><br><div class="badgeDesc">' + badgeDesc + '</div></div>';
