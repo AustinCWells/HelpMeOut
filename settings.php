@@ -41,7 +41,7 @@
 			<br>
 			<br>
 			<form enctype="multipart/form-data" action="api/uploadProfileImage" method="POST" id="updatePicForm">
-				<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
+			<!-- 	<input type="hidden" name="MAX_FILE_SIZE" value="100000"/> -->
 				<div id="preview">
 					<img src="img/fontenot.jpeg" id="imagePreview">
 				</div>
