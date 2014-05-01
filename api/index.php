@@ -185,28 +185,58 @@
     ##########
 	function updateAccount()
 	{
-		$sql = "UPDATE USER SET first_name = :first_name, last_name = :last_name, phone = :phone, email = :email WHERE user_id = :user_id AND password = :password";
 		$request = \Slim\Slim::getInstance()->request();
 		$userInfo = json_decode($request->getBody());
+		$correct_info = FALSE;
 
+
+		$sql = "SELECT first_name FROM USER WHERE user_id = :user_id AND password = :password";
 		try
 		{
 			$db = getConnection();
 			$stmt = $db->prepare($sql);
-			$stmt->bindParam("first_name", $userInfo->first_name);
-			$stmt->bindParam("last_name", $userInfo->last_name);
-			$stmt->bindParam("phone", $userInfo->phone);
-			$stmt->bindParam("email", $userInfo->email);
 			$stmt->bindParam("user_id", $userInfo->user_id);
 			$stmt->bindParam("password", md5($userInfo->password));
 			$stmt->execute();
 			$db = null;
-			echo '{"success": true}';
+
+			$info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			if(empty($info))
+				$correct_info = FALSE;
+			else
+				$correct_info = TRUE;			
 		}
 		catch(PDOException $e)
 		{
 			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
 		}
+
+
+		if($correct_info == TRUE)
+		{
+			$sql = "UPDATE USER SET first_name = :first_name, last_name = :last_name, phone = :phone, email = :email WHERE user_id = :user_id AND password = :password";
+			try
+			{
+				$db = getConnection();
+				$stmt = $db->prepare($sql);
+				$stmt->bindParam("first_name", $userInfo->first_name);
+				$stmt->bindParam("last_name", $userInfo->last_name);
+				$stmt->bindParam("phone", $userInfo->phone);
+				$stmt->bindParam("email", $userInfo->email);
+				$stmt->bindParam("user_id", $userInfo->user_id);
+				$stmt->bindParam("password", md5($userInfo->password));
+				$stmt->execute();
+				$db = null;
+				echo '{"success": true}';
+			}
+			catch(PDOException $e)
+			{
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+			}
+		}
+		else
+			echo '{"error":{"text": "Incorrect Password: Account info was not updated" }}'; 
 	}
 
 	##########
