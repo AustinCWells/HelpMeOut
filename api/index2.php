@@ -173,12 +173,77 @@
     ##########
 	function uploadProfileImage()
 	{
-		#SOURCE: http://www.w3schools.com/php/php_file_upload.asp
 		$allowedExts = array("gif", "jpeg", "jpg", "png");
 		$temp = explode(".", $_FILES["file"]["name"]);
 		$extension = end($temp);
 
-		echo "File Info:" . $_FILES["file"]["type"];
+
+		if ((($_FILES["file"]["type"] == "image/gif")
+		|| ($_FILES["file"]["type"] == "image/jpeg")
+		|| ($_FILES["file"]["type"] == "image/jpg")
+		|| ($_FILES["file"]["type"] == "image/pjpeg")
+		|| ($_FILES["file"]["type"] == "image/x-png")
+		|| ($_FILES["file"]["type"] == "image/png"))
+		&& ($_FILES["file"]["size"] < 200000000)
+		&& in_array($extension, $allowedExts)) {
+		  if ($_FILES["file"]["error"] > 0) {
+		    echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
+		  } else {
+		    echo "Upload: " . $_FILES["file"]["name"] . "<br>";
+		    echo "Type: " . $_FILES["file"]["type"] . "<br>";
+		    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+		    echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+		    if (file_exists("../img/user/" . $_FILES["file"]["name"])) {
+		      echo $_FILES["file"]["name"] . " already exists. ";
+		    } else {
+		      move_uploaded_file($_FILES["file"]["tmp_name"],
+		      "../img/user/" . $_FILES["file"]["name"]);
+		      echo "Stored in: " . "../img/user/" . $_FILES["file"]["name"];
+		    }
+		  }
+		} else {
+		  echo "Invalid file";
+		}
+
+		// echo '{"error":{"text": "IN THE FUNCTION" }}'; 
+
+		// echo $_FILES["file"]["name"]; 
+
+
+		
+		// if (file_exists("../img/user/" . $_FILES["file"]["name"])) 
+		// {
+		// 	echo $_FILES["file"]["name"] . " already exists. "; 
+		// }
+		// else
+		// 	move_uploaded_file($_FILES["file"]["tmp_name"], "../img/user/");
+				
+
+		// echo $_FILES["file"]["name"];
+
+
+
+
+		// move_uploaded_file($$_FILES["file"]["tmp_name"], "../img/user/");
+
+
+		// #SOURCE: http://www.w3schools.com/php/php_file_upload.asp
+		// $allowedExts = array("gif", "jpeg", "jpg", "png");
+		// $temp = explode(".", $_FILES["file"]["name"]);
+		// $extension = end($temp);
+
+		// #echo "File Info:" . $_FILES["file"]["type"];
+
+
+		// if (file_exists("../img/user/" . $_FILES["file"]["name"]))
+	 //      {
+	 //      echo $_FILES["file"]["name"] . " already exists. ";
+	 //      }
+	 //    else
+	 //      {
+	 //      move_uploaded_file($_FILES["file"]["tmp_name"], "../img/user/" . $_FILES["file"]["name"]);
+	 //      echo "Stored in: " . "../img/user/" . $_FILES["file"]["name"];
+	 //      }
 
 
 #		(($_FILES["file"]["type"] == "image/gif")
@@ -189,26 +254,26 @@
 #		|| ($_FILES["file"]["type"] == "image/png")) && 	
 
 
-		if (($_FILES["file"]["size"] < 20000)
-		&& in_array($extension, $allowedExts)) {
-		  if ($_FILES["file"]["error"] > 0) {
-		    echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
-		  } else {
-		    echo "Upload: " . $_FILES["file"]["name"] . "<br>";
-		    echo "Type: " . $_FILES["file"]["type"] . "<br>";
-		    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-		    echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
-		    if (file_exists("img/user/" . $_FILES["file"]["name"])) {
-		      echo $_FILES["file"]["name"] . " already exists. ";
-		    } else {
-		      move_uploaded_file($_FILES["file"]["tmp_name"],
-		      "img/user/" . $_FILES["file"]["name"]);
-		      echo "Stored in: " . "img/user/" . $_FILES["file"]["name"];
-		    }
-		  }
-		} else {
-		  echo "Invalid file";
-		}
+		// if (($_FILES["file"]["size"] < 20000)
+		// && in_array($extension, $allowedExts)) {
+		//   if ($_FILES["file"]["error"] > 0) {
+		//     echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
+		//   } else {
+		//     echo "Upload: " . $_FILES["file"]["name"] . "<br>";
+		//     echo "Type: " . $_FILES["file"]["type"] . "<br>";
+		//     echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+		//     echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+		//     if (file_exists("img/user/" . $_FILES["file"]["name"])) {
+		//       echo $_FILES["file"]["name"] . " already exists. ";
+		//     } else {
+		//       move_uploaded_file($_FILES["file"]["tmp_name"],
+		//       "img/user/" . $_FILES["file"]["name"]);
+		//       echo "Stored in: " . "img/user/" . $_FILES["file"]["name"];
+		//     }
+		//   }
+		// } else {
+		//   echo "Invalid file";
+		// }
 		#END CITATION
 	}
 
