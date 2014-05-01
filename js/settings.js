@@ -107,7 +107,16 @@ function readURL(input) {
             $("#imagePreview").attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
-    }
+
+         var file = document.getElementById("#uploadedFile").files[0];
+
+	    $.ajax({
+	        url: "api/changeProfileImage",
+	        type: "GET",
+	        data: file,
+	        processData: false
+	    });
+	    }
 }
 
 //  $("#updatePicForm").submit(function(event){

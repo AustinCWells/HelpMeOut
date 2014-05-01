@@ -21,7 +21,7 @@
 					<div id="contactInfo">
 					</div>
 				</div>
-				<div class = "seven column">
+				<div class = "six column">
 					<div class = "six column ratingDiv center">Overall Rating:
 						<div class="row">
 							<!-- <span class="ratingLabel two column">

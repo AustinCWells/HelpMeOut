@@ -447,7 +447,7 @@ div[id*=recentPosting]{
   display        : inline-block;
   position       : relative;
   height         : 24px;
-  background     : url('../img/stars3.png') repeat-x 0 0;
+  background     : url('../img/stars2.png') repeat-x 0 0;
   vertical-align : bottom;
 }
 
@@ -460,7 +460,7 @@ div[id*=recentPosting]{
 .starRating input{
   position : relative;
   z-index  : 1;
-  width    : 35px;
+  width    : 34px;
   height   : 24px;
   margin   : 0;
   padding  : 0;
@@ -482,7 +482,7 @@ div[id*=recentPosting]{
 
 .starRating       input:checked       + label,
 .starRating:hover input:checked:hover + label{
-  background : url('../img/stars3.png') repeat-x 0 -24px;
+  background : url('../img/stars2.png') repeat-x 0 -24px;
 }
 
 .starRating:hover input:checked + label{
@@ -490,5 +490,5 @@ div[id*=recentPosting]{
 }
 
 .starRating:hover input:hover + label{
-  background : url('../img/stars3.png') repeat-x 0 -48px;
+  background : url('../img/stars2.png') repeat-x 0 -48px;
 }
