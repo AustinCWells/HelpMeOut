@@ -178,7 +178,7 @@
 		$temp = explode(".", $_FILES["file"]["name"]);
 		$extension = end($temp);
 
-		echo "File Info:" . $_FILES["file"]["name"];
+		echo "File Info:" . $_FILES["file"]["type"];
 
 
 		if ((($_FILES["file"]["type"] == "image/gif")
