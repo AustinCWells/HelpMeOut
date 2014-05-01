@@ -13,6 +13,8 @@
 <br>
 <div class="row">
 
+	<div class="three columns"></div>
+
 	<div class="six columns">
 
 
@@ -62,6 +64,9 @@
 
 		</div>
 	</div>
+
+	<div class="three columns"></div>
+
 </div>
 
 
