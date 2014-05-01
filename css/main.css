@@ -134,8 +134,8 @@ margin-bottom: 2px;
 	text-align: center;
 }
 
-.cancelLeft {
-	margin-left:165px;
+.cancelCenter {
+	margin-left:165px;	/*TODO: ACTUALLY CENTER THIS!*/
 	cursor:pointer;
 }
 

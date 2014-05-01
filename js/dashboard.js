@@ -79,9 +79,9 @@ $(window).ready(function(event) {
 						image = "img/other.png";
 					}
 				tasks[i].contact_number = phoneFormat(tasks[i].contact_number);
-				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row"><input type="button" class="cancelLeft five column center" id="cancelLeft' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"></div></div>';
+				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row"><input type="button" class="cancelCenter five column center" id="cancelCenter' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"></div></div>';
 				accordionLeft.append(html);
-				var CancelButton = document.getElementById("cancelLeft" + tasks[i].task_id);
+				var CancelButton = document.getElementById("cancelCenter" + tasks[i].task_id);
 				CancelButton.onclick = function(e) {
 					// console.log("can sell");
 					// console.log($(CancelButton).data("task"));
@@ -192,38 +192,59 @@ $(window).ready(function(event) {
 					image = "img/other.png";
 				}
 
-				if(tasks[i].is_offer_for_help === 0) {
-					var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="completeRight' + tasks[i].task_id + '" data-task="' + i + '"" "  value="Job Completed"></div></div>';
-					accordionRight.append(html);
-					var CompleteButton = document.getElementById("completeRight" + tasks[i].task_id);
-					var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
-					CompleteButton.onclick = function(e) {
-						// console.log("compleeeet");
-						// console.log($(CompleteButton).data("task"));
-						var task = $(CompleteButton).data("task");
-						
-						var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
-						$.ajax({
-					        type: "Get",
-					        url: url,
-					        success: function (data) { 
-					        	console.log(data);
-							}
-						});
-					}
-					CancelButton.onclick = function(e) {
-						// console.log("can sell");
-						// console.log($(CancelButton).data("task"));
-						var task = $(CancelButton).data("task");
+				if(tasks[i].is_offer_for_help === 0) {//TODO: remove job complete button
+					if(tasks[i].chooser_id === 0) {
+						var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelCenter five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"></div></div>';
+						accordionRight.append(html);
+						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
+						CancelButton.onclick = function(e) {
+							// console.log("can sell");
+							// console.log($(CancelButton).data("task"));
+							var task = $(CancelButton).data("task");
 
-						var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
-						$.ajax({
-					        type: "Get",
-					        url: url,
-					        success: function (data) { 
-					        	console.log(data);
-							}
-						});
+							var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
+							$.ajax({
+						        type: "Get",
+						        url: url,
+						        success: function (data) { 
+						        	console.log(data);
+								}
+							});
+						}
+					}
+					else {//TODO: populate with chooser's info
+						var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="completeRight' + tasks[i].task_id + '" data-task="' + i + '"" "  value="Job Completed"></div></div>';
+						accordionRight.append(html);
+						var CompleteButton = document.getElementById("completeRight" + tasks[i].task_id);
+						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
+						CompleteButton.onclick = function(e) {
+							// console.log("compleeeet");
+							// console.log($(CompleteButton).data("task"));
+							var task = $(CompleteButton).data("task");
+							
+							var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
+							$.ajax({
+						        type: "Get",
+						        url: url,
+						        success: function (data) { 
+						        	console.log(data);
+								}
+							});
+						}
+						CancelButton.onclick = function(e) {
+							// console.log("can sell");
+							// console.log($(CancelButton).data("task"));
+							var task = $(CancelButton).data("task");
+
+							var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
+							$.ajax({
+						        type: "Get",
+						        url: url,
+						        success: function (data) { 
+						        	console.log(data);
+								}
+							});
+						}
 					}
 				}
 				else {
