@@ -583,45 +583,118 @@
 	$num_stars_speed = intval($num_stars_speed);
 	$num_stars_reliability = intval($num_stars_reliability);
 
-	$chooser_id = 0;
-	$jobs_completed = 0;
-	$curr_speed = 0;
-	$curr_reliability = 0;
 
-	#MARK TASK AS COMPLETE
-	$sql= "UPDATE TASK SET is_complete = 1 WHERE task_id = :task_id AND is_complete != 1";
+
+	$previously_completed = FALSE;
+
+
+	$sql = "SELECT chooser_id FROM TASK WHERE task_id = :task_id AND is_complete = 0";
 	try
-	    {
-			$db = getConnection();
-			$stmt= $db->prepare($sql);
+	{
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+		$stmt->execute();
+		$db = null;
 
-			$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
-			
-			$stmt->execute();
+		$info = $stmt->fetch(PDO::FETCH_ASSOC);
 
-			$db = null;
-      		#echo json_encode($success);
+		if(empty($info))
+			$previously_completed = TRUE;
+		else
+			$previously_completed = FALSE;			
+	}
+	catch(PDOException $e)
+	{
+		echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}';
+	}
 
 
-			#RETRIEVE USER_ID & USER DATA
-			$sql="SELECT TASK.chooser_id, USER_DATA.jobs_completed, USER_DATA.speed, USER_DATA.reliability FROM TASK INNER JOIN USER_DATA ON TASK.chooser_id = USER_DATA.user_id WHERE task_id = :task_id";
+
+	if($previously_completed == FALSE)
+	{
+		$chooser_id = 0;
+		$jobs_completed = 0;
+		$curr_speed = 0;
+		$curr_reliability = 0;
+
+		#MARK TASK AS COMPLETE
+		$sql= "UPDATE TASK SET is_complete = 1 WHERE task_id = :task_id AND is_complete != 1";
+		try
+		    {
+				$db = getConnection();
+				$stmt= $db->prepare($sql);
+
+				$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+				
+				$stmt->execute();
+
+				$db = null;
+	      		#echo json_encode($success);
+
+
+				#RETRIEVE USER_ID & USER DATA
+				$sql="SELECT TASK.chooser_id, USER_DATA.jobs_completed, USER_DATA.speed, USER_DATA.reliability FROM TASK INNER JOIN USER_DATA ON TASK.chooser_id = USER_DATA.user_id WHERE task_id = :task_id";
+				try
+				    {
+						$db = getConnection();
+						$stmt= $db->prepare($sql);
+
+						$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
+						
+						$stmt->execute();
+
+						$user_info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+						$chooser_id = (int)$user_info['chooser_id'];
+						$jobs_completed = (int)$user_info['jobs_completed'];
+						$curr_speed = (int)$user_info['speed'];
+						$curr_reliability = (int)$user_info['reliability'];
+
+						#$chooser_id = (int)$stmt-fetch(PDO::FETCH_ASSOC)['chooser_id'];
+
+						$db = null;
+			      		#echo json_encode($success);
+				    }  
+				catch(PDOException $e) 
+					{
+						echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+					}
+		    }  
+		catch(PDOException $e) 
+			{
+				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
+			}
+
+
+
+		#THIS DOES NOT WORK
+			#IF THE PREVIOUS TRY EXECUTED, CHOOSER WILL BE SET AND THIS WILL EXECUTE AS WELL
+
+		#CALCULATE NEW RATINGS
+		if($chooser_id != 0)
+		{
+			#NOTE: jobs_requested and jobs_completed are automatically incremented by a trigger in TASK
+				#At this point, the jobs_completed variable includes the job that was rated (hence the -1)
+
+			#New Reliability/Speed = ((# of Jobs Completed / # of Jobs Completed + 1) * (Current Reliability / 100)) + ((1/ # of Jobs Completed + 1) * (# stars / 5))
+
+			$updated_speed = (int)((((($jobs_completed - 1) / $jobs_completed) * ($curr_speed/100)) + ((1 / $jobs_completed) * ($num_stars_speed/5)))*100);
+			$updated_reliability = (int)((((($jobs_completed - 1) / $jobs_completed) * ($curr_reliability/100)) + ((1 / $jobs_completed) * ($num_stars_reliability/5)))*100);
+
+
+			#UPDATE RATINGS IN DB
+			$sql= "UPDATE USER_DATA SET speed = :updated_speed, reliability = :updated_reliability WHERE user_id = :user_id";
 			try
 			    {
 					$db = getConnection();
 					$stmt= $db->prepare($sql);
-
-					$stmt->bindParam("task_id", $task_id, PDO::PARAM_INT);
 					
+					$stmt->bindParam("user_id", $chooser_id, PDO::PARAM_INT);
+					$stmt->bindParam("updated_speed", $updated_speed, PDO::PARAM_INT);
+					$stmt->bindParam("updated_reliability", $updated_reliability, PDO::PARAM_INT);
+
 					$stmt->execute();
-
-					$user_info = $stmt->fetch(PDO::FETCH_ASSOC);
-
-					$chooser_id = (int)$user_info['chooser_id'];
-					$jobs_completed = (int)$user_info['jobs_completed'];
-					$curr_speed = (int)$user_info['speed'];
-					$curr_reliability = (int)$user_info['reliability'];
-
-					#$chooser_id = (int)$stmt-fetch(PDO::FETCH_ASSOC)['chooser_id'];
 
 					$db = null;
 		      		#echo json_encode($success);
@@ -630,50 +703,11 @@
 				{
 					echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 				}
-	    }  
-	catch(PDOException $e) 
-		{
-			echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
 		}
-
-
-
-	#THIS DOES NOT WORK
-		#IF THE PREVIOUS TRY EXECUTED, CHOOSER WILL BE SET AND THIS WILL EXECUTE AS WELL
-
-	#CALCULATE NEW RATINGS
-	if($chooser_id != 0)
-	{
-		#NOTE: jobs_requested and jobs_completed are automatically incremented by a trigger in TASK
-			#At this point, the jobs_completed variable includes the job that was rated (hence the -1)
-
-		#New Reliability/Speed = ((# of Jobs Completed / # of Jobs Completed + 1) * (Current Reliability / 100)) + ((1/ # of Jobs Completed + 1) * (# stars / 5))
-
-		$updated_speed = (int)((((($jobs_completed - 1) / $jobs_completed) * ($curr_speed/100)) + ((1 / $jobs_completed) * ($num_stars_speed/5)))*100);
-		$updated_reliability = (int)((((($jobs_completed - 1) / $jobs_completed) * ($curr_reliability/100)) + ((1 / $jobs_completed) * ($num_stars_reliability/5)))*100);
-
-
-		#UPDATE RATINGS IN DB
-		$sql= "UPDATE USER_DATA SET speed = :updated_speed, reliability = :updated_reliability WHERE user_id = :user_id";
-		try
-		    {
-				$db = getConnection();
-				$stmt= $db->prepare($sql);
-				
-				$stmt->bindParam("user_id", $chooser_id, PDO::PARAM_INT);
-				$stmt->bindParam("updated_speed", $updated_speed, PDO::PARAM_INT);
-				$stmt->bindParam("updated_reliability", $updated_reliability, PDO::PARAM_INT);
-
-				$stmt->execute();
-
-				$db = null;
-	      		#echo json_encode($success);
-		    }  
-		catch(PDOException $e) 
-			{
-				echo '{"error":{"text":' . "\"" . $e->getMessage() . "\"" . '}}'; 
-			}
 	}
+	else
+		echo '{"error":{"text": "This job has already been completed!" }}'; 
+
 	}
 
 
