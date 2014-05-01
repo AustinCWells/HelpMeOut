@@ -227,16 +227,45 @@ $(window).ready(function(event) {
 					}
 				}
 				else {
-					var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row"><span id="overall' + tasks[i].task_id + '"class="ratingLabel two column"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="overallFg' + tasks[i].task_id + '"></div></div></div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row"><span class="ratingLabel two column" id="speed' + tasks[i].task_id + '"></span><div class="barArea"><div class="ratingBg"></div><div class="ratingFg" id="speedFg' + tasks[i].task_id + '"></div></div></div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + i + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + i + '" value="Accept"></div></div>';
+					var overallHTML = '<div class="starRating"><div><div><div><div><input id="overallRating1-' + tasks[i].chooser_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '" value="1" disabled="true"><label for="overallRating1-' + tasks[i].chooser_id + '"><span>1</span></label></div><input id="overallRating2-' + tasks[i].chooser_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '" value="2" disabled="true"><label for="overallRating2-' + tasks[i].chooser_id + '"><span>2</span></label></div><input id="overallRating3-' + tasks[i].chooser_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '" value="3" disabled="true"><label for="overallRating3-' + tasks[i].chooser_id + '"><span>3</span></label></div><input id="overallRating4-' + tasks[i].chooser_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '" value="4" disabled="true"><label for="overallRating4-' + tasks[i].chooser_id + '"><span>4</span></label></div><input id="overallRating5-' + tasks[i].chooser_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '" value="5" disabled="true"><label for="overallRating5-' + tasks[i].chooser_id + '"><span>5</span></label></div>';
+					var speedHTML = '<div class="starRating"><div><div><div><div><input id="speedRating1-' + tasks[i].chooser_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '" value="1" disabled="true"><label for="speedRating1-' + tasks[i].chooser_id + '"><span>1</span></label></div><input id="speedRating2-' + tasks[i].chooser_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '" value="2" disabled="true"><label for="speedRating2-' + tasks[i].chooser_id + '"><span>2</span></label></div><input id="speedRating3-' + tasks[i].chooser_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '" value="3" disabled="true"><label for="speedRating3-' + tasks[i].chooser_id + '"><span>3</span></label></div><input id="speedRating4-' + tasks[i].chooser_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '" value="4" disabled="true"><label for="speedRating4-' + tasks[i].chooser_id + '"><span>4</span></label></div><input id="speedRating5-' + tasks[i].chooser_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '" value="5" disabled="true"><label for="speedRating5-' + tasks[i].chooser_id + '"><span>5</span></label></div>';
+					var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row">' + overallHTML + '</div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row">' + speedHTML + '</div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + i + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + i + '" value="Accept"></div></div>';
 					accordionRight.append(html);
-					var ratingLabel = document.getElementById("overall" + tasks[i].task_id);
-					var ratingBar = document.getElementById("overallFg" + tasks[i].task_id);
-					$(ratingLabel).append(tasks[i].chooser_reliability + "%");
-					$(ratingBar).width(ratingLabel.innerHTML);
-					var ratingLabel2 = document.getElementById("speed" + tasks[i].task_id);
-					var ratingBar2 = document.getElementById("speedFg" + tasks[i].task_id);
-					$(ratingLabel2).append(tasks[i].chooser_speed + "%");
-					$(ratingBar2).width(ratingLabel.innerHTML);
+					var radiobtn;
+					if(tasks[i].chooser_reliability >= 80) {
+						radiobtn = document.getElementById("overallRating5-" + tasks[i].chooser_id);
+					}
+					if(tasks[i].chooser_reliability >= 60 && tasks[i].chooser_reliability < 80) {
+						radiobtn = document.getElementById("overallRating4-" + tasks[i].chooser_id);
+					}
+					if(tasks[i].chooser_reliability >= 40 && tasks[i].chooser_reliability < 60) {
+						radiobtn = document.getElementById("overallRating3-" + tasks[i].chooser_id);
+					}
+					if(tasks[i].chooser_reliability >= 20 && tasks[i].chooser_reliability < 40) {
+						radiobtn = document.getElementById("overallRating2-" + tasks[i].chooser_id);
+					}
+					if(tasks[i].chooser_reliability < 20) {
+						radiobtn = document.getElementById("overallRating1-" + tasks[i].chooser_id);
+					}
+					radiobtn.checked = true;
+
+					if(tasks[i].chooser_reliability >= 80) {
+						radiobtn = document.getElementById("speedRating5-" + tasks[i].chooser_id);
+					}
+					if(tasks[i].chooser_speed >= 60 && tasks[i].chooser_speed < 80) {
+						radiobtn = document.getElementById("speedRating4-" + tasks[i].chooser_id);
+					}
+					if(tasks[i].chooser_speed >= 40 && tasks[i].chooser_speed < 60) {
+						radiobtn = document.getElementById("speedRating3-" + tasks[i].chooser_id);
+					}
+					if(tasks[i].chooser_speed >= 20 && tasks[i].chooser_speed < 40) {
+						radiobtn = document.getElementById("speedRating2-" + tasks[i].chooser_id);
+					}
+					if(tasks[i].chooser_speed < 20) {
+						radiobtn = document.getElementById("speedRating1-" + tasks[i].chooser_id);
+					}
+					radiobtn.checked = true;
+
 					var AcceptButton = document.getElementById("accept" + tasks[i].task_id);
 					var DeclineButton = document.getElementById("decline" + tasks[i].task_id);
 					AcceptButton.onclick = function(e) {
