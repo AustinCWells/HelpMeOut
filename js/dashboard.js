@@ -200,16 +200,16 @@ $(window).ready(function(event) {
 						CancelButton.onclick = function(e) {
 							// console.log("can sell");
 							// console.log($(CancelButton).data("task"));
-							var task = $(CancelButton).data("task");
+							// var task = $(CancelButton).data("task");
 
-							var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
-							$.ajax({
-						        type: "Get",
-						        url: url,
-						        success: function (data) { 
-						        	console.log(data);
-								}
-							});
+							// var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
+							// $.ajax({
+						 //        type: "Get",
+						 //        url: url,
+						 //        success: function (data) { 
+						 //        	console.log(data);
+							// 	}
+							// });
 						}
 					}
 					else {//TODO: populate with chooser's info
@@ -232,18 +232,20 @@ $(window).ready(function(event) {
 							});
 						}
 						CancelButton.onclick = function(e) {
+							openModal("#cancelJobModal");
+
 							// console.log("can sell");
 							// console.log($(CancelButton).data("task"));
-							var task = $(CancelButton).data("task");
+							// var task = $(CancelButton).data("task");
 
-							var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
-							$.ajax({
-						        type: "Get",
-						        url: url,
-						        success: function (data) { 
-						        	console.log(data);
-								}
-							});
+							// var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
+							// $.ajax({
+						 //        type: "Get",
+						 //        url: url,
+						 //        success: function (data) { 
+						 //        	console.log(data);
+							// 	}
+							// });
 						}
 					}
 				}
