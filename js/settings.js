@@ -108,7 +108,8 @@ function readURL(input) {
         }
         reader.readAsDataURL(input.files[0]);
 
-         var file = document.getElementById("#uploadedFile").files[0];
+         var file = $("#uploadedFile").prop('files')[0];
+         console.log(file);
 
 	    $.ajax({
 	        url: "api/changeProfileImage",

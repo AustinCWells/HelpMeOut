@@ -485,10 +485,10 @@ div[id*=recentPosting]{
   background : url('../img/stars2.png') repeat-x 0 -24px;
 }
 
-.starRating:hover input:checked + label{
+/*.starRating:hover input:checked + label{
   background : transparent;
-}
+}*/
 
-.starRating:hover input:hover + label{
+/*.starRating:hover input:hover + label{
   background : url('../img/stars2.png') repeat-x 0 -48px;
-}
+}*/

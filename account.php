@@ -35,19 +35,19 @@
 							    	<div>
 							      		<div>
 							        		<div>
-							          			<input id="overallRating1" type="radio" name="overallRating" value="1">
+							          			<input id="overallRating1" type="radio" name="overallRating" value="1" disabled="true">
 							       			  	<label for="overallRating1"><span>1</span></label>
 								    			</div>
-								    		    <input id="overallRating2" type="radio" name="overallRating" value="2">
+								    		    <input id="overallRating2" type="radio" name="overallRating" value="2" disabled="true">
 								   		     	<label for="overallRating2"><span>2</span></label>
 								   		   	</div>
-								  		   	<input id="overallRating3" type="radio" name="overallRating" value="3">
+								  		   	<input id="overallRating3" type="radio" name="overallRating" value="3" disabled="true">
 										    <label for="overallRating3"><span>3</span></label>
 									    </div>
-									    <input id="overallRating4" type="radio" name="overallRating" value="4">
+									    <input id="overallRating4" type="radio" name="overallRating" value="4" disabled="true">
 									    <label for="overallRating4"><span>4</span></label>
 								  	</div>
-								<input id="overallRating5" type="radio" name="overallRating" value="5">
+								<input id="overallRating5" type="radio" name="overallRating" value="5" disabled="true">
 								<label for="overallRating5"><span>5</span></label>
 							</div>
 					    </div>
