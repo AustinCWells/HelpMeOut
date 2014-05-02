@@ -8,7 +8,7 @@ var checkJobPostValidity = function(){
 	var description = $("#jobDescription");
 	if($(description).val() == ""){
 		//console.log("Setting");
-		description[0].setCustomValidity("Job Description is required!");
+		description[0].setCustomValidity("A Job Description is required!");
 	}
 	else{
 		//console.log("Unsetting");
@@ -19,7 +19,7 @@ var checkJobPostValidity = function(){
 
 	if($(category).val() == "0"){
 		//console.log("Setting");
-		category[0].setCustomValidity("Job Category is required!");
+		category[0].setCustomValidity("A Job Category is required!");
 	}
 	else{
 		//console.log("Unsetting");
@@ -30,7 +30,7 @@ var checkJobPostValidity = function(){
 
 	if(parseInt($(price).val(), 10) < 2){
 		//console.log("Setting");
-		price[0].setCustomValidity("Correct price is required!");
+		price[0].setCustomValidity("Please set a correct price!");
 	}
 	else{
 		//console.log("Unsetting");
@@ -41,7 +41,7 @@ var checkJobPostValidity = function(){
 
 	if($(location).val() == ""){
 		//console.log("Setting");
-		location[0].setCustomValidity("Job Location is required!");
+		location[0].setCustomValidity("A Job Location is required!");
 	}
 	else{
 		location[0].setCustomValidity('');
@@ -58,7 +58,7 @@ var checkJobPostValidity = function(){
 
 	if(time.getTime() < minTime){
 		//console.log("bad time")
-		timeBox[0].setCustomValidity("Job must have a least 30 minutes in the future!");
+		timeBox[0].setCustomValidity("Job must be at least 30 minutes from now!");
 	}
 	else{
 		//console.log("good time");
@@ -75,7 +75,7 @@ var checkSignUpValidity = function(){
 	var phone = $("#accountPhoneNumber");
 
 	if($(phone).val().length < 10){
-		phone[0].setCustomValidity("Phone Number must be 10 digits long!");
+		phone[0].setCustomValidity("The Phone Number must be 10 digits long!");
 	}
 	else
 		phone[0].setCustomValidity('');
@@ -186,7 +186,7 @@ $(window).ready(function(){
 
 			else {
 
-				info.error.text = "Must have tokens to offer help!";
+				info.error.text = "Must have tokens to offer help! Go buy some at the top";
 				closeModal();
 				displayError(info);
 
@@ -274,7 +274,7 @@ var dbRequest = function(url, content, json, type){
 				}
 
 				else if(type === "offerHelp"){
-					obj.modal = "You succesfully offer help!";
+					obj.modal = "You successfully offered help!";
 					displaySuccess(obj);
 				}
 
@@ -288,7 +288,7 @@ var dbRequest = function(url, content, json, type){
 					}
 
 					else{
-						obj.modal = "Login in Failure!";
+						obj.modal = "Login Failure!";
 						displayError(obj);
 					}
 
