@@ -14,6 +14,7 @@ $(window).ready(function(event) {
 		$("#imagePreview").css("width", "100px");
 	}
 	else {
+		console.log("setting custom image");
 		var imagePath = "img/user/" + userInfo.custom_image_path;
 		$("#imagePreview").attr("src", imagePath);
 		$("#imagePreview").css("height", "100px");
