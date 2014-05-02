@@ -62,7 +62,14 @@ body {
 	clear: both;
 }
 
-#navMenu li.hoverable  a:hover{
+/*#navMenu li.hoverable  a:hover{
+	text-decoration: none;
+	color: #000;
+	background-color: rgb(219,219,219);
+}*/
+
+.selected {
+	cursor: pointer;
 	text-decoration: none;
 	color: #000;
 	background-color: rgb(219,219,219);
