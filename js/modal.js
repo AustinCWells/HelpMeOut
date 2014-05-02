@@ -42,7 +42,7 @@ function loadPaymentInfo()
 	if(!user_id){
 		console.log("user_id not defined.");
 	} else {
-		console.log("user id defined, getting login info");
+		console.log("user_id defined, getting login info");
 
 		$.ajax({
 			type: 'POST',
@@ -58,7 +58,7 @@ function loadPaymentInfo()
 				$(selector).prop('selected', true);
 			},
 			error: function(){
-				alert("OH NO! someone has gone and screwed up."); 
+				alert("OH NO! Something has messed up!"); 
 			}
 		});
 
@@ -88,7 +88,7 @@ function displayModal(modalId)
 {
 	var modal = document.getElementById(modalId)
 	var background = document.getElementById("overlay");
-	console.log("got backgroun" + background);
+	console.log("got background" + background);
 	background.className = "overlay"
 	modal.className = "displayModal";
 	var width = modal.clientWidth; 
