@@ -320,6 +320,7 @@ var dbRequest = function(url, content, json, type){
 var closeModal = function(){
 	
 	//$(".modalSelected").removeClass("modalSelected");
+	$(".modal").removeClass("modalSelected");
 	$(".modal").hide();
 	$(".modalOverlay").height(0);
 	$("#modalOverlay").removeClass("modalOverlay");
