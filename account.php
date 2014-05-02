@@ -54,12 +54,6 @@
 		       		</div>
 					<div class = "six column ratingDiv center">Speed Rating:
 						<div class="row">
-							<!-- <span class="ratingLabel two column">
-							</span>
-				            <div class="barArea">
-					            <div class="ratingBg"></div>
-					            <div class="ratingFg"></div>
-					        </div> -->
 					        <div class="starRating">
 								<div>
 							    	<div>

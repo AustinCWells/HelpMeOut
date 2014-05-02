@@ -55,6 +55,7 @@ $(window).ready(function(event) {
 				radiobtn = document.getElementById("overallRating1");
 			}
 			radiobtn.checked = true;
+			console.log("checked reliability: " + $(radiobtn).val());
 
 			if(user_info.speed > 80) {
 				radiobtn = document.getElementById("speedRating5");
@@ -72,6 +73,7 @@ $(window).ready(function(event) {
 				radiobtn = document.getElementById("speedRating1");
 			}
 			radiobtn.checked = true;
+			console.log("checked speed: " + $(radiobtn).val());
 
 			var badges = [user_info.completions_tier, user_info.night_owl_tier, user_info.requests_tier];
 			var badgeSpace = $('#badgeSpace');
