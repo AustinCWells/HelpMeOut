@@ -316,8 +316,9 @@ var refreshRecentJobs = function(){
 
 				for(var i=0; i<obj.length; i++) {
 					constructRecentJob(obj[i], i);
+					
 				}
-
+				$('#recentJobs').append("<div class='clear'></div>");
 				isRecent = true;
 				callback();
 
