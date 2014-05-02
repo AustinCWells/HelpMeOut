@@ -147,9 +147,9 @@ h1.tokenCount{
 	 height:auto;
 	 position:relative;
 	 float:left;
-	 margin-right:5%;
+	 /*margin-right:5%;*/
 	 margin-bottom:30px;
-	 padding: 0px;
+	 padding: 6px;
 }
 
 .jobImage {
