@@ -26,12 +26,13 @@ p:nth-of-type(1) {
 	font-size: 24px;
 	text-align: center;
 	margin-bottom: 35px;
+	padding-bottom: 15px;
 
 }
 
 #recentJobs {
-	margin-left: 55px;
-	margin-right: auto;
+	margin-left: 12.5%;
+	margin-right: 12.5%;
 }
 
 
