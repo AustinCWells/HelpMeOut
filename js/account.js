@@ -40,40 +40,38 @@ $(window).ready(function(event) {
 
 			var radiobtn;
 			if(user_info.reliability >= 80) {
-				radiobtn = document.getElementById("overallRating5");
+				radiobtn = document.getElementById("reliabilityRatingProfile5");
 			}
 			if(user_info.reliability >= 60 && user_info.reliability < 80) {
-				radiobtn = document.getElementById("overallRating4");
+				radiobtn = document.getElementById("reliabilityRatingProfile4");
 			}
 			if(user_info.reliability >= 40 && user_info.reliability < 60) {
-				radiobtn = document.getElementById("overallRating3");
+				radiobtn = document.getElementById("reliabilityRatingProfile3");
 			}
 			if(user_info.reliability >= 20 && user_info.reliability < 40) {
-				radiobtn = document.getElementById("overallRating2");
+				radiobtn = document.getElementById("reliabilityRatingProfile2");
 			}
 			if(user_info.reliability < 20) {
-				radiobtn = document.getElementById("overallRating1");
+				radiobtn = document.getElementById("reliabilityRatingProfile1");
 			}
 			radiobtn.checked = true;
-			console.log("checked reliability: " + $(radiobtn).val());
 
 			if(user_info.speed > 80) {
-				radiobtn = document.getElementById("speedRating5");
+				radiobtn = document.getElementById("speedRatingProfile5");
 			}
 			if(user_info.speed > 60 && user_info.speed < 80) {
-				radiobtn = document.getElementById("speedRating4");
+				radiobtn = document.getElementById("speedRatingProfile4");
 			}
 			if(user_info.speed > 40 && user_info.speed < 60) {
-				radiobtn = document.getElementById("speedRating3");
+				radiobtn = document.getElementById("speedRatingProfile3");
 			}
 			if(user_info.speed > 20 && user_info.speed < 40) {
-				radiobtn = document.getElementById("speedRating2");
+				radiobtn = document.getElementById("speedRatingProfile2");
 			}
 			if(user_info.speed < 20) {
-				radiobtn = document.getElementById("speedRating1");
+				radiobtn = document.getElementById("speedRatingProfile1");
 			}
 			radiobtn.checked = true;
-			console.log("checked speed: " + $(radiobtn).val());
 
 			var badges = [user_info.completions_tier, user_info.night_owl_tier, user_info.requests_tier];
 			var badgeSpace = $('#badgeSpace');
