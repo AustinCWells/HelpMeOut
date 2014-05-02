@@ -61,7 +61,7 @@
 		</div>
 	</div>
 
-	<div class="four columns">
+	<div class="three columns">
 		<div id="recentBox">
 			<div id="recentHeader">Recent Jobs:</div>
 			<div id="recentJobs"></div>

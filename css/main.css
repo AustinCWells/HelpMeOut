@@ -12,13 +12,13 @@ p:nth-of-type(1) {
 
 /*INDEX*/
 #recentBox {
-	float:left;
-	height:600px;
+	/*float:left;
+	height:600px;*/
 	width:100%;
 	border: 1px solid #aaaaaa;
 	background-color:white;
 	border-radius: 4px;
-	margin-left: 5px;
+	/*margin-left: 5px;*/
 	padding: 10px;
 }
 

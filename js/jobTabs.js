@@ -120,7 +120,7 @@ var getJobHTML = function(job, image){
 	return '<div class="jobPost"><p class="jobDesc">' + job.short_description.substring(0,12) + '...</p><p class="jobPrice">' + "$" + job.price + '</p><div class = "currentJob"><div class = "overlay"></div><img class="jobImage" src="' + image + '"></div><input class = "jobInfo" type = "hidden"></div>';
 }
 
-function constructRecentJob(job) {
+function constructRecentJob(job, index) {
 	var category = "";
 	var categoryFormatted = "";
 	var image = "";
@@ -170,6 +170,7 @@ function constructRecentJob(job) {
 	
 	job.category = categoryFormatted;
 	job.image= image;
+
 	var text = $('#recentJobs').append(getJobHTML(job, image));
 	$(text).children(":last-child").children(".jobInfo").val(JSON.stringify(job));
 
@@ -312,7 +313,7 @@ var refreshRecentJobs = function(){
 			else{
 
 				for(var i=0; i<obj.length; i++) {
-					constructRecentJob(obj[i]);
+					constructRecentJob(obj[i], i);
 				}
 
 				isRecent = true;
