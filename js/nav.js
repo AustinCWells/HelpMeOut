@@ -102,12 +102,25 @@ var qoutes = [
 				'"LIFE\'S MOST PERSISTENT AND URGENT QUESTION IS, \'WHAT ARE YOU DOING FOR OTHERS?\'" - MARTIN LUTHER KING JR.',
 				'"LET EACH OF YOU LOOK NOT ONLY TO HIS OWN INTERESTS, BUT ALSO TO THE INTERESTS OF OTHERS." - PHILIPPIANS 2:4',
 				'"HELP ME... HELP YOU. HELP ME, HELP YOU." - JERRY MAGUIRE (1996)',
-				'"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS'
+				'"THINGS DON\'T HAVE TO CHANGE THE WORLD TO BE IMPORTANT." - THE LATE, GREAT STEVE (YOBS) JOBS',
+				'“No one has ever become poor by giving.” - Anne Frank, diary of Anne Frank',
+				'"“No one is useless in this world who lightens the burdens of another.” - Charles Dickens',
+				'“When we give cheerfully and accept gratefully, everyone is blessed.” - Maya Angelou',
+				'“We only have what we give.” - Isabel Allende',
+				'“Doing nothing for others is the undoing of ourselves.” - Horace Mann',
+				'“Give, but give until it hurts.” - Mother Teresa',
+				'“Those who are happiest are those who do the most for others.” - Booker T. Washington, Up from Slavery',
+				'“Self-improvement comes mainly from trying to help others.” - Sir John Templeton',
+				'“The only people who you should get even with are those who have helped you.” - John Southard',
+				'“We can have anything we want on life, if we just help others to found what they need” - Ebelsain Villegas',
+				'"We can not help everyone, but everyone can help someone." - Ronald Reagan',
+				'"People never forget that helping hand especially when times are tough." - Catherine Pulsifer ',
+				'"Only by giving are you able to receive more than you already have."- Jim Rohn ',
 			];
 
 var setQoute = function(){
 
-	var numQoutes = 7;
+	var numQoutes = 20;
 
  	var random = Math.floor(Math.random() * numQoutes);
 
