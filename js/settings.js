@@ -7,48 +7,61 @@ $(window).ready(function(event) {
 
 	var fileJSON = {};
 
-	console.log(userInfo);	
-	if(userInfo.is_custom === 0) {
-		$("#imagePreview").attr("src", "img/fontenot.jpeg");
-		$("#imagePreview").css("height", "100px");
-		$("#imagePreview").css("width", "100px");
-	}
-	else {
-		console.log("setting custom image");
-		var imagePath = "img/user/" + userInfo.custom_image_path;
-		$("#imagePreview").attr("src", imagePath);
-		$("#imagePreview").css("height", "100px");
-		$("#imagePreview").css("width", "100px");
-	}
+	var userJSON = {};
+	userJSON.user_id = userInfo.userID;
+	console.log(JSON.stringify(userJSON));
 
-	$("#navSettings").addClass("currentPage").removeClass("hoverable");
+	$.ajax({
+		type: 'POST',
+		url: "api/useraccount",
+		content: 'application/json',
+		data: JSON.stringify(userJSON),
+		success: function(data){
+			var user_info = {};
+			user_info = JSON.parse(data);
 
-	function phoneFormat(phone) {
-	  phone = phone.replace(/[^0-9]/g, '');
-	  phone = phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
-	  return phone;
-	}
+			console.log(user_info);	
+			if(user_info.is_custom === 0) {
+				$("#imagePreview").attr("src", "img/fontenot.jpeg");
+				$("#imagePreview").css("height", "100px");
+				$("#imagePreview").css("width", "100px");
+			}
+			else {
+				var imagePath = "img/user/" + user_info.custom_image_path;
+				$("#imagePreview").attr("src", imagePath);
+				$("#imagePreview").css("height", "100px");
+				$("#imagePreview").css("width", "100px");
+			}
 
-	var phoneNum = phoneFormat(userInfo.phone);
+			$("#navSettings").addClass("currentPage").removeClass("hoverable");
 
-	$("#firstName").attr("placeholder", userInfo.firstName);
-	$("#lastName").attr("placeholder", userInfo.lastName);
-	$("#phoneNum").attr("placeholder", phoneNum);
-	$("#email").attr("placeholder", userInfo.email);
+			function phoneFormat(phone) {
+			  phone = phone.replace(/[^0-9]/g, '');
+			  phone = phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+			  return phone;
+			}
 
-	$("#phoneNum").keyup(function(event) {
+			var phoneNum = phoneFormat(user_info.phone);
 
-		this.value = this.value.replace(/[^\d]/g, "");
-		var length = this.value.length;
-		if(this.value.length === 3)
-			this.value = this.value.replace(/(\d{3})/, "$1-");
-		else if (length <= 6)
-			this.value = this.value.replace(/(\d{3})(\d{1,3})/, "$1-$2");
-		else
-			this.value = this.value.replace(/(\d{3})(\d{3})(\d{1,44})/, "$1-$2-$3");
+			$("#firstName").attr("placeholder", user_info.first_name);
+			$("#lastName").attr("placeholder", user_info.last_name);
+			$("#phoneNum").attr("placeholder", phoneNum);
+			$("#email").attr("placeholder", user_info.email);
 
+			$("#phoneNum").keyup(function(event) {
+
+				this.value = this.value.replace(/[^\d]/g, "");
+				var length = this.value.length;
+				if(this.value.length === 3)
+					this.value = this.value.replace(/(\d{3})/, "$1-");
+				else if (length <= 6)
+					this.value = this.value.replace(/(\d{3})(\d{1,3})/, "$1-$2");
+				else
+					this.value = this.value.replace(/(\d{3})(\d{3})(\d{1,44})/, "$1-$2-$3");
+
+			});
+		}
 	});
-
 
 	$("#updateAccountForm").submit(function(event){
 
