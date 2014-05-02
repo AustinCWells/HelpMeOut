@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 
 				if(Object.keys(obj)[0] === "error"){
-					obj.modal = "Error occured while adding your tokens";
+					obj.modal = "Error occurred while adding your tokens";
 					displayError(obj);
 				}
 

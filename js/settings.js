@@ -204,7 +204,7 @@ $("#updatePicForm").submit(function(event){
 			});
 		}
 		else {
-			console.log("New password and confirm password did not match");
+			console.log("New password and confirm password did not match. Please Try Again");
 		}
 	});
 

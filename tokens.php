@@ -7,7 +7,7 @@
 
 <div class="row yellow">
 	<div class="twelve columns">
-		<p>MORE YOU HAVE THE MORE MONEY YOU CAN EARN!</p>	
+		<p>THE MORE YOU HAVE THE MORE MONEY YOU CAN EARN!</p>	
 	</div>
 </div>
 <br>
