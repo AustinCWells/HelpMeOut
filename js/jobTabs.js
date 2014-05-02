@@ -173,6 +173,8 @@ function constructRecentJob(job, index) {
 
 	var text = $('#recentJobs').append(getJobHTML(job, image));
 	$(text).children(":last-child").children(".jobInfo").val(JSON.stringify(job));
+	if(index % 2 === 1)
+		$('#recentJobs').append("<div class = 'clear'></div>");
 
 }
 
