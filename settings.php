@@ -16,6 +16,7 @@
 	<div class="six columns">
 		<div id="settings">
 			<form action="api/updateaccount" method="POST" id="updateAccountForm">
+				<div class="title center">Update Account Info:</div>
 				<div class="row">
 					<div class="settingLabel five column">First Name:</div>
 					<input id="firstName" class="setting five column" maxlength = "40">
@@ -36,21 +37,28 @@
 					<div class="settingLabel five column">Confirm Password:</div>
 					<input id="confirmPassword" class="setting five column" type="password" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
 				</div>
-				<input type="submit" value="Save Changes"><!--Does nothing-->
+				<div class="center"><input type="submit" value="Save Changes" class="settingsSubmit"></div>
 			</form>
-			<br>
-			<br>
+			<div class="horizontalSeperator"></div>
 			<form enctype="multipart/form-data" action="api/uploadProfileImage" method="POST" id="updatePicForm">
+				<div class="title center">Update Profile Pic:</div>
 			<!-- 	<input type="hidden" name="MAX_FILE_SIZE" value="100000"/> -->
-				<div id="preview">
-					<img src="" id="imagePreview">
+				<div class="row">
+					<div id="preview" class="five column center">
+						<span id="picStatus">Current</span> Profile Pic:<br>
+						<img src="" id="imagePreview">
+					</div>
+					<div class="seven column">
+						<div id="uploadArea">
+							Upload New Profile Pic: <br><input id="uploadedFile" name='file' accept="image/x-png, image/gif, image/jpeg, image/jpg, image/png, image/pjpeg" type="file" /><br /><br>
+							<input type="submit" value="Upload File" class="settingsSubmit"/>
+						</div>
+					</div>
 				</div>
-				Upload New Profile Pic: <br><input id="uploadedFile" name='file' accept="image/x-png, image/gif, image/jpeg, image/jpg, image/png, image/pjpeg" type="file" /><br /><br>
-				<input type="submit" value="Upload File" />
 			</form>
-			<br>
-			<br>
+			<div class="horizontalSeperator"></div>
 			<form action="api/updatepassword" method="POST" id="updatePasswordForm">
+				<div class="title center">Update Password:</div>
 				<div class="row">
 					<div class="settingLabel five column">Current Password:</div>
 					<input id="currentPassword" class="setting five column" type="password" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
@@ -63,7 +71,7 @@
 					<div class="settingLabel five column">Confirm New Password:</div>
 					<input id="confirmNewPassword" class="setting five column" type="password" required pattern=".{8,}" title="password must be greater than or equal to 8 characters">
 				</div>
-				<input type="submit" value="Save Changes"><!--Does nothing-->
+				<div class="center"><input type="submit" value="Save Changes" class="settingsSubmit"></div>
 			</form>
 		</div>
 	</div>

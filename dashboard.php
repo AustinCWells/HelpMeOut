@@ -22,13 +22,13 @@
 <div class="row">
 	<div class="six columns">
 		<div class="dashboardSection" id="jobsImDoing">
-			<p class="dashboardTitle">JOBS I'M DOING</p>
+			<p class="title">JOBS I'M DOING</p>
 			<div id="accordionLeft"></div>
 		</div>
 	</div>
 	<div class="six columns">
 		<div class="dashboardSection" id="jobsINeedDone">
-			<p class="dashboardTitle">HELP I'M GETTING</p>
+			<p class="title">HELP I'M GETTING</p>
 			<div id="accordionRight"></div>
 		</div>
 	</div>

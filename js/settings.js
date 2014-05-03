@@ -127,6 +127,8 @@ $(window).ready(function(event) {
 
 $("#uploadedFile").change(function() {
 	readURL(this);
+	$("#picStatus").empty();
+	$("#picStatus").append("New");
 });
 
 function readURL(input) {
