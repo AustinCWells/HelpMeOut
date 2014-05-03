@@ -24,12 +24,6 @@
 				<div class = "six column">
 					<div class = "six column ratingDiv center">Reliability Rating:
 						<div class="row">
-							<!-- <span class="ratingLabel two column">
-							</span> -->
-				            <!-- <div class="barArea">
-					            <div class="ratingBg"></div>
-					            <div class="ratingFg"></div>
-					        </div> -->
 					        <div class="starRating">
 								<div>
 							    	<div>
@@ -78,8 +72,6 @@
 		       		</div>
 	       		</div>
 	       		<div class = "two column">
-	       			<!-- <input type="button" class="editProfile" value="Edit Profile"> -->
-	       			<!-- <a href="settings.php">Settings</a> -->
 	       		</div>
 			</div>
 			<div class="profileSection" id="lowerSection">

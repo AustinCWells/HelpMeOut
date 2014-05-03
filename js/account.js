@@ -73,13 +73,15 @@ $(window).ready(function(event) {
 			}
 			radiobtn.checked = true;
 
-			var badges = [user_info.completions_tier, user_info.night_owl_tier, user_info.requests_tier];
+			// var badges = [user_info.completions_tier, user_info.night_owl_tier, user_info.requests_tier];
 			var badgeSpace = $('#badgeSpace');
 			console.log(badges);
 
 			for(var i=0;i<badges.length;i++) {
 				if(i === 0) {
 					badgeSpace.empty();
+					badgeSpace.css("position","absolute");
+					badgeSpace.css("margin-top","auto");
 					if(badges[i] != 0) {
 						badgeSpace.css("margin-left",(parseFloat(badgeSpace.css("margin-left")) - 100) + 'px');
 						if (badges[i] === 1) {
