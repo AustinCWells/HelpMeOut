@@ -9,7 +9,6 @@ $(window).ready(function(event) {
 
 	var userJSON = {};
 	userJSON.user_id = userInfo.userID;
-	console.log(JSON.stringify(userJSON));
 
 	$.ajax({
 		type: 'POST',
@@ -20,7 +19,6 @@ $(window).ready(function(event) {
 			var user_info = {};
 			user_info = JSON.parse(data);
 
-			console.log(user_info);	
 			if(user_info.is_custom === 0) {
 				$("#imagePreview").attr("src", "img/fontenot.jpeg");
 				$("#imagePreview").css("height", "100px");
