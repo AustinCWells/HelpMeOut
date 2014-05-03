@@ -170,8 +170,7 @@ $("#updatePicForm").submit(function(event){
 	        content: 'application/json',
 			data: JSON.stringify(fileJSON),
 			success: function (data) { 
-		        	// console.log(data);
-		        	// console.log(fileJSON);
+		        	location.reload();
 				}
 	    	});
         }
