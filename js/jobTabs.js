@@ -2,7 +2,7 @@ jQuery(function() {
 jQuery( "#tabs" ).tabs();
 });
 
-var sorry = 'Sorry, there are currently no jobs available in this category.';
+var sorry = '<div class="center">Sorry, there are currently no jobs available in this category.</div>';
 var num_tasks = 8;
 var isAll = false;
 var isRecent = false;
