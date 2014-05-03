@@ -361,6 +361,10 @@ input[type="submit"] {
 
 }
 
+.profileRatingLabel {
+	margin-bottom: 10px;
+}
+
 .ratingLabel {
 	font-size: 14px;
 	height:25px;

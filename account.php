@@ -22,7 +22,8 @@
 					</div>
 				</div>
 				<div class = "six column">
-					<div class = "six column ratingDiv center">Reliability Rating:
+					<div class = "six column ratingDiv center">
+						<div class="profileRatingLabel">Reliability Rating:</div>
 						<div class="row">
 					        <div class="starRating">
 								<div>
@@ -46,7 +47,8 @@
 							</div>
 					    </div>
 		       		</div>
-					<div class = "six column ratingDiv center">Speed Rating:
+					<div class = "six column ratingDiv center">
+						<div class="profileRatingLabel">Speed Rating:</div>
 						<div class="row">
 					        <div class="starRating">
 								<div>
