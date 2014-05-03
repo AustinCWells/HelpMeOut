@@ -106,13 +106,12 @@ $(window).ready(function(event) {
 
 			//empty message
 			if(accordionLeft.html() === '') {
-				accordionLeft.append('You have no jobs. Get started slacker!');
+				accordionLeft.append('<div class="center">You have no jobs. Get started slacker!</div>');
 			}
-
-
-			//Build Accordion:
-			$( "#accordionLeft" ).accordion({ heightStyle: "fill" , collapsible: true});
-
+			else {
+				//Build Accordion:
+				$( "#accordionLeft" ).accordion({ heightStyle: "fill" , collapsible: true});
+			}
 		}
 	});
 
@@ -343,13 +342,13 @@ $(window).ready(function(event) {
 					
 			//empty message
 			if(accordionRight.html() === '') {
-				accordionRight.append('You have no help. Try harder!');
+				accordionRight.append('<div class="center">You have no help. Try harder!</div>');
 			}
-
-
-			//Build Accordion:
-			$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true/*, active: false*/});
+			else {
+				//Build Accordion:
+				$( "#accordionRight" ).accordion({ heightStyle: "fill", collapsible: true/*, active: false*/});
 			}
+		}
 		
 	});
 
