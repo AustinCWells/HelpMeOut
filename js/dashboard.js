@@ -141,7 +141,7 @@ $(window).ready(function(event) {
         type: "Get",
         url: urlRight,
         success: function (data) { 
-			console.log('Job\'s tasks[i].task_id Need Done:');
+			console.log('Job\'s I Need Done:');
 
 			var tasks = JSON.parse(data);
 			console.log(tasks);
