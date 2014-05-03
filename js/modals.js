@@ -297,7 +297,7 @@ var dbRequest = function(url, content, json, type){
 				else if(type === "signUp"){
 					$.cookie("userInfo", obj);
 					login();
-					obj.modal = "Sign Up was Succesful!";
+					obj.modal = "Sign Up was Successful!";
 					displaySuccess(obj);
 				}
 
