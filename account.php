@@ -7,7 +7,7 @@
 
 <div class="row yellow">
 	<div class="twelve columns">
-		<p>WHO WANT'S THIS FONTENOT?</p>	
+		<p>IT'S ALL ABOUT YOU.</p>	
 	</div>
 </div>
 <br>
