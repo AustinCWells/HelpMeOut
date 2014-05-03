@@ -263,7 +263,7 @@ var dbRequest = function(url, content, json, type){
 				closeModal();
 
 				if(type === "jobPost"){
-					obj.modal = "Job Post was SuccesFul!";
+					obj.modal = "Job Post was Successful!";
 					$("#jobCategory").val('0');
 					$("#jobDescription").val('');
 					$("#jobPrice").val("3.00");
@@ -297,7 +297,7 @@ var dbRequest = function(url, content, json, type){
 				else if(type === "signUp"){
 					$.cookie("userInfo", obj);
 					login();
-					obj.modal = "Sign Up was Succesful!";
+					obj.modal = "Sign Up was Successful!";
 					displaySuccess(obj);
 				}
 
@@ -346,13 +346,14 @@ var openModal = function(id){
 	var windowWidth = $(window).width() / 2;
 	var windowHeight = $(window).height() / 2;
 	//console.log(windowWidth);
-	$(id).show();
+	//$(id).show();
 	$(id).addClass("modalSelected");
 	var modalWidth = ($(".modalSelected").width() / 2);
 	var modalHeight = ($(".modalSelected").height() / 2);
 	var left = windowWidth - modalWidth;
 	var top = windowHeight - modalHeight;
-	$(id).css({"left": left, "top": top});
+	$(".modalSelected").css({"left": left, "top": top});
+	$(id).show();
 
 	$("#modalOverlay").addClass("modalOverlay");
 	$(".modalOverlay").height($(document).height());
@@ -450,7 +451,7 @@ var setJobPostDimensions = function(){
 var displayError = function(info){
 	closeModal();
 
-	openModal("#errorModal");
+	
 	$(".errorTitle").text(info.modal);
 	if(info.modal === "Login Failure!"){
 		$("#errorInfo").text("Email and password do not match!");
@@ -458,6 +459,7 @@ var displayError = function(info){
 	else
 		$("#errorInfo").text(info.error.text);
 
+	openModal("#errorModal");
 	//console.log(info);
 
 }
@@ -466,9 +468,10 @@ var displaySuccess = function(info){
 
 	closeModal();
 
-	openModal("#successModal");
+	//openModal("#successModal");
 	$(".successTitle").text(info.modal);
-	console.log(info);
+	openModal("#successModal");
+	//console.log(info);
 }
 
 
