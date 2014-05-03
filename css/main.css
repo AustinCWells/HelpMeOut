@@ -262,7 +262,10 @@ input[type="submit"] {
 	border:1px solid #aaaaaa;
 	border-radius: 5px;
 	background-color: white;
+	cursor:pointer;
 }
+
+
 
 .jobHeader {
 	text-align: center;
@@ -442,16 +445,23 @@ div[id*=recentPosting]{
 	margin:15px;
 }
 
+#preview {
+}
+
 #uploadArea {
-	margin-left: -10px;
+	margin: 15px;
+	margin-left: -50px;
+	padding-left: 40px;
+	padding-bottom: 15px;
+	border-left: solid 1px #aaaaaa;
 }
 
 #uploadedFile {
-	margin-top: 25px;
+	margin-top: 5px;
 }
 
 .settingsSubmit {
-	margin-top: 15px;
+	margin-top: 10px;
 }
 
 .horizontalSeperator {
