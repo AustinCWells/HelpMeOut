@@ -452,7 +452,7 @@ var displayError = function(info){
 
 	openModal("#errorModal");
 	$(".errorTitle").text(info.modal);
-	if(info.modal === "Login in Failure!"){
+	if(info.modal === "Login Failure!"){
 		$("#errorInfo").text("Email and password do not match!");
 	}
 	else
