@@ -11,7 +11,6 @@ $(window).ready(function(event) {
 
 	var userJSON = {};
 	userJSON.user_id = userInfo.userID;
-	console.log(JSON.stringify(userJSON));
 
 	$.ajax({
 		type: 'POST',
@@ -21,9 +20,7 @@ $(window).ready(function(event) {
 		success: function(data){
 			var user_info = {};
 			user_info = JSON.parse(data);
-			console.log(user_info);
 
-			console.log("is_custom = " + user_info.is_custom);
 			if(user_info.is_custom === 0) {
 				$("#profilePic").attr("src", "img/fontenot.jpeg");
 			}
@@ -75,7 +72,6 @@ $(window).ready(function(event) {
 
 			var badges = [user_info.completions_tier, user_info.night_owl_tier, user_info.requests_tier];
 			var badgeSpace = $('#badgeSpace');
-			console.log(badges);
 
 			for(var i=0;i<badges.length;i++) {
 				if(i === 0) {
@@ -116,22 +112,22 @@ $(window).ready(function(event) {
 					if (badges[i] === 1) {
 						var badgeName = "Night Owl Basic";
 						var badgeSrc =  "img/Badges/night_owl_basic.png";
-						var badgeDesc = "[nightowl description]";
+						var badgeDesc = "Completed 1 Job Under the Cover of Darkness";
 					}
 					if (badges[i] === 2) {
 						var badgeName = "Night Owl Bronze";
 						var badgeSrc =  "img/Badges/night_owl_bronze.png";
-						var badgeDesc = "[nightowl description]";
+						var badgeDesc = "Completed 25 Jobs Under the Cover of Darkness";
 					}
 					else if (badges[i] === 3) {
 						var badgeName = "Night Owl Silver";
 						var badgeSrc =  "img/Badges/night_owl_silver.png";
-						var badgeDesc = "[nightowl description]";
+						var badgeDesc = "Completed 50 Jobs Under the Cover of Darkness";
 					}
 					else if (badges[i] === 4) {
 						var badgeName = "Night Owl Gold";
 						var badgeSrc =  "img/Badges/night_owl_gold.png";
-						var badgeDesc = "[nightowl description]";
+						var badgeDesc = "Completed 100 Jobs Under the Cover of Darkness";
 					}
 
 					var badgeHTML = '<div class="badge" id="badge' + badges[i] + '"><img class="badgeImg" src="' + badgeSrc + '"><br><div class="badgeName">' + badgeName + ':</div><br><div class="badgeDesc">' + badgeDesc + '</div></div>';

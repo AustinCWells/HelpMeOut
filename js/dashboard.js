@@ -9,8 +9,6 @@ $(window).ready(function(event) {
 	var accordionLeft = $('#accordionLeft');
 	var accordionRight = $('#accordionRight');
 
-	console.log("sent:");
-	console.log({user_id: userInfo.userID});
 	var json = {};
 	json.user_id = userInfo.userID;
 
@@ -22,13 +20,8 @@ $(window).ready(function(event) {
         data: JSON.stringify(json), //Data to POST to the server
         content: 'application/json',
         success: function (data) { 
-			console.log('Job\'s I\'m Doing: ');
-			//console.log(JSON.parse(data));
 
 			var tasks = JSON.parse(data);
-			console.log(tasks);
-			//console.log(accordionLeft.html());
-
 			//LEFT
 			//Section: Jobs I'm Doing - In progress	
 			for(var i=0;i<tasks.length;i++) {
@@ -95,19 +88,12 @@ $(window).ready(function(event) {
 						        type: "Get",
 						        url: url,
 						        success: function (data) { 
-						        	console.log(data);
 						        	location.reload();
 								}
 							});
 						});
 				}
 			}
-
-			//Section: Jobs I'm Doing - Help offered
-			// for(var i=0;i<tasks.length;i++) {
-			// 	var html = 	'<h3>Help offered to: ' + tasks[i].beggar_id + '</h3><div><div class = "row"><span class = "bidHeader twelve column center">You have requested to complete *beggar_name*\'s job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + 'img/food.png' + '"><div class="jobContactInfo seven columns">Name: ' + '*first_name*' + ' ' + '*last_name*' + '<br><br><span class="smallText">Start Time:</span> ' + '*start_time*' + ' <span class="smallText">End Time:</span> ' + '*end_time*' + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_id + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five center" value="Cancel Request"></div></div>';
-			// 	accordionLeft.append(html);
-			// }
 
 			//empty message
 			if(accordionLeft.html() === '') {
@@ -120,32 +106,13 @@ $(window).ready(function(event) {
 		}
 	});
 
-
-		/*
-		for(var i=0;i<jobsList.length;i++) {
-			if(i===0) {
-				accordionRight.empty();
-			}
-			var profileHTML = '<div class="ratingDiv">Overall Rating:<br><br><span class="ratingLabel"></span><div class="barArea"><div class="ratingBg" ></div><div class="ratingFg"></div></div></div>';
-			var html = '<h3>Job Request From: ' + 'Wilson Wilson' + '</h3><div><p class="jobHeader">' + 'Wilson Wilson' + ' has requested to complete your task: "' + 'Clean my shoes, please' + '"<br><img class="jobPic" src="' + 'img/food.png' + '"><div class="jobContactInfo">' + 'Name: ' + 'Wilson Wilson' + '<br>Jobs Completed: ' + 'OVER9000!' + '</div><div class="jobDashPrice right">' + 'Offered Price:<br>$' + '5' + '</div><br><div class="jobProfile">' + profileHTML + '</div><input type="button" class="acceptButton leftButton" value="Accept"><input type="button" class="declineButton rightButton" value="Decline"</div>';
-			accordionRight.append(html);
-
-		}
-		*/
-
-
-
-
 	var urlRight = "api/getMyTasksAndPendingOffers/" + userInfo.userID;
 	$.ajax({
         type: "Get",
         url: urlRight,
         success: function (data) { 
-			console.log('Job\'s I Need Done:');
 
 			var tasks = JSON.parse(data);
-			console.log(tasks);
-
 
 			//Section: Help I'm Getting - In progress
 			for(var i=0;i<tasks.length;i++) {
@@ -202,7 +169,6 @@ $(window).ready(function(event) {
 						accordionRight.append(html);
 						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
 						CancelButton.onclick = function(e) {
-							// console.log("can sell");
 							console.log($(CancelButton).data("task"));
 							var task = $(CancelButton).data("task");
 
@@ -226,16 +192,15 @@ $(window).ready(function(event) {
 							openModal("#jobCompleteModal");
 							$("#jobCompleteForm").submit(function(event){
 								event.preventDefault();
-								var overall = $('input[name=overallRating]:checked').val();
+								var reliability = $('input[name=reliabilityRating]:checked').val();
 								var speed = $('input[name=speedRating]:checked').val();
 								closeModal("#jobCompleteModal");
 								var task = $(CompleteButton).data("task");
-								var url = "api/completeTask/" + tasks[task].task_id + "," + overall + "," + speed;
+								var url = "api/completeTask/" + task + "," + reliability + "," + speed;
 								$.ajax({
 							        type: "Get",
 							        url: url,
 							        success: function (data) { 
-							        	console.log(data);
 							        	location.reload();
 									}
 								});
@@ -244,10 +209,7 @@ $(window).ready(function(event) {
 						CancelButton.onclick = function(e) {
 							openModal("#cancelJobModal");
 
-							// console.log("can sell");
-							// console.log($(CancelButton).data("task"));
 							var task = $(CancelButton).data("task");
-
 
 							$("#cancelJobForm").submit(function(event){
 								event.preventDefault();
@@ -258,34 +220,33 @@ $(window).ready(function(event) {
 							        type: "Get",
 							        url: url,
 							        success: function (data) { 
-							        	console.log(data);
 							        	location.reload();
 									}
 								});
-								});
+							});
 						}
 					}
 				}
 				else {
-					var overallHTML = '<div class="starRating"><div><div><div><div><input id="overallRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="1" disabled="true"><label for="overallRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>1</span></label></div><input id="overallRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="2" disabled="true"><label for="overallRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>2</span></label></div><input id="overallRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="3" disabled="true"><label for="overallRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>3</span></label></div><input id="overallRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="4" disabled="true"><label for="overallRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>4</span></label></div><input id="overallRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="5" disabled="true"><label for="overallRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>5</span></label></div>';
+					var reliabilityHTML = '<div class="starRating"><div><div><div><div><input id="reliabilityRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="reliabilityRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="1" disabled="true"><label for="reliabilityRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>1</span></label></div><input id="reliabilityRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="reliabilityRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="2" disabled="true"><label for="reliabilityRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>2</span></label></div><input id="reliabilityRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="reliabilityRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="3" disabled="true"><label for="reliabilityRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>3</span></label></div><input id="reliabilityRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="reliabilityRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="4" disabled="true"><label for="reliabilityRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>4</span></label></div><input id="reliabilityRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="reliabilityRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="5" disabled="true"><label for="reliabilityRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>5</span></label></div>';
 					var speedHTML = '<div class="starRating"><div><div><div><div><input id="speedRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="1" disabled="true"><label for="speedRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>1</span></label></div><input id="speedRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="2" disabled="true"><label for="speedRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>2</span></label></div><input id="speedRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="3" disabled="true"><label for="speedRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>3</span></label></div><input id="speedRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="4" disabled="true"><label for="speedRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>4</span></label></div><input id="speedRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="5" disabled="true"><label for="speedRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>5</span></label></div>';
-					var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].chooser_fName + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row">' + overallHTML + '</div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row">' + speedHTML + '</div></div></div><div class = "row center"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '" value="Accept"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Decline"></div></div>';
+					var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].chooser_fName + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">reliability Rating:<div class="row">' + reliabilityHTML + '</div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row">' + speedHTML + '</div></div></div><div class = "row center"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '" value="Accept"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Decline"></div></div>';
 					accordionRight.append(html);
 					var radiobtn;
 					if(tasks[i].chooser_reliability >= 80) {
-						radiobtn = document.getElementById("overallRating5-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn = document.getElementById("reliabilityRating5-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
 					}
 					if(tasks[i].chooser_reliability >= 60 && tasks[i].chooser_reliability < 80) {
-						radiobtn = document.getElementById("overallRating4-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn = document.getElementById("reliabilityRating4-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
 					}
 					if(tasks[i].chooser_reliability >= 40 && tasks[i].chooser_reliability < 60) {
-						radiobtn = document.getElementById("overallRating3-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn = document.getElementById("reliabilityRating3-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
 					}
 					if(tasks[i].chooser_reliability >= 20 && tasks[i].chooser_reliability < 40) {
-						radiobtn = document.getElementById("overallRating2-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn = document.getElementById("reliabilityRating2-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
 					}
 					if(tasks[i].chooser_reliability < 20) {
-						radiobtn = document.getElementById("overallRating1-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn = document.getElementById("reliabilityRating1-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
 					}
 					radiobtn.checked = true;
 
@@ -309,8 +270,6 @@ $(window).ready(function(event) {
 					var AcceptButton = document.getElementById("accept" + tasks[i].task_id);
 					var DeclineButton = document.getElementById("decline" + tasks[i].task_id);
 					AcceptButton.onclick = function(e) {
-						// console.log("acccept");
-						// console.log($(AcceptButton).data("task"));
 						var task = $(AcceptButton).data("task");
 
 						var url = "api/acceptOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
@@ -324,8 +283,6 @@ $(window).ready(function(event) {
 						});
 					}
 					DeclineButton.onclick = function(e) {
-						// console.log("decccline");
-						// console.log($(DeclineButton).data("task"));
 						var task = $(DeclineButton).data("task");
 
 						var url = "api/declineOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
