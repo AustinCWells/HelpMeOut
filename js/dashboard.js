@@ -141,7 +141,6 @@ $(window).ready(function(event) {
         success: function (data) { 
 
 			var tasks = JSON.parse(data);
-			console.log(tasks);
 
 			//Section: Help I'm Getting - In progress
 			for(var i=0;i<tasks.length;i++) {
