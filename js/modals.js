@@ -263,7 +263,7 @@ var dbRequest = function(url, content, json, type){
 				closeModal();
 
 				if(type === "jobPost"){
-					obj.modal = "Job Post was SuccesFul!";
+					obj.modal = "Job Post was Successful!";
 					$("#jobCategory").val('0');
 					$("#jobDescription").val('');
 					$("#jobPrice").val("3.00");
