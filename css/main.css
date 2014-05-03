@@ -142,18 +142,22 @@ margin-bottom: 2px;
 
 .cancelJob {
 	cursor:pointer;
+	margin-right: 25px;
 }
 
 .jobCompleted {
 	cursor:pointer;
+	margin-left: 25px;
 }
 
 .decline {
 	cursor:pointer;
+	margin-right: 25px;
 }
 
 .accept {
 	cursor:pointer;
+	margin-left: 25px;
 }
 
 .seperator {

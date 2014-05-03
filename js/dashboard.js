@@ -79,23 +79,27 @@ $(window).ready(function(event) {
 						image = "img/other.png";
 					}
 				tasks[i].contact_number = phoneFormat(tasks[i].contact_number);
-				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row"><input type="button" class="cancelCenter five column center" id="cancelCenter' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"></div></div>';
+				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row"><input type="button" class="cancelCenter five column center" id="cancelCenter' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Cancel Job"></div></div>';
 				accordionLeft.append(html);
 				var CancelButton = document.getElementById("cancelCenter" + tasks[i].task_id);
 				CancelButton.onclick = function(e) {
-					// console.log("can sell");
-					// console.log($(CancelButton).data("task"));
-					var task = $(CancelButton).data("task");
+					openModal("#cancelJobModal");
+						var task = $(CancelButton).data("task");
 
-					var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
-					$.ajax({
-				        type: "Get",
-				        url: url,
-				        success: function (data) { 
-				        	console.log(data);
-				        	location.reload();
-						}
-					});
+						$("#cancelJobForm").submit(function(event){
+							event.preventDefault();
+							closeModal("#cancelModal");
+							var task = $(CancelButton).data("task");
+							var url = "api/cancelTask/" + userInfo.userID + "," + task;
+							$.ajax({
+						        type: "Get",
+						        url: url,
+						        success: function (data) { 
+						        	console.log(data);
+						        	location.reload();
+								}
+							});
+						});
 				}
 			}
 
@@ -137,7 +141,7 @@ $(window).ready(function(event) {
         type: "Get",
         url: urlRight,
         success: function (data) { 
-			console.log('Job\'s I Need Done:');
+			console.log('Job\'s tasks[i].task_id Need Done:');
 
 			var tasks = JSON.parse(data);
 			console.log(tasks);
@@ -194,7 +198,7 @@ $(window).ready(function(event) {
 
 				if(tasks[i].is_offer_for_help === 0) {
 					if(tasks[i].chooser_id === 0) {
-						var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelCenter five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"></div></div>';
+						var html = 	'<h3>Help for: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered:</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelCenter five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Cancel Job"></div></div>';
 						accordionRight.append(html);
 						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
 						CancelButton.onclick = function(e) {
@@ -213,8 +217,8 @@ $(window).ready(function(event) {
 							});
 						}
 					}
-					else {//TODO: populate with chooser's info
-						var html = 	'<h3>' + tasks[i].chooser_fName + ' is completing: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Helper: ' + tasks[i].chooser_fName + tasks[i].chooser_lName + '<br>Email: ' + tasks[i].contact_email + '<br>Phone: ' + tasks[i].contact_phone + '<br><br>Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].chooser_fName + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="cancelJob five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + i + '"" value="Cancel Job"><input type="button" class="jobCompleted five columns" id="completeRight' + tasks[i].task_id + '" data-task="' + i + '"" "  value="Job Completed"></div></div>';
+					else {
+						var html = 	'<h3>' + tasks[i].chooser_fName + ' is completing: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Helper: ' + tasks[i].chooser_fName + tasks[i].chooser_lName + '<br>Email: ' + tasks[i].contact_email + '<br>Phone: ' + tasks[i].contact_phone + '<br><br>Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_time + ' on ' + tasks[i].time_frame_date + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].chooser_fName + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="jobCompleted five columns" id="completeRight' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" "  value="Job Completed"><input type="button" class="cancelJob five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Cancel Job"></div></div>';
 						accordionRight.append(html);
 						var CompleteButton = document.getElementById("completeRight" + tasks[i].task_id);
 						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
@@ -225,7 +229,7 @@ $(window).ready(function(event) {
 								var overall = $('input[name=overallRating]:checked').val();
 								var speed = $('input[name=speedRating]:checked').val();
 								closeModal("#jobCompleteModal");
-								var task = $(CompleteButton).data("task");//TODO: MAKE THIS THE RIGHT TASK
+								var task = $(CompleteButton).data("task");
 								var url = "api/completeTask/" + tasks[task].task_id + "," + overall + "," + speed;
 								$.ajax({
 							        type: "Get",
@@ -236,18 +240,6 @@ $(window).ready(function(event) {
 									}
 								});
 							});
-							// console.log("compleeeet");
-							// console.log($(CompleteButton).data("task"));
-							// var task = $(CompleteButton).data("task");
-							
-							// var url = "api/completeTask/" + tasks[task].task_id + ",5,5";
-							// $.ajax({
-						 //        type: "Get",
-						 //        url: url,
-						 //        success: function (data) { 
-						 //        	console.log(data);
-							// 	}
-							// });
 						}
 						CancelButton.onclick = function(e) {
 							openModal("#cancelJobModal");
@@ -256,22 +248,28 @@ $(window).ready(function(event) {
 							// console.log($(CancelButton).data("task"));
 							var task = $(CancelButton).data("task");
 
-							var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
-							$.ajax({
-						        type: "Get",
-						        url: url,
-						        success: function (data) { 
-						        	console.log(data);
-						        	location.reload();
-								}
-							});
+
+							$("#cancelJobForm").submit(function(event){
+								event.preventDefault();
+								closeModal("#cancelJobModal");
+								var task = $(CancelButton).data("task");
+								var url = "api/cancelTask/" + userInfo.userID + "," + task;
+								$.ajax({
+							        type: "Get",
+							        url: url,
+							        success: function (data) { 
+							        	console.log(data);
+							        	location.reload();
+									}
+								});
+								});
 						}
 					}
 				}
 				else {
 					var overallHTML = '<div class="starRating"><div><div><div><div><input id="overallRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="1" disabled="true"><label for="overallRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>1</span></label></div><input id="overallRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="2" disabled="true"><label for="overallRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>2</span></label></div><input id="overallRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="3" disabled="true"><label for="overallRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>3</span></label></div><input id="overallRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="4" disabled="true"><label for="overallRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>4</span></label></div><input id="overallRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="overallRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="5" disabled="true"><label for="overallRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>5</span></label></div>';
 					var speedHTML = '<div class="starRating"><div><div><div><div><input id="speedRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="1" disabled="true"><label for="speedRating1-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>1</span></label></div><input id="speedRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="2" disabled="true"><label for="speedRating2-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>2</span></label></div><input id="speedRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="3" disabled="true"><label for="speedRating3-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>3</span></label></div><input id="speedRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="4" disabled="true"><label for="speedRating4-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>4</span></label></div><input id="speedRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" type="radio" name="speedRating' + tasks[i].chooser_id + '-' + tasks[i].task_id + '" value="5" disabled="true"><label for="speedRating5-' + tasks[i].chooser_id + '-' + tasks[i].task_id + '"><span>5</span></label></div>';
-					var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].ChooserFirst + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row">' + overallHTML + '</div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row">' + speedHTML + '</div></div></div><div class = "row center"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + i + '"" value="Decline"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + i + '" value="Accept"></div></div>';
+					var html = 	'<h3>' + tasks[i].chooser_fName + ' has offered Help!</h3><div><div class = "row"><span class = "bidHeader twelve column center">' + tasks[i].chooser_fName + ' has requested to complete your job: ' + tasks[i].short_description + '</span></div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].chooser_fName + ' ' + tasks[i].chooser_lName + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '</div><div class="seperator"></div><div class="three columns"><div class="smallText">You offered ' + tasks[i].chooser_fName + ':</div><br><div class="jobDashPrice left">$' + tasks[i].price + '</div></div></div><div class = "row"><div class = "six column ratingDiv center">Overall Rating:<div class="row">' + overallHTML + '</div></div><div class = "six column ratingDiv center">Speed Rating:<div class="row">' + speedHTML + '</div></div></div><div class = "row center"><input type="button" class="accept five columns" id="accept' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '" value="Accept"><input type="button" class="decline five columns" id="decline' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Decline"></div></div>';
 					accordionRight.append(html);
 					var radiobtn;
 					if(tasks[i].chooser_reliability >= 80) {
@@ -332,13 +330,13 @@ $(window).ready(function(event) {
 
 						var url = "api/declineOffer/" + tasks[task].chooser_id + "," + tasks[task].task_id;
 						$.ajax({
-					        type: "Get",
-					        url: url,
-					        success: function (data) { 
-					        	console.log(data);
-					        	location.reload();
-							}
-						});
+				        type: "Get",
+				        url: url,
+				        success: function (data) { 
+				        	console.log(data);
+				        	location.reload();
+						}
+					});
 					}
 
 				}
