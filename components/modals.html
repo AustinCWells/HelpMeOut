@@ -254,7 +254,8 @@
 	</div>
 	<div>
 		<form id="cancelJobForm">
-			<input type="submit" value="Cancel Job">
+			Are you sure you want to cancel this job?<br>
+			<input type="submit" value="Cancel Job" id="cancelSubmit">
 		</form>
 	</div>
 
@@ -271,34 +272,34 @@
 		<div class = "clear"></div>
 	</div>
 	<div>
-		<form id="jobCompleteForm">
-			<div>Overall Rating:
+		<form id="jobCompleteForm">To mark this job as complete, <br>please rate the person who helped you:
+			<div class="jobRating">Reliability Rating:
 				<div>
-			        <div class="starRating">
+			        <div class="submitRating">
 						<div>
 					    	<div>
 					      		<div>
 					        		<div>
-					          			<input id="overallRating1" type="radio" name="overallRating" value="1">
-					       			  	<label for="overallRating1"><span>1</span></label>
+					          			<input id="reliabilityRating1" type="radio" name="reliabilityRating" value="1">
+					       			  	<label for="reliabilityRating1"><span>1</span></label>
 						    			</div>
-						    		    <input id="overallRating2" type="radio" name="overallRating" value="2">
-						   		     	<label for="overallRating2"><span>2</span></label>
+						    		    <input id="reliabilityRating2" type="radio" name="reliabilityRating" value="2">
+						   		     	<label for="reliabilityRating2"><span>2</span></label>
 						   		   	</div>
-						  		   	<input id="overallRating3" type="radio" name="overallRating" value="3">
-								    <label for="overallRating3"><span>3</span></label>
+						  		   	<input id="reliabilityRating3" type="radio" name="reliabilityRating" value="3">
+								    <label for="reliabilityRating3"><span>3</span></label>
 							    </div>
-							    <input id="overallRating4" type="radio" name="overallRating" value="4">
-							    <label for="overallRating4"><span>4</span></label>
+							    <input id="reliabilityRating4" type="radio" name="reliabilityRating" value="4">
+							    <label for="reliabilityRating4"><span>4</span></label>
 						  	</div>
-						<input id="overallRating5" type="radio" name="overallRating" value="5">
-						<label for="overallRating5"><span>5</span></label>
+						<input id="reliabilityRating5" type="radio" name="reliabilityRating" value="5">
+						<label for="reliabilityRating5"><span>5</span></label>
 					</div>
 			    </div>
        		</div>
-			<div>Speed Rating:
+			<div class="jobRating">Speed Rating:
 				<div>
-			        <div class="starRating">
+			        <div class="submitRating">
 						<div>
 					    	<div>
 					      		<div>
@@ -320,7 +321,7 @@
 					</div>
 			    </div>
        		</div>
-       		<input type="submit" value="Submit Rating">
+       		<input type="submit" value="Submit Rating" id="ratingSubmit">
    		</form>
 	</div>
 

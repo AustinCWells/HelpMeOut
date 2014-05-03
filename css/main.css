@@ -250,21 +250,14 @@ h3 {
 	padding-bottom: 50px;
 	height:65px;
 }
-/*
-.leftButton {
-	float:left;
-	margin-left:100px;
-	margin-top: 15px;
-}
-
-.rightButton {
-	float:right;
-	margin-right:100px;
-	margin-top: 15px;
-}
-*/
 
 input[type="button"] {
+	border:1px solid #aaaaaa;
+	border-radius: 5px;
+	background-color: white;
+}
+
+input[type="submit"] {
 	border:1px solid #aaaaaa;
 	border-radius: 5px;
 	background-color: white;
@@ -496,3 +489,78 @@ div[id*=recentPosting]{
 /*.starRating:hover input:hover + label{
   background : url('../img/stars2.png') repeat-x 0 -48px;
 }*/
+
+
+.submitRating{
+  display        : inline-block;
+  position       : relative;
+  height         : 24px;
+  background     : url('../img/stars2.png') repeat-x 0 0;
+  vertical-align : bottom;
+}
+
+.submitRating div{
+  float    : left;
+  position : relative;
+  height   : 24px;
+}
+
+.submitRating input{
+  position : relative;
+  z-index  : 1;
+  width    : 34px;
+  height   : 24px;
+  margin   : 0;
+  padding  : 0;
+  opacity  : 0;
+}
+
+.submitRating label{
+  position : absolute;
+  top      : 0;
+  left     : 0;
+  width    : 100%;
+  height   : 24px;
+}
+
+.submitRating span{
+  display : none;
+  height:24px;
+}
+
+.submitRating       input:checked       + label,
+.submitRating:hover input:checked:hover + label{
+  background : url('../img/stars2.png') repeat-x 0 -24px;
+}
+
+.submitRating:hover input:checked + label{
+  background : transparent;
+}
+
+.submitRating:hover input:hover + label{
+  background : url('../img/stars2.png') repeat-x 0 -48px;
+}
+
+/*Dashboard Modals*/
+
+#jobCompleteForm {
+	padding:15px;
+	text-align: center;
+}
+
+.jobRating {
+	margin-top:15px;
+}
+
+#ratingSubmit {
+	margin-top:15px;
+}
+
+#cancelSubmit {
+	margin-top:15px;
+}
+
+#cancelJobForm {
+	padding:15px;
+	text-align: center;
+}
