@@ -72,8 +72,36 @@ $(window).ready(function(event) {
 						image = "img/other.png";
 					}
 				tasks[i].contact_number = phoneFormat(tasks[i].contact_number);
-				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_date + " " + tasks[i].time_frame_time + '</div><div class="seperator"></div><div class="three columns"><div class="smallText center">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row"><input type="button" class="cancelCenter five column center" id="cancelCenter' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Cancel Job"></div></div>';
+				var html = 	'<h3>' + tasks[i].beggar_fName + ': ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '" id="pic' + tasks[i].task_id + '"><div class="jobContactInfo seven columns">Name: ' + tasks[i].beggar_fName + ' ' + tasks[i].beggar_lName + '<br>Phone: ' + tasks[i].contact_number + '<br>Email: ' + tasks[i].contact_email + '<br>Location: ' + tasks[i].location + '<br><br>End Time:</span> ' + tasks[i].time_frame_date + " " + tasks[i].time_frame_time + '</div><div class="seperator"></div><div class="three columns"><div class="smallText center">' + tasks[i].beggar_fName + ' has offered you:</div><br><div class="jobDashPrice">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row"><input type="button" class="cancelCenter five column center" id="cancelCenter' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Cancel Job"></div></div>';
 				accordionLeft.append(html);
+
+				var isCustom;
+				var imagePath;
+				var userJSON = {};
+				userJSON.user_id = tasks[i].beggar_id;
+
+				var taskID = tasks[i].task_id;
+				$.ajax({
+					type: 'POST',
+					url: "api/useraccount",
+					content: 'application/json',
+					data: JSON.stringify(userJSON),
+					success: function(data){
+						var superData = JSON.parse(data);
+						console.log(superData);
+						console.log(superData.is_custom);
+						isCustom = superData.is_custom;
+						imagePath = superData.custom_image_path;
+						if(isCustom === 0) {
+							//Do nothing
+						}
+						else {
+							console.log("hello: " + imagePath);
+							var imagePath = "img/user/" + imagePath;
+							$('#pic' + taskID).attr("src", imagePath);
+						}
+					}
+				});
 				var CancelButton = document.getElementById("cancelCenter" + tasks[i].task_id);
 				CancelButton.onclick = function(e) {
 					openModal("#cancelJobModal");
@@ -113,6 +141,7 @@ $(window).ready(function(event) {
         success: function (data) { 
 
 			var tasks = JSON.parse(data);
+			console.log(tasks);
 
 			//Section: Help I'm Getting - In progress
 			for(var i=0;i<tasks.length;i++) {
@@ -184,8 +213,32 @@ $(window).ready(function(event) {
 						}
 					}
 					else {
-						var html = 	'<h3>' + tasks[i].chooser_fName + ' is completing: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '"><div class="jobContactInfo seven columns">' + 'Helper: ' + tasks[i].chooser_fName + tasks[i].chooser_lName + '<br>Email: ' + tasks[i].contact_email + '<br>Phone: ' + tasks[i].contact_phone + '<br><br>Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_date + " " + tasks[i].time_frame_time + '</div><div class="seperator"></div><div class="three columns"><div class="smallText center">You offered ' + tasks[i].chooser_fName + ':</div><br><div class="jobDashPrice">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="jobCompleted five columns" id="completeRight' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" "  value="Job Completed"><input type="button" class="cancelJob five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Cancel Job"></div></div>';
+						var html = 	'<h3>' + tasks[i].chooser_fName + ' is completing: ' + tasks[i].short_description + '</h3><div><div class="row"><img class="jobPic three columns" src="' + image + '" id="pic' + tasks[i].task_id + '"><div class="jobContactInfo seven columns">' + 'Helper: ' + tasks[i].chooser_fName + tasks[i].chooser_lName + '<br>Email: ' + tasks[i].contact_email + '<br>Phone: ' + tasks[i].contact_phone + '<br><br>Category: ' + categoryFormatted + '<br>Location: ' + tasks[i].location + '<br><br><span class="smallText">Posted:</span> ' + tasks[i].date_posted + '<br><span class="smallText">End Time:</span> ' + tasks[i].time_frame_date + " " + tasks[i].time_frame_time + '</div><div class="seperator"></div><div class="three columns"><div class="smallText center">You offered ' + tasks[i].chooser_fName + ':</div><br><div class="jobDashPrice">$' + tasks[i].price + '</div></div></div><div class = "row"><div class="jobNotes twelve columns"><p class="notesHeader">Notes:</p>' + tasks[i].notes + '</div></div><div class = "row center"><input type="button" class="jobCompleted five columns" id="completeRight' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" "  value="Job Completed"><input type="button" class="cancelJob five columns"  id="cancelRight' + tasks[i].task_id + '" data-task="' + tasks[i].task_id + '"" value="Cancel Job"></div></div>';
 						accordionRight.append(html);
+						var isCustom;
+						var imagePath;
+						var userJSON = {};
+						userJSON.user_id = tasks[i].chooser_id;
+
+						var taskID = tasks[i].task_id;
+						$.ajax({
+							type: 'POST',
+							url: "api/useraccount",
+							content: 'application/json',
+							data: JSON.stringify(userJSON),
+							success: function(data){
+								var superData = JSON.parse(data);
+								isCustom = superData.is_custom;
+								imagePath = superData.custom_image_path;
+								if(isCustom === 0) {
+									//Do nothing
+								}
+								else {
+									var imagePath = "img/user/" + imagePath;
+									$('#pic' + taskID).attr("src", imagePath);
+								}
+							}
+						});
 						var CompleteButton = document.getElementById("completeRight" + tasks[i].task_id);
 						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
 						CompleteButton.onclick = function(e) {
