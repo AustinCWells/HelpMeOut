@@ -93,6 +93,7 @@ $(window).ready(function(event) {
 				        url: url,
 				        success: function (data) { 
 				        	console.log(data);
+				        	location.reload();
 						}
 					});
 				}
@@ -207,6 +208,7 @@ $(window).ready(function(event) {
 						        url: url,
 						        success: function (data) { 
 						        	console.log(data);
+						        	location.reload();
 								}
 							});
 						}
@@ -260,6 +262,7 @@ $(window).ready(function(event) {
 						        url: url,
 						        success: function (data) { 
 						        	console.log(data);
+						        	location.reload();
 								}
 							});
 						}
@@ -318,6 +321,7 @@ $(window).ready(function(event) {
 					        url: url,
 					        success: function (data) { 
 					        	console.log(data);
+					        	location.reload();
 							}
 						});
 					}
@@ -332,6 +336,7 @@ $(window).ready(function(event) {
 					        url: url,
 					        success: function (data) { 
 					        	console.log(data);
+					        	location.reload();
 							}
 						});
 					}
