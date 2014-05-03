@@ -201,7 +201,7 @@ $(window).ready(function(event) {
 							console.log($(CancelButton).data("task"));
 							var task = $(CancelButton).data("task");
 
-							var url = "api/cancelTask/" + userInfo.userID + "," + tasks[task].task_id;
+							var url = "api/cancelTask/" + userInfo.userID + "," + task;
 							$.ajax({
 						        type: "Get",
 						        url: url,
