@@ -197,17 +197,22 @@ $(window).ready(function(event) {
 						accordionRight.append(html);
 						var CancelButton = document.getElementById("cancelRight" + tasks[i].task_id);
 						CancelButton.onclick = function(e) {
-							console.log($(CancelButton).data("task"));
+							openModal("#cancelJobModal");
+
 							var task = $(CancelButton).data("task");
 
-							var url = "api/cancelTask/" + userInfo.userID + "," + task;
-							$.ajax({
-						        type: "Get",
-						        url: url,
-						        success: function (data) { 
-						        	console.log(data);
-						        	location.reload();
-								}
+							$("#cancelJobForm").submit(function(event){
+								event.preventDefault();
+								closeModal("#cancelJobModal");
+								var task = $(CancelButton).data("task");
+								var url = "api/cancelTask/" + userInfo.userID + "," + task;
+								$.ajax({
+							        type: "Get",
+							        url: url,
+							        success: function (data) { 
+							        	location.reload();
+									}
+								});
 							});
 						}
 					}
