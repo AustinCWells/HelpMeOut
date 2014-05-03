@@ -35,40 +35,55 @@ $(window).ready(function(event) {
 			    return text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 			});
 
+
 			var radiobtn;
 			if(user_info.reliability >= 80) {
 				radiobtn = document.getElementById("reliabilityRatingProfile5");
+				radiobtn.checked = true;
 			}
 			if(user_info.reliability >= 60 && user_info.reliability < 80) {
 				radiobtn = document.getElementById("reliabilityRatingProfile4");
+				radiobtn.checked = true;
 			}
 			if(user_info.reliability >= 40 && user_info.reliability < 60) {
 				radiobtn = document.getElementById("reliabilityRatingProfile3");
+				radiobtn.checked = true;
 			}
 			if(user_info.reliability >= 20 && user_info.reliability < 40) {
 				radiobtn = document.getElementById("reliabilityRatingProfile2");
+				radiobtn.checked = true;
 			}
-			if(user_info.reliability < 20) {
+			if(user_info.reliability < 20 && user_info.reliability > 0) {
 				radiobtn = document.getElementById("reliabilityRatingProfile1");
+				radiobtn.checked = true;
 			}
-			radiobtn.checked = true;
+			else {
+				//do nothing
+			}
 
 			if(user_info.speed > 80) {
 				radiobtn = document.getElementById("speedRatingProfile5");
+				radiobtn.checked = true;
 			}
 			if(user_info.speed > 60 && user_info.speed < 80) {
 				radiobtn = document.getElementById("speedRatingProfile4");
+				radiobtn.checked = true;
 			}
 			if(user_info.speed > 40 && user_info.speed < 60) {
 				radiobtn = document.getElementById("speedRatingProfile3");
+				radiobtn.checked = true;
 			}
 			if(user_info.speed > 20 && user_info.speed < 40) {
 				radiobtn = document.getElementById("speedRatingProfile2");
+				radiobtn.checked = true;
 			}
-			if(user_info.speed < 20) {
+			if(user_info.speed < 20 && user_info.speed > 0) {
 				radiobtn = document.getElementById("speedRatingProfile1");
+				radiobtn.checked = true;
 			}
-			radiobtn.checked = true;
+			else {
+				//do nothing
+			}
 
 			var badges = [user_info.completions_tier, user_info.night_owl_tier, user_info.requests_tier];
 			var badgeSpace = $('#badgeSpace');

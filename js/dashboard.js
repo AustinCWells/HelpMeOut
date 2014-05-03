@@ -288,37 +288,51 @@ $(window).ready(function(event) {
 					var radiobtn;
 					if(tasks[i].chooser_reliability >= 80) {
 						radiobtn = document.getElementById("reliabilityRating5-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
 					if(tasks[i].chooser_reliability >= 60 && tasks[i].chooser_reliability < 80) {
 						radiobtn = document.getElementById("reliabilityRating4-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
 					if(tasks[i].chooser_reliability >= 40 && tasks[i].chooser_reliability < 60) {
 						radiobtn = document.getElementById("reliabilityRating3-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
 					if(tasks[i].chooser_reliability >= 20 && tasks[i].chooser_reliability < 40) {
 						radiobtn = document.getElementById("reliabilityRating2-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
-					if(tasks[i].chooser_reliability < 20) {
+					if(tasks[i].chooser_reliability < 20 && tasks[i].chooser_reliability > 0) {
 						radiobtn = document.getElementById("reliabilityRating1-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
-					radiobtn.checked = true;
+					else {
+						//do nothing
+					}
 
 					if(tasks[i].chooser_reliability >= 80) {
 						radiobtn = document.getElementById("speedRating5-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
 					if(tasks[i].chooser_speed >= 60 && tasks[i].chooser_speed < 80) {
 						radiobtn = document.getElementById("speedRating4-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
 					if(tasks[i].chooser_speed >= 40 && tasks[i].chooser_speed < 60) {
 						radiobtn = document.getElementById("speedRating3-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
 					if(tasks[i].chooser_speed >= 20 && tasks[i].chooser_speed < 40) {
 						radiobtn = document.getElementById("speedRating2-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
-					if(tasks[i].chooser_speed < 20) {
+					if(tasks[i].chooser_speed < 20 && tasks[i].chooser_speed > 0) {
 						radiobtn = document.getElementById("speedRating1-" + tasks[i].chooser_id + '-' + tasks[i].task_id);
+						radiobtn.checked = true;
 					}
-					radiobtn.checked = true;
+					else {
+						//do nothing
+					}
 
 					var AcceptButton = document.getElementById("accept" + tasks[i].task_id);
 					var DeclineButton = document.getElementById("decline" + tasks[i].task_id);
