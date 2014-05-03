@@ -147,7 +147,7 @@ $(window).ready(function(){
 	$(".jobPostForm").submit(function(event){
 
 		event.preventDefault();
-		console.log("Posting a Job")
+		//console.log("Posting a Job")
 
 		//checkJobPostValidity();
 
@@ -160,7 +160,7 @@ $(window).ready(function(){
 		jobPostInfo.deadlineDate = $("#jobDeadlineDate").val();
 		jobPostInfo.deadlineTime = $("#jobDeadlineTime").val();
 		jobPostInfo.notes = $("#jobNotes").val();
-		console.log(jobPostInfo);
+		//console.log(jobPostInfo);
 
 		dbRequest('api/postatask', 'application/json', jobPostInfo, 'jobPost');
 	});
@@ -179,7 +179,7 @@ $(window).ready(function(){
 				var offer = {};
 				offer.task_id = parseInt($("#modalTaskId").val(), 10);
 				offer.user_id = userInfo.userID;
-				console.log(offer);
+				//console.log(offer);
 				dbRequest('api/makeOffer', 'application/json', offer, 'offerHelp');
 
 			}
